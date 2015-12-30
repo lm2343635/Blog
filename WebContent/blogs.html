@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Meng Li's Blog</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="Shortcut Icon" href="static/images/favicon.ico">
+		<link href="static/css/bootstrap.min.css" rel="stylesheet"/>
+		<link href="static/css/bootstrap.photo.css" rel="stylesheet"/>
+		<link href="static/css/docs.min.css" rel="stylesheet"/>
+		<link href="static/css/style.css" rel="stylesheet"/>
+		<link href="static/css/mengular.css" rel="stylesheet"/>
+		<link href="static/css/blogs.css" rel="stylesheet"/>
+		<script src="static/js/jquery.min.js"></script>
+		<script src="static/js/move-top.js"></script>
+		<script src="static/js/easing.js"></script>
+		<script src="static/js/bootstrap.min.js"></script>
+		<script src="static/js/mengular-2.0.js"></script>
+		<script src="static/js/tools.js"></script>
+		<script src="dwr/engine.js"></script>
+        <script src="dwr/interface/BlogManager.js"></script>
+		<script src="static/js/blogs.js"></script>
+	</head>
+	<body>
+		<div id="home" class="header">
+			<div class="top-header">
+				<div class="container">
+					<div class="logo">
+						<a href="index.html"><img src="static/images/logo.png"/></a>
+					</div>
+					<nav class="top-nav">
+						<ul class="top-nav">
+							<li><a href="index.html">Home</a></li>
+							<li><a href="blogs.html">Blogs</a></li>
+						</ul>
+						<a href="#" id="pull"><img src="static/images/nav-icon.png" title="menu" /></a>
+					</nav>
+					<div class="clearfix"> </div>
+					<h1 class="text-center">My Blogs</h1>
+				</div>
+			</div>
+		</div>
+		<div id="blog-list" class="container">
+			<div id="${bid}$" class="bs-callout mengular-template blog-list-template">
+				<div class="row">
+					<div class="col-xs-12 col-sm-10">
+						<h4 class="text-primary">${title}$</h4>
+					</div>
+					<div class="col-xs-12 col-sm-2">
+						<h4 class="pull-right text-muted">${date}$</h4>
+					</div>
+				</div>
+			</div>
+		</div>	
+		<div class="copy-right text-center">
+			<div class="container">
+				<p>Made by Meng Li.</p>
+				<label>Copyright of Meng Li @ 2014-2016. All rights reserved. 鄂ICP备15010075号-1</label>
+			</div>
+		</div>
+	</body>
+</html>
