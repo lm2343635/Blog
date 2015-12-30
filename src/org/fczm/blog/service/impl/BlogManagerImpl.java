@@ -41,4 +41,12 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 		return new BlogBean(blog);
 	}
 
+	@Override
+	public void modifyBlog(String bid, String title, String content) {
+		Blog blog=blogDao.get(bid);
+		blog.setTitle(title);
+		blog.setContent(content);
+		blogDao.update(blog);
+	}
+
 }

@@ -12,12 +12,14 @@ $(document).ready(function() {
 	});
 
 	$("#add-blog-clear").click(function() {
-		$("#add-blog-title").val("");
-		$("#add-blog-content").summernote("code", "");
+        $.messager.confirm("Tip", "Confirm to clear title and content of this blog article?", function() {
+            $("#add-blog-title").val("");
+            $("#add-blog-content").summernote("code", "");
+        });
 	});
 
     $("#add-blog-content").summernote({
-    	height: 700,
+    	height: 400,
     	placeholder: "Write your blog content here."
     });
 
@@ -28,12 +30,11 @@ $(document).ready(function() {
     		$.messager.popup("Input title and content!");
     		return;
     	}
-    	console.log(content);
     	BlogManager.addBlog(title, content, function(bid) {
     		if(bid) {
     			$.messager.popup("Create this blog successfully!");
     			setTimeout(function() {
-    				location.href="manageBlogs.htmll";
+    				location.href="manageBlogs.html";
     			}, 1000);
     		}
     	});
