@@ -26,4 +26,12 @@ public interface BlogManager {
 	 * @return
 	 */
 	BlogBean getBlog(String bid);
+	
+	/**
+	 * 修改博客
+	 * @param bid
+	 * @param title
+	 * @param content
+	 */
+	void modifyBlog(String bid, String title, String content);
 }
