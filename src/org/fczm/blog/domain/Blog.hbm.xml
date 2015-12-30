@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.fczm.blog.domain">
+	<class name="Blog" table="blog">
+		<id name="bid" type="string">
+			<generator class="uuid"/>
+		</id>
+		<property name="title" type="string" not-null="true"/>
+		<property name="content" type="text" not-null="true"/>
+		<property name="date" type="java.util.Date" not-null="true"/>
+		<list name="comments" cascade="delete" inverse="true">
+			<key column="bid"  not-null="true"/>
+			<index column="date" type="java.util.Date"/>
+			<one-to-many class="Comment"></one-to-many>
+		</list> 
+	</class>
+</hibernate-mapping>
