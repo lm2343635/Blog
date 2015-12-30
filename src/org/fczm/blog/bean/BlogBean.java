@@ -35,6 +35,10 @@ public class BlogBean {
 		this.date = date;
 	}
 	
+	public BlogBean() {
+		super();
+	}
+	
 	public BlogBean(Blog blog) {
 		super();
 		this.bid = blog.getBid();

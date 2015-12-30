@@ -8,26 +8,22 @@ public class CommentDaoHibernate extends PageHibernateDaoSupport implements Comm
 
 	@Override
 	public Comment get(String cid) {
-		// TODO Auto-generated method stub
-		return null;
+		return getHibernateTemplate().get(Comment.class, cid);
 	}
 
 	@Override
 	public String save(Comment comment) {
-		// TODO Auto-generated method stub
-		return null;
+		return (String)getHibernateTemplate().save(comment);
 	}
 
 	@Override
 	public void update(Comment comment) {
-		// TODO Auto-generated method stub
-
+		getHibernateTemplate().update(comment);
 	}
 
 	@Override
 	public void delete(Comment comment) {
-		// TODO Auto-generated method stub
-
+		getHibernateTemplate().delete(comment);
 	}
 
 }
