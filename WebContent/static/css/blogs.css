@@ -1,0 +1,22 @@
+#home .top-header {
+	min-height: 250px;
+	max-height: 250px;
+	padding-top: 64px;
+}
+
+#home h1 {
+	color: #FFF;
+    font-family: 'nexa_boldregular';
+    font-size: 3em;
+    line-height: 1.3em;
+}
+
+#blog-list {
+	margin-top: 50px;
+	margin-bottom: 30px;
+}
+
+#blog-list .bs-callout:hover {
+	cursor: pointer;
+	background: #f7f7f7;
+}
