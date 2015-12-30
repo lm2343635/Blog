@@ -6,6 +6,7 @@
         <link href="static/css/bootstrap.css" rel="stylesheet">
         <link href="static/css/font-awesome.min.css" rel="stylesheet">
         <link href="static/css/summernote.min.css" rel="stylesheet">
+        <link href="static/css/blogs.css" rel="stylesheet">
         <script src="static/js/jquery.min.js"></script> 
         <script src="static/js/bootstrap.js"></script> 
         <script src="static/js/summernote.min.js"></script>
@@ -32,10 +33,9 @@
                     </div>
                 </div>
             </nav>
-             <div id="blogs-panel" class="panel panel-default">
+            <div id="blogs-panel" class="panel panel-default">
                 <div class="panel-heading">
                     <h1 class="panel-title">My Blog List</h1>
-                    <i class="fa fa-plus fa-lg pull-right add-icon" data-toggle="modal" data-target="#add-blog-modal" style="margin-top: -13px;"></i>
                 </div>
                 <table id="blog-list" class="table">
                     <thead>
@@ -49,28 +49,28 @@
                     <tbody></tbody>
                 </table>
             </div>
-            
-        </div>
-        <div id="add-blog-modal" class="modal fade">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <span class="glyphicon glyphicon-remove pull-right" data-dismiss="modal"></span>
-                        <h4 class="modal-title">Create a Blog</h4>
-                    </div>
-                    <div id="add-good-form" class="modal-body">
-                        <div class="input-group">
-                            <span class="input-group-addon form-icon"><i class="fa fa-font fa-lg"></i></span>
-                            <input id="add-good-gname" type="text" class="form-control" placeholder="Blog Title">
-                        </div>
-                        <div id="summernote"><p>Input content here.</p></div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
-                        <button id="add-good-submit" type="button" class="btn btn-success">Create</button>
+            <div class="page-header">
+                <h3>Add a Blog</h3>
+            </div>
+            <div id="add-blog-div" class="row">
+                <div class="col-xs-12 col-sm-8">
+                    <div class="input-group">
+                        <span class="input-group-addon form-icon"><i class="fa fa-font fa-lg"></i></span>
+                        <input id="add-blog-title" type="text" class="form-control" placeholder="Blog Title">
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-2">
+                    <button class="btn btn-block btn-default">Reset</button>
+                </div>
+                <div class="col-xs-12 col-sm-2">
+                    <button id="add-blog-submit" class="btn btn-block btn-success">Create</button>
+                </div>
+                <div class="col-xs-12">
+                     <div id="add-blog-content"><p>Input content here.</p></div>
+                </div>
             </div>
+
+           
         </div>
     </body>
 </html>

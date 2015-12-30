@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.fczm.blog.domain">
+	<class name="Comment" table="comment">
+		<id name="cid" type="string">
+			<generator class="uuid"/>
+		</id>
+		<property name="name" type="string" not-null="true"/>
+		<property name="content" type="text" not-null="true"/>
+		<property name="date" type="java.util.Date" not-null="true"/>
+		<many-to-one name="blog" class="Blog" column="bid" cascade="save-update" lazy="false" not-null="true"/>
+	</class>
+</hibernate-mapping>
