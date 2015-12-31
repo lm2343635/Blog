@@ -12,6 +12,7 @@ $(document).ready(function() {
 		$("#edit-blog-content").summernote({
 			height: 700
 		}).summernote("code", blog.content);
+		$("#loading-blog").hide();
 	});
 
 	$("#edit-blog-clear").click(function() {
@@ -28,6 +29,7 @@ $(document).ready(function() {
     		$.messager.popup("Input title and content!");
     		return;
     	}
+    	$("#edit-blog-submit").html('<i class="fa fa-refresh fa-spin"></i> Uploading...').attr("disabled", "disabled");
     	BlogManager.modifyBlog(bid, title, content, function() {
     		$.messager.popup("Mofify this blog successfully!");
     		setTimeout(function() {

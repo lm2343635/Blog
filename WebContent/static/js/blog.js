@@ -10,6 +10,7 @@ $(document).ready(function() {
 		$("#blog-date").text(blog.date.format(DATE_HOUR_MINUTE_FORMAT));
 		$("#blog-title").text(blog.title);
 		$("#blog-content").html(blog.content);
+		 $("#loading-blog").hide();
 	});
 
 });
