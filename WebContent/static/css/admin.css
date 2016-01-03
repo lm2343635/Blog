@@ -1,0 +1,31 @@
+body {
+	background: url(../images/index-bg.jpg) no-repeat center top;
+}
+
+#main-container {
+	margin-bottom: 80px;
+}
+
+#main-container h1 i {
+	margin-top: 50px;
+	height: 300px;
+	font-size: 7em;
+}
+
+.form-icon i {
+	width: 25px;
+}
+
+.row div {
+	padding: 2px 0;
+}
+
+#label{
+	color: rgb(0,0,0);
+	padding: 15px 0;
+	background-color: rgba(255,255,255,0.8)
+}
+
+.main-container-a {
+	margin: 5px;
+}

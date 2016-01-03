@@ -1,0 +1,165 @@
+
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Login Timeout</title>
+	<link href="static/images/favicon.ico" type="image/x-icon" rel="icon"> 
+	<link rel="stylesheet" href="static/css/bootstrap.min.css">
+	<link href="static/css/font-awesome.min.css" rel="stylesheet">
+	<style type="text/css">
+		body{
+			background: #f9f9f9;
+			text-align: center;
+			font-family: "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+		}
+		h1{
+			font-family: "Microsoft YaHei";
+			font-weight: bold;
+			color: #000;
+			font-size: 40px;
+			margin-bottom: 10px;
+			letter-spacing: 3px;
+		}
+		h2{
+			font-family: "Microsoft YaHei";
+			font-weight: bold;
+			color: #000;
+			font-size: 20px;
+			margin-bottom: 10px;
+			letter-spacing: 3px;
+		}
+		.form-area{
+			width: 324px;
+			height: 160px;
+			margin: 30px auto;
+		}
+
+		input{
+			display: block;
+		}
+
+		input[type="text"],
+		input[type="password"]
+		{
+			width: 318px;
+			padding: 12px 10px;
+			border: 1px solid #cecece;
+			outline: none;
+			background: rgb(255,255,180);
+			border-radius: 6px;
+		}
+
+		input[type="text"]:focus,
+		input[type="password"]:focus{
+			box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.075);
+		}
+		input.first-enter-item {
+		/* 	border-radius: 6px 6px 0 0; */
+			border-radius: 6px;
+			margin-bottom:10px;
+		}
+		input.last-enter-item {
+		/* 	border-radius: 0 0 6px 6px; */
+			border-radius: 6px;
+			margin-top: -1px;
+			_margin-top: -3px;
+			margin-bottom: 10px;
+		}
+		input[type="button"]{
+			margin: 16px 0;
+			cursor: pointer;
+			background: green;
+			border: 1px #ff7549;
+			border-radius: 6px;
+			color: #fff;
+			font-size: 16px;
+			height: 44px;
+			line-height: 44px;
+			width: 320px;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			outline: none;
+		}
+		input[type="button"]:hover {
+			color: #fff;
+			background: rgb(0, 150, 0);
+		}
+		.checkbox{
+			text-align: left;
+			padding-left: 0;
+		}
+		.checkbox span{
+			min-height: 15px;
+			padding-left: 20px;
+			overflow: hidden;
+			margin-right: 15px;
+			cursor: pointer; 
+			background: url(../imgs/sprite_login.png) -60px -17px no-repeat;
+		}
+		.checkbox .checked {
+			background-position: -60px 3px;
+		}
+
+		.old{
+			display:none;
+		}
+		.form-area .new{
+			display:block;
+			color:red;
+			height:25px;
+			line-height: 25px;
+		}
+		.old1 {
+			border:1px solid #e6e6e6;
+		}
+		.form-area .new1{
+			border:1px solid red;
+		}
+
+		#container {
+			margin-top: 40px;
+		}
+
+		#stats {
+			display: none;
+		}
+
+		.tips {
+			color: blue;
+		}
+		#toIndex {
+			width: 300px;
+		}
+		img {
+			height: 300px;
+		}
+	</style>
+	<script src="static/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		var count=5;
+
+		$(document).ready(function(){
+			setInterval(function(){
+				count--;
+				$("#count").html(count);
+			}, 1000);
+			setTimeout(function(){
+				location.href="admin.html";
+			}, count*1000);
+		});
+
+	</script>
+</head>
+<body>
+	<br><br>
+	<h1 class="text-center text-success" style="font-size: 17em;"><i class="fa fa-bold"></i></h1>
+	<h1>Admin Login Timeout</h1>
+	<form action="" class="form-area">
+		<br><br>
+		<h3>After<span id="count">5</span>s，back to admin login page automatically</h3>
+		<br>
+		<a id="toIndex" class="btn btn-danger btn-lg" href="admin.html">Back to Admin Login Page</a>
+	</form>
+</body>
+</html>

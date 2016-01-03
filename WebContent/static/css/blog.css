@@ -28,3 +28,15 @@
 #loading-blog {
 	padding: 80px;
 }
+
+#add-blog-comment .col-xs-12 {
+	margin: 5px 0;
+}
+
+.comment-list-template {
+	margin-left: -20px;
+}
+
+#comment-list hr {
+	margin: 7px 0;
+}

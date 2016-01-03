@@ -34,4 +34,10 @@ public interface BlogManager {
 	 * @param content
 	 */
 	void modifyBlog(String bid, String title, String content);
+	
+	/**
+	 * 移除博客
+	 * @param bid
+	 */
+	void removeBlog(String bid);
 }

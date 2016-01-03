@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.fczm.blog.bean.BlogBean;
 import org.fczm.blog.domain.Blog;
+import org.fczm.blog.domain.Comment;
 import org.fczm.blog.service.BlogManager;
 import org.fczm.blog.service.util.ManagerTemplate;
 
@@ -47,6 +48,14 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 		blog.setTitle(title);
 		blog.setContent(content);
 		blogDao.update(blog);
+	}
+
+	@Override
+	public void removeBlog(String bid) {
+		Blog blog=blogDao.get(bid);
+		for(Comment comment: commentDao.findByBlog(blog))
+			commentDao.delete(comment);
+		blogDao.delete(blog);
 	}
 
 }

@@ -1,16 +1,27 @@
 $(document).ready(function() {
+	checkAdminSession(function() {
+		BlogManager.getAll(function(blogs) {
+			$("#blog-list tbody").mengularClear();
+			for(var i in blogs) {
+				$("#blog-list tbody").mengular(".blog-list-template", {
+					bid: blogs[i].bid,
+					date: blogs[i].date.format(DATE_HOUR_MINUTE_SECOND_FORMAT),
+					title: blogs[i].title
+				});
 
-	BlogManager.getAll(function(blogs) {
-		$("#blog-list tbody").mengularClear();
-		for(var i in blogs) {
-			$("#blog-list tbody").mengular(".blog-list-template", {
-				bid: blogs[i].bid,
-				date: blogs[i].date.format(DATE_HOUR_MINUTE_SECOND_FORMAT),
-				title: blogs[i].title
-			});
-		}
+                $("#"+blogs[i].bid+" .blog-list-delete").click(function() {
+                    var id=$(this).parent().attr("id");
+                    var title=$("#"+id+" .blog-list-title").text();
+                    $.messager.confirm("Tip", "Confirm to remove this blog: "+title+"?", function() {
+                        BlogManager.removeBlog(id, function() {
+                            $("#"+id).remove();
+                        });
+                    });
+                });
+			}
+		});
 	});
-
+	
 	$("#add-blog-clear").click(function() {
         $.messager.confirm("Tip", "Confirm to clear title and content of this blog article?", function() {
             $("#add-blog-title").val("");
