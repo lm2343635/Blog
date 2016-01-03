@@ -4,7 +4,7 @@ import javax.servlet.http.HttpSession;
 
 public interface AdminManager 
 {
-	public static final String ADMIN_FLAG="4028e083504139180150414868df000d";
+	public static final String ADMIN_FLAG="702764128274710150414868df000d";
 	
 	/**
 	 * 管理员登陆

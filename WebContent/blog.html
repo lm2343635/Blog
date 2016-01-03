@@ -14,10 +14,12 @@
 		<link href="static/css/blog.css" rel="stylesheet"/>
 		<script src="static/js/jquery.min.js"></script>
 		<script src="static/js/bootstrap.min.js"></script>
+		<script src="static/js/jquery.bootstrap.min.js"></script>
 		<script src="static/js/mengular-2.0.js"></script>
 		<script src="static/js/tools.js"></script>
 		<script src="dwr/engine.js"></script>
         <script src="dwr/interface/BlogManager.js"></script>
+        <script src="dwr/interface/CommentManager.js"></script>
 		<script src="static/js/blog.js"></script>
 	</head>
 	<body>
@@ -48,7 +50,47 @@
 				</div>
 				<div id="blog-content" class="panel-body"></div>
 			</div>
-			<a href="javascript:window.history.go(-1)" class="btn btn-block btn-lg btn-info" style="margin-bottom: 30px;">Back to Blogs</a>
+			<div class="page-header">
+                <h3 class="text-info">Visitor Comments</h3>
+            </div>
+            <div id="comment-list" class="container">
+				<div id="${cid}$" class="bs-callout mengular-template comment-list-template">
+					<div class="row">
+						<div class="col-xs-12 col-sm-10">
+							<h4 class="text-success">${name}$</h4>
+						</div>
+						<div class="col-xs-12 col-sm-2">
+							<h4 class="pull-right text-warning">${date}$</h4>
+						</div>
+					</div>
+					<hr>
+					<p class="text-muted">${content}$</p>
+				</div>
+			</div>	
+			<div class="page-header">
+                <h3 class="text-info">Write a Comment</h3>
+            </div>
+            <div id="add-blog-comment" class="row">
+            	<div class="col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon form-icon"><i class="fa fa-sticky-note-o fa-lg"></i></span>
+                        <textarea id="add-comment-content" class="form-control" placeholder="Write your comment here." rows="8"></textarea>
+                    </div>
+            	</div>
+            	<div class="col-xs-12 col-sm-8">
+            		<div class="input-group">
+                        <span class="input-group-addon form-icon"><i class="fa fa-user fa-lg"></i></span>
+                        <input id="add-comment-name" type="text" class="form-control" placeholder="Your Name">
+                    </div>
+            	</div>
+            	<div class="col-xs-12 col-sm-2">
+            		<button id="add-comment-clear" class="btn btn-default btn-block">Clear</button>
+            	</div>
+            	<div class="col-xs-12 col-sm-2">
+            		<button id="add-comment-submit" class="btn btn-success btn-block">Submit</button>
+            	</div>
+            </div>
+            <a href="javascript:window.history.go(-1)" class="btn btn-block btn-lg btn-info" style="margin: 30px 0;">Back to Blogs</a>
 		</div>
 		<div class="copy-right text-center">
 			<div class="container">

@@ -16,6 +16,7 @@
         <script src="static/js/mengular-2.0.js"></script>
         <script src="static/js/tools.js"></script>
         <script src="dwr/engine.js"></script>
+        <script src="dwr/interface/AdminManager.js"></script>
         <script src="dwr/interface/BlogManager.js"></script>
         <script src="static/js/manageBlogs.js"></script>
     </head>
@@ -54,7 +55,7 @@
                     <tbody>
                         <tr id="${bid}$" class="mengular-template blog-list-template">
                             <td>${date}$</td>
-                            <td>${title}$</td>
+                            <td class="blog-list-title">${title}$</td>
                             <td class="blog-list-edit">
                                 <a href="edit.html?bid=${bid}$"><i class="fa fa-gear fa-lg text-success"></i></a>
                             </td>
