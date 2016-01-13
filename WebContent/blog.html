@@ -37,7 +37,7 @@
 						<a href="#" id="pull"><img src="static/images/nav-icon.png" title="menu" /></a>
 					</nav>
 					<div class="clearfix"> </div>
-					<h1 id="blog-title" class="text-center"></h1>
+					<h2 id="blog-title" class="text-center"></h2>
 					<h4 class="text-center">Create in <span id="blog-date"></span></h4>
 				</div>
 			</div>
@@ -45,14 +45,15 @@
 		<div class="container">
 			<div id="blog-panel" class="panel panel-default">
 				<div id="loading-blog">
-					<h1 class="text-info text-center"><i class="fa fa-spinner fa-6 fa-spin" style="font-size: 10em;"></i></h1>
-					<h1 class="text-info text-center">Loading this blog article...</h1>
+					<h1 class="text-info text-center"><i class="fa fa-spinner fa-6 fa-spin" style="font-size: 4em;"></i></h1>
+					<h4 class="text-info text-center">Loading this blog article...</h4>
 				</div>
 				<div id="blog-content" class="panel-body"></div>
 			</div>
 			<div class="page-header">
                 <h3 class="text-info">Visitor Comments</h3>
             </div>
+            <h4 id="no-comment" class="text-muted">There is no comment now.</h4>
             <div id="comment-list" class="container">
 				<div id="${cid}$" class="bs-callout mengular-template comment-list-template">
 					<div class="row">
@@ -90,11 +91,11 @@
             		<button id="add-comment-submit" class="btn btn-success btn-block">Submit</button>
             	</div>
             </div>
-            <a href="javascript:window.history.go(-1)" class="btn btn-block btn-lg btn-info" style="margin: 30px 0;">Back to Blogs</a>
+            <a href="blogs.html" class="btn btn-block btn-lg btn-info" style="margin: 30px 0;">Back to Blogs</a>
 		</div>
 		<div class="copy-right text-center">
 			<div class="container">
-				<p>Made by Meng Li.</p>
+				<p>Made by Meng Li. <a href="admin.html">Manage My Blog</a></p>
 				<label>Copyright of Meng Li @ 2014-2016. All rights reserved. 鄂ICP备15010075号-1</label>
 			</div>
 		</div>

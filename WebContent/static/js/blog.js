@@ -14,6 +14,9 @@ $(document).ready(function() {
 	});
 
 	CommentManager.getCommentsByBid(bid, function(comments) {
+		if(comments.length>0) {
+			$("#no-comment").hide();
+		}
 		for(var i in comments) {
 			$("#comment-list").mengular(".comment-list-template", {
 				cid: comments[i].cid,
