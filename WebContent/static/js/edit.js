@@ -1,4 +1,5 @@
 var bid=request("bid");
+var MIN_EDIT_HEIGHT=380;
 
 $(document).ready(function() {
 	checkAdminSession(function() {
@@ -7,11 +8,19 @@ $(document).ready(function() {
 				location.href="urlError.html";
 				return;
 			}
-			$("#edit-blog-date").text(blog.date.format(DATE_HOUR_MINUTE_SECOND_FORMAT));
 			$("#edit-blog-title").val(blog.title);
 			$("#edit-blog-content").summernote({
-				height: 700
+				height: getScreenHeight()-300<MIN_EDIT_HEIGHT? MIN_EDIT_HEIGHT: getScreenHeight()-300
 			}).summernote("code", blog.content);
+			$("#edit-blog-date").datetimepicker({
+		        weekStart: 1,
+		        todayBtn:  1,
+		        autoclose: 1,
+		        todayHighlight: 1,
+		        startView: 2,
+		        forceParse: 0,
+		        showMeridian: 1
+		    }).val(blog.date.format(DATE_HOUR_MINUTE_FORMAT));
 			$("#loading-blog").hide();
 		});
 	});
@@ -26,15 +35,16 @@ $(document).ready(function() {
 	$("#edit-blog-submit").click(function() {
 		var title=$("#edit-blog-title").val();
     	var content=$("#edit-blog-content").summernote("code");
+    	var date=$("#edit-blog-date").val();
     	if(title==""||content=="") {
     		$.messager.popup("Input title and content!");
     		return;
     	}
-    	$("#edit-blog-submit").html('<i class="fa fa-refresh fa-spin"></i> Uploading...').attr("disabled", "disabled");
-    	BlogManager.modifyBlog(bid, title, content, function() {
+    	$("#edit-blog-submit").html('<i class="fa fa-refresh fa-spin"></i>').attr("disabled", "disabled");
+    	BlogManager.modifyBlog(bid, title, content, date, function() {
     		$.messager.popup("Mofify this blog successfully!");
     		setTimeout(function() {
-				location.href="manageBlogs.html";
+				location.href="list.html";
 			}, 1000);
     	});
 	});

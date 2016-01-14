@@ -1,7 +1,7 @@
 #home .top-header {
 	min-height: 250px;
 	max-height: 250px;
-	padding-top: 64px;
+	padding-top: 8px;
 }
 
 #home h2 {
@@ -29,7 +29,8 @@
 	padding: 80px;
 }
 
-#add-blog-comment .col-xs-12 {
+#add-blog-comment .col-xs-12,
+#add-blog-comment .col-xs-6 {
 	margin: 5px 0;
 }
 

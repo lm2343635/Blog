@@ -29,13 +29,7 @@
 					<div class="logo">
 						<a href="index.html"><img src="static/images/logo.png"/></a>
 					</div>
-					<nav class="top-nav">
-						<ul class="top-nav">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="blogs.html">Blogs</a></li>
-						</ul>
-						<a href="#" id="pull"><img src="static/images/nav-icon.png" title="menu" /></a>
-					</nav>
+					<h1 class="pull-right" style="line-height: 45px; font-size: 25px;"><a href="index.html" style="color: #fff; text-decoration: none;">Home</a></h1>
 					<div class="clearfix"> </div>
 					<h2 id="blog-title" class="text-center"></h2>
 					<h4 class="text-center">Create in <span id="blog-date"></span></h4>
@@ -43,13 +37,11 @@
 			</div>
 		</div>
 		<div class="container">
-			<div id="blog-panel" class="panel panel-default">
-				<div id="loading-blog">
-					<h1 class="text-info text-center"><i class="fa fa-spinner fa-6 fa-spin" style="font-size: 4em;"></i></h1>
-					<h4 class="text-info text-center">Loading this blog article...</h4>
-				</div>
-				<div id="blog-content" class="panel-body"></div>
+			<div id="loading-blog">
+				<h1 class="text-info text-center"><i class="fa fa-spinner fa-6 fa-spin" style="font-size: 4em;"></i></h1>
+				<h4 class="text-info text-center">Loading this blog article...</h4>
 			</div>
+			<div id="blog-content" ></div>
 			<div class="page-header">
                 <h3 class="text-info">Visitor Comments</h3>
             </div>
@@ -84,10 +76,10 @@
                         <input id="add-comment-name" type="text" class="form-control" placeholder="Your Name">
                     </div>
             	</div>
-            	<div class="col-xs-12 col-sm-2">
+            	<div class="col-xs-6 col-sm-2">
             		<button id="add-comment-clear" class="btn btn-default btn-block">Clear</button>
             	</div>
-            	<div class="col-xs-12 col-sm-2">
+            	<div class="col-xs-6 col-sm-2">
             		<button id="add-comment-submit" class="btn btn-success btn-block">Submit</button>
             	</div>
             </div>
@@ -95,7 +87,7 @@
 		</div>
 		<div class="copy-right text-center">
 			<div class="container">
-				<p>Made by Meng Li. <a href="admin.html">Manage My Blog</a></p>
+				<p>Made by Meng Li. <a href="admin.html" target="_blank">Manage My Blog</a></p>
 				<label>Copyright of Meng Li @ 2014-2016. All rights reserved. 鄂ICP备15010075号-1</label>
 			</div>
 		</div>

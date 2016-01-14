@@ -1,11 +1,10 @@
 $(document).ready(function() {
 	checkAdminSession(function() {
 		BlogManager.getAll(function(blogs) {
-			$("#blog-list tbody").mengularClear();
 			for(var i in blogs) {
-				$("#blog-list tbody").mengular(".blog-list-template", {
+				$("#blog-list").mengular(".blog-list-template", {
 					bid: blogs[i].bid,
-					date: blogs[i].date.format(DATE_HOUR_MINUTE_SECOND_FORMAT),
+					date: blogs[i].date.format(DATE_HOUR_MINUTE_FORMAT),
 					title: blogs[i].title
 				});
 

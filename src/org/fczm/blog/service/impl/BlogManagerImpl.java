@@ -1,7 +1,6 @@
 package org.fczm.blog.service.impl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.fczm.blog.bean.BlogBean;
@@ -9,15 +8,16 @@ import org.fczm.blog.domain.Blog;
 import org.fczm.blog.domain.Comment;
 import org.fczm.blog.service.BlogManager;
 import org.fczm.blog.service.util.ManagerTemplate;
+import org.fczm.common.util.DateTool;
 
 public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 
 	@Override
-	public String addBlog(String title, String content) {
+	public String addBlog(String title, String content, String date) {
 		Blog blog=new Blog();
 		blog.setTitle(title);
 		blog.setContent(content);
-		blog.setDate(new Date());
+		blog.setDate(DateTool.transferDate(date, DateTool.DATE_HOUR_MINUTE_FORMAT));
 		return blogDao.save(blog);
 	}
 
@@ -43,10 +43,11 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 	}
 
 	@Override
-	public void modifyBlog(String bid, String title, String content) {
+	public void modifyBlog(String bid, String title, String content, String date) {
 		Blog blog=blogDao.get(bid);
 		blog.setTitle(title);
 		blog.setContent(content);
+		blog.setDate(DateTool.transferDate(date, DateTool.DATE_HOUR_MINUTE_FORMAT));
 		blogDao.update(blog);
 	}
 

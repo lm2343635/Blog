@@ -10,9 +10,10 @@ public interface BlogManager {
 	 * 新增博客文章
 	 * @param title
 	 * @param content
+	 * @param date
 	 * @return
 	 */
-	String addBlog(String title, String content);
+	String addBlog(String title, String content, String date);
 	
 	/**
 	 * 获取所有博客
@@ -32,8 +33,9 @@ public interface BlogManager {
 	 * @param bid
 	 * @param title
 	 * @param content
+	 * @param date
 	 */
-	void modifyBlog(String bid, String title, String content);
+	void modifyBlog(String bid, String title, String content, String date);
 	
 	/**
 	 * 移除博客

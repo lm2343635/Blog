@@ -1,4 +1,5 @@
-#edit-blog-div .col-xs-12 {
+#edit-blog-div .col-xs-12,
+#edit-blog-div .col-xs-6 {
 	margin: 5px 0;
 }
 
