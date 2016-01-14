@@ -19,7 +19,7 @@ $(document).ready(function() {
 		if(validate) {
 			AdminManager.login(name, password, function(success) {
 				if(success)
-					location.href="manageBlogs.html";
+					location.href="list.html";
 				else {
 					$("#admin-number-input").parent().addClass("has-error");
 					$("#admin-password-input").parent().addClass("has-error");
