@@ -69,7 +69,11 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 		int offset=(page-1)*pageSize;
 		List<BlogBean> blogs=new ArrayList<>();
 		for(Blog blog: blogDao.findByTitle(title, offset, pageSize)) {
-			blogs.add(new BlogBean(blog));
+			BlogBean blogBean=new BlogBean();
+			blogBean.setBid(blog.getBid());
+			blogBean.setTitle(blog.getTitle());
+			blogBean.setDate(blog.getDate());
+			blogs.add(blogBean);
 		}
 		return blogs;
 	}

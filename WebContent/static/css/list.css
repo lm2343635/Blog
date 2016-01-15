@@ -1,3 +1,7 @@
 #blog-list .row div {
 	margin: 3px 0;
 }
+
+#blog-list .row div a {
+	text-decoration: none;
+}
