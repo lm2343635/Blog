@@ -42,4 +42,20 @@ public interface BlogManager {
 	 * @param bid
 	 */
 	void removeBlog(String bid);
+	
+	/**
+	 * 根据标题获取博客数量
+	 * @param title
+	 * @return
+	 */
+	int getBlogsCount(String title);
+	
+	/**
+	 * 查询博客
+	 * @param title 标题
+	 * @param page 页码
+	 * @param pageSize 页面大小
+	 * @return
+	 */
+	List<BlogBean> searchBlogs(String title, int page, int pageSize);
 }

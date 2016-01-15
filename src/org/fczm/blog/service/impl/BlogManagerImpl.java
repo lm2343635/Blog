@@ -59,4 +59,19 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 		blogDao.delete(blog);
 	}
 
+	@Override
+	public int getBlogsCount(String title) {
+		return blogDao.getBlogsCount(title);
+	}
+
+	@Override
+	public List<BlogBean> searchBlogs(String title, int page, int pageSize) {
+		int offset=(page-1)*pageSize;
+		List<BlogBean> blogs=new ArrayList<>();
+		for(Blog blog: blogDao.findByTitle(title, offset, pageSize)) {
+			blogs.add(new BlogBean(blog));
+		}
+		return blogs;
+	}
+
 }
