@@ -41,11 +41,14 @@ public class BlogDaoHibernate extends PageHibernateDaoSupport implements BlogDao
 
 	@Override
 	public int getBlogsCount(String title) {
-		String hql="select count(*) from Blog where title like ?";
 		return getHibernateTemplate().execute(new HibernateCallback<Long>() {
 			public Long doInHibernate(Session session) throws HibernateException, SQLException {
+				String hql="select count(*) from Blog";
+				if(!title.equals("")) 
+					hql+=" where title like ?";
 				Query query=session.createQuery(hql);
-				query.setParameter(0, "%"+title+"%");
+				if(!title.equals("")) 
+					query.setParameter(0, "%"+title+"%");
 				return (long)query.uniqueResult();
 			}
 		}).intValue();
@@ -54,8 +57,14 @@ public class BlogDaoHibernate extends PageHibernateDaoSupport implements BlogDao
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Blog> findByTitle(String title, int offset, int pageSize) {
-		String hql="from Blog where title like ?";
-		return findByPage(hql, "%"+title+"%", offset, pageSize);
+		String hql="from Blog";
+		if(!title.equals("")) 
+			hql+=" where title like ?";
+		hql+=" order by date desc";
+		if(!title.equals("")) 
+			return findByPage(hql, "%"+title+"%", offset, pageSize);
+		else
+			return findByPage(hql, offset, pageSize);
 	}
 
 }

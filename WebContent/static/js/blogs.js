@@ -3,12 +3,29 @@ var pageSize=10;
 $(document).ready(function() {
 	//加载博客
 	searchBlogs("", 1);
+
+	$("#search-blog").bind("input propertychange", function() {
+		var title=$(this).val();
+		searchBlogs(title, 1);
+		if(title!=""&&$("#search-cancel").is(":hidden")) {
+			$("#search-cancel").show("normal");
+		}
+		if(title==""&&!$("#search-cancel").is(":hidden")) {
+			$("#search-cancel").hide("normal");
+		}
+	});
+
+	$("#search-cancel").click(function() {
+		$("#search-blog").val("");
+		searchBlogs("", 1);
+		$(this).hide("normal");
+	});
 });
 
 function searchBlogs(title, page) {
 	//返回页面顶部
 	$("body").animate({
-		scrollTop: "0px"
+		scrollTop: "250px"
 	}, 300);
 	
 	//加载页码
@@ -43,6 +60,4 @@ function searchBlogs(title, page) {
 			});
 		}
 	});
-
-
 }

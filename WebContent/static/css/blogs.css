@@ -12,7 +12,6 @@
 }
 
 #blog-list {
-	margin-top: 50px;
 	margin-bottom: 30px;
 }
 
@@ -21,3 +20,23 @@
 	background: #f7f7f7;
 }
 
+#search-blog {
+    border: 0;
+    font-size: 25px;
+    outline: none;
+    width: 100%;
+    background: rgba(255, 255, 255, 0);
+}
+
+#search-cancel {
+	margin-top: -20px;
+	margin-right: 10px;
+	position: relative;
+	z-index: 10;
+	display: none;
+	cursor: pointer;
+}
+
+#search-header {
+	margin: 20px 0;
+}
