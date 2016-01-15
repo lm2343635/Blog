@@ -11,4 +11,20 @@ public interface BlogDao {
 	void delete(Blog blog);
 	
 	List<Blog> findAll();
+	
+	/**
+	 * 获取指定标题的博客数量
+	 * @param title
+	 * @return
+	 */
+	int getBlogsCount(String title);
+	
+	/**
+	 * 根据标题分页查询博客
+	 * @param title
+	 * @param offset
+	 * @param pageSize
+	 * @return
+	 */
+	List<Blog> findByTitle(String title, int offset, int pageSize);
 }

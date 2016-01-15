@@ -1,5 +1,36 @@
+var pageSize=10;
+
 $(document).ready(function() {
-	BlogManager.getAll(function(blogs) {
+	//加载博客
+	searchBlogs("", 1);
+});
+
+function searchBlogs(title, page) {
+	//返回页面顶部
+	$("body").animate({
+		scrollTop: "0px"
+	}, 300);
+	
+	//加载页码
+	BlogManager.getBlogsCount(title, function(count) {
+		$("#page-count").text(count);
+		$("#page-nav ul").empty();
+		for(var i=1; i<Math.ceil(count/pageSize+1);i++) {
+			var li='<li><a href="javascript:void(0)">'+i+'</a></li>';
+			if(page==i)
+				li='<li class="active"><a href="javascript:void(0)">'+i+'</a></li>';
+			$("#page-nav ul").append(li);
+		}
+		$("#page-nav ul li").each(function(index) {
+			$(this).click(function() {
+				searchBlogs(title, index+1);
+			});
+		});
+	});
+
+	//加载博客标题
+	BlogManager.searchBlogs(title, page, pageSize, function(blogs) {
+		$("#blog-list").mengularClear();
 		for(var i in blogs) {
 			$("#blog-list").mengular(".blog-list-template", {
 				bid: blogs[i].bid,
@@ -12,4 +43,6 @@ $(document).ready(function() {
 			});
 		}
 	});
-});
+
+
+}
