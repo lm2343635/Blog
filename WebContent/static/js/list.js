@@ -1,52 +1,78 @@
+var pageSize=15;
+
 $(document).ready(function() {
 	checkAdminSession(function() {
-		BlogManager.getAll(function(blogs) {
-			for(var i in blogs) {
-				$("#blog-list").mengular(".blog-list-template", {
-					bid: blogs[i].bid,
-					date: blogs[i].date.format(DATE_HOUR_MINUTE_FORMAT),
-					title: blogs[i].title
-				});
-
-                $("#"+blogs[i].bid+" .blog-list-delete").click(function() {
-                    var id=$(this).parent().attr("id");
-                    var title=$("#"+id+" .blog-list-title").text();
-                    $.messager.confirm("Tip", "Confirm to remove this blog: "+title+"?", function() {
-                        BlogManager.removeBlog(id, function() {
-                            $("#"+id).remove();
-                        });
-                    });
-                });
-			}
-		});
+        searchBlogs("", 1);
 	});
 	
-	$("#add-blog-clear").click(function() {
-        $.messager.confirm("Tip", "Confirm to clear title and content of this blog article?", function() {
-            $("#add-blog-title").val("");
-            $("#add-blog-content").summernote("code", "");
-        });
-	});
-
-    $("#add-blog-content").summernote({
-    	height: 400,
-    	placeholder: "Write your blog content here."
+    //实时搜索
+    $("#search-blog").bind("input propertychange", function() {
+        var title=$(this).val();
+        searchBlogs(title, 1);
+        if(title!=""&&$("#search-cancel").is(":hidden")) {
+            $("#search-cancel").show("normal");
+        }
+        if(title==""&&!$("#search-cancel").is(":hidden")) {
+            $("#search-cancel").hide("normal");
+        }
     });
 
-    $("#add-blog-submit").click(function() {
-    	var title=$("#add-blog-title").val();
-    	var content=$("#add-blog-content").summernote("code");
-    	if(title==""||content=="") {
-    		$.messager.popup("Input title and content!");
-    		return;
-    	}
-    	BlogManager.addBlog(title, content, function(bid) {
-    		if(bid) {
-    			$.messager.popup("Create this blog successfully!");
-    			setTimeout(function() {
-    				location.href="manageBlogs.html";
-    			}, 1000);
-    		}
-    	});
+    //取消搜索
+    $("#search-cancel").click(function() {
+        $("#search-blog").val("");
+        searchBlogs("", 1);
+        $(this).hide("normal");
     });
 });
+
+/**
+ * 搜索博客
+ * @param title 博客标题
+ * @param page 页码
+ */
+function searchBlogs(title, page) {
+    //返回页面顶部
+    $("body").animate({
+        scrollTop: "250px"
+    }, 300);
+    
+    //加载页码
+    BlogManager.getBlogsCount(title, function(count) {
+        $("#page-count").text(count);
+        $("#page-nav ul").empty();
+        for(var i=1; i<Math.ceil(count/pageSize+1);i++) {
+            var li='<li><a href="javascript:void(0)">'+i+'</a></li>';
+            if(page==i)
+                li='<li class="active"><a href="javascript:void(0)">'+i+'</a></li>';
+            $("#page-nav ul").append(li);
+        }
+        $("#page-nav ul li").each(function(index) {
+            $(this).click(function() {
+                searchBlogs(title, index+1);
+            });
+        });
+    });
+
+    //加载博客标题
+    BlogManager.searchBlogs(title, page, pageSize, function(blogs) {
+        $("#blog-list").mengularClear();
+        for(var i in blogs) {
+            $("#blog-list").mengular(".blog-list-template", {
+                bid: blogs[i].bid,
+                date: blogs[i].date.format(DATE_HOUR_MINUTE_FORMAT),
+                title: blogs[i].title,
+                readers: blogs[i].readers
+            });
+
+            $("#"+blogs[i].bid+" .blog-list-delete").click(function() {
+                var id=$(this).parent().attr("id");
+                var title=$("#"+id+" .blog-list-title").text();
+                $.messager.confirm("Tip", "Confirm to remove this blog: "+title+"?", function() {
+                    BlogManager.removeBlog(id, function() {
+                        $("#"+id).remove();
+                    });
+                });
+            });
+        }
+    });
+}

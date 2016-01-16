@@ -3,7 +3,7 @@ var MIN_EDIT_HEIGHT=380;
 
 $(document).ready(function() {
 	checkAdminSession(function() {
-		BlogManager.getBlog(bid, function(blog) {
+		BlogManager.getBlog(bid, false, function(blog) {
 			if(blog==null) {
 				location.href="urlError.html";
 				return;

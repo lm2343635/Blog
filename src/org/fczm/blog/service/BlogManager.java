@@ -24,9 +24,10 @@ public interface BlogManager {
 	/**
 	 * 根据id获取一个博客
 	 * @param bid
+	 * @param reader 是否为读者
 	 * @return
 	 */
-	BlogBean getBlog(String bid);
+	BlogBean getBlog(String bid, boolean reader);
 	
 	/**
 	 * 修改博客

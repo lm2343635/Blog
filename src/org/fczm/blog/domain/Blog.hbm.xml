@@ -10,6 +10,7 @@
 		<property name="title" type="string" not-null="true"/>
 		<property name="content" type="text" not-null="true"/>
 		<property name="date" type="java.util.Date" not-null="true"/>
+		<property name="readers" type="integer" not-null="true"/>
 		<list name="comments" cascade="delete" inverse="true">
 			<key column="bid"  not-null="true"/>
 			<index column="date" type="java.util.Date"/>

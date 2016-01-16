@@ -9,6 +9,7 @@ public class BlogBean {
 	private String title;
 	private String content; 
 	private Date date;
+	private int readers;
 	
 	public String getBid() {
 		return bid;
@@ -34,7 +35,12 @@ public class BlogBean {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
+	public int getReaders() {
+		return readers;
+	}
+	public void setReaders(int readers) {
+		this.readers = readers;
+	}
 	public BlogBean() {
 		super();
 	}
@@ -45,5 +51,6 @@ public class BlogBean {
 		this.title = blog.getTitle();
 		this.content = blog.getContent();
 		this.date = blog.getDate();
+		this.readers=blog.getReaders();
 	}
 }

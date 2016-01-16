@@ -15,6 +15,10 @@
 	margin-bottom: 30px;
 }
 
+#blog-list .col-xs-12 {
+	margin: 5px 0;
+}
+
 #blog-list .bs-callout:hover {
 	cursor: pointer;
 	background: #f7f7f7;

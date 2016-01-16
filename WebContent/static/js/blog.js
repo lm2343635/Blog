@@ -2,13 +2,16 @@ var bid=request("bid");
 
 $(document).ready(function() {
 	
-	BlogManager.getBlog(bid, function(blog) {
+	BlogManager.getBlog(bid, true, function(blog) {
 		if(blog==null) {
 			location.href="urlError.html";
 			return;
 		}
-		$("#blog-date").text(blog.date.format(DATE_HOUR_MINUTE_FORMAT));
-		$("#blog-title").text(blog.title);
+		fillText({
+			"blog-date": blog.date.format(DATE_HOUR_MINUTE_FORMAT),
+			"blog-title": blog.title,
+			"blog-readers": blog.readers
+		});
 		$("#blog-content").html(blog.content);
 		$("#loading-blog").hide();
 	});
