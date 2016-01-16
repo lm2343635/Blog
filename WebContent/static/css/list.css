@@ -5,3 +5,35 @@
 #blog-list .row div a {
 	text-decoration: none;
 }
+
+#blog-list .blog-accessory {
+	margin-right: 10px;
+}
+
+#blog-list  i {
+	font-size: 23px;
+}
+
+#search-blog {
+    border: 0;
+    font-size: 25px;
+    outline: none;
+    width: 100%;
+    background: rgba(255, 255, 255, 0);
+}
+
+#search-cancel {
+	margin-top: -20px;
+	margin-right: 50px;
+	position: relative;
+	z-index: 10;
+ 	display: none; 
+	cursor: pointer;
+}
+
+#add-blog  i {
+	margin-top: -20px; 
+	margin-right: 15px;	
+	position: relative;
+	z-index: 10;
+}

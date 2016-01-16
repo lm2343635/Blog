@@ -12,6 +12,7 @@ public class Blog implements Serializable {
 	private String title;
 	private String content; 
 	private Date date;
+	private Integer readers;
 	private List<Comment> comments;
 	
 	public String getBid() {
@@ -43,6 +44,12 @@ public class Blog implements Serializable {
 	}
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+	public Integer getReaders() {
+		return readers;
+	}
+	public void setReaders(Integer readers) {
+		this.readers = readers;
 	}
 	
 }

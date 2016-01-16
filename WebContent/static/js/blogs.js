@@ -4,6 +4,7 @@ $(document).ready(function() {
 	//加载博客
 	searchBlogs("", 1);
 
+	//实时搜索
 	$("#search-blog").bind("input propertychange", function() {
 		var title=$(this).val();
 		searchBlogs(title, 1);
@@ -15,6 +16,7 @@ $(document).ready(function() {
 		}
 	});
 
+	//取消搜索
 	$("#search-cancel").click(function() {
 		$("#search-blog").val("");
 		searchBlogs("", 1);
@@ -22,6 +24,11 @@ $(document).ready(function() {
 	});
 });
 
+/**
+ * 搜索博客
+ * @param title 博客标题
+ * @param page 页码
+ */
 function searchBlogs(title, page) {
 	//返回页面顶部
 	$("body").animate({
@@ -52,7 +59,8 @@ function searchBlogs(title, page) {
 			$("#blog-list").mengular(".blog-list-template", {
 				bid: blogs[i].bid,
 				date: blogs[i].date.format(DATE_HOUR_MINUTE_FORMAT),
-				title: blogs[i].title
+				title: blogs[i].title,
+				readers: blogs[i].readers
 			});
 
 			$("#"+blogs[i].bid).click(function() {

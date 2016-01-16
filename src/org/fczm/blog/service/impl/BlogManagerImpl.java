@@ -18,6 +18,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 		blog.setTitle(title);
 		blog.setContent(content);
 		blog.setDate(DateTool.transferDate(date, DateTool.DATE_HOUR_MINUTE_FORMAT));
+		blog.setReaders(0);
 		return blogDao.save(blog);
 	}
 
@@ -29,16 +30,21 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 			blogBean.setBid(blog.getBid());
 			blogBean.setTitle(blog.getTitle());
 			blogBean.setDate(blog.getDate());
+			blogBean.setReaders(blog.getReaders());
 			blogs.add(blogBean);
 		}
 		return blogs;
 	}
 
 	@Override
-	public BlogBean getBlog(String bid) {
+	public BlogBean getBlog(String bid, boolean reader) {
 		Blog blog=blogDao.get(bid);
 		if(blog==null)
 			return null;
+		if(reader) {
+			blog.setReaders(blog.getReaders()+1);
+			blogDao.update(blog);
+		}
 		return new BlogBean(blog);
 	}
 
@@ -73,6 +79,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 			blogBean.setBid(blog.getBid());
 			blogBean.setTitle(blog.getTitle());
 			blogBean.setDate(blog.getDate());
+			blogBean.setReaders(blog.getReaders());
 			blogs.add(blogBean);
 		}
 		return blogs;

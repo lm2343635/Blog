@@ -42,19 +42,26 @@
                 </div>
             </nav>
             <div class="page-header">
-                <h3 class="text-center text-muted">Blog List</h3>
-                <a href="add.html"><i class="fa fa-plus fa-lg pull-right add-icon" style="margin-top: -27px; margin-right: 15px;"></i></a>
+                <input id="search-blog" type="text" placeholder="Search Title" class="text-info text-center">
+                <i id="search-cancel" class="fa fa-times-circle-o fa-lg pull-right text-muted"></i>
+                <a id="add-blog" href="add.html"><i class="fa fa-plus fa-lg pull-right add-icon"></i></a>
             </div>
             <div id="blog-list" class="list-group">
                 <div id="${bid}$" class="list-group-item mengular-template blog-list-template">
                     <div class="row">
                         <div class="col-xs-12 col-sm-2">${date}$</div>
                         <div class="col-xs-12 col-sm-8"><a href="blog.html?bid=${bid}$" target="_blank">${title}$</a></div>
-                        <div class="col-xs-1 col-sm-1"><a href="edit.html?bid=${bid}$"><i class="fa fa-gear fa-lg text-success"></i></a></div>
-                        <div class="col-xs-1 col-sm-1"><i class="fa fa-trash-o fa-lg text-danger"></i></div>
+                        <div class="col-xs-12 col-sm-2">
+                            <a href="edit.html?bid=${bid}$" class="blog-accessory"><i class="fa fa-gear fa-lg text-success"></i></a>
+                            <i class="fa fa-trash-o fa-lg text-danger blog-accessory"></i>
+                            <span class="blog-accessory"><strong class="text-warning">${readers}$</strong> readers</span>
+                        </div>
                     </div>
                 </div>
             </div>
+            <nav id="page-nav" class="text-center">
+                <ul class="pagination"></ul>
+            </nav>
         </div>
     </body>
 </html>
