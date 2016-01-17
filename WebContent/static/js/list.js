@@ -56,11 +56,20 @@ function searchBlogs(title, page) {
     //加载博客标题
     BlogManager.searchBlogs(title, page, pageSize, function(blogs) {
         $("#blog-list").mengularClear();
-        for(var i in blogs) {
+        var btitle, strs;
+		for(var i in blogs) {
+			if(title!="") {
+				strs=blogs[i].title.split(title);
+				btitle=strs[0]
+				for(var j=1; j<strs.length; j++) 
+					btitle+="<span class='bg-info'>"+title+"</span>"+strs[j];
+			} else {
+				btitle=blogs[i].title;
+			}
             $("#blog-list").mengular(".blog-list-template", {
                 bid: blogs[i].bid,
                 date: blogs[i].date.format(DATE_HOUR_MINUTE_FORMAT),
-                title: blogs[i].title,
+                title: btitle,
                 readers: blogs[i].readers
             });
 
