@@ -3,15 +3,12 @@ var MIN_EDIT_HEIGHT=380;
 
 $(document).ready(function() {
 	checkAdminSession(function() {
-		BlogManager.getBlog(bid, false, function(blog) {
+		BlogManager.getBlogInfo(bid, false, function(blog) {
 			if(blog==null) {
 				location.href="urlError.html";
 				return;
 			}
 			$("#edit-blog-title").val(blog.title);
-			$("#edit-blog-content").summernote({
-				height: getScreenHeight()-300<MIN_EDIT_HEIGHT? MIN_EDIT_HEIGHT: getScreenHeight()-300
-			}).summernote("code", blog.content);
 			$("#edit-blog-date").datetimepicker({
 		        weekStart: 1,
 		        todayBtn:  1,
@@ -21,9 +18,15 @@ $(document).ready(function() {
 		        forceParse: 0,
 		        showMeridian: 1
 		    }).val(blog.date.format(DATE_HOUR_MINUTE_FORMAT));
-			$("#loading-blog").hide();
 		});
 	});
+	
+	BlogManager.getBlogContent(bid, function(content) {
+		$("#edit-blog-content").summernote({
+			height: getScreenHeight()-300<MIN_EDIT_HEIGHT? MIN_EDIT_HEIGHT: getScreenHeight()-300
+		}).summernote("code", content);
+		$("#loading-blog").hide();
+	})
 
 	$("#edit-blog-clear").click(function() {
 		$.messager.confirm("Tip", "Confirm to clear title and content of this blog article?", function() {

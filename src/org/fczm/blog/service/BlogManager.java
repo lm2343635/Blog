@@ -22,12 +22,19 @@ public interface BlogManager {
 	List<BlogBean> getAll();
 	
 	/**
-	 * 根据id获取一个博客
+	 * 根据id获取一个博客处正文以外的基本信息
 	 * @param bid
 	 * @param reader 是否为读者
 	 * @return
 	 */
-	BlogBean getBlog(String bid, boolean reader);
+	BlogBean getBlogInfo(String bid, boolean reader);
+	
+	/**
+	 * 获取博客正文
+	 * @param bid
+	 * @return
+	 */
+	String getBlogContent(String bid);
 	
 	/**
 	 * 修改博客
