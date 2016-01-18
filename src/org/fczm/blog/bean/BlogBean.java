@@ -49,7 +49,6 @@ public class BlogBean {
 		super();
 		this.bid = blog.getBid();
 		this.title = blog.getTitle();
-		this.content = blog.getContent();
 		this.date = blog.getDate();
 		this.readers=blog.getReaders();
 	}

@@ -26,18 +26,13 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 	public List<BlogBean> getAll() {
 		List<BlogBean> blogs=new ArrayList<>();
 		for(Blog blog: blogDao.findAll()) {
-			BlogBean blogBean=new BlogBean();
-			blogBean.setBid(blog.getBid());
-			blogBean.setTitle(blog.getTitle());
-			blogBean.setDate(blog.getDate());
-			blogBean.setReaders(blog.getReaders());
-			blogs.add(blogBean);
+			blogs.add(new BlogBean(blog));
 		}
 		return blogs;
 	}
 
 	@Override
-	public BlogBean getBlog(String bid, boolean reader) {
+	public BlogBean getBlogInfo(String bid, boolean reader) {
 		Blog blog=blogDao.get(bid);
 		if(blog==null)
 			return null;
@@ -47,6 +42,16 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 		}
 		return new BlogBean(blog);
 	}
+	
+
+	@Override
+	public String getBlogContent(String bid) {
+		Blog blog=blogDao.get(bid);
+		if(blog==null)
+			return null;
+		return blog.getContent();
+	}
+
 
 	@Override
 	public void modifyBlog(String bid, String title, String content, String date) {
@@ -75,12 +80,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 		int offset=(page-1)*pageSize;
 		List<BlogBean> blogs=new ArrayList<>();
 		for(Blog blog: blogDao.findByTitle(title, offset, pageSize)) {
-			BlogBean blogBean=new BlogBean();
-			blogBean.setBid(blog.getBid());
-			blogBean.setTitle(blog.getTitle());
-			blogBean.setDate(blog.getDate());
-			blogBean.setReaders(blog.getReaders());
-			blogs.add(blogBean);
+			blogs.add(new BlogBean(blog));
 		}
 		return blogs;
 	}

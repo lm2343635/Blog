@@ -2,7 +2,7 @@ var bid=request("bid");
 
 $(document).ready(function() {
 	
-	BlogManager.getBlog(bid, true, function(blog) {
+	BlogManager.getBlogInfo(bid, true, function(blog) {
 		if(blog==null) {
 			location.href="urlError.html";
 			return;
@@ -12,9 +12,12 @@ $(document).ready(function() {
 			"blog-title": blog.title,
 			"blog-readers": blog.readers
 		});
-		$("#blog-content").html(blog.content);
-		$("#loading-blog").hide();
 	});
+	
+	BlogManager.getBlogContent(bid, function(content) {
+		$("#blog-content").html(content);
+		$("#loading-blog").hide();
+	})
 
 	CommentManager.getCommentsByBid(bid, function(comments) {
 		if(comments.length>0) {
