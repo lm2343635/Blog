@@ -74,7 +74,7 @@ function searchBlogs(title, page) {
             });
 
             $("#"+blogs[i].bid+" .blog-list-delete").click(function() {
-                var id=$(this).parent().attr("id");
+                var id=$(this).parent().parent().parent().attr("id");
                 var title=$("#"+id+" .blog-list-title").text();
                 $.messager.confirm("Tip", "Confirm to remove this blog: "+title+"?", function() {
                     BlogManager.removeBlog(id, function() {

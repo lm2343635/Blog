@@ -50,10 +50,10 @@
                 <div id="${bid}$" class="list-group-item mengular-template blog-list-template">
                     <div class="row">
                         <div class="col-xs-12 col-sm-2">${date}$</div>
-                        <div class="col-xs-12 col-sm-8"><a href="blog.html?bid=${bid}$" target="_blank">${title}$</a></div>
+                        <div class="col-xs-12 col-sm-8"><a href="blog.html?bid=${bid}$" target="_blank"><span class="blog-list-title">${title}$</span></a></div>
                         <div class="col-xs-12 col-sm-2">
                             <a href="edit.html?bid=${bid}$" class="blog-accessory"><i class="fa fa-gear fa-lg text-success"></i></a>
-                            <i class="fa fa-trash-o fa-lg text-danger blog-accessory"></i>
+                            <span class="blog-list-delete"><i class="fa fa-trash-o fa-lg text-danger blog-accessory"></i></span>
                             <span class="blog-accessory"><strong class="text-warning">${readers}$</strong> readers</span>
                         </div>
                     </div>
