@@ -58,10 +58,8 @@ function searchBlogs(title, page) {
 		var btitle, strs;
 		for(var i in blogs) {
 			if(title!="") {
-				strs=blogs[i].title.split(title);
-				btitle=strs[0]
-				for(var j=1; j<strs.length; j++) 
-					btitle+="<span class='bg-info'>"+title+"</span>"+strs[j];
+				var reg = new RegExp('('+title+')', 'gi');
+				btitle = blogs[i].title.replace(reg, '<span class="bg-info">$1</span>');
 			} else {
 				btitle=blogs[i].title;
 			}
