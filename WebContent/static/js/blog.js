@@ -1,4 +1,4 @@
-var bid=request("bid");
+var bid=getPageName();
 
 $(document).ready(function() {
 	
@@ -8,16 +8,9 @@ $(document).ready(function() {
 			return;
 		}
 		fillText({
-			"blog-date": blog.date.format(DATE_HOUR_MINUTE_FORMAT),
-			"blog-title": blog.title,
 			"blog-readers": blog.readers
 		});
 	});
-	
-	BlogManager.getBlogContent(bid, function(content) {
-		$("#blog-content").html(content);
-		$("#loading-blog").hide();
-	})
 
 	CommentManager.getCommentsByBid(bid, function(comments) {
 		if(comments.length>0) {
@@ -48,7 +41,7 @@ $(document).ready(function() {
 		CommentManager.addComment(bid, name, content, function() {
 			$.messager.popup("Add Comment Success!");
 			setTimeout(function() {
-				location.href="blog.html?bid="+bid;
+				location.reload();
 			}, 1000);
 		});
 	});

@@ -11,6 +11,16 @@
     line-height: 1.3em;
 }
 
+#home .home {
+	line-height: 45px; 
+	font-size: 25px;
+}
+
+#home .home a {
+	color: #fff; 
+	text-decoration: none;
+}
+
 #blog-list {
 	margin-bottom: 30px;
 }

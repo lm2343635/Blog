@@ -1,0 +1,10 @@
+#home .home {
+	line-height: 45px; 
+	font-size: 25px;
+	font-family: 'nexa_boldregular';
+}
+
+#home .home a {
+	color: #fff; 
+	text-decoration: none;
+}
