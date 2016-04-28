@@ -4,6 +4,17 @@
 	padding-top: 8px;
 }
 
+#home h1 {
+	line-height: 45px;
+	font-size: 25px;
+	font-family: 'nexa_boldregular';
+}
+
+#home h1 a {
+	color: #fff; 
+	text-decoration: none;	
+}
+
 #home h2 {
 	color: #FFF;
     font-family: 'nexa_boldregular';

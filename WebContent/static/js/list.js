@@ -85,3 +85,13 @@ function searchBlogs(title, page) {
         }
     });
 }
+
+/**
+ * 重新用模板生成所有博客
+ */
+function regenerate() {
+	$.messager.popup("Regenerating...");
+	BlogManager.regenerate(function() {
+		$.messager.popup("Regenerate all blogs successfully!");
+	});
+}

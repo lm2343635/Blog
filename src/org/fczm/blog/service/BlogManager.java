@@ -66,4 +66,9 @@ public interface BlogManager {
 	 * @return
 	 */
 	List<BlogBean> searchBlogs(String title, int page, int pageSize);
+	
+	/**
+	 * 重新生成所有博客
+	 */
+	void regenerate();
 }

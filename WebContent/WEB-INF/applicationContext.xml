@@ -79,7 +79,10 @@
 	</bean>	
 	
  	<!-- 定义业务逻辑组件 -->
-	<bean id="blogManager" class="org.fczm.blog.service.impl.BlogManagerImpl" parent="managerTemplate"/>
+	<bean id="blogManager" class="org.fczm.blog.service.impl.BlogManagerImpl" parent="managerTemplate">
+		<property name="blogOutputFolder" value="blogs/"/>
+		<property name="blogOutputFolderDepth" value="1"/>
+	</bean>
 	<bean id="commentManager" class="org.fczm.blog.service.impl.CommentManagerImpl" parent="managerTemplate"/>
 	<!-- 配置管理员用户名密码 -->
 	<bean id="adminManager" class="org.fczm.blog.service.impl.AdminManagerImpl">

@@ -231,3 +231,12 @@ function substr(str, n) {
 	else
 		return str;
 }
+
+function getPageFullName() {
+	var array=window.location.href.split("/");
+	return array[array.length-1];
+}
+
+function getPageName() {
+	return getPageFullName().split(".")[0];
+}

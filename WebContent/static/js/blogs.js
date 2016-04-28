@@ -71,7 +71,7 @@ function searchBlogs(title, page) {
 			});
 
 			$("#"+blogs[i].bid).click(function() {
-				location.href="blog.html?bid="+$(this).attr("id");
+				location.href="blogs/"+$(this).attr("id")+".html";
 			});
 		}
 	});
