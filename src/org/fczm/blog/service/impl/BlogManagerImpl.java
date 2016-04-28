@@ -10,6 +10,7 @@ import org.fczm.blog.domain.Comment;
 import org.fczm.blog.service.BlogManager;
 import org.fczm.blog.service.util.ManagerTemplate;
 import org.fczm.common.util.DateTool;
+import org.fczm.common.util.FileTool;
 import org.fczm.common.util.MengularDocument;
 
 public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
@@ -38,7 +39,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 			document.setValue("blog-date", DateTool.formatDate(blog.getDate(), DateTool.DATE_HOUR_MINUTE_FORMAT));
 			document.setValue("blog-title", blog.getTitle());
 			document.setValue("blog-content", blog.getContent());
-			document.output(blogOutputFolder+blog.getBid()+".html");
+			document.output(blogOutputFolder+blog.getBid());
 		}
 		return bid;
 	}
@@ -86,7 +87,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 		document.setValue("blog-date", DateTool.formatDate(blog.getDate(), DateTool.DATE_HOUR_MINUTE_FORMAT));
 		document.setValue("blog-title", blog.getTitle());
 		document.setValue("blog-content", blog.getContent());
-		document.output(blogOutputFolder+blog.getBid()+".html");
+		document.output(blogOutputFolder+blog.getBid());
 	}
 
 	@Override
@@ -114,12 +115,14 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 
 	@Override
 	public void regenerate() {
+		String rootPath=WebContextFactory.get().getServletContext().getRealPath("/");
+		FileTool.delAllFile(rootPath+blogOutputFolder);
 		for(Blog blog: blogDao.findAll()) {
-			MengularDocument document=new MengularDocument(WebContextFactory.get().getServletContext().getRealPath("/"), blogOutputFolderDepth,"blog.html");
+			MengularDocument document=new MengularDocument(rootPath, blogOutputFolderDepth,"blog.html");
 			document.setValue("blog-date", DateTool.formatDate(blog.getDate(), DateTool.DATE_HOUR_MINUTE_FORMAT));
 			document.setValue("blog-title", blog.getTitle());
 			document.setValue("blog-content", blog.getContent());
-			document.output(blogOutputFolder+blog.getBid()+".html");
+			document.output(blogOutputFolder+blog.getBid());
 		}
 	}
 
