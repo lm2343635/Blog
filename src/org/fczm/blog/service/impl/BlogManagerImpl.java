@@ -1,5 +1,6 @@
 package org.fczm.blog.service.impl;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,11 +36,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 		String bid= blogDao.save(blog);
 		if(bid!=null) {
 			//根据模板生成文件
-			MengularDocument document=new MengularDocument(WebContextFactory.get().getServletContext().getRealPath("/"), blogOutputFolderDepth,"blog.html");
-			document.setValue("blog-date", DateTool.formatDate(blog.getDate(), DateTool.DATE_HOUR_MINUTE_FORMAT));
-			document.setValue("blog-title", blog.getTitle());
-			document.setValue("blog-content", blog.getContent());
-			document.output(blogOutputFolder+blog.getBid());
+			generateBlog(blog);
 		}
 		return bid;
 	}
@@ -83,11 +80,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 		blog.setDate(DateTool.transferDate(date, DateTool.DATE_HOUR_MINUTE_FORMAT));
 		blogDao.update(blog);
 		//根据模板生成文件
-		MengularDocument document=new MengularDocument(WebContextFactory.get().getServletContext().getRealPath("/"), blogOutputFolderDepth,"blog.html");
-		document.setValue("blog-date", DateTool.formatDate(blog.getDate(), DateTool.DATE_HOUR_MINUTE_FORMAT));
-		document.setValue("blog-title", blog.getTitle());
-		document.setValue("blog-content", blog.getContent());
-		document.output(blogOutputFolder+blog.getBid());
+		generateBlog(blog);
 	}
 
 	@Override
@@ -115,15 +108,20 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 
 	@Override
 	public void regenerate() {
-		String rootPath=WebContextFactory.get().getServletContext().getRealPath("/");
+		String rootPath=WebContextFactory.get().getServletContext().getRealPath("/")+File.separator;
 		FileTool.delAllFile(rootPath+blogOutputFolder);
 		for(Blog blog: blogDao.findAll()) {
-			MengularDocument document=new MengularDocument(rootPath, blogOutputFolderDepth,"blog.html");
-			document.setValue("blog-date", DateTool.formatDate(blog.getDate(), DateTool.DATE_HOUR_MINUTE_FORMAT));
-			document.setValue("blog-title", blog.getTitle());
-			document.setValue("blog-content", blog.getContent());
-			document.output(blogOutputFolder+blog.getBid());
+			generateBlog(blog);
 		}
+	}
+	
+	private void generateBlog(Blog blog) {
+		String rootPath=WebContextFactory.get().getServletContext().getRealPath("/")+File.separator;
+		MengularDocument document=new MengularDocument(rootPath, blogOutputFolderDepth,"blog.html");
+		document.setValue("blog-date", DateTool.formatDate(blog.getDate(), DateTool.DATE_HOUR_MINUTE_FORMAT));
+		document.setValue("blog-title", blog.getTitle());
+		document.setValue("blog-content", blog.getContent());
+		document.output(blogOutputFolder+blog.getBid());
 	}
 
 }
