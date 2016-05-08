@@ -12,6 +12,8 @@ public class DateTool {
 	public static final String YEAR_MONTH_FORMAT="yyyy-MM";
 	//“年”格式
 	public static final String YEAR_FORMAT="yyyy";
+	//“年-月-日 时”格式
+	public static final String DATE_HOUR_FORMAT="yyyy-MM-dd HH";
 	//“年-月-日 时:分”格式
 	public static final String DATE_HOUR_MINUTE_FORMAT="yyyy-MM-dd HH:mm";
 	//“年-月-日 时:分:秒”格式
