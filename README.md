@@ -11,7 +11,7 @@ You can fork it, and modify these HTML document to create your own blog system:
 
 `blogs.html` and `blog.html` is dynamical pages, so you shuold be careful of placeholders such as `${key}$` or `#{key}`.
 
-Visit `admin.html` to edit your blog, the admin name and password can be modified in `WEB-INF/applicationContext.html`
+Visit `http://your_doamin/admin` to edit your blog, the admin name and password can be modified in `WEB-INF/applicationContext.html`. You need not modify the files in folder `admin` because they are files of management system.
 
 	<bean id="adminManager" class="org.fczm.blog.service.impl.AdminManagerImpl">
 		<property name="username" value="admin"></property>

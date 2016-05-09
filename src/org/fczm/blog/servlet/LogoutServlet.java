@@ -27,7 +27,7 @@ public class LogoutServlet extends HttpServlet {
 		switch (task) {
 		case "adminLogout":
 			request.getSession().removeAttribute(AdminManager.ADMIN_FLAG);
-			response.sendRedirect("admin.html");
+			response.sendRedirect("admin");
 			break;
 		default:
 			break;
