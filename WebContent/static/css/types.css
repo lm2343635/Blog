@@ -1,5 +1,6 @@
 #type-list i {
     font-size: 23px;
+    cursor: pointer;
 }
 
 #type-list .row div {

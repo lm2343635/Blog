@@ -34,9 +34,13 @@
 	background: #f7f7f7;
 }
 
+#blog-list .hidden-xs {
+	height: 20px;
+}
+
 #search-blog {
     border: 0;
-    font-size: 25px;
+    font-size: 21px;
     outline: none;
     width: 100%;
     background: rgba(255, 255, 255, 0);
@@ -53,4 +57,25 @@
 
 #search-header {
 	margin: 20px 0;
+}
+
+#type-list {
+	width: 100%;
+}
+
+#type-list button {
+	border: none;
+	overflow: hidden; 
+}
+
+#type-list button span {
+	font-size: 18px;
+}
+
+#type-list button i {
+	font-size: 30px;
+}
+
+#type-list ul {
+	width: 100%;
 }

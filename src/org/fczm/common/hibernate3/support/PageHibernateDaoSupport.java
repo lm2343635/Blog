@@ -107,7 +107,7 @@ public abstract class PageHibernateDaoSupport<T extends Serializable> extends Hi
 	 * @return 当前页的所有记录
 	 */
 	@SuppressWarnings("rawtypes")
-	public List findByPage(final String hql, final Object[] values,final int offset, final int pageSize) {
+	public List findByPage(final String hql, final List<Object> values,final int offset, final int pageSize) {
 		//通过一个HibernateCallback对象来执行查询
 		List list = getHibernateTemplate().executeFind(new HibernateCallback() {
 			//实现HibernateCallback接口必须实现的方法
@@ -115,12 +115,10 @@ public abstract class PageHibernateDaoSupport<T extends Serializable> extends Hi
 				//执行Hibernate分页查询
 				Query query = session.createQuery(hql);
 				//为hql语句传入参数
-				for (int i = 0 ; i < values.length ; i++) {
-					query.setParameter( i, values[i]);
+				for(int i=0; i<values.size(); i++) {
+					query.setParameter(i, values.get(i));
 				}
-				List result = query.setFirstResult(offset)
-					.setMaxResults(pageSize)
-					.list();
+				List result = query.setFirstResult(offset).setMaxResults(pageSize).list();
 				return result;
 			}
 		});

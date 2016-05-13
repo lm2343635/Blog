@@ -13,13 +13,12 @@
 		<link href="static/css/mengular.css" rel="stylesheet"/>
 		<link href="static/css/blogs.css" rel="stylesheet"/>
 		<script src="static/js/jquery.min.js"></script>
-		<script src="static/js/move-top.js"></script>
-		<script src="static/js/easing.js"></script>
 		<script src="static/js/bootstrap.min.js"></script>
 		<script src="static/js/mengular-2.0.js"></script>
 		<script src="static/js/tools.js"></script>
 		<script src="dwr/engine.js"></script>
         <script src="dwr/interface/BlogManager.js"></script>
+        <script src="dwr/interface/TypeManager.js"></script>
 		<script src="static/js/blogs.js"></script>
 	</head>
 	<body>
@@ -37,16 +36,34 @@
 		</div>
 		<div class="container">
 			<div id="search-header" class="page-header">
-				<input id="search-blog" type="text" placeholder="Search Title" class="text-info text-center">
-				<i id="search-cancel" class="fa fa-times-circle-o fa-lg pull-right text-muted"></i>
+				<div class="row">
+					<div class="col-md-9">
+						<input id="search-blog" type="text" placeholder="Search Title" class="text-info text-center">
+						<i id="search-cancel" class="fa fa-times-circle-o fa-lg pull-right text-muted"></i>
+					</div>
+					<div class="col-md-3">
+						<div id="type-list" class="btn-group">
+							<button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<span class="text-muted">All Types</span>
+								<i class="fa fa-lg fa-caret-down text-muted pull-right"></i>
+							</button>
+							<ul class="dropdown-menu">
+								<li id="show-all-type"><a>All Types</a></li>
+								<li role="separator" class="divider"></li>
+							</ul>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div id="blog-list">
 				<div id="${bid}$" class="bs-callout mengular-template blog-list-template">
 					<div class="row">
 						<div class="col-xs-12 col-sm-7 col-md-8 col-lg-9">
+							<p><small class="text-muted">${tname}$</small></p>
 							<h4 class="text-primary">${title}$</h4>
 						</div>
 						<div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
+							<div class="hidden-xs"></div>
 							<h4 class="text-muted">${date}$, <strong class="">${readers}$</strong> readers</h4>
 						</div>
 					</div>

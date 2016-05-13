@@ -1,4 +1,5 @@
 var pageSize=10;
+var tid=null;
 
 $(document).ready(function() {
 	//加载博客
@@ -22,6 +23,24 @@ $(document).ready(function() {
 		searchBlogs("", 1);
 		$(this).hide("normal");
 	});
+	
+	//加载所有博文分类
+	TypeManager.getAll(function(types) {
+		for(var i in types) {
+			$("<li>").append($("<a>").text(types[i].tname)).attr("id", types[i].tid).click(function() {
+				tid=$(this).attr("id");
+				$("#type-list button span").text($(this).text());
+				searchBlogs($("#search-blog").val(), 1);
+			}).appendTo("#type-list ul");
+		}
+	});
+
+	//显示所有分类
+	$("#show-all-type").click(function() {
+		tid=null;
+		$("#type-list button span").text($("#show-all-type a").text());
+		searchBlogs($("#search-blog").val(), 1);
+	});
 });
 
 /**
@@ -36,13 +55,14 @@ function searchBlogs(title, page) {
 	}, 300);
 	
 	//加载页码
-	BlogManager.getBlogsCount(title, function(count) {
+	BlogManager.getBlogsCount(title, tid, function(count) {
 		$("#page-count").text(count);
 		$("#page-nav ul").empty();
 		for(var i=1; i<Math.ceil(count/pageSize+1);i++) {
-			var li='<li><a href="javascript:void(0)">'+i+'</a></li>';
-			if(page==i)
-				li='<li class="active"><a href="javascript:void(0)">'+i+'</a></li>';
+			var li=$("<li>").append($("<a>").text(i));
+			if(page==i) {
+				li.addClass("active");
+			}
 			$("#page-nav ul").append(li);
 		}
 		$("#page-nav ul li").each(function(index) {
@@ -53,7 +73,7 @@ function searchBlogs(title, page) {
 	});
 
 	//加载博客标题
-	BlogManager.searchBlogs(title, page, pageSize, function(blogs) {
+	BlogManager.searchBlogs(title, tid, page, pageSize, function(blogs) {
 		$("#blog-list").mengularClear();
 		var btitle, strs;
 		for(var i in blogs) {
@@ -66,6 +86,7 @@ function searchBlogs(title, page) {
 			$("#blog-list").mengular(".blog-list-template", {
 				bid: blogs[i].bid,
 				date: blogs[i].date.format(DATE_HOUR_MINUTE_FORMAT),
+				tname: blogs[i].type.tname,
 				title: btitle,
 				readers: blogs[i].readers
 			});
