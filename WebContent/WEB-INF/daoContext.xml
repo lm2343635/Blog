@@ -10,4 +10,7 @@
 	<bean id="commentDao" class="org.fczm.blog.dao.impl.CommentDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="typeDao" class="org.fczm.blog.dao.impl.TypeDaoHibernate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 </beans>

@@ -34,6 +34,7 @@
 				<!-- 以下用来列出Hibernate映射文件 -->
 				<value>org/fczm/blog/domain/Blog.hbm.xml</value>
 				<value>org/fczm/blog/domain/Comment.hbm.xml</value>
+				<value>org/fczm/blog/domain/Type.hbm.xml</value>
 			</list>
 		</property>
 		<!-- 定义Hibernate的SessionFactory的属性 -->
@@ -76,6 +77,7 @@
  	<bean id="managerTemplate" class="org.fczm.blog.service.util.ManagerTemplate">
 		<property name="blogDao" ref="blogDao"/>
 		<property name="commentDao" ref="commentDao"/>
+		<property name="typeDao" ref="typeDao"/>
 	</bean>	
 	
  	<!-- 定义业务逻辑组件 -->
@@ -84,6 +86,7 @@
 		<property name="blogOutputFolderDepth" value="1"/>
 	</bean>
 	<bean id="commentManager" class="org.fczm.blog.service.impl.CommentManagerImpl" parent="managerTemplate"/>
+	<bean id="typeManager" class="org.fczm.blog.service.impl.TypeManagerImpl" parent="managerTemplate"/>
 	<!-- 配置管理员用户名密码 -->
 	<bean id="adminManager" class="org.fczm.blog.service.impl.AdminManagerImpl">
 		<property name="username" value="admin"></property>

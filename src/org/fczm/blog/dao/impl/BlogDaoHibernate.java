@@ -11,44 +11,25 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.HibernateCallback;
 
-public class BlogDaoHibernate extends PageHibernateDaoSupport implements BlogDao {
+public class BlogDaoHibernate extends PageHibernateDaoSupport<Blog> implements BlogDao {
 
-	@Override
-	public Blog get(String bid) {
-		return getHibernateTemplate().get(Blog.class, bid);
+	public BlogDaoHibernate() {
+		super();
+		setClass(Blog.class);
 	}
-
-	@Override
-	public String save(Blog blog) {
-		return (String)getHibernateTemplate().save(blog);
-	}
-
-	@Override
-	public void update(Blog blog) {
-		getHibernateTemplate().update(blog);
-	}
-
-	@Override
-	public void delete(Blog blog) {
-		getHibernateTemplate().delete(blog);
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Blog> findAll() {
-		return getHibernateTemplate().find("from Blog order by date desc");
-	}
-
+	
 	@Override
 	public int getBlogsCount(String title) {
 		return getHibernateTemplate().execute(new HibernateCallback<Long>() {
 			public Long doInHibernate(Session session) throws HibernateException, SQLException {
 				String hql="select count(*) from Blog";
-				if(!title.equals("")) 
+				if(!title.equals("")) {
 					hql+=" where title like ?";
+				}
 				Query query=session.createQuery(hql);
-				if(!title.equals("")) 
+				if(!title.equals("")) {
 					query.setParameter(0, "%"+title+"%");
+				}
 				return (long)query.uniqueResult();
 			}
 		}).intValue();
@@ -58,13 +39,11 @@ public class BlogDaoHibernate extends PageHibernateDaoSupport implements BlogDao
 	@Override
 	public List<Blog> findByTitle(String title, int offset, int pageSize) {
 		String hql="from Blog";
-		if(!title.equals("")) 
+		if(!title.equals("")) {
 			hql+=" where title like ?";
+		}
 		hql+=" order by date desc";
-		if(!title.equals("")) 
-			return findByPage(hql, "%"+title+"%", offset, pageSize);
-		else
-			return findByPage(hql, offset, pageSize);
+		return !title.equals("")?  findByPage(hql, "%"+title+"%", offset, pageSize): findByPage(hql, offset, pageSize);
 	}
 
 }

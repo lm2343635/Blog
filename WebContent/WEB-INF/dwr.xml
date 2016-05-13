@@ -10,11 +10,15 @@
 		<create creator="spring" javascript="CommentManager"> 
 			<param name="beanName" value="commentManager"/>
 		</create>
+		<create creator="spring" javascript="TypeManager"> 
+			<param name="beanName" value="typeManager"/>
+		</create>
 		<create creator="spring" javascript="AdminManager"> 
 			<param name="beanName" value="adminManager"/>
 		</create>
-		<!-- 定义使用Bean转换器处理如下Java类 -->
+		
 		<convert converter="bean" match="org.fczm.blog.bean.BlogBean"/> 
 		<convert converter="bean" match="org.fczm.blog.bean.CommentBean"/> 
+		<convert converter="bean" match="org.fczm.blog.bean.TypeBean"/> 
 	</allow>
 </dwr>

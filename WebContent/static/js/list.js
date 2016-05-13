@@ -33,7 +33,7 @@ $(document).ready(function() {
 function searchBlogs(title, page) {
     //返回页面顶部
     $("body").animate({
-        scrollTop: "250px"
+        scrollTop: "0px"
     }, 300);
     
     //加载页码

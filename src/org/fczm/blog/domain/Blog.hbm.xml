@@ -11,6 +11,7 @@
 		<property name="content" type="text" not-null="true"/>
 		<property name="date" type="java.util.Date" not-null="true"/>
 		<property name="readers" type="integer" not-null="true"/>
+		<many-to-one name="type" class="Type" column="tid" cascade="save-update" lazy="false" not-null="true"/>
 		<list name="comments" cascade="delete" inverse="true">
 			<key column="bid"  not-null="true"/>
 			<index column="date" type="java.util.Date"/>
