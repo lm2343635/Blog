@@ -23,6 +23,7 @@
         <script src="../dwr/engine.js"></script>
         <script src="../dwr/interface/AdminManager.js"></script>
         <script src="../dwr/interface/BlogManager.js"></script>
+        <script src="../dwr/interface/TypeManager.js"></script>
         <script src="../static/js/add.js"></script>
     </head>
     <body>
@@ -36,6 +37,7 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul id="list-nav" class="nav navbar-nav logined-btn">
                             <li><a href="list.html">List</a></li>
+                            <li><a href="types.html">Type</a></li>
                             <li class="active"><a href="add.html">Add</a></li>
                         </ul>
                         <ul id="list-nav" class="nav navbar-nav navbar-right">
@@ -49,22 +51,30 @@
                 <h3 class="text-center text-muted">Add a Blog</h3>
             </div>
             <div id="add-blog-div" class="row">
-                <div class="col-xs-12 col-sm-5 col-md-7">
+                <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon form-icon"><i class="fa fa-font fa-lg"></i></span>
                         <input id="add-blog-title" type="text" class="form-control" placeholder="Blog Title">
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-3 col-md-3">
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-addon form-icon"><i class="fa fa-clipboard fa-lg"></i></span>
+                        <select id="add-blog-type" class="form-control">
+                            <option value="null">Select a Type</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon form-icon"><i class="fa fa-calendar fa-lg"></i></span>
                         <input id="add-blog-date" type="text" class="form-control" placeholder="Create Date" readonly>
                     </div>
                 </div>
-                <div class="col-xs-6 col-sm-2 col-md-1">
+                <div class="col-xs-6 col-sm-3 col-md-1">
                     <button id="add-blog-clear" class="btn btn-block btn-default">Clear</button>
                 </div>
-                <div class="col-xs-6 col-sm-2 col-md-1">
+                <div class="col-xs-6 col-sm-3 col-md-1">
                     <button id="add-blog-submit" class="btn btn-block btn-success">Create</button>
                 </div>
                 <div class="col-xs-12">

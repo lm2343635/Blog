@@ -13,6 +13,7 @@ public class Blog implements Serializable {
 	private String content; 
 	private Date date;
 	private Integer readers;
+	private Type type;
 	private List<Comment> comments;
 	
 	public String getBid() {
@@ -50,6 +51,12 @@ public class Blog implements Serializable {
 	}
 	public void setReaders(Integer readers) {
 		this.readers = readers;
+	}
+	public Type getType() {
+		return type;
+	}
+	public void setType(Type type) {
+		this.type = type;
 	}
 	
 }

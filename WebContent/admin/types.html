@@ -9,7 +9,7 @@
         <link href="../static/css/font-awesome.min.css" rel="stylesheet">
         <link href="../static/css/summernote.min.css" rel="stylesheet">
         <link href="../static/css/mengular.css" rel="stylesheet">
-        <link href="../static/css/list.css" rel="stylesheet">
+        <link href="../static/css/types.css" rel="stylesheet">
         <script src="../static/js/jquery.min.js"></script> 
         <script src="../static/js/jquery.bootstrap.min.js"></script>
         <script src="../static/js/bootstrap.min.js"></script> 
@@ -18,8 +18,8 @@
         <script src="../static/js/tools.js"></script>
         <script src="../dwr/engine.js"></script>
         <script src="../dwr/interface/AdminManager.js"></script>
-        <script src="../dwr/interface/BlogManager.js"></script>
-        <script src="../static/js/list.js"></script>
+        <script src="../dwr/interface/TypeManager.js"></script>
+        <script src="../static/js/types.js"></script>
     </head>
     <body>
         <div class="container">
@@ -31,12 +31,11 @@
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul id="list-nav" class="nav navbar-nav logined-btn">
-                            <li class="active"><a href="list.html">List</a></li>
-                            <li><a href="types.html">Type</a></li>
+                            <li><a href="list.html">List</a></li>
+                            <li class="active"><a href="type.html">Type</a></li>
                             <li><a href="add.html">Add</a></li>
                         </ul>
                         <ul id="list-nav" class="nav navbar-nav navbar-right">
-                        	<li><a href="javascript:void(0)"onclick="regenerate()">Regenerate</a></li>
                             <li><a href="../blogs.html" target="_blank">Blogs</a></li>
                             <li><a href="../LogoutServlet?task=adminLogout">Exit</a></li>
                         </ul>
@@ -44,26 +43,44 @@
                 </div>
             </nav>
             <div class="page-header">
-                <input id="search-blog" type="text" placeholder="Search Title" class="text-info text-center">
-                <i id="search-cancel" class="fa fa-times-circle-o fa-lg pull-right text-muted"></i>
-                <a id="add-blog" href="add.html"><i class="fa fa-plus fa-lg pull-right add-icon"></i></a>
+            	<h3 class="text-center text-muted">Types of Blogs</h3>
+                <i id="add-type" class="fa fa-plus fa-lg pull-right text-primary add-icon" data-toggle="modal" data-target="#add-type-modal"></i>
             </div>
-            <div id="blog-list" class="list-group">
-                <div id="${bid}$" class="list-group-item mengular-template blog-list-template">
+            <div id="type-list" class="list-group">
+                <div id="${tid}$" class="list-group-item mengular-template type-list-template">
                     <div class="row">
                         <div class="col-xs-12 col-sm-2">${date}$</div>
-                        <div class="col-xs-12 col-sm-8"><a href="../blogs/${bid}$" target="_blank"><span class="blog-list-title">${title}$</span></a></div>
+                        <div class="col-xs-12 col-sm-8"><span class="blog-list-title">${tname}$</span></div>
                         <div class="col-xs-12 col-sm-2">
-                            <a href="edit.html?bid=${bid}$" class="blog-accessory"><i class="fa fa-gear fa-lg text-success"></i></a>
-                            <span class="blog-list-delete"><i class="fa fa-trash-o fa-lg text-danger blog-accessory"></i></span>
-                            <span class="blog-accessory"><strong class="text-warning">${readers}$</strong> readers</span>
+                            <i class="fa fa-gear fa-lg text-success type-accessory"></i>
+                            <span class="blog-list-delete"><i class="fa fa-trash-o fa-lg text-danger type-accessory"></i></span>
+                            <span class="type-accessory"><strong class="text-warning">${count}$</strong> blogs</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <nav id="page-nav" class="text-center">
-                <ul class="pagination"></ul>
-            </nav>
+        </div>
+        <div id="add-type-modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Create a Type</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-lg fa-font"></i>
+                            </span>
+                            <input id="add-type-tname" type="text" class="form-control" placeholder="Name of Type">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button id="add-type-submit" type="button" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>

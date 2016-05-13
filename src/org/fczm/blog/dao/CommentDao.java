@@ -4,12 +4,9 @@ import java.util.List;
 
 import org.fczm.blog.domain.Blog;
 import org.fczm.blog.domain.Comment;
+import org.fczm.common.hibernate3.support.CrudDao;
 
-public interface CommentDao {
-	Comment get(String cid);
-	String save(Comment comment);
-	void update(Comment comment);
-	void delete(Comment comment);
+public interface CommentDao extends CrudDao<Comment> {
 	
 	/**
 	 * 根据博客查找评论

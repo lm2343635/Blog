@@ -2,10 +2,12 @@ package org.fczm.blog.service.util;
 
 import org.fczm.blog.dao.BlogDao;
 import org.fczm.blog.dao.CommentDao;
+import org.fczm.blog.dao.TypeDao;
 
 public class ManagerTemplate {
 	protected BlogDao blogDao;
 	protected CommentDao commentDao;
+	protected TypeDao typeDao;
 	
 	public BlogDao getBlogDao() {
 		return blogDao;
@@ -18,5 +20,11 @@ public class ManagerTemplate {
 	}
 	public void setCommentDao(CommentDao commentDao) {
 		this.commentDao = commentDao;
+	}
+	public TypeDao getTypeDao() {
+		return typeDao;
+	}
+	public void setTypeDao(TypeDao typeDao) {
+		this.typeDao = typeDao;
 	}
 }

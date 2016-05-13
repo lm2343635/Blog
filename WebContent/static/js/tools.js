@@ -20,9 +20,7 @@ var DATE_HOUR_MINUTE_FORMAT_CN="yyyy年MM月dd日 hh点mm分";
  *  @param doAfterCheck 验证成功回调函数
  */
 function checkSession(doAfterCheck) {
-	SendeeManager.checkSession(function(user) {
-		doAfterCheck(user);
-	});
+	
 }
 
 /**

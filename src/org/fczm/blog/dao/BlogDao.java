@@ -3,14 +3,9 @@ package org.fczm.blog.dao;
 import java.util.List;
 
 import org.fczm.blog.domain.Blog;
+import org.fczm.common.hibernate3.support.CrudDao;
 
-public interface BlogDao {
-	Blog get(String bid);
-	String save(Blog blog);
-	void update(Blog blog);
-	void delete(Blog blog);
-	
-	List<Blog> findAll();
+public interface BlogDao extends CrudDao<Blog> {
 	
 	/**
 	 * 获取指定标题的博客数量
