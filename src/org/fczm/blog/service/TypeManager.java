@@ -18,4 +18,17 @@ public interface TypeManager {
 	 * @return
 	 */
 	List<TypeBean> getAll();
+	
+	/**
+	 * 修改博文类型名称
+	 * @param tid
+	 * @param tname
+	 */
+	void modifyType(String tid, String tname);
+	
+	/**
+	 * 删除博文类型
+	 * @param tid
+	 */
+	void removeType(String tid);
 }

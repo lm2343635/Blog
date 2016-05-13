@@ -10,6 +10,7 @@ public class BlogBean {
 	private String content; 
 	private Date date;
 	private int readers;
+	private TypeBean type;
 	
 	public String getBid() {
 		return bid;
@@ -44,12 +45,19 @@ public class BlogBean {
 	public BlogBean() {
 		super();
 	}
+	public TypeBean getType() {
+		return type;
+	}
+	public void setType(TypeBean type) {
+		this.type = type;
+	}
 	
 	public BlogBean(Blog blog) {
 		super();
 		this.bid = blog.getBid();
 		this.title = blog.getTitle();
 		this.date = blog.getDate();
-		this.readers=blog.getReaders();
+		this.readers = blog.getReaders();
+		this.type = new TypeBean(blog.getType());
 	}
 }

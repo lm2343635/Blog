@@ -1,4 +1,5 @@
 var pageSize=15;
+var tid=null;
 
 $(document).ready(function() {
 	checkAdminSession(function() {
@@ -37,7 +38,7 @@ function searchBlogs(title, page) {
     }, 300);
     
     //加载页码
-    BlogManager.getBlogsCount(title, function(count) {
+    BlogManager.getBlogsCount(title, tid, function(count) {
         $("#page-count").text(count);
         $("#page-nav ul").empty();
         for(var i=1; i<Math.ceil(count/pageSize+1);i++) {
@@ -54,7 +55,7 @@ function searchBlogs(title, page) {
     });
 
     //加载博客标题
-    BlogManager.searchBlogs(title, page, pageSize, function(blogs) {
+    BlogManager.searchBlogs(title, tid, page, pageSize, function(blogs) {
         $("#blog-list").mengularClear();
         var btitle, strs;
 		for(var i in blogs) {
@@ -69,6 +70,7 @@ function searchBlogs(title, page) {
             $("#blog-list").mengular(".blog-list-template", {
                 bid: blogs[i].bid,
                 date: blogs[i].date.format(DATE_HOUR_MINUTE_FORMAT),
+                tname: blogs[i].type.tname,
                 title: btitle,
                 readers: blogs[i].readers
             });

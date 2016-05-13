@@ -8,6 +8,7 @@ import org.directwebremoting.WebContextFactory;
 import org.fczm.blog.bean.BlogBean;
 import org.fczm.blog.domain.Blog;
 import org.fczm.blog.domain.Comment;
+import org.fczm.blog.domain.Type;
 import org.fczm.blog.service.BlogManager;
 import org.fczm.blog.service.util.ManagerTemplate;
 import org.fczm.common.util.DateTool;
@@ -27,16 +28,21 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 	}
 
 	@Override
-	public String addBlog(String title, String content, String date) {
+	public String addBlog(String title, String content, String date, String tid) {
 		Blog blog=new Blog();
 		blog.setTitle(title);
 		blog.setContent(content);
 		blog.setDate(DateTool.transferDate(date, DateTool.DATE_HOUR_MINUTE_FORMAT));
 		blog.setReaders(0);
+		Type type=typeDao.get(tid);
+		blog.setType(type);
 		String bid= blogDao.save(blog);
 		if(bid!=null) {
 			//根据模板生成文件
 			generateBlog(blog);
+			//type文章数量加1
+			type.setCount(type.getCount()+1);
+			typeDao.update(type);
 		}
 		return bid;
 	}
@@ -53,8 +59,9 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 	@Override
 	public BlogBean getBlogInfo(String bid, boolean reader) {
 		Blog blog=blogDao.get(bid);
-		if(blog==null)
+		if(blog==null) {
 			return null;
+		}
 		if(reader) {
 			blog.setReaders(blog.getReaders()+1);
 			blogDao.update(blog);
@@ -73,34 +80,57 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 
 
 	@Override
-	public void modifyBlog(String bid, String title, String content, String date) {
+	public void modifyBlog(String bid, String title, String content, String date, String tid) {
 		Blog blog=blogDao.get(bid);
 		blog.setTitle(title);
 		blog.setContent(content);
 		blog.setDate(DateTool.transferDate(date, DateTool.DATE_HOUR_MINUTE_FORMAT));
+		Type oldType=blog.getType();
+		Type newType=typeDao.get(tid);
+		blog.setType(newType);
 		blogDao.update(blog);
+		//更新新旧分类的博文数量
+		oldType.setCount(oldType.getCount()-1);
+		typeDao.update(oldType);
+		newType.setCount(newType.getCount()+1);
+		typeDao.update(newType);
 		//根据模板生成文件
 		generateBlog(blog);
 	}
 
 	@Override
+	public void backgroudSaving(String bid, String content) {
+		Blog blog=blogDao.get(bid);
+		blog.setContent(content);
+		blogDao.update(blog);
+	}
+
+	@Override
 	public void removeBlog(String bid) {
 		Blog blog=blogDao.get(bid);
-		for(Comment comment: commentDao.findByBlog(blog))
+		//博文分类数量减1
+		Type type=blog.getType();
+		type.setCount(type.getCount()-1);
+		typeDao.update(type);
+		//删除评论
+		for(Comment comment: commentDao.findByBlog(blog)) {
 			commentDao.delete(comment);
+		}
 		blogDao.delete(blog);
 	}
 
 	@Override
-	public int getBlogsCount(String title) {
-		return blogDao.getBlogsCount(title);
+	public int getBlogsCount(String title, String tid) {
+		Type type= (tid==null)? null: typeDao.get(tid);
+		return blogDao.getBlogsCount(title, type);
 	}
 
 	@Override
-	public List<BlogBean> searchBlogs(String title, int page, int pageSize) {
+	public List<BlogBean> searchBlogs(String title, String tid, int page, int pageSize) {
 		int offset=(page-1)*pageSize;
 		List<BlogBean> blogs=new ArrayList<>();
-		for(Blog blog: blogDao.findByTitle(title, offset, pageSize)) {
+		Type type= (tid==null)? null: typeDao.get(tid);
+		for(Blog blog: blogDao.findByTitle(title, type, offset, pageSize)) {
 			blogs.add(new BlogBean(blog));
 		}
 		return blogs;

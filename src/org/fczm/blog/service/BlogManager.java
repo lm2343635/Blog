@@ -11,9 +11,10 @@ public interface BlogManager {
 	 * @param title
 	 * @param content
 	 * @param date
+	 * @param tid
 	 * @return
 	 */
-	String addBlog(String title, String content, String date);
+	String addBlog(String title, String content, String date, String tid);
 	
 	/**
 	 * 获取所有博客
@@ -42,8 +43,16 @@ public interface BlogManager {
 	 * @param title
 	 * @param content
 	 * @param date
+	 * @param tid
 	 */
-	void modifyBlog(String bid, String title, String content, String date);
+	void modifyBlog(String bid, String title, String content, String date, String tid);
+	
+	/**
+	 * 后台自动保存博文内容
+	 * @param bid
+	 * @param content
+	 */
+	void backgroudSaving(String bid, String content);
 	
 	/**
 	 * 移除博客
@@ -54,18 +63,20 @@ public interface BlogManager {
 	/**
 	 * 根据标题获取博客数量
 	 * @param title
+	 * @param tid 博文分类id
 	 * @return
 	 */
-	int getBlogsCount(String title);
+	int getBlogsCount(String title, String type);
 	
 	/**
 	 * 查询博客
 	 * @param title 标题
+	 * @param tid 博文分类id
 	 * @param page 页码
 	 * @param pageSize 页面大小
 	 * @return
 	 */
-	List<BlogBean> searchBlogs(String title, int page, int pageSize);
+	List<BlogBean> searchBlogs(String title, String tid, int page, int pageSize);
 	
 	/**
 	 * 重新生成所有博客

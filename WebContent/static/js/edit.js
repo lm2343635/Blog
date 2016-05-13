@@ -1,8 +1,10 @@
 var bid=request("bid");
 var MIN_EDIT_HEIGHT=380;
+var AUTOMATICAL_SAVING_INTERVAL=30000;
 
 $(document).ready(function() {
 	checkAdminSession(function() {
+		//加载博客信息
 		BlogManager.getBlogInfo(bid, false, function(blog) {
 			if(blog==null) {
 				location.href="urlError.html";
@@ -18,7 +20,30 @@ $(document).ready(function() {
 		        forceParse: 0,
 		        showMeridian: 1
 		    }).val(blog.date.format(DATE_HOUR_MINUTE_FORMAT));
-		});
+
+		    //加载博客分类
+			TypeManager.getAll(function(types) {
+	            for(var i in types) {
+	            	var option=$("<option>").text(types[i].tname).val(types[i].tid);
+	            	if(types[i].tid==blog.type.tid) {
+	            		option.attr("selected", "selected");
+	            	}
+	            	$("#edit-blog-type").append(option);
+	            }
+	        });
+		});		
+
+		//间隔一段时间，自动保存博文内容，以防丢失
+		setInterval(function() {
+			var content=$("#edit-blog-content").summernote("code");
+			if(content==null||content=="") {
+				return;
+			}
+			$.messager.popup("Automatically Saving...");
+			BlogManager.backgroudSaving(bid, content, function() {
+				$.messager.popup("Blog content saved");
+			});
+		}, AUTOMATICAL_SAVING_INTERVAL);
 	});
 	
 	BlogManager.getBlogContent(bid, function(content) {
@@ -35,20 +60,39 @@ $(document).ready(function() {
         });
 	});
 
+	//提交修改
 	$("#edit-blog-submit").click(function() {
 		var title=$("#edit-blog-title").val();
     	var content=$("#edit-blog-content").summernote("code");
     	var date=$("#edit-blog-date").val();
-    	if(title==""||content=="") {
-    		$.messager.popup("Input title and content!");
-    		return;
-    	}
-    	$("#edit-blog-submit").html('<i class="fa fa-refresh fa-spin"></i>').attr("disabled", "disabled");
-    	BlogManager.modifyBlog(bid, title, content, date, function() {
-    		$.messager.popup("Mofify this blog successfully!");
-    		setTimeout(function() {
-				location.href="list.html";
-			}, 1000);
-    	});
+    	var tid=$("#edit-blog-type").val();
+    	var validate=true;
+    	if(title==null||title=="") {
+            $("#edit-blog-title").parent().addClass("has-error");
+            validate=false;
+        } else {
+            $("#edit-blog-title").parent().removeClass("has-error");
+        }
+        if(content==null||content=="") {
+            validate=false;
+        } 
+        if(tid==null||tid=="") {
+            $("#edit-blog-type").parent().addClass("has-error");
+            validate=false;
+        } else {
+            $("#edit-blog-type").parent().removeClass("has-error");
+        }
+        if(validate) {
+        	$("#edit-blog-submit").html('<i class="fa fa-refresh fa-spin"></i>')
+        						  .attr("disabled", "disabled");
+	    	BlogManager.modifyBlog(bid, title, content, date, tid, function() {
+	    		$.messager.popup("Mofify this blog successfully!");
+	    		setTimeout(function() {
+					location.href="list.html";
+				}, 1000);
+	    	});
+        } else {
+        	$.messager.popup("No title, content or type!");
+        }	
 	});
 });

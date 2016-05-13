@@ -29,4 +29,16 @@ public class TypeManagerImpl extends ManagerTemplate implements TypeManager {
 		return types;
 	}
 
+	@Override
+	public void modifyType(String tid, String tname) {
+		Type type=typeDao.get(tid);
+		type.setTname(tname);
+		typeDao.update(type);
+	}
+
+	@Override
+	public void removeType(String tid) {
+		typeDao.delete(tid);
+	}
+
 }
