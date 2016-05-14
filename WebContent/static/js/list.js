@@ -1,5 +1,5 @@
 var pageSize=15;
-var tid=null;
+var tid=request("tid");
 
 $(document).ready(function() {
 	checkAdminSession(function() {
@@ -24,6 +24,29 @@ $(document).ready(function() {
         searchBlogs("", 1);
         $(this).hide("normal");
     });
+    
+  //加载所有博文分类
+	TypeManager.getAll(function(types) {
+		for(var i in types) {
+			$("<li>").append($("<a>").text(types[i].tname)).attr("id", types[i].tid).click(function() {
+				tid=$(this).attr("id");
+				$("#type-list button span").text($(this).text());
+				searchBlogs($("#search-blog").val(), 1);
+				history.pushState(null, null, location.origin+location.pathname+"?tid="+tid);
+			}).appendTo("#type-list ul");
+		}
+		if(tid) {
+			$("#type-list button span").text($("#"+tid).text());
+		}
+	});
+
+	//显示所有分类
+	$("#show-all-type").click(function() {
+		tid=null;
+		$("#type-list button span").text($("#show-all-type a").text());
+		searchBlogs($("#search-blog").val(), 1);
+		history.pushState(null, null, location.origin+location.pathname);
+	});
 });
 
 /**
@@ -36,7 +59,7 @@ function searchBlogs(title, page) {
     $("body").animate({
         scrollTop: "0px"
     }, 300);
-    
+        
     //加载页码
     BlogManager.getBlogsCount(title, tid, function(count) {
         $("#page-count").text(count);
