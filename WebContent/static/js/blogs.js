@@ -1,5 +1,5 @@
 var pageSize=10;
-var tid=null;
+var tid=request("tid");
 
 $(document).ready(function() {
 	//加载博客
@@ -31,7 +31,11 @@ $(document).ready(function() {
 				tid=$(this).attr("id");
 				$("#type-list button span").text($(this).text());
 				searchBlogs($("#search-blog").val(), 1);
+				history.pushState(null, null, location.origin+location.pathname+"?tid="+tid);
 			}).appendTo("#type-list ul");
+		}
+		if(tid) {
+			$("#type-list button span").text($("#"+tid).text());
 		}
 	});
 
@@ -40,6 +44,7 @@ $(document).ready(function() {
 		tid=null;
 		$("#type-list button span").text($("#show-all-type a").text());
 		searchBlogs($("#search-blog").val(), 1);
+		history.pushState(null, null, location.origin+location.pathname);
 	});
 });
 

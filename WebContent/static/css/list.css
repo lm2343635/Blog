@@ -49,3 +49,24 @@
 	position: relative;
 	z-index: 10;
 }
+
+#type-list {
+	width: 100%;
+}
+
+#type-list button {
+	border: none;
+	overflow: hidden; 
+}
+
+#type-list button span {
+	font-size: 18px;
+}
+
+#type-list button i {
+	font-size: 30px;
+}
+
+#type-list ul {
+	width: 100%;
+}

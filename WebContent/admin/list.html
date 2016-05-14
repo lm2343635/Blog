@@ -19,6 +19,7 @@
         <script src="../dwr/engine.js"></script>
         <script src="../dwr/interface/AdminManager.js"></script>
         <script src="../dwr/interface/BlogManager.js"></script>
+        <script src="../dwr/interface/TypeManager.js"></script>
         <script src="../static/js/list.js"></script>
     </head>
     <body>
@@ -44,9 +45,25 @@
                 </div>
             </nav>
             <div class="page-header">
-                <input id="search-blog" type="text" placeholder="Search Title" class="text-info text-center">
-                <i id="search-cancel" class="fa fa-times-circle-o fa-lg pull-right text-muted"></i>
-                <a id="add-blog" href="add.html"><i class="fa fa-plus fa-lg pull-right add-icon"></i></a>
+            	<div class="row">
+            		<div class="col-md-3">
+            			<div id="type-list" class="btn-group">
+							<button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<span class="text-muted">All Types</span>
+								<i class="fa fa-lg fa-caret-down text-muted pull-right"></i>
+							</button>
+							<ul class="dropdown-menu">
+								<li id="show-all-type"><a>All Types</a></li>
+								<li role="separator" class="divider"></li>
+							</ul>
+						</div>
+            		</div>
+            		<div class="col-md-9">
+						<input id="search-blog" type="text" placeholder="Search Title" class="text-info text-center">
+		                <i id="search-cancel" class="fa fa-times-circle-o fa-lg pull-right text-muted"></i>
+		                <a id="add-blog" href="add.html"><i class="fa fa-plus fa-lg pull-right add-icon"></i></a>
+            		</div>
+            	</div>
             </div>
             <div id="blog-list" class="list-group">
                 <div id="${bid}$" class="list-group-item mengular-template blog-list-template">
