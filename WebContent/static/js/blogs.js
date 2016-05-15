@@ -1,9 +1,13 @@
 var pageSize=10;
+var page=request("page");
 var tid=request("tid");
 
 $(document).ready(function() {
 	//加载博客
-	searchBlogs("", 1);
+	if(page==null||page=="") {
+		page=1;
+	}
+	searchBlogs("", page);
 
 	//实时搜索
 	$("#search-blog").bind("input propertychange", function() {
@@ -31,14 +35,10 @@ $(document).ready(function() {
 				tid=$(this).attr("id");
 				$("#type-list button span").text($(this).text());
 				searchBlogs($("#search-blog").val(), 1);
-				history.pushState({
-					tid: tid
-				}, null, location.origin+location.pathname+"?tid="+tid);
+				history.pushState(null, null, location.origin+location.pathname+"?tid="+tid);
 			}).appendTo("#type-list ul");
 		}
-		if(tid) {
-			$("#type-list button span").text($("#"+tid).text());
-		}
+		$("#type-list button span").text($("#"+(tid=="null"||tid==""? "show-all-type": tid)).text());
 	});
 
 	//显示所有分类
@@ -46,16 +46,19 @@ $(document).ready(function() {
 		tid=null;
 		$("#type-list button span").text($("#show-all-type a").text());
 		searchBlogs($("#search-blog").val(), 1);
-		history.pushState({
-			tid: null
-		}, null, location.origin+location.pathname);
+		history.pushState(null, null, location.origin+location.pathname);
 	});
 });
 
 //当浏览器的历史发生变化时，popstate处理博客类型
 window.addEventListener("popstate", function() {
-	tid=history.state.tid;
-	searchBlogs($("#search-blog").val(), 1);
+	tid=request("tid");
+	page=request("page");
+	if(page==null||page=="") {
+		page=1;
+	}
+	$("#type-list button span").text($("#"+(tid=="null"||tid==""? "show-all-type": tid)).text());
+	searchBlogs($("#search-blog").val(), page);
 });
 
 /**
@@ -82,6 +85,7 @@ function searchBlogs(title, page) {
 		}
 		$("#page-nav ul li").each(function(index) {
 			$(this).click(function() {
+				history.pushState(null, null, location.origin+location.pathname+"?tid="+tid+"&page="+(index+1));
 				searchBlogs(title, index+1);
 			});
 		});

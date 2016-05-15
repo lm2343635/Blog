@@ -1,9 +1,14 @@
 var pageSize=15;
 var tid=request("tid");
+var page=request("page");
 
 $(document).ready(function() {
 	checkAdminSession(function() {
-        searchBlogs("", 1);
+		//加载博客
+		if(page==null||page=="") {
+			page=1;
+		}
+		searchBlogs("", page);
 	});
 	
     //实时搜索
@@ -35,9 +40,7 @@ $(document).ready(function() {
 				history.pushState(null, null, location.origin+location.pathname+"?tid="+tid);
 			}).appendTo("#type-list ul");
 		}
-		if(tid) {
-			$("#type-list button span").text($("#"+tid).text());
-		}
+		$("#type-list button span").text($("#"+(tid=="null"||tid==""? "show-all-type": tid)).text());
 	});
 
 	//显示所有分类
@@ -47,6 +50,17 @@ $(document).ready(function() {
 		searchBlogs($("#search-blog").val(), 1);
 		history.pushState(null, null, location.origin+location.pathname);
 	});
+});
+
+//当浏览器的历史发生变化时，popstate处理博客类型
+window.addEventListener("popstate", function() {
+	tid=request("tid");
+	page=request("page");
+	if(page==null||page=="") {
+		page=1;
+	}
+	$("#type-list button span").text($("#"+(tid=="null"||tid==""? "show-all-type": tid)).text());
+	searchBlogs($("#search-blog").val(), page);
 });
 
 /**
@@ -65,13 +79,15 @@ function searchBlogs(title, page) {
         $("#page-count").text(count);
         $("#page-nav ul").empty();
         for(var i=1; i<Math.ceil(count/pageSize+1);i++) {
-            var li='<li><a href="javascript:void(0)">'+i+'</a></li>';
-            if(page==i)
-                li='<li class="active"><a href="javascript:void(0)">'+i+'</a></li>';
+        	var li=$("<li>").append($("<a>").text(i));
+			if(page==i) {
+				li.addClass("active");
+			}
             $("#page-nav ul").append(li);
         }
         $("#page-nav ul li").each(function(index) {
             $(this).click(function() {
+            	history.pushState(null, null, location.origin+location.pathname+"?tid="+tid+"&page="+(index+1));
                 searchBlogs(title, index+1);
             });
         });
@@ -85,8 +101,9 @@ function searchBlogs(title, page) {
 			if(title!="") {
 				strs=blogs[i].title.split(title);
 				btitle=strs[0]
-				for(var j=1; j<strs.length; j++) 
+				for(var j=1; j<strs.length; j++) {
 					btitle+="<span class='bg-info'>"+title+"</span>"+strs[j];
+				}
 			} else {
 				btitle=blogs[i].title;
 			}

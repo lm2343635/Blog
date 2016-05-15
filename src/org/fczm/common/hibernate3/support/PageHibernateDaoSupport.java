@@ -23,12 +23,6 @@ public abstract class PageHibernateDaoSupport<T extends Serializable> extends Hi
 		return getHibernateTemplate().get(clazz, id);
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<T> findAll() {
-		return getHibernateTemplate().find("from "+clazz.getName());
-	}
-
 	@Override
 	public String save(T entity) {
 		return (String)getHibernateTemplate().save(entity);
@@ -48,7 +42,22 @@ public abstract class PageHibernateDaoSupport<T extends Serializable> extends Hi
 	public void delete(String id) {
 		delete(get(id));
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<T> findAll() {
+		return getHibernateTemplate().find("from "+clazz.getName());
+	}
 	
+	@SuppressWarnings("unchecked")
+	public List<T> findAll(String orderby, boolean desc) {
+		String hql="from "+clazz.getName()+" order by "+orderby;
+		if(desc) {
+			hql+=" desc";
+		}
+		return getHibernateTemplate().find(hql);
+	}
+
 	/**
 	 * 使用hql语句进行分页查询
 	 * @param hql 需要查询的hql语句

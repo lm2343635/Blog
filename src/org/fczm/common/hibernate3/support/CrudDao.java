@@ -43,4 +43,12 @@ public interface CrudDao<T extends Serializable> {
 	 * @return
 	 */
 	List<T> findAll();
+	
+	/**
+	 * 指定排序规则查找所有实体
+	 * @param orderby
+	 * @param desc
+	 * @return
+	 */
+	List<T> findAll(String orderby, boolean desc);
 }
