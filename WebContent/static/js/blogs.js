@@ -31,7 +31,9 @@ $(document).ready(function() {
 				tid=$(this).attr("id");
 				$("#type-list button span").text($(this).text());
 				searchBlogs($("#search-blog").val(), 1);
-				history.pushState(null, null, location.origin+location.pathname+"?tid="+tid);
+				history.pushState({
+					tid: tid
+				}, null, location.origin+location.pathname+"?tid="+tid);
 			}).appendTo("#type-list ul");
 		}
 		if(tid) {
@@ -44,8 +46,16 @@ $(document).ready(function() {
 		tid=null;
 		$("#type-list button span").text($("#show-all-type a").text());
 		searchBlogs($("#search-blog").val(), 1);
-		history.pushState(null, null, location.origin+location.pathname);
+		history.pushState({
+			tid: null
+		}, null, location.origin+location.pathname);
 	});
+});
+
+//当浏览器的历史发生变化时，popstate处理博客类型
+window.addEventListener("popstate", function() {
+	tid=history.state.tid;
+	searchBlogs($("#search-blog").val(), 1);
 });
 
 /**
@@ -56,7 +66,7 @@ $(document).ready(function() {
 function searchBlogs(title, page) {
 	//返回页面顶部
 	$("body").animate({
-		scrollTop: "250px"
+		scrollTop: "0px"
 	}, 300);
 	
 	//加载页码
