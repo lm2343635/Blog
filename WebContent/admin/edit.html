@@ -9,6 +9,8 @@
         <link href="../static/css/font-awesome.min.css" rel="stylesheet">
         <link href="../static/css/summernote.min.css" rel="stylesheet">
         <link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <link href="../static/css/jquery.fileupload-ui.css" rel="stylesheet">
+        <link href="../static/css/jquery.fileupload.css" rel="stylesheet">
         <link href="../static/css/mengular.css" rel="stylesheet">
         <link href="../static/css/edit.css" rel="stylesheet">
         <script src="../static/js/jquery.min.js"></script> 
@@ -84,6 +86,10 @@
                     <div id="edit-blog-content"></div>
                 </div>
             </div>
+            <span id="blog-upload-cover-button" class="btn btn-success btn-lg btn-block fileinput-button">
+                <span>Upload Blog Cover Photo<small>（Reupload will replace old cover）</small></span>
+                <input id="blog-upload-cover" type="file" name="files[]">
+            </span>
         </div>
     </body>
 </html>

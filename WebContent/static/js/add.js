@@ -62,7 +62,7 @@ $(document).ready(function() {
                 if(bid) {
                     $.messager.popup("Create this blog successfully!");
                     setTimeout(function() {
-                        location.href="list.html";
+                        location.href="edit.html?bid="+bid;
                     }, 1000);
                 }
             });

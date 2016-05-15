@@ -48,7 +48,7 @@ $(document).ready(function() {
 	
 	BlogManager.getBlogContent(bid, function(content) {
 		$("#edit-blog-content").summernote({
-			height: getScreenHeight()-300<MIN_EDIT_HEIGHT? MIN_EDIT_HEIGHT: getScreenHeight()-300
+			height: getScreenHeight()-300<MIN_EDIT_HEIGHT? MIN_EDIT_HEIGHT: getScreenHeight()-370
 		}).summernote("code", content);
 		$("#loading-blog").hide();
 	})

@@ -31,8 +31,11 @@
 					</div>
 					<h1 class="pull-right"><a href="blogs.html">Blogs</a></h1>
 					<div class="clearfix"> </div>
-					<h2 class="text-center">#{blog-title}</h2>
-					<h4 class="text-center">Create in #{blog-date}, <span id="blog-readers"></span> readers</h4>
+					<h2 class="text-center">
+						<strong>#{blog-title}</strong>
+						<small>#{blog-tname}</small>
+					</h2>
+					<h4 class="text-center">Created in #{blog-date}, <span id="blog-readers"></span> readers</h4>
 				</div>
 			</div>
 		</div>
@@ -57,7 +60,7 @@
 				</div>
 			</div>	
 			<div class="page-header">
-                <h3 class="text-info">Write a Comment</h3>
+                <h3 class="text-info">Write Comment</h3>
             </div>
             <div id="add-blog-comment" class="row">
             	<div class="col-xs-12">
@@ -79,7 +82,7 @@
             		<button id="add-comment-submit" class="btn btn-success btn-block">Submit</button>
             	</div>
             </div>
-            <a href="blogs.html" class="btn btn-block btn-lg btn-info" style="margin: 30px 0;">Back to Blogs</a>
+            <button id="back" class="btn btn-block btn-lg btn-info" onclick="history.go(-1)">Back</button>
 		</div>
 		<div class="copy-right text-center">
 			<div class="container">

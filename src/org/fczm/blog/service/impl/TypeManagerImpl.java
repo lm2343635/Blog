@@ -23,7 +23,7 @@ public class TypeManagerImpl extends ManagerTemplate implements TypeManager {
 	@Override
 	public List<TypeBean> getAll() {
 		List<TypeBean> types=new ArrayList<>();
-		for(Type type: typeDao.findAll()) {
+		for(Type type: typeDao.findAll("date", false)) {
 			types.add(new TypeBean(type));
 		}
 		return types;

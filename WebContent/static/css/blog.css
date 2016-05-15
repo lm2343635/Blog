@@ -1,6 +1,5 @@
 #home .top-header {
 	min-height: 250px;
-	max-height: 250px;
 	padding-top: 8px;
 }
 
@@ -16,15 +15,21 @@
 }
 
 #home h2 {
-	color: #FFF;
+	color: #fff;
     font-family: 'nexa_boldregular';
-    font-size: 25px;
+    font-size: 27px;
     line-height: 1.3em;
 }
 
+#home h2 small {
+	display: block;
+	color: #fff;
+	margin-top: 10px;
+}
+
 #home h4 {
-	color: #FFF;
-    font-size: 20px;
+	color: #fff;
+    font-size: 18px;
     line-height: 1.3em;
 }
 
@@ -55,4 +60,8 @@
 
 #blog-content {
 	margin-top: 30px;
+}
+
+#back {
+	margin: 30px 0;
 }
