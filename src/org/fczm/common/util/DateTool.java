@@ -5,13 +5,18 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * @author fczm.pw
+ *	Version 3.1
+ */
 public class DateTool {
-	//“年-月-日”格式
-	public static final String YEAR_MONTH_DATE_FORMAT="yyyy-MM-dd";
-	//“年-月”格式
-	public static final String YEAR_MONTH_FORMAT="yyyy-MM";
+	
 	//“年”格式
 	public static final String YEAR_FORMAT="yyyy";
+	//“年-月”格式
+		public static final String YEAR_MONTH_FORMAT="yyyy-MM";
+	//“年-月-日”格式
+	public static final String YEAR_MONTH_DATE_FORMAT="yyyy-MM-dd";
 	//“年-月-日 时”格式
 	public static final String DATE_HOUR_FORMAT="yyyy-MM-dd HH";
 	//“年-月-日 时:分”格式
@@ -303,6 +308,30 @@ public class DateTool {
 	}
 	
 	/**
+	 * 得到今日起始时间
+	 * @return
+	 */
+	public static Date thisDayStart() {
+		Calendar calendar=Calendar.getInstance();
+		int year=calendar.get(Calendar.YEAR);
+		int month=calendar.get(Calendar.MONTH)+1;
+		int day=calendar.get(Calendar.DATE);
+		return getStart(year, month, day);
+	}
+	
+	/**
+	 * 得到今日结束时间
+	 * @return
+	 */
+	public static Date thisDayEnd() {
+		Calendar calendar=Calendar.getInstance();
+		int year=calendar.get(Calendar.YEAR);
+		int month=calendar.get(Calendar.MONTH)+1;
+		int day=calendar.get(Calendar.DATE);
+		return getEnd(year, month, day);
+	}
+	
+	/**
 	 * 得到开始时间点
 	 * @param year
 	 * @param month
@@ -421,6 +450,12 @@ public class DateTool {
         return null;  
     }  
   
+    /**
+     * 生成begin和end之间的随机数
+     * @param begin
+     * @param end
+     * @return
+     */
     private static long random(long begin, long end) {  
         long rtn = begin + (long) (Math.random() * (end - begin));  
         // 如果返回的是开始时间和结束时间，则递归调用本函数查找随机值  
@@ -429,10 +464,4 @@ public class DateTool {
         }  
         return rtn;  
     }  
-    
-    public static void main(String[] args) {
-		Date date1=transferDate("2015-10-15 18:09:09", DATE_HOUR_MINUTE_SECOND_FORMAT);
-		Date date2=new Date();
-		System.out.println(minutesBetween(date1, date2));
-	}
 }

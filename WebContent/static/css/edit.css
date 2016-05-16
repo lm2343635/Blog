@@ -6,3 +6,16 @@
 #loading-blog {
 	padding: 80px;
 }
+
+#blog-cover-img, #blog-cover-progress {
+	display: none;
+}
+
+#blog-cover-img {
+	width: 100%;
+}
+
+#blog-upload-cover-button {
+	margin-bottom: 20px;
+	overflow: auto;
+}

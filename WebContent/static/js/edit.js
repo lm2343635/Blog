@@ -95,4 +95,25 @@ $(document).ready(function() {
         	$.messager.popup("No title, content or type!");
         }	
 	});
+
+	//绑定上传图片控件
+	$("#blog-upload-cover").fileupload({
+    	autoUpload:true,
+    	url:"../PhotoServlet?task=uploadBlogCover&bid="+bid,
+    	dataType:"json",
+    	acceptFileTypes: /^image\/(gif|jpeg|png)$/,
+    	done:function(e,data){
+    		$("#blog-cover-img").show();
+    		$("#blog-cover-img").attr("src","../cover/"+data.result.cover);
+    		setTimeout(function(){
+				$("#blog-cover-progress").hide(1500);
+			},2000);
+    	},
+    	progressall:function(e,data){
+			$("#blog-cover-progress").show();
+		    var progress=parseInt(data.loaded/data.total*100, 10);
+		    $("#blog-cover-progress .progress-bar").css("width",progress+"%");
+		    $("#blog-cover-progress .progress-bar").text(progress+"%");
+    	}
+    });
 });
