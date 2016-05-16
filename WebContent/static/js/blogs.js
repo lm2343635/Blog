@@ -31,13 +31,29 @@ $(document).ready(function() {
 	//加载所有博文分类
 	TypeManager.getAll(function(types) {
 		for(var i in types) {
-			$("<li>").append($("<a>").text(types[i].tname)).attr("id", types[i].tid).click(function() {
-				tid=$(this).attr("id");
+			$("<li>").append($("<a>").text(types[i].tname)).attr("data-id", types[i].tid).click(function() {
+				tid=$(this).attr("data-id");
 				$("#type-list button span").text($(this).text());
 				searchBlogs($("#search-blog").val(), 1);
+				//变更左侧栏目
+				$("#type-right-list .active").removeClass("acitve");
+				$("#"+tid).addClass("active");
 				history.pushState(null, null, location.origin+location.pathname+"?tid="+tid);
 			}).appendTo("#type-list ul");
+
+			$("#type-right-list").mengular(".type-right-list-template", {
+				tid: types[i].tid,
+				tname: types[i].tname
+			});
+			
+			$("#"+types[i].tid).click(function() {
+				tid=$(this).attr("id");
+				searchBlogs($("#search-blog").val(), 1);
+				history.pushState(null, null, location.origin+location.pathname+"?tid="+tid);
+			});
 		}
+
+		$("#"+tid).addClass("active");
 		$("#type-list button span").text($("#"+(tid=="null"||tid==""? "show-all-type": tid)).text());
 	});
 
@@ -107,8 +123,14 @@ function searchBlogs(title, page) {
 				date: blogs[i].date.format(DATE_HOUR_MINUTE_FORMAT),
 				tname: blogs[i].type.tname,
 				title: btitle,
-				readers: blogs[i].readers
+				readers: blogs[i].readers,
+				src: blogs[i].cover==null? "": "cover/"+blogs[i].cover
 			});
+			
+			//有封面图片才显示
+			if(blogs[i].cover!=null) {
+				$("#"+blogs[i].bid+" .blog-cover").show();
+			}
 
 			$("#"+blogs[i].bid).click(function() {
 				location.href="blogs/"+$(this).attr("id");

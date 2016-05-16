@@ -7,9 +7,11 @@ $(document).ready(function() {
 			location.href="urlError.html";
 			return;
 		}
+		
 		fillText({
 			"blog-readers": blog.readers
 		});
+
 	});
 
 	CommentManager.getCommentsByBid(bid, function(comments) {
