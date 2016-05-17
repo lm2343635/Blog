@@ -25,17 +25,26 @@
 	margin-bottom: 30px;
 }
 
-#blog-list .col-xs-12 {
+#blog-list h4 {
+	margin-top: 5px;
+	font-size: 21px;
+}
+
+#blog-list .blog-list-date {
 	margin: 5px 0;
+}
+
+#blog-list .bs-callout {
+	padding: 15px;	
+}
+
+#blog-list .bs-callout+.bs-callout {
+	margin-top: 0;
 }
 
 #blog-list .bs-callout:hover {
 	cursor: pointer;
 	background: #f7f7f7;
-}
-
-#blog-list .hidden-xs {
-	height: 20px;
 }
 
 #blog-list .blog-cover {
@@ -45,15 +54,18 @@
 
 #search-blog {
     border: 0;
-    font-size: 21px;
+    font-size: 25px;
     outline: none;
+    padding: 10px;
+    border-radius: 7px;
     width: 100%;
-    background: rgba(255, 255, 255, 0);
+    background: rgb(247, 247, 247);
 }
 
 #search-cancel {
-	margin-top: -20px;
-	margin-right: 10px;
+    margin-top: -37px;
+    margin-right: 16px;
+    font-size: 30px;
 	position: relative;
 	z-index: 10;
 	display: none;
@@ -64,17 +76,28 @@
 	margin: 20px 0;
 }
 
+#search-header .row .col-xs-12 {
+	margin: 5px 0;
+}
+
 #type-list {
 	width: 100%;
 }
 
+#type-list .dropdown-menu a {
+	height: 35px;
+	line-height: 30px;
+}
+
 #type-list button {
-	border: none;
-	overflow: hidden; 
+    border: none;
+    overflow: hidden;
+    background: #F7F7F7;
+    padding: 13px;
 }
 
 #type-list button span {
-	font-size: 18px;
+	font-size: 20px;
 }
 
 #type-list button i {
@@ -85,7 +108,10 @@
 	width: 100%;
 }
 
-#type-right-list .list-group-item:hover {
-	cursor: pointer;
+#type-right-list {
+	display: block;	
 }
 
+#type-right-list button {
+	height: 55px;
+}

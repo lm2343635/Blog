@@ -31,36 +31,45 @@ $(document).ready(function() {
 	//加载所有博文分类
 	TypeManager.getAll(function(types) {
 		for(var i in types) {
-			$("<li>").append($("<a>").text(types[i].tname)).attr("data-id", types[i].tid).click(function() {
-				tid=$(this).attr("data-id");
-				$("#type-list button span").text($(this).text());
-				searchBlogs($("#search-blog").val(), 1);
-				//变更左侧栏目
-				$("#type-right-list .active").removeClass("acitve");
-				$("#"+tid).addClass("active");
-				history.pushState(null, null, location.origin+location.pathname+"?tid="+tid);
-			}).appendTo("#type-list ul");
+			$("<li>").append($("<a>").text(types[i].tname))
+				.attr("data-id", types[i].tid).addClass(types[i].tid).appendTo("#type-list ul");
 
 			$("#type-right-list").mengular(".type-right-list-template", {
 				tid: types[i].tid,
 				tname: types[i].tname
 			});
-			
-			$("#"+types[i].tid).click(function() {
-				tid=$(this).attr("id");
+		}
+
+		$("#type-right-list").mengularClearTemplate();
+
+		//绑定点击事件
+		for(var i in types) {
+			$("."+types[i].tid).click(function() {
+				tid=$(this).attr("data-id");
+				//设置下拉菜单
+				$("#type-list button span").text($(this).text());
+				//变更左侧栏目
+				$("#type-right-list button").removeClass("active");
+				$("#"+tid).addClass("active");
+				//查询
 				searchBlogs($("#search-blog").val(), 1);
 				history.pushState(null, null, location.origin+location.pathname+"?tid="+tid);
 			});
 		}
 
-		$("#"+tid).addClass("active");
+		$("#"+ (tid==""||tid=="null"? "show-right-all-type": tid)).addClass("active");
 		$("#type-list button span").text($("#"+(tid=="null"||tid==""? "show-all-type": tid)).text());
 	});
 
 	//显示所有分类
-	$("#show-all-type").click(function() {
+	$("#show-all-type, #show-right-all-type").click(function() {
 		tid=null;
+		//设置下拉菜单
 		$("#type-list button span").text($("#show-all-type a").text());
+		//变更右侧列表
+		$("#type-right-list button").removeClass("active");
+		$("#show-right-all-type").addClass("active");
+		//查询
 		searchBlogs($("#search-blog").val(), 1);
 		history.pushState(null, null, location.origin+location.pathname);
 	});
@@ -83,11 +92,6 @@ window.addEventListener("popstate", function() {
  * @param page 页码
  */
 function searchBlogs(title, page) {
-	//返回页面顶部
-	$("body").animate({
-		scrollTop: "0px"
-	}, 300);
-	
 	//加载页码
 	BlogManager.getBlogsCount(title, tid, function(count) {
 		$("#page-count").text(count);
@@ -103,6 +107,10 @@ function searchBlogs(title, page) {
 			$(this).click(function() {
 				history.pushState(null, null, location.origin+location.pathname+"?tid="+tid+"&page="+(index+1));
 				searchBlogs(title, index+1);
+				//返回页面顶部
+				$("body").animate({
+					scrollTop: "0px"
+				}, 300);
 			});
 		});
 	});
