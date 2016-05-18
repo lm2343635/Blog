@@ -3,6 +3,20 @@ var page=request("page");
 var tid=request("tid");
 
 $(document).ready(function() {
+	jQuery.i18n.properties({
+        name : 'blogs', //资源文件名称
+        path : 'static/i18n/', //资源文件路径
+        mode : 'map', //用Map的方式使用资源文件中的值
+        language : 'zh',
+        callback : function() {//加载成功后设置显示内容
+        	console.log($.i18n.prop("All Types"));
+            fillText({
+            	"str-my-blogs": $.i18n.prop("myBlogs"),
+            	"str-all-types": $.i18n.prop("allTypes")
+            })
+        }
+    });
+	
 	//加载博客
 	if(page==null||page=="") {
 		page=1;

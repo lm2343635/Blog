@@ -13,6 +13,7 @@
 		<link href="static/css/mengular.css" rel="stylesheet"/>
 		<link href="static/css/blogs.css" rel="stylesheet"/>
 		<script src="static/js/jquery.min.js"></script>
+		<script src="static/js/jquery.i18n.properties.min.js"></script>
 		<script src="static/js/bootstrap.min.js"></script>
 		<script src="static/js/mengular-2.0.js"></script>
 		<script src="static/js/tools.js"></script>
@@ -30,7 +31,7 @@
 					</div>
 					<h1 class="pull-right home"><a href="index.html">Home</a></h1>
 					<div class="clearfix"> </div>
-					<h1 class="text-center">My Blogs</h1>
+					<h1 class="text-center"><label id="str-my-blogs">My Blogs</label></h1>
 				</div>
 			</div>
 		</div>
@@ -40,11 +41,11 @@
 					<div class="col-xs-12 col-sm-5 col-md-3">
 						<div id="type-list" class="btn-group">
 							<button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<span class="text-muted">All Types</span>
+								<span class="text-muted"></span>
 								<i class="fa fa-lg fa-caret-down text-muted pull-right"></i>
 							</button>
 							<ul class="dropdown-menu">
-								<li id="show-all-type"><a>All Types</a></li>
+								<li id="show-all-type"><a id="str-all-types">All Types</a></li>
 								<li role="separator" class="divider"></li>
 							</ul>
 						</div>
