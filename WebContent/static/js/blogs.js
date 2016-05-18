@@ -2,6 +2,13 @@ var pageSize=10;
 var page=request("page");
 var tid=request("tid");
 
+String.prototype.format = function (param) {
+    var reg = /{([^{}]+)}/gm;
+    return this.replace(reg, function (match, name) {
+        return param[name];
+    });
+}
+
 $(document).ready(function() {
 	jQuery.i18n.properties({
         name : 'blogs', //资源文件名称
@@ -9,11 +16,17 @@ $(document).ready(function() {
         mode : 'map', //用Map的方式使用资源文件中的值
         language : 'zh',
         callback : function() {//加载成功后设置显示内容
-        	console.log($.i18n.prop("All Types"));
-            fillText({
-            	"str-my-blogs": $.i18n.prop("myBlogs"),
-            	"str-all-types": $.i18n.prop("allTypes")
-            })
+        	console.log(testRunTime(function() {
+//                fillText({
+//                	"str-my-blogs": $.i18n.prop("myBlogs"),
+//                	"str-all-types": $.i18n.prop("allTypes")
+//                });
+         
+                $("body").fillText({
+                	myBlogs: $.i18n.prop("myBlogs"),
+                	allTypes: $.i18n.prop("allTypes")
+                });
+			}));
         }
     });
 	

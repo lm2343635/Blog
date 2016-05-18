@@ -1,16 +1,17 @@
 /*!
- * mengular v2.0, http://github.com/lm2343635/Mengular
+ * mengular v3.0, http://github.com/lm2343635/Mengular
  * ===================================
  * Powerful jQuery plugin for ajax table loading.
  *
- * (c) 2015 Lidaye, http://fczm.pw
- * XWKJ Licensed
+ * (c) 2015 - 2016 Lidaye, http://fczm.pw
+ * fczm.pw Licensed
  */
 
 (function($) {
 	var _mengular="mengular",
 		_clear="mengularClear",
 		_clearTemplate="mengularClearTemplate",
+		_fillText="fillText",
 		LEFT_SPLIT_STR="${",
 		RIGHT_SPLIT_STR="}$",
 		MENGULAR_TEMPLATE_CLASS="mengular-template";
@@ -39,6 +40,14 @@
 			if($(this).hasClass(MENGULAR_TEMPLATE_CLASS))
 				$(this).remove();
 		});
+	};
+	
+	$.fn[_fillText]=function(data) {
+		var html=$(this).prop("outerHTML");
+		for(var key in data) {
+			html=html.replace("@{"+key+"}", data[key]);
+		}
+		$(this).prop("outerHTML", html);
 	};
 })(window.jQuery);
 

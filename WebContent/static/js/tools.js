@@ -230,11 +230,26 @@ function substr(str, n) {
 		return str;
 }
 
+/**
+ * 得到页面全名
+ * @returns
+ */
 function getPageFullName() {
 	var array=window.location.href.split("/");
 	return array[array.length-1];
 }
 
+/**
+ * 得到页面名称
+ * @returns
+ */
 function getPageName() {
 	return getPageFullName().split(".")[0];
+}
+
+function testRunTime(func) {
+	var start = new Date().getTime();
+    func();
+    var end = new Date().getTime();
+	 return end-start;
 }
