@@ -82,4 +82,11 @@ public interface BlogManager {
 	 * 重新生成所有博客
 	 */
 	void regenerate();
+	
+	/**
+	 * 删除指定博文的封面
+	 * @param bid
+	 * @return
+	 */
+	boolean deleteCover(String bid);
 }

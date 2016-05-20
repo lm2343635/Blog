@@ -115,3 +115,22 @@
 #type-right-list button {
 	height: 55px;
 }
+
+#language-selector {
+	margin: 30px 0;
+}
+
+#language-selector button {
+	background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #fff;
+}
+
+#language-selector .dropdown-menu {
+	background: rgba(255, 255, 255, 0.2);
+}
+
+#language-selector .dropdown-menu a {
+	color: #fff;
+	text-align: center;
+}

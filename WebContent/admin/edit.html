@@ -22,7 +22,7 @@
         <script src="../static/js/bootstrap-datetimepicker.min.js"></script>
         <script src="../static/js/bootstrap-datetimepicker.zh-CN.js"></script>
         <script src="../static/js/summernote.min.js"></script>
-        <script src="../static/js/mengular-2.0.js"></script>
+        <script src="../static/js/mengular.js"></script>
         <script src="../static/js/tools.js"></script>
         <script src="../dwr/engine.js"></script>
         <script src="../dwr/interface/BlogManager.js"></script>
@@ -88,15 +88,22 @@
                     </div>
                     <div id="edit-blog-content"></div>
                 </div>
-            </div>
-            <img id="blog-cover-img" class="thumbnail">
-            <div id="blog-cover-progress" class="progress">
-                <div class="progress-bar progress-bar-striped active"></div>
-            </div>
-            <span id="blog-upload-cover-button" class="btn btn-success btn-lg btn-block fileinput-button">
-                <span>Upload Blog Cover Photo<small>（Reupload will replace old cover）</small></span>
-                <input id="blog-upload-cover" type="file" name="files[]">
-            </span>
+                <div class="col-xs-12">
+                    <img id="blog-cover-img" class="thumbnail">
+                    <div id="blog-cover-progress" class="progress">
+                        <div class="progress-bar progress-bar-striped active"></div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-9">
+                    <span id="blog-upload-cover-button" class="btn btn-success btn-lg btn-block fileinput-button">
+                        <span>Upload Blog Cover Photo<small>（Reupload will replace old cover）</small></span>
+                        <input id="blog-upload-cover" type="file" name="files[]">
+                    </span>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                    <button id="blog-cover-delete" class="btn btn-danger btn-block btn-lg">Delete Cover</button>
+                </div>
+            </div> 
         </div>
     </body>
 </html>

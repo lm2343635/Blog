@@ -78,7 +78,6 @@ public class PhotoServlet extends HttpServlet {
 		BlogDao blogDao=template.getBlogDao();
 		Blog blog=blogDao.get(bid);
 		String filepath=getServletConfig().getServletContext().getRealPath("/")+File.separator+COVER_FOLDER;
-		System.out.println(filepath);
 		String fileName=upload(request, filepath);
 		//删除旧封面
 		if(blog.getCover()!=null) {

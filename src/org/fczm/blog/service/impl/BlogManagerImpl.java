@@ -11,6 +11,7 @@ import org.fczm.blog.domain.Comment;
 import org.fczm.blog.domain.Type;
 import org.fczm.blog.service.BlogManager;
 import org.fczm.blog.service.util.ManagerTemplate;
+import org.fczm.blog.servlet.PhotoServlet;
 import org.fczm.common.util.DateTool;
 import org.fczm.common.util.FileTool;
 import org.fczm.common.util.MengularDocument;
@@ -153,6 +154,18 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 		document.setValue("blog-tname", blog.getType().getTname());
 		document.setValue("blog-content", blog.getContent());
 		document.output(blogOutputFolder+blog.getBid());
+	}
+
+	@Override
+	public boolean deleteCover(String bid) {
+		Blog blog=blogDao.get(bid);
+		String rootPath=WebContextFactory.get().getServletContext().getRealPath("/")+File.separator;
+		if(new File(rootPath+File.separator+PhotoServlet.COVER_FOLDER+File.separator+blog.getCover()).delete()) {
+			blog.setCover(null);
+			blogDao.update(blog);
+			return true;
+		}
+		return false;
 	}
 
 }

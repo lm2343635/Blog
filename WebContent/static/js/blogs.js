@@ -2,33 +2,32 @@ var pageSize=10;
 var page=request("page");
 var tid=request("tid");
 
-String.prototype.format = function (param) {
-    var reg = /{([^{}]+)}/gm;
-    return this.replace(reg, function (match, name) {
-        return param[name];
-    });
-}
-
 $(document).ready(function() {
-	jQuery.i18n.properties({
-        name : 'blogs', //资源文件名称
-        path : 'static/i18n/', //资源文件路径
-        mode : 'map', //用Map的方式使用资源文件中的值
-        language : 'zh',
-        callback : function() {//加载成功后设置显示内容
-        	console.log(testRunTime(function() {
-//                fillText({
-//                	"str-my-blogs": $.i18n.prop("myBlogs"),
-//                	"str-all-types": $.i18n.prop("allTypes")
-//                });
-         
-                $("body").fillText({
-                	myBlogs: $.i18n.prop("myBlogs"),
-                	allTypes: $.i18n.prop("allTypes")
-                });
-			}));
+
+	$.i18n.properties({
+        path : "static/i18n/", 
+        mode : "both", 
+        language: getLanguage(),
+        callback : function() {
+        	document.title=$.i18n.prop("blogs_title");
+        	$("body").fillText({
+        		language_broswer: $.i18n.prop("language_"+getLanguage()),
+        		language_en: $.i18n.prop("language_en"),
+        		language_zh: $.i18n.prop("language_zh"),
+        		blogs_home: $.i18n.prop("blogs_home"),
+        		blogs_search_placehoder: $.i18n.prop("blogs_search_placehoder"),
+        		blogs_my_blogs: $.i18n.prop("blogs_my_blogs"),
+            	blogs_all_types: $.i18n.prop("blogs_all_types"),
+            	blogs_created_in: $.i18n.prop("blogs_created_in"),
+            	blogs_readers: $.i18n.prop("blogs_readers"),
+            });
         }
     });
+
+	$("#language-selector .dropdown-menu li").click(function() {
+		setLanguage($(this).attr("data-lang"));
+		location.reload();
+	});
 	
 	//加载博客
 	if(page==null||page=="") {
