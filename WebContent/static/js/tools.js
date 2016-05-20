@@ -247,9 +247,42 @@ function getPageName() {
 	return getPageFullName().split(".")[0];
 }
 
+/**
+ * 测试函数执行时间
+ * @param func
+ * @returns {Number}
+ */
 function testRunTime(func) {
 	var start = new Date().getTime();
     func();
     var end = new Date().getTime();
 	 return end-start;
+}
+
+//i18n相关函数
+/**
+ * 设置浏览器语言Cookie
+ * @param language
+ */
+function setLanguage(language) {
+    var d = new Date();
+    d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = "language=" + escape(language) + "; " + expires + "; path=/";
+};
+
+/**
+ * 从Cookie中获取语言
+ * @returns
+ */
+function getLanguage() {
+	var language = navigator.language || navigator.userLanguage;
+	var arrStr = document.cookie.split("; ");
+	for (var i = 0; i < arrStr.length; i++) {
+	    var temp = arrStr[i].split("=");
+	    if (temp[0] == 'language') {
+	    	language = unescape(temp[1]);
+	    }
+	}
+	return language;
 }

@@ -1,5 +1,5 @@
 /*!
- * mengular v3.0, http://github.com/lm2343635/Mengular
+ * mengular v3.1, http://github.com/lm2343635/Mengular
  * ===================================
  * Powerful jQuery plugin for ajax table loading.
  *
@@ -45,7 +45,9 @@
 	$.fn[_fillText]=function(data) {
 		var html=$(this).prop("outerHTML");
 		for(var key in data) {
-			html=html.replace("@{"+key+"}", data[key]);
+			do {
+				html=html.replace("@{"+key+"}", data[key]);
+			} while(html.search("@{"+key+"}")!=-1);
 		}
 		$(this).prop("outerHTML", html);
 	};

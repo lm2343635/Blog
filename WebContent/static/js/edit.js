@@ -31,6 +31,12 @@ $(document).ready(function() {
 	            	$("#edit-blog-type").append(option);
 	            }
 	        });
+
+	        //加载封面图片
+	        if(blog.cover!=null) {
+	        	$("#blog-cover-img").show();
+    			$("#blog-cover-img").attr("src","../cover/"+blog.cover);
+	        }
 		});		
 
 		//间隔一段时间，自动保存博文内容，以防丢失
@@ -115,5 +121,18 @@ $(document).ready(function() {
 		    $("#blog-cover-progress .progress-bar").css("width",progress+"%");
 		    $("#blog-cover-progress .progress-bar").text(progress+"%");
     	}
+    });
+
+    //删除封面图片
+    $("#blog-cover-delete").click(function() {
+    	$.messager.confirm("Tip", "Confirm to delete cover of this blog?", function() {
+    		BlogManager.deleteCover(bid, function(success) {
+	    		if(success) {
+	    			$("#blog-cover-img").hide();
+	    			$("#blog-cover-img").attr("src","");
+	    			$.messager.popup("Cover has deleted!");
+	    		}
+	    	});
+    	});
     });
 });
