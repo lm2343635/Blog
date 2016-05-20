@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Blog Article</title>
+		<title>#{blog-title}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<link rel="Shortcut Icon" href="static/images/favicon.ico">
 		<link href="static/css/bootstrap.min.css" rel="stylesheet"/>
@@ -13,6 +13,7 @@
 		<link href="static/css/mengular.css" rel="stylesheet"/>
 		<link href="static/css/blog.css" rel="stylesheet"/>
 		<script src="static/js/jquery.min.js"></script>
+		<script src="static/js/jquery.i18n.properties.min.js"></script>
 		<script src="static/js/bootstrap.min.js"></script>
 		<script src="static/js/jquery.bootstrap.min.js"></script>
 		<script src="static/js/mengular.js"></script>
@@ -26,25 +27,32 @@
 		<div id="home" class="header">
 			<div class="top-header">
 				<div class="container">
-					<div class="logo">
-						<a href="index.html"><img src="static/images/logo.png"/></a>
+					<h1 class="pull-left home"><a href="blogs.html">@{blog_blogs}</a></h1>
+					<div id="language-selector" class="dropdown pull-right">
+						<button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							<span >@{language_broswer}</span>
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<li data-lang="en"><a>@{language_en}</a></li>
+							<li data-lang="zh"><a>@{language_zh}</a></li>
+						</ul>
 					</div>
-					<h1 class="pull-right"><a href="blogs.html">Blogs</a></h1>
 					<div class="clearfix"> </div>
 					<h2 class="text-center">
 						<strong>#{blog-title}</strong>
 						<small>#{blog-tname}</small>
 					</h2>
-					<h4 class="text-center">Created in #{blog-date}, <span id="blog-readers"></span> readers</h4>
+					<h4 class="text-center">@{blog_created_in} #{blog-date}, <span id="blog-readers"></span> @{blog_readers}</h4>
 				</div>
 			</div>
 		</div>
 		<div class="container">
 			<div id="blog-content">#{blog-content}</div>
 			<div class="page-header">
-                <h3 class="text-info">Visitor Comments</h3>
+                <h3 class="text-info">@{blog_visitor_comments}</h3>
             </div>
-            <h4 id="no-comment" class="text-muted">There is no comment now.</h4>
+            <h4 id="no-comment" class="text-muted">@{blog_no_comments}</h4>
             <div id="comment-list" class="container">
 				<div id="${cid}$" class="bs-callout mengular-template comment-list-template">
 					<div class="row">
@@ -60,34 +68,34 @@
 				</div>
 			</div>	
 			<div class="page-header">
-                <h3 class="text-info">Write Comment</h3>
+                <h3 class="text-info">@{blog_write_comment}</h3>
             </div>
             <div id="add-blog-comment" class="row">
             	<div class="col-xs-12">
                     <div class="input-group">
                         <span class="input-group-addon form-icon"><i class="fa fa-sticky-note-o fa-lg"></i></span>
-                        <textarea id="add-comment-content" class="form-control" placeholder="Write your comment here." rows="8"></textarea>
+                        <textarea id="add-comment-content" class="form-control" placeholder="@{blog_write_comment_placeholder}" rows="8"></textarea>
                     </div>
             	</div>
             	<div class="col-xs-12 col-sm-8">
             		<div class="input-group">
                         <span class="input-group-addon form-icon"><i class="fa fa-user fa-lg"></i></span>
-                        <input id="add-comment-name" type="text" class="form-control" placeholder="Your Name">
+                        <input id="add-comment-name" type="text" class="form-control" placeholder="@{blog_your_name}">
                     </div>
             	</div>
             	<div class="col-xs-6 col-sm-2">
-            		<button id="add-comment-clear" class="btn btn-default btn-block">Clear</button>
+            		<button id="add-comment-clear" class="btn btn-default btn-block">@{blog_comment_clear}</button>
             	</div>
             	<div class="col-xs-6 col-sm-2">
-            		<button id="add-comment-submit" class="btn btn-success btn-block">Submit</button>
+            		<button id="add-comment-submit" class="btn btn-success btn-block">@{blog_comment_submit}</button>
             	</div>
             </div>
-            <button id="back" class="btn btn-block btn-lg btn-info" onclick="history.go(-1)">Back</button>
+            <button id="back" class="btn btn-block btn-lg btn-info" onclick="history.go(-1)">@{blog_back}</button>
 		</div>
 		<div class="copy-right text-center">
 			<div class="container">
 				<p>Made by Meng Li. <a href="admin" target="_blank">Manage My Blog</a></p>
-				<label>Copyright of Meng Li @ 2014-2016. All rights reserved. 鄂ICP备15010075号-1</label>
+				<label>Copyright of Meng Li © 2014-2016. All rights reserved. 鄂ICP备15010075号-1</label>
 			</div>
 		</div>
 	</body>
