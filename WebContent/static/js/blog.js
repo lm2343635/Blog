@@ -1,6 +1,19 @@
 var bid=getPageName();
 
 $(document).ready(function() {
+	i18n("blog", "../static/i18n/", [
+		  "blog_blogs", 
+		  "blog_created_in", 
+		  "blog_readers", 
+		  "blog_visitor_comments", 
+		  "blog_no_comments", 
+		  "blog_write_comment",
+		  "blog_write_comment_placeholder",
+		  "blog_your_name",
+		  "blog_comment_clear",
+		  "blog_comment_submit",
+		  "blog_back"
+	]);
 	
 	BlogManager.getBlogInfo(bid, true, function(blog) {
 		if(blog==null) {

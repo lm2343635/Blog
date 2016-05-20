@@ -11,103 +11,71 @@
 		<link href="static/css/style.css" rel="stylesheet"/>
 		<link href="static/css/index.css" rel="stylesheet"/>
 		<script src="static/js/jquery.min.js"></script>
+		<script src="static/js/jquery.i18n.properties.min.js"></script>
 		<script src="static/js/bootstrap.min.js"></script>
 		<script src="static/js/bootstrap.photo.js"></script>
+		<script src="static/js/mengular.js"></script>
+		<script src="static/js/tools.js"></script>
 		<script src="static/js/index.js"></script>
 	</head>
 	<body>
 		<div id="home" class="header">
 			<div class="top-header">
 				<div class="container">
-					<div class="logo">
-						<a href="index.html"><img src="static/images/logo.png"/></a>
+					<h1 class="pull-left home"><a href="blogs.html">@{index_blogs}</a></h1>
+					<div id="language-selector" class="dropdown pull-right">
+						<button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							<span >@{language_broswer}</span>
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<li data-lang="en"><a>@{language_en}</a></li>
+							<li data-lang="zh"><a>@{language_zh}</a></li>
+						</ul>
 					</div>
-					<h1 class="pull-right home"><a href="blogs.html">Blogs</a></h1>
 					<div class="top-header-info">
-						<p>
-							Hello,<br/>
-							I'm Meng Li. <br/>
-							A web/mobile application programmer.<br/>
-							Based in Tsukuba, Ibaraki, Japan.<br/>
-						</p>
-						<a class="contactme" href="#contact">CONTACT ME</a>
-						<a class="contactme" href="blogs.html">MY BLOGS</a>
-						<a class="contactme" href="https://github.com/lm2343635">MY GITHUB</a>
+						<p>@{index_introduce}</p>
+						<a class="contactme" href="#contact">@{index_contact_me}</a>
+						<a class="contactme" href="blogs.html">@{index_my_blogs}</a>
+						<a class="contactme" href="https://github.com/lm2343635">@{index_my_github}</a>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="aboutus">
 			<div class="container">
-				<h2>ABOUT<br/>MENG LI</h2>
+				<h2>@{index_about}</h2>
 				<span> </span>
 				<div class="col-md-6 aboutus-left">
-					<p>Born in Jingmen, Hubei, China. Graduated from Northeast Forestry University in Harbin, China. </p>
-					<p>Now I am studying in University of Tsukuba in Tsukuba, Ibaraki, Japan.</p>
-					<p>I am interested in web application and mobile application development. There are some projects of me, some of them are made by myself, and others are which I cooperated with my group.</p>
+					<p>@{index_about_content_1}</p>
+					<p>@{index_about_content_2}</p>
+					<p>@{index_about_content_3}</p>
 				</div>
 				<div class="col-md-6 aboutus-right">
-					<p>I am familiar with Objective-C and Java language. For Java, not only can I use Java SE but also some basic framework of Java EE like Hibernate, Spring, JNDI and so on. I can use Java language to develop web application and Android Application. Now I am learning Objective-C language for iOS Application development.</p>
-					<p>In Web Application development, page design is also important, I also learned html, css and javascript. For javascript, I am familiar with jQuery framework. I can use the API in jQuery to develop the simple Ajax Application or the DWR framework to complete some complex Ajax Application.</p>
+					<p>@{index_about_content_4}</p>
+					<p>@{index_about_content_5}</p>
 				</div>
 			</div>
 		</div>
 		<div class="quote text-center">
 			<div class="container">
-				<p>
-					A journey of a thousand miles begins with a single step. <br>
-					This is important for a programmer.<br>
-					<a href="https://github.com/lm2343635" target="_blank" style="color: #7EECE4; position: relative; top: 26px;">Visit My Github</a>
-				</p>
+				<p>@{index_motto}</p>
 			</div>
 		</div>
 		<div class="works" id="works"></div>
-		<div class="testmonials">
-			<div class="container">
-				<h2>What I Focus on My Project</h2>
-				<p class="text-white">
-					With the development of hardware in the last 30 years, hardware has a very strong performance, 
-					it is no doubt that the user experience is most important thing for software development now. 
-					People's attention focus more and more on Human-Computer Interaction. How to develop the 
-					user interface experience is what I want to research now.
-				</p>
-			</div>
-		</div>
 		<div id="contact" class="contact"> 
 			<div class="container">
-				<h2>Ways to Contact Me</h2>
-				<span> </span>
-				<div class="contact-grids">
-					<div class="col-md-6 contact-left">
-						<p>China</p>
-						<div class="address">
-							<label>Hetianxia 902</label>
-							<label>Baiyun Ave No.1, Dongbao District</label>
-							<label>Jingmen, Hubei Province, China</label>
-							<label>+86 18571967011</label>
-							<label>Email: lm2343635@126.com</label>
-						</div>
-					</div>
-					<div class="col-md-6 contact-right">
-						<p>Japan</p>
-						<div class="address">
-							<label>University of Tsukuba</label>
-							<label>Tennodai 1-1-1</label>
-							<label>Tsukuba, Ibaraki, Japan</label>
-							<label>+81 07010623837</label>
-							<label>Email: limeng@softlab.cs.tsukuba.ac.jp</label>
-						</div>
-					</div>
-				</div>
+				<h2 class="text-center">@{index_contact}</h2>
+				<div class="address text-center">@{index_address}</div>
 			</div>
 		</div>
 		<div class="contact-map">
-			<iframe src="http://www.google.cn/maps/embed?pb=!1m18!1m12!1m3!1d3223.3108189184054!2d140.0993196!3d36.11028470000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60220bff098eef6f%3A0x38f8406069ed2e60!2z562R5rOi5aSn5a2m!5e0!3m2!1szh-CN!2scn!4v1444282277303" width="600" height="450" ></iframe>
+			<iframe src="http://www.google.cn/maps/embed?pb=!1m18!1m12!1m3!1d3223.3108189184054!2d140.0993196!3d36.11028470000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60220bff098eef6f%3A0x38f8406069ed2e60!2z562R5rOi5aSn5a2m!5e0!3m2!1szh-CN!2scn!4v1444282277303"  height="350" ></iframe>
 		</div>
 		<div class="copy-right text-center">
 			<div class="container">
 				<p>Made by Meng Li. <a href="admin" target="_blank">Manage My Blog</a></p>
-				<label>Copyright of Meng Li @ 2014-2016. All rights reserved. 鄂ICP备15010075号-1</label>
+				<label>Copyright of Meng Li © 2014-2016. All rights reserved. 鄂ICP备15010075号-1</label>
 			</div>
 		</div>
 	</body>

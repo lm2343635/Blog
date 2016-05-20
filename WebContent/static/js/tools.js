@@ -276,7 +276,8 @@ function setLanguage(language) {
  * @returns
  */
 function getLanguage() {
-	var language = navigator.language || navigator.userLanguage;
+	var language=navigator.language || navigator.userLanguage;
+	language=language.split("-")[0];
 	var arrStr = document.cookie.split("; ");
 	for (var i = 0; i < arrStr.length; i++) {
 	    var temp = arrStr[i].split("=");
@@ -285,4 +286,32 @@ function getLanguage() {
 	    }
 	}
 	return language;
+}
+
+function i18n(name, path, keys, title) {
+	$.i18n.properties({
+		name: name,
+        path : path, 
+        mode : "both", 
+        language: getLanguage(),
+        callback : function() {
+        	if(title!=null) {
+        		document.title=$.i18n.prop(title);
+        	}
+        	var data={
+    			language_broswer: $.i18n.prop("language_"+getLanguage()),
+    			language_en: $.i18n.prop("language_en"),
+    			language_zh: $.i18n.prop("language_zh")
+    		}
+        	for(var i in keys) {
+        		data[keys[i]]=$.i18n.prop(keys[i]);
+        	}
+        	$("body").fillText(data);
+        }
+    });
+	
+	$("#language-selector .dropdown-menu li").click(function() {
+		setLanguage($(this).attr("data-lang"));
+		location.reload();
+	});
 }

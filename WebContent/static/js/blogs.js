@@ -4,31 +4,15 @@ var tid=request("tid");
 
 $(document).ready(function() {
 
-	$.i18n.properties({
-        path : "static/i18n/", 
-        mode : "both", 
-        language: getLanguage(),
-        callback : function() {
-        	document.title=$.i18n.prop("blogs_title");
-        	$("body").fillText({
-        		language_broswer: $.i18n.prop("language_"+getLanguage()),
-        		language_en: $.i18n.prop("language_en"),
-        		language_zh: $.i18n.prop("language_zh"),
-        		blogs_home: $.i18n.prop("blogs_home"),
-        		blogs_search_placehoder: $.i18n.prop("blogs_search_placehoder"),
-        		blogs_my_blogs: $.i18n.prop("blogs_my_blogs"),
-            	blogs_all_types: $.i18n.prop("blogs_all_types"),
-            	blogs_created_in: $.i18n.prop("blogs_created_in"),
-            	blogs_readers: $.i18n.prop("blogs_readers"),
-            });
-        }
-    });
+	i18n("blogs", "static/i18n/", [
+		  "blogs_home", 
+		  "blogs_search_placehoder", 
+		  "blogs_my_blogs", 
+		  "blogs_all_types", 
+		  "blogs_created_in", 
+		  "blogs_readers"
+	], "blogs_title");
 
-	$("#language-selector .dropdown-menu li").click(function() {
-		setLanguage($(this).attr("data-lang"));
-		location.reload();
-	});
-	
 	//加载博客
 	if(page==null||page=="") {
 		page=1;
