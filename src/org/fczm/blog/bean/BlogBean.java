@@ -11,6 +11,7 @@ public class BlogBean {
 	private Date date;
 	private int readers;
 	private String cover;
+	private boolean bgenable;
 	private TypeBean type;
 	
 	public String getBid() {
@@ -53,6 +54,14 @@ public class BlogBean {
 		this.readers = readers;
 	}
 
+	public boolean isBgenable() {
+		return bgenable;
+	}
+
+	public void setBgenable(boolean bgenable) {
+		this.bgenable = bgenable;
+	}
+
 	public String getCover() {
 		return cover;
 	}
@@ -76,6 +85,7 @@ public class BlogBean {
 		this.date = blog.getDate();
 		this.readers = blog.getReaders();
 		this.cover = blog.getCover();
+		this.bgenable = blog.getBgenable();
 		this.type = new TypeBean(blog.getType());
 	}
 }

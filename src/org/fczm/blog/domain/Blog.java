@@ -14,6 +14,7 @@ public class Blog implements Serializable {
 	private Date date;
 	private Integer readers;
 	private String cover;
+	private Boolean bgenable;
 	private Type type;
 	private List<Comment> comments;
 	
@@ -46,6 +47,12 @@ public class Blog implements Serializable {
 	}
 	public void setReaders(Integer readers) {
 		this.readers = readers;
+	}
+	public Boolean getBgenable() {
+		return bgenable;
+	}
+	public void setBgenable(Boolean bgenable) {
+		this.bgenable = bgenable;
 	}
 	public String getCover() {
 		return cover;

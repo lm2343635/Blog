@@ -12,6 +12,7 @@
 		<property name="date" type="java.util.Date" not-null="true"/>
 		<property name="readers" type="integer" not-null="true"/>
 		<property name="cover" type="string"/>
+		<property name="bgenable" type="boolean"/>
 		<many-to-one name="type" class="Type" column="tid" cascade="save-update" lazy="false" not-null="true"/>
 		<list name="comments" cascade="delete" inverse="true">
 			<key column="bid"  not-null="true"/>

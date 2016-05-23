@@ -20,9 +20,9 @@ $(document).ready(function() {
 			location.href="urlError.html";
 			return;
 		}
-		
-		fillText({
-			"blog-readers": blog.readers
+		$("body").fillText({
+			blog_readers_count: blog.readers,
+			blog_background: blog.cover!=null&&blog.bgenable?  "../cover/"+blog.cover: "../static/images/header-bg.jpg"
 		});
 
 	});
