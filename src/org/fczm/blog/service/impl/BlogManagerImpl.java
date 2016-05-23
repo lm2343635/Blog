@@ -35,6 +35,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 		blog.setContent(content);
 		blog.setDate(DateTool.transferDate(date, DateTool.DATE_HOUR_MINUTE_FORMAT));
 		blog.setReaders(0);
+		blog.setBgenable(true);
 		Type type=typeDao.get(tid);
 		blog.setType(type);
 		String bid= blogDao.save(blog);
@@ -166,6 +167,16 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void setBgenable(String bid, boolean bgenable) {
+		Blog blog=blogDao.get(bid);
+		if(blog==null) {
+			return;
+		}
+		blog.setBgenable(bgenable);
+		blogDao.update(blog);
 	}
 
 }

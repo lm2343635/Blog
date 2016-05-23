@@ -306,7 +306,7 @@ function i18n(name, path, keys, title) {
         	for(var i in keys) {
         		data[keys[i]]=$.i18n.prop(keys[i]);
         	}
-        	$("body").fillText(data);
+			$("body").fillText(data);
         }
     });
 	

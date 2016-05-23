@@ -20,6 +20,12 @@ $(document).ready(function() {
 		        forceParse: 0,
 		        showMeridian: 1
 		    }).val(blog.date.format(DATE_HOUR_MINUTE_FORMAT));
+			
+			$("#blog-cover-bgenable").bootstrapSwitch({
+				state: blog.bgenable
+			}).on('switchChange.bootstrapSwitch', function(event, state) {
+				BlogManager.setBgenable(bid, state);
+			});
 
 		    //加载博客分类
 			TypeManager.getAll(function(types) {

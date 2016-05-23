@@ -25,7 +25,7 @@
 	</head>
 	<body>
 		<div id="home" class="header">
-			<div class="top-header">
+			<div class="top-header" style="background: url(@{blog_background}) no-repeat;	background-repeat: no-repeat; background-position: center; background-size: cover;">
 				<div class="container">
 					<h1 class="pull-left home"><a href="blogs.html">@{blog_blogs}</a></h1>
 					<div id="language-selector" class="dropdown pull-right">
@@ -43,7 +43,7 @@
 						<strong>#{blog-title}</strong>
 						<small>#{blog-tname}</small>
 					</h2>
-					<h4 class="text-center">@{blog_created_in} #{blog-date}, <span id="blog-readers"></span> @{blog_readers}</h4>
+					<h4 class="text-center">@{blog_created_in} #{blog-date}, @{blog_readers_count} @{blog_readers}</h4>
 				</div>
 			</div>
 		</div>

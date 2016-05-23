@@ -89,4 +89,11 @@ public interface BlogManager {
 	 * @return
 	 */
 	boolean deleteCover(String bid);
+	
+	/**
+	 * 设置封面可用性
+	 * @param bid
+	 * @param bgenable
+	 */
+	void setBgenable(String bid, boolean bgenable);
 }
