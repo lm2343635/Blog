@@ -235,7 +235,7 @@ function substr(str, n) {
  * @returns
  */
 function getPageFullName() {
-	var array=window.location.href.split("/");
+	var array=window.location.pathname.split("/");
 	return array[array.length-1];
 }
 
@@ -288,6 +288,13 @@ function getLanguage() {
 	return language;
 }
 
+/**
+ * 设置i18n
+ * @param name
+ * @param path
+ * @param keys
+ * @param title
+ */
 function i18n(name, path, keys, title) {
 	$.i18n.properties({
 		name: name,
@@ -309,8 +316,8 @@ function i18n(name, path, keys, title) {
 			$("body").fillText(data);
         }
     });
-	
-	$("#language-selector .dropdown-menu li").click(function() {
+
+	$("#language-selector .dropdown-menu li").one("click", function() {
 		setLanguage($(this).attr("data-lang"));
 		location.reload();
 	});

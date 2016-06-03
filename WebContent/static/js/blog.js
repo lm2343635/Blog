@@ -15,9 +15,10 @@ $(document).ready(function() {
 		  "blog_back"
 	]);
 	
+	//加载博文信息
 	BlogManager.getBlogInfo(bid, true, function(blog) {
 		if(blog==null) {
-			location.href="urlError.html";
+			location.href="../urlError.html";
 			return;
 		}
 		$("body").fillText({
@@ -27,6 +28,7 @@ $(document).ready(function() {
 
 	});
 
+	//加载评论
 	CommentManager.getCommentsByBid(bid, function(comments) {
 		if(comments.length>0) {
 			$("#no-comment").hide();
@@ -41,15 +43,17 @@ $(document).ready(function() {
 		}
 	});
 
+	//清空评论
 	$("#add-comment-clear").click(function() {
 		$("#add-comment-name").val("");
 		$("#add-comment-content").val("");
 	});
 
+	//提交评论
 	$("#add-comment-submit").click(function() {
 		var name=$("#add-comment-name").val();
 		var content=$("#add-comment-content").val();
-		if(content=="") {
+		if(content==null||content=="") {
 			$.messager.popup("Wirte some comment, please!");
 			return;
 		}
