@@ -14,8 +14,10 @@
 	font-size: 23px;
 }
 
-#blog-list .blog-list-delete {
+#blog-list .blog-list-delete,
+#blog-list .blog-list-regenerate {
 	cursor: pointer;
+	margin-left: 10px;
 }
 
 #blog-list .blog-type-tname {

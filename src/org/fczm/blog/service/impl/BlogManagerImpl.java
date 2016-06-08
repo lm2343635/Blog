@@ -147,7 +147,16 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 		}
 	}
 	
+	@Override
+	public void regenerateBlog(String bid) {
+		Blog blog=blogDao.get(bid);
+		generateBlog(blog);
+	}
+	
 	private void generateBlog(Blog blog) {
+		if(blog==null) {
+			return;
+		}
 		String rootPath=WebContextFactory.get().getServletContext().getRealPath("/")+File.separator;
 		MengularDocument document=new MengularDocument(rootPath, blogOutputFolderDepth,"blog.html");
 		document.setValue("blog-date", DateTool.formatDate(blog.getDate(), DateTool.DATE_HOUR_MINUTE_FORMAT));
