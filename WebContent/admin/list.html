@@ -69,15 +69,16 @@
                 <div id="${bid}$" class="list-group-item mengular-template blog-list-template">
                     <div class="row">
                         <div class="col-xs-12 col-sm-2"><h5>${date}$</h5></div>
-                        <div class="col-xs-12 col-sm-8">
+                        <div class="col-xs-12 col-sm-7">
                             <p class="blog-type-tname"><small class="text-muted">${tname}$</small></p>
                             <a href="../blogs/${bid}$" target="_blank"><span class="blog-list-title">${title}$</span></a>
                         </div>
-                        <div class="col-xs-12 col-sm-2">
+                        <div class="col-xs-12 col-sm-3">
                         	<div class="hidden-xs"></div>
-                            <a href="edit.html?bid=${bid}$" class="blog-accessory"><i class="fa fa-gear fa-lg text-success"></i></a>
-                            <span class="blog-list-delete"><i class="fa fa-trash-o fa-lg text-danger blog-accessory"></i></span>
-                            <span class="blog-accessory"><strong class="text-warning">${readers}$</strong> readers</span>
+                            <a href="edit.html?bid=${bid}$" class="blog-accessory" title="Edit this blog"><i class="fa fa-gear fa-lg text-success"></i></a>
+                            <span class="blog-list-regenerate" title="Regenerate this blog."><i class="fa fa-refresh fa-lg text-primary blog-accessory"></i></span>
+                            <span class="blog-list-delete" title="Delete this blog"><i class="fa fa-trash-o fa-lg text-danger blog-accessory"></i></span>
+                            <span class="blog-accessory pull-right"><strong class="text-warning">${readers}$</strong> readers</span>
                         </div>
                     </div>
                 </div>

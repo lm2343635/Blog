@@ -115,6 +115,7 @@ function searchBlogs(title, page) {
                 readers: blogs[i].readers
             });
 
+            //删除博文
             $("#"+blogs[i].bid+" .blog-list-delete").click(function() {
                 var id=$(this).parent().parent().parent().attr("id");
                 var title=$("#"+id+" .blog-list-title").text();
@@ -124,6 +125,17 @@ function searchBlogs(title, page) {
                     });
                 });
             });
+            
+            //重新生成博文
+            $("#"+blogs[i].bid+" .blog-list-regenerate").click(function() {
+            	var id=$(this).parent().parent().parent().attr("id");
+            	var _i=$(this).children("i")
+				_i.addClass("fa-spin");
+				BlogManager.regenerateBlog(id, function() {
+					_i.removeClass("fa-spin");
+					$.messager.popup("Regenerate Success!");
+				});
+			});
         }
     });
 }

@@ -1,6 +1,6 @@
 var bid=request("bid");
 var MIN_EDIT_HEIGHT=380;
-var AUTOMATICAL_SAVING_INTERVAL=30000;
+var AUTOMATICAL_SAVING_INTERVAL=60000;
 
 $(document).ready(function() {
 	checkAdminSession(function() {
@@ -56,6 +56,7 @@ $(document).ready(function() {
 				$.messager.popup("Blog content saved");
 			});
 		}, AUTOMATICAL_SAVING_INTERVAL);
+		
 	});
 	
 	BlogManager.getBlogContent(bid, function(content) {
