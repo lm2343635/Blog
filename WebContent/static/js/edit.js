@@ -41,7 +41,7 @@ $(document).ready(function() {
 	        //加载封面图片
 	        if(blog.cover!=null) {
 	        	$("#blog-cover-img").show();
-    			$("#blog-cover-img").attr("src","../cover/"+blog.cover);
+    			$("#blog-cover-img").attr("src", "../upload/"+bid+"/"+blog.cover);
 	        }
 		});		
 
@@ -61,7 +61,12 @@ $(document).ready(function() {
 	
 	BlogManager.getBlogContent(bid, function(content) {
 		$("#edit-blog-content").summernote({
-			height: getScreenHeight()-300<MIN_EDIT_HEIGHT? MIN_EDIT_HEIGHT: getScreenHeight()-370
+			height: getScreenHeight()-300<MIN_EDIT_HEIGHT? MIN_EDIT_HEIGHT: getScreenHeight()-370,
+			callbacks: {
+				onImageUpload: function(files, editor, welEditable) {  
+		    		uploadIllustration(bid, files[0], this);
+		    	}
+			}
 		}).summernote("code", content);
 		$("#loading-blog").hide();
 	})
@@ -117,7 +122,7 @@ $(document).ready(function() {
     	acceptFileTypes: /^image\/(gif|jpeg|png)$/,
     	done:function(e,data){
     		$("#blog-cover-img").show();
-    		$("#blog-cover-img").attr("src","../cover/"+data.result.cover);
+    		$("#blog-cover-img").attr("src", "../upload/"+bid+"/"+data.result.cover);
     		setTimeout(function(){
 				$("#blog-cover-progress").hide(1500);
 			},2000);
@@ -143,3 +148,27 @@ $(document).ready(function() {
     	});
     });
 });
+
+/**
+ * summernote上传插图
+ * @param bid 博文id
+ * @param file 文件
+ * @param element summernote元素
+ */
+function uploadIllustration(bid, file, element) {
+	$.messager.popup("Uploading illustration...");
+	var formData=new FormData();  
+	formData.append("file", file);  
+	$.ajax({
+        data: formData,
+        type: "POST",
+        url: "../PhotoServlet?task=uploadIllustration&bid="+bid,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(data) {
+        	$(element).summernote("insertImage", "../upload/"+bid+"/"+data.filename);
+        	$.messager.popup("Illustration uploaded");
+        }
+    });
+}

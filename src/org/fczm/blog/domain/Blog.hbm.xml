@@ -15,9 +15,14 @@
 		<property name="bgenable" type="boolean"/>
 		<many-to-one name="type" class="Type" column="tid" cascade="save-update" lazy="false" not-null="true"/>
 		<list name="comments" cascade="delete" inverse="true">
-			<key column="bid"  not-null="true"/>
+			<key column="bid" not-null="true"/>
 			<index column="date" type="java.util.Date"/>
 			<one-to-many class="Comment"></one-to-many>
+		</list> 
+		<list name="illustrations" cascade="delete" inverse="true">
+			<key column="bid" not-null="true"/>
+			<index column="upload" type="java.util.Date"/>
+			<one-to-many class="Illustration"></one-to-many>
 		</list> 
 	</class>
 </hibernate-mapping>

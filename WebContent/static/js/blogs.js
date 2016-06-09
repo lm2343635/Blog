@@ -142,7 +142,7 @@ function searchBlogs(title, page) {
 				tname: blogs[i].type.tname,
 				title: btitle,
 				readers: blogs[i].readers,
-				src: blogs[i].cover==null? "": "cover/"+blogs[i].cover
+				src: blogs[i].cover==null? "": "upload/"+blogs[i].bid+"/"+blogs[i].cover
 			});
 			
 			//有封面图片才显示

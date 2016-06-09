@@ -7,7 +7,6 @@ import java.util.List;
 import org.directwebremoting.WebContextFactory;
 import org.fczm.blog.bean.BlogBean;
 import org.fczm.blog.domain.Blog;
-import org.fczm.blog.domain.Comment;
 import org.fczm.blog.domain.Type;
 import org.fczm.blog.service.BlogManager;
 import org.fczm.blog.service.util.ManagerTemplate;
@@ -29,10 +28,10 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 	}
 
 	@Override
-	public String addBlog(String title, String content, String date, String tid) {
+	public String addBlog(String title, String date, String tid) {
 		Blog blog=new Blog();
 		blog.setTitle(title);
-		blog.setContent(content);
+		blog.setContent("");
 		blog.setDate(DateTool.transferDate(date, DateTool.DATE_HOUR_MINUTE_FORMAT));
 		blog.setReaders(0);
 		blog.setBgenable(true);
@@ -114,10 +113,8 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 		Type type=blog.getType();
 		type.setCount(type.getCount()-1);
 		typeDao.update(type);
-		//删除评论
-		for(Comment comment: commentDao.findByBlog(blog)) {
-			commentDao.delete(comment);
-		}
+		String rootPath=WebContextFactory.get().getServletContext().getRealPath("/")+File.separator;
+		FileTool.delFolder(rootPath+PhotoServlet.UPLOAD_FOLDER+File.separator+blog.getBid());
 		blogDao.delete(blog);
 	}
 
@@ -170,7 +167,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 	public boolean deleteCover(String bid) {
 		Blog blog=blogDao.get(bid);
 		String rootPath=WebContextFactory.get().getServletContext().getRealPath("/")+File.separator;
-		if(new File(rootPath+File.separator+PhotoServlet.COVER_FOLDER+File.separator+blog.getCover()).delete()) {
+		if(new File(rootPath+File.separator+PhotoServlet.UPLOAD_FOLDER+File.separator+blog.getBid()+File.separator+blog.getCover()).delete()) {
 			blog.setCover(null);
 			blogDao.update(blog);
 			return true;

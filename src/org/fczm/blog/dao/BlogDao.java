@@ -25,4 +25,11 @@ public interface BlogDao extends CrudDao<Blog> {
 	 * @return
 	 */
 	List<Blog> findByTitle(String title, Type type, int offset, int pageSize);
+	
+	/**
+	 * 根据类型查找博客
+	 * @param type
+	 * @return
+	 */
+	List<Blog> findByType(Type type);
 }

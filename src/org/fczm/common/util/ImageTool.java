@@ -7,9 +7,17 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.DataBuffer;
+import java.awt.image.DataBufferInt;
+import java.awt.image.DirectColorModel;
+import java.awt.image.PixelGrabber;
+import java.awt.image.Raster;
+import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -29,6 +37,9 @@ import javax.imageio.stream.ImageInputStream;
 public final class ImageTool {
     //图片格式：JPG
     private static final String PICTRUE_FORMATE_JPG = "jpg";
+    
+    private static final int[] RGB_MASKS={0xFF0000, 0xFF00, 0xFF};
+    private static final ColorModel RGB_OPAQUE=new DirectColorModel(32, RGB_MASKS[0], RGB_MASKS[1], RGB_MASKS[2]);
     
     /**
      * 添加图片水印
@@ -215,7 +226,13 @@ public final class ImageTool {
         double ratio = 0; 
         File file=new File(pathname);   
         try {
-        	BufferedImage image=ImageIO.read(file);   
+        	Image img=Toolkit.getDefaultToolkit().createImage(pathname);
+        	PixelGrabber pg = new PixelGrabber(img, 0, 0, -1, -1, true);
+        	pg.grabPixels();
+        	DataBuffer buffer = new DataBufferInt((int[]) pg.getPixels(), pg.getWidth() * pg.getHeight());
+        	WritableRaster raster = Raster.createPackedRaster(buffer, pg.getWidth(), pg.getHeight(), pg.getWidth(), RGB_MASKS, null);
+        	//以上修复png格式图片文件变红的问题
+        	BufferedImage image= new BufferedImage(RGB_OPAQUE, raster, false, null);
         	image=rotateImage(image, degree);
             Image itemp = image.getScaledInstance(width, height, BufferedImage.SCALE_SMOOTH);   
             //计算比例   

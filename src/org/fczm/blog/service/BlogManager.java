@@ -9,12 +9,11 @@ public interface BlogManager {
 	/**
 	 * 新增博客文章
 	 * @param title
-	 * @param content
 	 * @param date
 	 * @param tid
 	 * @return
 	 */
-	String addBlog(String title, String content, String date, String tid);
+	String addBlog(String title, String date, String tid);
 	
 	/**
 	 * 获取所有博客

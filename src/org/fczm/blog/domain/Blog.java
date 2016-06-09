@@ -17,6 +17,7 @@ public class Blog implements Serializable {
 	private Boolean bgenable;
 	private Type type;
 	private List<Comment> comments;
+	private List<Illustration> illustrations;
 	
 	public String getBid() {
 		return bid;
@@ -71,6 +72,12 @@ public class Blog implements Serializable {
 	}
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+	public List<Illustration> getIllustrations() {
+		return illustrations;
+	}
+	public void setIllustrations(List<Illustration> illustrations) {
+		this.illustrations = illustrations;
 	}
 	
 }
