@@ -35,6 +35,7 @@
 				<value>org/fczm/blog/domain/Blog.hbm.xml</value>
 				<value>org/fczm/blog/domain/Comment.hbm.xml</value>
 				<value>org/fczm/blog/domain/Type.hbm.xml</value>
+				<value>org/fczm/blog/domain/Illustration.hbm.xml</value>
 			</list>
 		</property>
 		<!-- 定义Hibernate的SessionFactory的属性 -->
@@ -78,6 +79,7 @@
 		<property name="blogDao" ref="blogDao"/>
 		<property name="commentDao" ref="commentDao"/>
 		<property name="typeDao" ref="typeDao"/>
+		<property name="illustrationDao" ref="illustrationDao"/>
 	</bean>	
 	
  	<!-- 定义业务逻辑组件 -->

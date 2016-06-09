@@ -60,4 +60,11 @@ public class BlogDaoHibernate extends PageHibernateDaoSupport<Blog> implements B
 		return findByPage(hql, values, offset, pageSize);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Blog> findByType(Type type) {
+		String hql="from Blog where type=?";
+		return getHibernateTemplate().find(hql, type);
+	}
+
 }
