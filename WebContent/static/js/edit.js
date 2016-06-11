@@ -1,6 +1,5 @@
 var bid=request("bid");
 var MIN_EDIT_HEIGHT=380;
-var AUTOMATICAL_SAVING_INTERVAL=60000;
 
 $(document).ready(function() {
 	checkAdminSession(function() {
@@ -44,24 +43,11 @@ $(document).ready(function() {
     			$("#blog-cover-img").attr("src", "../upload/"+bid+"/"+blog.cover);
 	        }
 		});		
-
-		//间隔一段时间，自动保存博文内容，以防丢失
-		setInterval(function() {
-			var content=$("#edit-blog-content").summernote("code");
-			if(content==null||content=="") {
-				return;
-			}
-			$.messager.popup("Automatically Saving...");
-			BlogManager.backgroudSaving(bid, content, function() {
-				$.messager.popup("Blog content saved");
-			});
-		}, AUTOMATICAL_SAVING_INTERVAL);
-		
 	});
 	
 	BlogManager.getBlogContent(bid, function(content) {
 		$("#edit-blog-content").summernote({
-			height: getScreenHeight()-300<MIN_EDIT_HEIGHT? MIN_EDIT_HEIGHT: getScreenHeight()-370,
+			height: getScreenHeight()-300<MIN_EDIT_HEIGHT? MIN_EDIT_HEIGHT: getScreenHeight()-340,
 			callbacks: {
 				onImageUpload: function(files, editor, welEditable) {  
 		    		uploadIllustration(bid, files[0], this);
@@ -71,6 +57,7 @@ $(document).ready(function() {
 		$("#loading-blog").hide();
 	})
 
+	//清除
 	$("#edit-blog-clear").click(function() {
 		$.messager.confirm("Tip", "Confirm to clear title and content of this blog article?", function() {
             $("#edit-blog-title").val("");
@@ -78,6 +65,20 @@ $(document).ready(function() {
         });
 	});
 
+	//保存修改
+	//间隔一段时间，自动保存博文内容，以防丢失
+	$("#edit-blog-save").click(function() {
+		var content=$("#edit-blog-content").summernote("code");
+		if(content==null||content=="") {
+			return;
+		}
+		$(this).html($("<i>").addClass("fa fa-spin fa-refresh")).attr("disabled", "disabled");
+		BlogManager.backgroudSaving(bid, content, function() {
+			$("#edit-blog-save").html("Save").removeAttr("disabled");
+			$.messager.popup("Blog content saved");
+		});
+	});
+	
 	//提交修改
 	$("#edit-blog-submit").click(function() {
 		var title=$("#edit-blog-title").val();

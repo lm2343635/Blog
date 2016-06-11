@@ -53,16 +53,11 @@
                     </div>
                 </div>
             </nav>
-            <div class="page-header">
-                <h3 class="text-center text-muted">Edit Blog</h3>
+            <div  id="title-div">
+                <input id="edit-blog-title" type="text" placeholder="Blog Title">
+                <hr>
             </div>
             <div id="edit-blog-div" class="row">
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                    <div class="input-group">
-                        <span class="input-group-addon form-icon"><i class="fa fa-font fa-lg"></i></span>
-                        <input id="edit-blog-title" type="text" class="form-control" placeholder="Blog Title">
-                    </div>
-                </div>
                 <div class="col-xs-12 col-sm-6 col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon form-icon"><i class="fa fa-clipboard fa-lg"></i></span>
@@ -75,11 +70,14 @@
                         <input id="edit-blog-date" type="text" class="form-control" placeholder="Create Date" readonly>
                     </div>
                 </div>
-                <div class="col-xs-6 col-sm-3 col-md-1">
-                    <button id="edit-blog-clear" class="btn btn-block btn-default">Clear</button>
+                <div class="col-xs-4 col-md-2">
+                    <button id="edit-blog-clear" class="btn btn-block btn-default" title="Clear title and content of this blog.">Clear</button>
                 </div>
-                <div class="col-xs-6 col-sm-3 col-md-1">
-                    <button id="edit-blog-submit" class="btn btn-block btn-success">Save</button>
+                <div class="col-xs-4 col-md-2">
+                    <button id="edit-blog-save" class="btn btn-block btn-success" title="Save content.">Save</button>
+                </div>
+                <div class="col-xs-4 col-md-2">
+                    <button id="edit-blog-submit" class="btn btn-block btn-info" title="Finish edit and regenerate this blog.">Finish</button>
                 </div>
                 <div class="col-xs-12">
                     <div id="loading-blog" class="panel panel-default">
