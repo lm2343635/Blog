@@ -1,5 +1,6 @@
 #edit-blog-div .col-xs-12,
-#edit-blog-div .col-xs-6 {
+#edit-blog-div .col-xs-6,
+#edit-blog-div .col-xs-4 {
 	margin: 5px 0;
 }
 
@@ -18,4 +19,17 @@
 #blog-upload-cover-button {
 	margin-bottom: 20px;
 	overflow: auto;
+}
+
+#edit-blog-title {
+	border: none;
+	width: 100%;
+	text-align: center;
+	font-size: 23px;
+	color: #777;
+	outline: none;
+}
+
+#title-div hr {
+	margin: 10px 0;
 }
