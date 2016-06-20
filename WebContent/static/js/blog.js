@@ -8,12 +8,14 @@ $(document).ready(function() {
 		  "blog_visitor_comments", 
 		  "blog_no_comments", 
 		  "blog_write_comment",
-		  "blog_write_comment_placeholder",
 		  "blog_your_name",
-		  "blog_comment_clear",
 		  "blog_comment_submit",
 		  "blog_back"
 	]);
+
+	$("#add-comment-content").summernote({
+		height: 300
+	});
 	
 	//加载博文信息
 	BlogManager.getBlogInfo(bid, true, function(blog) {
@@ -21,11 +23,10 @@ $(document).ready(function() {
 			location.href="../urlError.html";
 			return;
 		}
-		$("body").fillText({
-			blog_readers_count: blog.readers,
-			blog_background: blog.cover!=null&&blog.bgenable?  "../cover/"+blog.cover: "../static/images/header-bg.jpg"
+		$("#home .top-header").css("background", blog.cover!=null&&blog.bgenable ?  "../cover/"+blog.cover: "../static/images/header-bg.jpg");
+		$("#blog-info").fillText({
+			blog_readers_count: blog.readers
 		});
-
 	});
 
 	//加载评论
@@ -43,16 +44,11 @@ $(document).ready(function() {
 		}
 	});
 
-	//清空评论
-	$("#add-comment-clear").click(function() {
-		$("#add-comment-name").val("");
-		$("#add-comment-content").val("");
-	});
-
 	//提交评论
 	$("#add-comment-submit").click(function() {
 		var name=$("#add-comment-name").val();
-		var content=$("#add-comment-content").val();
+		var content=$("#add-comment-content").summernote("code");
+		console.log(content);
 		if(content==null||content=="") {
 			$.messager.popup("Wirte some comment, please!");
 			return;
@@ -64,5 +60,5 @@ $(document).ready(function() {
 			}, 1000);
 		});
 	});
-
+	
 });

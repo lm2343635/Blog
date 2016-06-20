@@ -33,6 +33,10 @@
     line-height: 1.3em;
 }
 
+#home a {
+	color: #fff;
+}
+
 #blog-panel {
 	margin: 40px 0;
 }
@@ -45,9 +49,8 @@
 	padding: 80px;
 }
 
-#add-blog-comment .col-xs-12,
-#add-blog-comment .col-xs-6 {
-	margin: 5px 0;
+#add-blog-comment {
+	margin: 25px 0;
 }
 
 .comment-list-template {
@@ -62,9 +65,28 @@
 	margin-top: 30px;
 }
 
-#back {
-	margin: 30px 0;
+#add-comment-name {
+	border: 1px solid #999;
+    border-radius: 5px;
+    line-height: 32px;
+    padding: 3px 10px;
+    outline: none;
+    width: 100%;
+    background: rgba(255, 255, 255, 0);
 }
+
+#add-comment-submit {
+	background: #fff;
+    border-color: #999;
+    color: #666;
+    height: 40px;
+}
+
+#add-comment-submit:hover {
+	background: #eee;
+	color: #444;
+}
+
 #language-selector {
 	margin: 30px 0;
 }
