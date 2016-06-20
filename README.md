@@ -13,12 +13,12 @@ You can fork it, and modify these HTML document to create your own blog system:
 Visit `http://your_doamin/admin` to edit your blog, the admin name and password can be modified in `WEB-INF/applicationContext.html`. You need not modify the files in folder `admin` because they are files of management system.
 
 	<bean id="adminManager" class="org.fczm.blog.service.impl.AdminManagerImpl">
-		<property name="username" value="admin"></property>
-		<property name="password" value="123"></property>
+		<property name="username" value="[Your admin username]"></property>
+		<property name="password" value="[Your admin password]"></property>
 	</bean> 
 	
 You should create database before running this blog system, the character set should be utf-8. After that, just modify database configuration in `WEB-INF/applicationContext.html`.
 
-	p:jdbcUrl="jdbc:mysql://127.0.0.1:3306/`[Your database name]`?characterEncoding=utf-8"
-	p:user="`[Your database username]`" 
-	p:password="`[Your database password]`"
+	p:jdbcUrl="jdbc:mysql://127.0.0.1:3306/[Your database name]?characterEncoding=utf-8"
+	p:user="[Your database username]" 
+	p:password="[Your database password]"
