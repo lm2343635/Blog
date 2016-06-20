@@ -158,6 +158,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 		MengularDocument document=new MengularDocument(rootPath, blogOutputFolderDepth,"blog.html");
 		document.setValue("blog-date", DateTool.formatDate(blog.getDate(), DateTool.DATE_HOUR_MINUTE_FORMAT));
 		document.setValue("blog-title", blog.getTitle());
+		document.setValue("blog-tid", blog.getType().getTid());
 		document.setValue("blog-tname", blog.getType().getTname());
 		document.setValue("blog-content", blog.getContent());
 		document.output(blogOutputFolder+blog.getBid());

@@ -8,6 +8,7 @@
 		<link href="static/css/bootstrap.min.css" rel="stylesheet"/>
 		<link href="static/css/bootstrap.photo.css" rel="stylesheet"/>
 		<link href="static/css/font-awesome.min.css" rel="stylesheet"/>
+		<link href="static/css/summernote.min.css" rel="stylesheet">
 		<link href="static/css/docs.min.css" rel="stylesheet"/>
 		<link href="static/css/style.css" rel="stylesheet"/>
 		<link href="static/css/mengular.css" rel="stylesheet"/>
@@ -16,6 +17,7 @@
 		<script src="static/js/jquery.i18n.properties.min.js"></script>
 		<script src="static/js/bootstrap.min.js"></script>
 		<script src="static/js/jquery.bootstrap.min.js"></script>
+		<script src="static/js/summernote.min.js"></script>
 		<script src="static/js/mengular.js"></script>
 		<script src="static/js/tools.js"></script>
 		<script src="dwr/engine.js"></script>
@@ -25,7 +27,7 @@
 	</head>
 	<body>
 		<div id="home" class="header">
-			<div class="top-header" style="background: url(@{blog_background}) no-repeat;	background-repeat: no-repeat; background-position: center; background-size: cover;">
+			<div class="top-header">
 				<div class="container">
 					<h1 class="pull-left home"><a href="blogs.html">@{blog_blogs}</a></h1>
 					<div id="language-selector" class="dropdown pull-right">
@@ -41,9 +43,9 @@
 					<div class="clearfix"> </div>
 					<h2 class="text-center">
 						<strong>#{blog-title}</strong>
-						<small>#{blog-tname}</small>
+						<small><a href="blogs.html?tid=#{blog-tid}">#{blog-tname}</a></small>
 					</h2>
-					<h4 class="text-center">@{blog_created_in} #{blog-date}, @{blog_readers_count} @{blog_readers}</h4>
+					<h4 id="blog-info" class="text-center">@{blog_created_in} #{blog-date}, @{blog_readers_count} @{blog_readers}</h4>
 				</div>
 			</div>
 		</div>
@@ -56,41 +58,31 @@
             <div id="comment-list" class="container">
 				<div id="${cid}$" class="bs-callout mengular-template comment-list-template">
 					<div class="row">
-						<div class="col-xs-12 col-sm-10">
+						<div class="col-xs-12 col-sm-8 col-md-9">
 							<h4 class="text-success">${name}$</h4>
 						</div>
-						<div class="col-xs-12 col-sm-2">
+						<div class="col-xs-12 col-sm-4 col-md-3">
 							<h4 class="pull-right text-warning">${date}$</h4>
 						</div>
 					</div>
 					<hr>
-					<p class="text-muted">${content}$</p>
+					<div>${content}$</div>
 				</div>
 			</div>	
 			<div class="page-header">
-                <h3 class="text-info">@{blog_write_comment}</h3>
+				<h3 id="blog-write-comment" class="text-info">@{blog_write_comment}</h3>	
             </div>
             <div id="add-blog-comment" class="row">
-            	<div class="col-xs-12">
-                    <div class="input-group">
-                        <span class="input-group-addon form-icon"><i class="fa fa-sticky-note-o fa-lg"></i></span>
-                        <textarea id="add-comment-content" class="form-control" placeholder="@{blog_write_comment_placeholder}" rows="8"></textarea>
-                    </div>
-            	</div>
-            	<div class="col-xs-12 col-sm-8">
-            		<div class="input-group">
-                        <span class="input-group-addon form-icon"><i class="fa fa-user fa-lg"></i></span>
-                        <input id="add-comment-name" type="text" class="form-control" placeholder="@{blog_your_name}">
-                    </div>
-            	</div>
-            	<div class="col-xs-6 col-sm-2">
-            		<button id="add-comment-clear" class="btn btn-default btn-block">@{blog_comment_clear}</button>
-            	</div>
-            	<div class="col-xs-6 col-sm-2">
-            		<button id="add-comment-submit" class="btn btn-success btn-block">@{blog_comment_submit}</button>
+            	<div id="add-comment-content"></div>
+            	<div class="row">
+            		<div class="col-xs-8 col-sm-10">
+						<input id="add-comment-name" type="text" placeholder="@{blog_your_name}">
+					</div>
+					<div class="col-xs-4 col-sm-2">
+						<button id="add-comment-submit" class="btn btn-block">@{blog_comment_submit}</button>
+					</div>
             	</div>
             </div>
-            <button id="back" class="btn btn-block btn-lg btn-info" onclick="history.go(-1)">@{blog_back}</button>
 		</div>
 		<div class="copy-right text-center">
 			<div class="container">
