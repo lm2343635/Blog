@@ -136,6 +136,7 @@ function searchBlogs(title, page) {
 			} else {
 				btitle=blogs[i].title;
 			}
+			
 			$("#blog-list").mengular(".blog-list-template", {
 				bid: blogs[i].bid,
 				date: blogs[i].date.format(DATE_HOUR_MINUTE_FORMAT),
@@ -149,10 +150,6 @@ function searchBlogs(title, page) {
 			if(blogs[i].cover!=null) {
 				$("#"+blogs[i].bid+" .blog-cover").show();
 			}
-
-			$("#"+blogs[i].bid).click(function() {
-				location.href="blogs/"+$(this).attr("id");
-			});
 		}
 	});
 }
