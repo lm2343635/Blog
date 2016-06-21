@@ -14,9 +14,11 @@ $(document).ready(function() {
 	]);
 
 	$("#add-comment-content").summernote({
-		height: 300
+		lang: getLanguage(),
+		height: 300,
+		toolbar: SUMMERNOTE_TOOLBAR_TEXT_ONLY
 	});
-	
+
 	//加载博文信息
 	BlogManager.getBlogInfo(bid, true, function(blog) {
 		if(blog==null) {
