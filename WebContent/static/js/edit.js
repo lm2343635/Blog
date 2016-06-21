@@ -48,6 +48,7 @@ $(document).ready(function() {
 	BlogManager.getBlogContent(bid, function(content) {
 		$("#edit-blog-content").summernote({
 			height: getScreenHeight()-300<MIN_EDIT_HEIGHT? MIN_EDIT_HEIGHT: getScreenHeight()-340,
+			toolbar: SUMMERNOTE_TOOLBAR_FULL,
 			callbacks: {
 				onImageUpload: function(files, editor, welEditable) {  
 		    		uploadIllustration(bid, files[0], this);

@@ -15,6 +15,33 @@ var YEAR_MONTH_DATE_FORMAT_CN="yyyy年MM月dd日";
 //“年-月-日 时:分:秒”格式 中文
 var DATE_HOUR_MINUTE_FORMAT_CN="yyyy年MM月dd日 hh点mm分";
 
+var SUMMERNOTE_TOOLBAR_TEXT_ONLY=[
+	['style', ['style']],
+	['font', ['bold', 'italic', 'underline', 'clear', 'strikethrough', 'superscript', 'subscript']],
+	['fontname', ['fontname']],
+	['fontsize', ['fontsize']],
+	['color', ['color']],
+	['para', ['ul', 'ol', 'paragraph']],
+	['height', ['height']],
+	['table', ['table']],
+	['insert', ['link']],
+	['view', ['fullscreen', 'codeview', 'help']]
+];
+
+var SUMMERNOTE_TOOLBAR_FULL=[
+	['style', ['style']],
+	['font', ['bold', 'italic', 'underline', 'clear', 'strikethrough', 'superscript', 'subscript']],
+	['fontname', ['fontname']],
+	['fontsize', ['fontsize']],
+	['color', ['color']],
+	['para', ['ul', 'ol', 'paragraph']],
+	['height', ['height']],
+	['table', ['table']],
+	['insert', ['link', 'picture', 'video']],
+	['view', ['fullscreen', 'codeview', 'help']]
+];
+
+
 /**
  * 检查session，并返回userBean
  *  @param doAfterCheck 验证成功回调函数
@@ -280,12 +307,17 @@ function getLanguage() {
 	language=language.split("-")[0];
 	var arrStr = document.cookie.split("; ");
 	for (var i = 0; i < arrStr.length; i++) {
+		console.log(arrStr[i]);
 	    var temp = arrStr[i].split("=");
 	    if (temp[0] == 'language') {
 	    	language = unescape(temp[1]);
 	    }
 	}
 	return language;
+}
+
+function getLanguageUnderline() {
+	return getLanguage().replace("-", "_");
 }
 
 /**
@@ -305,10 +337,11 @@ function i18n(name, path, keys, title) {
         	if(title!=null) {
         		document.title=$.i18n.prop(title);
         	}
+        	console.log($.i18n.prop("language_en_US"));
         	var data={
-    			language_broswer: $.i18n.prop("language_"+getLanguage()),
-    			language_en: $.i18n.prop("language_en"),
-    			language_zh: $.i18n.prop("language_zh")
+    			language_broswer: $.i18n.prop("language_"+getLanguageUnderline()),
+    			language_en_US: $.i18n.prop("language_en_US"),
+    			language_zh_CN: $.i18n.prop("language_zh_CN")
     		}
         	for(var i in keys) {
         		data[keys[i]]=$.i18n.prop(keys[i]);
