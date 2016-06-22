@@ -304,7 +304,6 @@ function setLanguage(language) {
  */
 function getLanguage() {
 	var language=navigator.language || navigator.userLanguage;
-	language=language.split("-")[0];
 	var arrStr = document.cookie.split("; ");
 	for (var i = 0; i < arrStr.length; i++) {
 		console.log(arrStr[i]);
@@ -316,6 +315,10 @@ function getLanguage() {
 	return language;
 }
 
+/**
+ * 从Cookie中获取语言，并使用下划线
+ * @returns
+ */
 function getLanguageUnderline() {
 	return getLanguage().replace("-", "_");
 }
