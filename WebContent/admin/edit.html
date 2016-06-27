@@ -24,12 +24,14 @@
         <script src="../static/js/bootstrap-datetimepicker.min.js"></script>
         <script src="../static/js/bootstrap-datetimepicker.zh-CN.js"></script>
         <script src="../static/js/summernote.min.js"></script>
+        <script src="../static/js/wookmark.min.js"></script>
         <script src="../static/js/mengular.js"></script>
         <script src="../static/js/tools.js"></script>
         <script src="../dwr/engine.js"></script>
         <script src="../dwr/interface/BlogManager.js"></script>
         <script src="../dwr/interface/AdminManager.js"></script>
         <script src="../dwr/interface/TypeManager.js"></script>
+        <script src="../dwr/interface/IllustrationManager.js"></script>
         <script src="../static/js/edit.js"></script>
     </head>
     <body>
@@ -94,7 +96,7 @@
                         <div class="progress-bar progress-bar-striped active"></div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-md-8">
+                <div class="col-xs-12 col-md-6">
                     <span id="blog-upload-cover-button" class="btn btn-success btn-lg btn-block fileinput-button">
                         <span>Upload Blog Cover Photo<small>（Reupload will replace old cover）</small></span>
                         <input id="blog-upload-cover" type="file" name="files[]">
@@ -107,7 +109,13 @@
                 	<small class="text-muted">Set as blog backgroud</small><br>
                 	<input id="blog-cover-bgenable" type="checkbox" data-size="mini" data-on-text="Enable" data-off-text="Disable">
                 </div>
+                <div class="col-xs-6 col-md-2">
+                    <button id="blog-illustration" class="btn btn-warning btn-block btn-lg">Illustrations</button>
+                </div>
             </div> 
+            <ul id="illustration-list" style="position: relative;">
+                <li id="${iid}$" class="mengular-template illustration-list-template"><img src="${src}$" width="200"></li>
+            </ul>
         </div>
     </body>
 </html>

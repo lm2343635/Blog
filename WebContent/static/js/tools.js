@@ -15,6 +15,7 @@ var YEAR_MONTH_DATE_FORMAT_CN="yyyy年MM月dd日";
 //“年-月-日 时:分:秒”格式 中文
 var DATE_HOUR_MINUTE_FORMAT_CN="yyyy年MM月dd日 hh点mm分";
 
+//summernote完整toolbar
 var SUMMERNOTE_TOOLBAR_TEXT_ONLY=[
 	['style', ['style']],
 	['font', ['bold', 'italic', 'underline', 'clear', 'strikethrough', 'superscript', 'subscript']],
@@ -28,6 +29,7 @@ var SUMMERNOTE_TOOLBAR_TEXT_ONLY=[
 	['view', ['fullscreen', 'codeview', 'help']]
 ];
 
+//summernote禁用图片视频toolbar
 var SUMMERNOTE_TOOLBAR_FULL=[
 	['style', ['style']],
 	['font', ['bold', 'italic', 'underline', 'clear', 'strikethrough', 'superscript', 'subscript']],
@@ -40,7 +42,6 @@ var SUMMERNOTE_TOOLBAR_FULL=[
 	['insert', ['link', 'picture', 'video']],
 	['view', ['fullscreen', 'codeview', 'help']]
 ];
-
 
 /**
  * 检查session，并返回userBean
