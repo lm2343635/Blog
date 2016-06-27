@@ -13,6 +13,9 @@
 		<create creator="spring" javascript="TypeManager"> 
 			<param name="beanName" value="typeManager"/>
 		</create>
+		<create creator="spring" javascript="IllustrationManager"> 
+			<param name="beanName" value="illustrationManager"/>
+		</create>
 		<create creator="spring" javascript="AdminManager"> 
 			<param name="beanName" value="adminManager"/>
 		</create>
@@ -20,6 +23,7 @@
 		<convert converter="bean" match="org.fczm.blog.bean.BlogBean"/> 
 		<convert converter="bean" match="org.fczm.blog.bean.CommentBean"/> 
 		<convert converter="bean" match="org.fczm.blog.bean.TypeBean"/> 
+		<convert converter="bean" match="org.fczm.blog.bean.IllustrationBean"/> 
 		
 		<convert converter="exception" match="java.lang.Exception"/>
 		<convert converter="exception" match="java.lang.StackTraceElement"/>

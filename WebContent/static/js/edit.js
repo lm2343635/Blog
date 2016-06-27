@@ -42,6 +42,34 @@ $(document).ready(function() {
 	        	$("#blog-cover-img").show();
     			$("#blog-cover-img").attr("src", "../upload/"+bid+"/"+blog.cover);
 	        }
+
+	        //加载插图
+	        IllustrationManager.getIllustrationsByBid(bid, function(illustrations) {
+	        	for(var i in illustrations) {
+	        		$("#illustration-list").mengular(".illustration-list-template", {
+	        			iid: illustrations[i].iid,
+	        			src: "../upload/"+illustrations[i].bid+"/"+illustrations[i].filename
+	        		});
+	        	}
+
+	        	$("#illustration-list li").wookmark({
+	        		align: 'center',
+	        		  autoResize: false,
+	        		  comparator: null,
+	        		  container: $('body'),
+	        		  direction: undefined,
+	        		  ignoreInactiveItems: true,
+	        		  itemWidth: 0,
+	        		  fillEmptySpace: false,
+	        		  flexibleWidth: 0,
+	        		  offset: 2,
+	        		  onLayoutChanged: undefined,
+	        		  outerOffset: 0,
+	        		  resizeDelay: 50,
+	        		  possibleFilters: []
+	        		
+	        	});
+	        })
 		});		
 	});
 	
