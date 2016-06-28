@@ -50,25 +50,21 @@ $(document).ready(function() {
 	        			iid: illustrations[i].iid,
 	        			src: "../upload/"+illustrations[i].bid+"/"+illustrations[i].filename
 	        		});
+
+	        		$("#"+illustrations[i].iid+" .illustration-list-link").click(function() {
+						
+					}); 
+
+	        		$("#"+illustrations[i].iid+" .illustration-list-remove").click(function() {
+	        			var iid=$(this).mengularId();
+	        			IllustrationManager.removeIllustration(iid, function(success) {
+	        				if(success) {
+	        					$("#"+iid).remove();
+	        				}
+	        			});
+	        		});
 	        	}
 
-	        	$("#illustration-list li").wookmark({
-	        		align: 'center',
-	        		  autoResize: false,
-	        		  comparator: null,
-	        		  container: $('body'),
-	        		  direction: undefined,
-	        		  ignoreInactiveItems: true,
-	        		  itemWidth: 0,
-	        		  fillEmptySpace: false,
-	        		  flexibleWidth: 0,
-	        		  offset: 2,
-	        		  onLayoutChanged: undefined,
-	        		  outerOffset: 0,
-	        		  resizeDelay: 50,
-	        		  possibleFilters: []
-	        		
-	        	});
 	        })
 		});		
 	});

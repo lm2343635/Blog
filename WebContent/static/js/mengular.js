@@ -1,5 +1,5 @@
 /*!
- * mengular v3.1, http://github.com/lm2343635/Mengular
+ * mengular v3.2, http://github.com/lm2343635/Mengular
  * ===================================
  * Powerful jQuery plugin for ajax table loading.
  *
@@ -12,10 +12,16 @@
 		_clear="mengularClear",
 		_clearTemplate="mengularClearTemplate",
 		_fillText="fillText",
+		_mengularId="mengularId";
 		LEFT_SPLIT_STR="${",
 		RIGHT_SPLIT_STR="}$",
 		MENGULAR_TEMPLATE_CLASS="mengular-template";
 
+	/**
+	 * Using template to load item
+	 * @param template
+	 * @param item
+	 */
 	$.fn[_mengular]=function(template, item) {
 		var templateHtml=$(template).prop("outerHTML");
 		var htmlArray=templateHtml.split(LEFT_SPLIT_STR);
@@ -28,6 +34,9 @@
 		$(this).append(templateHtml);
 	};
 
+	/**
+	 * Clear all items
+	 */
 	$.fn[_clear]=function() {
 		$(this).children().each(function() {
 			if(!$(this).hasClass(MENGULAR_TEMPLATE_CLASS))
@@ -35,13 +44,27 @@
 		});
 	};
 
+	/**
+	 * Remove template
+	 */
 	$.fn[_clearTemplate]=function() {
 		$(this).children().each(function() {
-			if($(this).hasClass(MENGULAR_TEMPLATE_CLASS))
+			if($(this).hasClass(MENGULAR_TEMPLATE_CLASS)) {
 				$(this).remove();
+			}
 		});
 	};
 	
+	/**
+	 * Fill text using palceholder @{placeholder name}
+	 * @prarm data, formate: {
+	 * 		placeholder1: value1,
+	 * 		placeholder2: value2,
+	 * 		...
+	 * 		placeholdern: valuen
+	 * }
+	 * Be careful that this fill text method will reload dom element, so that all event will be removed after using this method to a dom element.
+	 */
 	$.fn[_fillText]=function(data) {
 		var html=$(this).prop("outerHTML");
 		for(var key in data) {
@@ -51,6 +74,17 @@
 		}
 		$(this).prop("outerHTML", html);
 	};
+
+	/**
+	 * Find template id from any element of a template
+	 */ 
+	$.fn[_mengularId]=function() {
+		var parent=$(this).parent();
+		while(parent.attr("id")==undefined) {
+			parent=parent.parent();
+		}
+		return parent.attr("id");
+	}
 })(window.jQuery);
 
 /**

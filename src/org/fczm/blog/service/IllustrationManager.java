@@ -17,5 +17,5 @@ public interface IllustrationManager {
 	 * 移除指定插图
 	 * @param iid
 	 */
-	void removeIllustration(String iid);
+	boolean removeIllustration(String iid);
 }
