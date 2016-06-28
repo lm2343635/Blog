@@ -24,7 +24,6 @@
         <script src="../static/js/bootstrap-datetimepicker.min.js"></script>
         <script src="../static/js/bootstrap-datetimepicker.zh-CN.js"></script>
         <script src="../static/js/summernote.min.js"></script>
-        <script src="../static/js/wookmark.min.js"></script>
         <script src="../static/js/mengular.js"></script>
         <script src="../static/js/tools.js"></script>
         <script src="../dwr/engine.js"></script>
@@ -110,12 +109,35 @@
                 	<input id="blog-cover-bgenable" type="checkbox" data-size="mini" data-on-text="Enable" data-off-text="Disable">
                 </div>
                 <div class="col-xs-6 col-md-2">
-                    <button id="blog-illustration" class="btn btn-warning btn-block btn-lg">Illustrations</button>
+                    <button id="blog-illustration" class="btn btn-warning btn-block btn-lg" data-toggle="modal" data-target="#illustration-modal">Illustrations</button>
                 </div>
             </div> 
-            <ul id="illustration-list" style="position: relative;">
-                <li id="${iid}$" class="mengular-template illustration-list-template"><img src="${src}$" width="200"></li>
-            </ul>
+        </div>
+        <div id="illustration-modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Manage Illustrations</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="illustration-list" class="row">
+                            <div id=${iid}$ class="col-xs-12 mengular-template illustration-list-template">
+                                <div class="thumbnail">
+                                    <img src="${src}$">
+                                    <div class="caption">
+                                        <button class="btn btn-info illustration-list-link">Copy Link</button>
+                                        <button class="btn btn-danger illustration-list-remove">Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>

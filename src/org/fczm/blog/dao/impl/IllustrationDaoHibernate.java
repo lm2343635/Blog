@@ -9,6 +9,11 @@ import org.fczm.common.hibernate3.support.PageHibernateDaoSupport;
 
 public class IllustrationDaoHibernate extends PageHibernateDaoSupport<Illustration> implements IllustrationDao {
 
+	public IllustrationDaoHibernate() {
+		super();
+		setClass(Illustration.class);
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Illustration> findByBlog(Blog blog) {
