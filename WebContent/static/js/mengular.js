@@ -1,43 +1,50 @@
 /*!
- * mengular v3.2, http://github.com/lm2343635/Mengular
+ * mengular v3.3, http://github.com/lm2343635/Mengular
  * ===================================
  * Powerful jQuery plugin for ajax table loading.
  *
- * (c) 2015 - 2016 Lidaye, http://fczm.pw
- * fczm.pw Licensed
+ * (c) 2015 - 2016 fczm, http://fczm.pw
+ * fczm.pw Licensed.
  */
 
-(function($) {
-	var _mengular="mengular",
-		_clear="mengularClear",
-		_clearTemplate="mengularClearTemplate",
-		_fillText="fillText",
-		_mengularId="mengularId";
-		LEFT_SPLIT_STR="${",
-		RIGHT_SPLIT_STR="}$",
-		MENGULAR_TEMPLATE_CLASS="mengular-template";
+//define constant
+var LEFT_SPLIT_STR = "${",
+	RIGHT_SPLIT_STR = "}$",
+	MENGULAR_TEMPLATE_CLASS = "mengular-template";
 
+(function($) {
 	/**
-	 * Using template to load item
+	 * Using template to load data, core function of mengulat ajax table loading framework
 	 * @param template
 	 * @param item
 	 */
-	$.fn[_mengular]=function(template, item) {
-		var templateHtml=$(template).prop("outerHTML");
-		var htmlArray=templateHtml.split(LEFT_SPLIT_STR);
-		var attributeNames=new Array();
-		for(var i=1;i<htmlArray.length;i++) 
-			attributeNames[i-1]=htmlArray[i].split(RIGHT_SPLIT_STR)[0];
-		for(var j in attributeNames) 
-			templateHtml=templateHtml.replace(LEFT_SPLIT_STR+attributeNames[j]+RIGHT_SPLIT_STR,eval("item."+attributeNames[j]));
-		templateHtml=$(templateHtml).removeClass(MENGULAR_TEMPLATE_CLASS).prop("outerHTML");
-		$(this).append(templateHtml);
+	$.fn["mengular"] = function(template, data) {
+		//get outer html content of element
+		template = $(template).prop("outerHTML");
+		//get placeholders by spliting html document
+		var htmlArray = template.split(LEFT_SPLIT_STR);
+		var placeholders = new Array();
+		for(var i = 1; i < htmlArray.length; i++) {
+			//placeholder is like "${placeholder name}$"
+			placeholders[i-1] = htmlArray[i].split(RIGHT_SPLIT_STR)[0];
+		}
+		//handle data for array
+		if(data instanceof Array) {
+			var output = "";
+			for(var i in data) {
+				output += generateItem(template, placeholders, data[i]);;
+			}
+			$(this).append(output);
+			return;
+		} else {
+			$(this).append(generateItem(template, placeholders, data));
+		}
 	};
 
 	/**
 	 * Clear all items
 	 */
-	$.fn[_clear]=function() {
+	$.fn["mengularClear"] = function() {
 		$(this).children().each(function() {
 			if(!$(this).hasClass(MENGULAR_TEMPLATE_CLASS))
 				$(this).remove();
@@ -47,7 +54,7 @@
 	/**
 	 * Remove template
 	 */
-	$.fn[_clearTemplate]=function() {
+	$.fn["mengularClearTemplate"] = function() {
 		$(this).children().each(function() {
 			if($(this).hasClass(MENGULAR_TEMPLATE_CLASS)) {
 				$(this).remove();
@@ -65,12 +72,12 @@
 	 * }
 	 * Be careful that this fill text method will reload dom element, so that all event will be removed after using this method to a dom element.
 	 */
-	$.fn[_fillText]=function(data) {
-		var html=$(this).prop("outerHTML");
+	$.fn["fillText"]=function(data) {
+		var html = $(this).prop("outerHTML");
 		for(var key in data) {
 			do {
-				html=html.replace("@{"+key+"}", data[key]);
-			} while(html.search("@{"+key+"}")!=-1);
+				html = html.replace("@{"+key+"}", data[key]);
+			} while(html.search("@{"+key+"}") != -1);
 		}
 		$(this).prop("outerHTML", html);
 	};
@@ -78,10 +85,10 @@
 	/**
 	 * Find template id from any element of a template
 	 */ 
-	$.fn[_mengularId]=function() {
-		var parent=$(this).parent();
-		while(parent.attr("id")==undefined) {
-			parent=parent.parent();
+	$.fn["mengularId"] = function() {
+		var parent = $(this).parent();
+		while(parent.attr("id") == undefined) {
+			parent = parent.parent();
 		}
 		return parent.attr("id");
 	}
@@ -92,8 +99,9 @@
  * @param data
  */
 function fillText(data) {
-	for(var attributeName in data)
-		$("#"+attributeName).text(data[attributeName]);
+	for(var attributeName in data) {
+		$("#" + attributeName).text(data[attributeName]);
+	}
 }
 
 /**
@@ -101,6 +109,24 @@ function fillText(data) {
  * @param data
  */
 function fillValue(data) {
-	for(var attributeName in data)
-		$("#"+attributeName).val(data[attributeName]);
+	for(var attributeName in data) {
+		$("#" + attributeName).val(data[attributeName]);
+	}
+}
+
+/**
+ * Generate html document for item, used in mengulat core function.
+ * @param template  dom element of template
+ * @param placeholders
+ * @param data
+ * @returns
+ */
+function generateItem(template, placeholders, data) {
+	//replace placeholder with data attributes
+	for(var i in placeholders) {
+		template = template.replace(LEFT_SPLIT_STR + placeholders[i] + RIGHT_SPLIT_STR, eval("data." + placeholders[i]));
+	}
+	//remove mengular template class
+	template = $(template).removeClass(MENGULAR_TEMPLATE_CLASS).prop("outerHTML");
+	return template;
 }
