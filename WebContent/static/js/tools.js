@@ -284,7 +284,8 @@ function testRunTime(func) {
 	var start = new Date().getTime();
     func();
     var end = new Date().getTime();
-	 return end-start;
+    console.log("Run function time test in " + (end - start) + "ms.")
+	return end-start;
 }
 
 //i18n相关函数
@@ -307,7 +308,6 @@ function getLanguage() {
 	var language=navigator.language || navigator.userLanguage;
 	var arrStr = document.cookie.split("; ");
 	for (var i = 0; i < arrStr.length; i++) {
-		console.log(arrStr[i]);
 	    var temp = arrStr[i].split("=");
 	    if (temp[0] == 'language') {
 	    	language = unescape(temp[1]);
@@ -341,7 +341,6 @@ function i18n(name, path, keys, title) {
         	if(title!=null) {
         		document.title=$.i18n.prop(title);
         	}
-        	console.log($.i18n.prop("language_en_US"));
         	var data={
     			language_broswer: $.i18n.prop("language_"+getLanguageUnderline()),
     			language_en_US: $.i18n.prop("language_en_US"),

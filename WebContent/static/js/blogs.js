@@ -128,7 +128,7 @@ function searchBlogs(title, page) {
 	//加载博客标题
 	BlogManager.searchBlogs(title, tid, page, pageSize, function(blogs) {
 		$("#blog-list").mengularClear();
-		var btitle, strs;
+		var btitle, items = new Array();
 		for(var i in blogs) {
 			if(title!="") {
 				var reg = new RegExp('('+title+')', 'gi');
@@ -136,20 +136,18 @@ function searchBlogs(title, page) {
 			} else {
 				btitle=blogs[i].title;
 			}
-			
-			$("#blog-list").mengular(".blog-list-template", {
-				bid: blogs[i].bid,
-				date: blogs[i].date.format(DATE_HOUR_MINUTE_FORMAT),
-				tname: blogs[i].type.tname,
-				title: btitle,
-				readers: blogs[i].readers,
-				src: blogs[i].cover==null? "": "upload/"+blogs[i].bid+"/"+blogs[i].cover
-			});
-			
-			//有封面图片才显示
-			if(blogs[i].cover!=null) {
-				$("#"+blogs[i].bid+" .blog-cover").show();
-			}
+			items[i] = {
+					bid: blogs[i].bid,
+					date: blogs[i].date.format(DATE_HOUR_MINUTE_FORMAT),
+					tname: blogs[i].type.tname,
+					title: btitle,
+					readers: blogs[i].readers,
+					src: blogs[i].cover==null? "": "upload/"+blogs[i].bid+"/"+blogs[i].cover
+			};
 		}
+		testRunTime(function() {
+			$("#blog-list").mengular(".blog-list-template", items);
+		});
+		
 	});
 }
