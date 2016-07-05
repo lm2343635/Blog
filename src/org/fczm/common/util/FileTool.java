@@ -10,10 +10,10 @@ import java.util.ArrayList;
 
 /**
  * 文件操作工具
- * @author limeng
+ * @author 浮尘追梦
+ * @version 2.0
  */
 public class FileTool {
-	
 	/**
 	 * 复制文件从源文件到目标文件
 	 * @param sourceFile 源文件
@@ -211,5 +211,4 @@ public class FileTool {
 	       e.printStackTrace(); 
 	     }
 	}
-
 }

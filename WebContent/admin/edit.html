@@ -19,6 +19,7 @@
         <script src="../static/js/jquery.iframe-transport.js"></script>
         <script src="../static/js/jquery.fileupload.js"></script>
         <script src="../static/js/jquery.bootstrap.min.js"></script>
+        <script src="../static/js/clipboard.min.js"></script>
         <script src="../static/js/bootstrap.min.js"></script> 
         <script src="../static/js/bootstrap-switch.min.js"></script> 
         <script src="../static/js/bootstrap-datetimepicker.min.js"></script>
@@ -126,8 +127,16 @@
                                 <div class="thumbnail">
                                     <img src="${src}$">
                                     <div class="caption">
-                                        <button class="btn btn-info illustration-list-link">Copy Link</button>
-                                        <button class="btn btn-danger illustration-list-remove">Remove</button>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control illustration-list-link" readonly>
+                                            <span id="copy-${iid}$" class="input-group-addon illustration-list-copy">
+                                                <i class="fa fa-lg fa-clipboard text-primary"></i>
+                                            </span>
+                                            <span class="input-group-addon illustration-list-remove">
+                                                <i class="fa fa-lg fa-trash-o text-danger"></i>
+                                            </span>
+                                        </div>
+                                    
                                     </div>
                                 </div>
                             </div>

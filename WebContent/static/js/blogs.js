@@ -129,23 +129,46 @@ function searchBlogs(title, page) {
 	BlogManager.searchBlogs(title, tid, page, pageSize, function(blogs) {
 		$("#blog-list").mengularClear();
 		var btitle, items = new Array();
-		for(var i in blogs) {
-			if(title!="") {
-				var reg = new RegExp('('+title+')', 'gi');
-				btitle = blogs[i].title.replace(reg, '<span class="bg-info">$1</span>');
-			} else {
-				btitle=blogs[i].title;
-			}
-			items[i] = {
-					bid: blogs[i].bid,
-					date: blogs[i].date.format(DATE_HOUR_MINUTE_FORMAT),
-					tname: blogs[i].type.tname,
-					title: btitle,
-					readers: blogs[i].readers,
-					src: blogs[i].cover==null? "": "upload/"+blogs[i].bid+"/"+blogs[i].cover
-			};
-		}
+		
+//		testRunTime(function() {
+//			for(var i in blogs) {
+//				if(title!="") {
+//					var reg = new RegExp('('+title+')', 'gi');
+//					btitle = blogs[i].title.replace(reg, '<span class="bg-info">$1</span>');
+//				} else {
+//					btitle=blogs[i].title;
+//				}
+//				
+//				$("#blog-list").mengular(".blog-list-template", {
+//					bid: blogs[i].bid,
+//					date: blogs[i].date.format(DATE_HOUR_MINUTE_FORMAT),
+//					tname: blogs[i].type.tname,
+//					title: btitle,
+//					readers: blogs[i].readers,
+//					src: blogs[i].cover==null? "": "upload/"+blogs[i].bid+"/"+blogs[i].cover
+//				});
+//				
+//			}
+//		});
+		
 		testRunTime(function() {
+			for(var i in blogs) {
+				if(title!="") {
+					var reg = new RegExp('('+title+')', 'gi');
+					btitle = blogs[i].title.replace(reg, '<span class="bg-info">$1</span>');
+				} else {
+					btitle=blogs[i].title;
+				}
+				items[i] = {
+						bid: blogs[i].bid,
+						date: blogs[i].date.format(DATE_HOUR_MINUTE_FORMAT),
+						tname: blogs[i].type.tname,
+						title: btitle,
+						readers: blogs[i].readers,
+						src: blogs[i].cover==null? "": "upload/"+blogs[i].bid+"/"+blogs[i].cover
+				};
+			}
+		
 			$("#blog-list").mengular(".blog-list-template", items);
 		});
 		

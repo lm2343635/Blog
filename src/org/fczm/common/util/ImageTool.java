@@ -31,8 +31,8 @@ import javax.imageio.stream.ImageInputStream;
 
 /**
  * 图片工具类， 图片水印，文字水印，缩放，补白等
- * @author fczm
- * Version 3.0
+ * @author 浮尘追梦
+ * @version 3.1
  */
 public final class ImageTool {
     //图片格式：JPG
@@ -226,6 +226,7 @@ public final class ImageTool {
         double ratio = 0; 
         File file=new File(pathname);   
         try {
+        	//修复png格式图片文件变红
         	Image img=Toolkit.getDefaultToolkit().createImage(pathname);
         	PixelGrabber pg = new PixelGrabber(img, 0, 0, -1, -1, true);
         	pg.grabPixels();
@@ -293,7 +294,7 @@ public final class ImageTool {
     }
     
     /**
-     * 得到图片高度
+     * 得到图片宽度
      * @param pathname
      * @return
      */

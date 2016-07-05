@@ -46,20 +46,33 @@ $(document).ready(function() {
 	        //加载插图
 	        IllustrationManager.getIllustrationsByBid(bid, function(illustrations) {
 	        	for(var i in illustrations) {
+	        		var path = location.href.split("admin")[0] + "upload/"+illustrations[i].bid+"/"+illustrations[i].filename;
+	        		
 	        		$("#illustration-list").mengular(".illustration-list-template", {
 	        			iid: illustrations[i].iid,
-	        			src: "../upload/"+illustrations[i].bid+"/"+illustrations[i].filename
+	        			src: path
 	        		});
 
-	        		$("#"+illustrations[i].iid+" .illustration-list-link").click(function() {
-						
-					}); 
+	        		//复制插图链接
+	        		$("#"+illustrations[i].iid+" .illustration-list-link").val(path);
 
+					new Clipboard("#copy-"+illustrations[i].iid, {
+					    text: function(trigger) {
+					        return $("#"+$(trigger).mengularId()+" .thumbnail img").attr("src");
+					    }
+					}).on("success", function(e) {
+					    
+					});
+   		
+	        		
+	        		//删除插图
 	        		$("#"+illustrations[i].iid+" .illustration-list-remove").click(function() {
 	        			var iid=$(this).mengularId();
 	        			IllustrationManager.removeIllustration(iid, function(success) {
 	        				if(success) {
 	        					$("#"+iid).remove();
+	        				} else {
+	        					$.messager.popup("Delete failed!");
 	        				}
 	        			});
 	        		});
@@ -169,10 +182,13 @@ $(document).ready(function() {
 	    			$("#blog-cover-img").hide();
 	    			$("#blog-cover-img").attr("src","");
 	    			$.messager.popup("Cover has deleted!");
+	    		} else {
+	    			$.messager.popup("Delete failed!");
 	    		}
 	    	});
     	});
     });
+    
 });
 
 /**
