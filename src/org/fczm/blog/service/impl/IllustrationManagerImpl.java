@@ -36,7 +36,8 @@ public class IllustrationManagerImpl extends ManagerTemplate implements Illustra
 		String rootPath=WebContextFactory.get().getServletContext().getRealPath("/");
 		String filePath=rootPath+File.separator+PhotoServlet.UPLOAD_FOLDER+File.separator
 				+illustration.getBlog().getBid()+File.separator+illustration.getFilename();
-		if(new File(filePath).delete()) {
+		File file = new File(filePath);
+		if(file.delete()||!file.exists()) {
 			illustrationDao.delete(illustration);
 			return true;
 		}
