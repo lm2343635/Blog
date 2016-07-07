@@ -5,24 +5,24 @@ $(document).ready(function() {
 		var password=$("#admin-password-input").val();
 		var validate=true;
     	if(name==""||name==null) {
-			$("#admin-number-input").parent().addClass("has-error");
+			$("#admin-number-input").addClass("has-error");
 			validate=false;
 		} else {
-			$("#admin-number-input").parent().removeClass("has-error");
+			$("#admin-number-input").removeClass("has-error");
 		}
 		if(password==""||password==null) {
-			$("#admin-password-input").parent().addClass("has-error");
+			$("#admin-password-input").addClass("has-error");
 			validate=false;
 		} else {
-			$("#admin-password-input").parent().removeClass("has-error");
+			$("#admin-password-input").removeClass("has-error");
 		}
 		if(validate) {
 			AdminManager.login(name, password, function(success) {
-				if(success)
+				if(success) {
 					location.href="list.html";
-				else {
-					$("#admin-number-input").parent().addClass("has-error");
-					$("#admin-password-input").parent().addClass("has-error");
+				} else {
+					$("#admin-number-input").addClass("has-error");
+					$("#admin-password-input").addClass("has-error");
 				}
 			});
 		}
