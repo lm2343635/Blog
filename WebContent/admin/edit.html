@@ -109,7 +109,7 @@
                 	<small class="text-muted">Set as blog backgroud</small><br>
                 	<input id="blog-cover-bgenable" type="checkbox" data-size="mini" data-on-text="Enable" data-off-text="Disable">
                 </div>
-                <div class="col-xs-6 col-md-2">
+                <div class="col-xs-12 col-md-2">
                     <button id="blog-illustration" class="btn btn-warning btn-block btn-lg" data-toggle="modal" data-target="#illustration-modal">Illustrations</button>
                 </div>
             </div> 
@@ -126,17 +126,15 @@
                             <div id=${iid}$ class="col-xs-12 mengular-template illustration-list-template">
                                 <div class="thumbnail">
                                     <img src="${src}$">
-                                    <div class="caption">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control illustration-list-link" readonly>
-                                            <span id="copy-${iid}$" class="input-group-addon illustration-list-copy">
-                                                <i class="fa fa-lg fa-clipboard text-primary"></i>
-                                            </span>
-                                            <span class="input-group-addon illustration-list-remove">
-                                                <i class="fa fa-lg fa-trash-o text-danger"></i>
-                                            </span>
-                                        </div>
-                                    
+                                    <span class="illustration-list-remove">
+                                        <i class="fa fa-lg fa-trash-o"></i>
+                                    </span>
+                                    <span id="copy-${iid}$" class="illustration-list-copy">
+                                        <i class="fa fa-lg fa-link"></i>
+                                    </span>
+                                    <div class="illustration-list-link">
+                                        <p class="text-muted">Copied link to clipboard. If not, copy this link manually. <i class="fa fa-lg fa-times"></i></p>
+                                    	<input class="text-muted" readonly></input>
                                     </div>
                                 </div>
                             </div>

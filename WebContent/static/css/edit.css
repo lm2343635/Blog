@@ -33,3 +33,86 @@
 #title-div hr {
 	margin: 10px 0;
 }
+
+#illustration-list .illustration-list-remove {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: #FF4351;
+  	border-color: #FF4351;
+  	color: #fff;
+    position: absolute;
+    top: 20px;
+    right: 32px;
+}
+
+#illustration-list .illustration-list-remove:hover {
+    background-color: #ff7680;
+    border-color: #ff7680;
+	cursor: pointer;
+}
+
+#illustration-list .illustration-list-remove i {
+    font-size: 24px;
+    position: absolute;
+    top: 11px;
+    left: 11px;
+}
+
+#illustration-list .illustration-list-copy {
+	border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: #b9e563;
+    border-color: #b9e563;
+  	color: #fff;
+    position: absolute;
+    top: 20px;
+    right: 82px;
+}
+
+#illustration-list .illustration-list-copy:hover {
+	background-color: #b9e563;
+    border-color: #b9e563;
+    cursor: pointer;
+}
+
+#illustration-list .illustration-list-copy i {
+    font-size: 23px;
+    position: absolute;
+    top: 12px;
+    left: 10px;
+}
+
+#illustration-list .illustration-list-link {
+	display: none;
+    position: absolute;
+    top: 70px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,.2);
+    -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+#illustration-list .illustration-list-link p {
+	padding-bottom: 7px;
+    border-bottom: 1px solid #cecece;
+}
+
+#illustration-list .illustration-list-link p i {
+	float: right;
+	margin: 3px;
+	cursor: pointer;
+}
+
+#illustration-list .illustration-list-link input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    padding: 7px;
+}

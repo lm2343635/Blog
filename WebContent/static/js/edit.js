@@ -3,6 +3,10 @@ var MIN_EDIT_HEIGHT=380;
 
 $(document).ready(function() {
 	checkAdminSession(function() {
+		$(window).bind("beforeunload", function() {
+			return "Be sure you have saved your blog!";
+		});
+		
 		//加载博客信息
 		BlogManager.getBlogInfo(bid, false, function(blog) {
 			if(blog==null) {
@@ -54,16 +58,23 @@ $(document).ready(function() {
 	        		});
 
 	        		//复制插图链接
-	        		$("#"+illustrations[i].iid+" .illustration-list-link").val(path);
-
-					new Clipboard("#copy-"+illustrations[i].iid, {
+	        		$("#" + illustrations[i].iid + " .illustration-list-link input").val(path);
+	        		$("#" + illustrations[i].iid + " .illustration-list-copy").click(function() {
+	        			$(".illustration-list-link").hide();
+	        			$("#" + $(this).mengularId() + " .illustration-list-link").fadeIn();
+	        		});
+	        		
+	        		$("#" + illustrations[i].iid + " .illustration-list-link p i").click(function() {
+	        			$("#" + $(this).mengularId() + " .illustration-list-link").fadeOut();
+	        		});
+	        		
+					new Clipboard("#copy-" + illustrations[i].iid, {
 					    text: function(trigger) {
 					        return $("#"+$(trigger).mengularId()+" .thumbnail img").attr("src");
 					    }
 					}).on("success", function(e) {
-					    
+						
 					});
-   		
 	        		
 	        		//删除插图
 	        		$("#"+illustrations[i].iid+" .illustration-list-remove").click(function() {
@@ -77,7 +88,6 @@ $(document).ready(function() {
 	        			});
 	        		});
 	        	}
-
 	        })
 		});		
 	});
