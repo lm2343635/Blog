@@ -7,8 +7,7 @@
 
 #main-container h1 i {
 	margin-top: 50px;
-	height: 150px;
-	font-size: 4em;
+	font-size: 3em;
 	color:  rgba(255, 255, 255, 0.63);
 }
 
@@ -45,7 +44,7 @@
     width: 100%;
     border: 0;
     margin: 0 0 15px;
-    padding: 15px;
+    padding: 12px;
     border-radius: 5px;
     box-sizing: border-box;
     font-size: 17px;
@@ -64,7 +63,7 @@
     background: #4CAF50;
     width: 100%;
     border: 0;
-    padding: 17px;
+    padding: 15px;
     border-radius: 5px;
     color: #FFFFFF;
     font-size: 14px;
