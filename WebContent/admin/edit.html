@@ -83,8 +83,8 @@
                 </div>
                 <div class="col-xs-12">
                     <div id="loading-blog" class="panel panel-default">
-                    	<div	class="panel-body">
-                    	    <h1 class="text-info text-center"><i class="fa fa-spinner fa-6 fa-spin" style="font-size: 4em;"></i></h1>
+                    	<div class="panel-body">
+                    	    <h1 class="text-info text-center"><i class="fa fa-spinner fa-spin"></i></h1>
                        		<h4 class="text-info text-center">Loading this blog article...</h4>
                     	</div>
                     </div>
@@ -133,8 +133,13 @@
                                         <i class="fa fa-lg fa-link"></i>
                                     </span>
                                     <div class="illustration-list-link">
-                                        <p class="text-muted">Copied link to clipboard. If not, copy this link manually. <i class="fa fa-lg fa-times"></i></p>
-                                    	<input class="text-muted" readonly></input>
+                                        <p class="text-muted">Link is copied to clipboard. If not, copy it manually. <i class="fa fa-lg fa-times"></i></p>
+                                    	<input class="text-muted" value="${src}$" readonly></input>
+                                    </div>
+                                    <div class="illustration-list-confirm">
+                                        <p class="text-muted">Are you sure to remove? <i class="fa fa-lg fa-times"></i></p>
+                                        <button class="btn btn-danger illustration-list-confirm-yes">Yes</button>
+                                        <button class="btn btn-default illustration-list-confirm-no">No</button>
                                     </div>
                                 </div>
                             </div>

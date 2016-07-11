@@ -48,47 +48,7 @@ $(document).ready(function() {
 	        }
 
 	        //加载插图
-	        IllustrationManager.getIllustrationsByBid(bid, function(illustrations) {
-	        	for(var i in illustrations) {
-	        		var path = location.href.split("admin")[0] + "upload/"+illustrations[i].bid+"/"+illustrations[i].filename;
-	        		
-	        		$("#illustration-list").mengular(".illustration-list-template", {
-	        			iid: illustrations[i].iid,
-	        			src: path
-	        		});
-
-	        		//复制插图链接
-	        		$("#" + illustrations[i].iid + " .illustration-list-link input").val(path);
-	        		$("#" + illustrations[i].iid + " .illustration-list-copy").click(function() {
-	        			$(".illustration-list-link").hide();
-	        			$("#" + $(this).mengularId() + " .illustration-list-link").fadeIn();
-	        		});
-	        		
-	        		$("#" + illustrations[i].iid + " .illustration-list-link p i").click(function() {
-	        			$("#" + $(this).mengularId() + " .illustration-list-link").fadeOut();
-	        		});
-	        		
-					new Clipboard("#copy-" + illustrations[i].iid, {
-					    text: function(trigger) {
-					        return $("#"+$(trigger).mengularId()+" .thumbnail img").attr("src");
-					    }
-					}).on("success", function(e) {
-						
-					});
-	        		
-	        		//删除插图
-	        		$("#"+illustrations[i].iid+" .illustration-list-remove").click(function() {
-	        			var iid=$(this).mengularId();
-	        			IllustrationManager.removeIllustration(iid, function(success) {
-	        				if(success) {
-	        					$("#"+iid).remove();
-	        				} else {
-	        					$.messager.popup("Delete failed!");
-	        				}
-	        			});
-	        		});
-	        	}
-	        })
+	        loadIllustrators();
 		});		
 	});
 	
@@ -153,6 +113,7 @@ $(document).ready(function() {
         	$("#edit-blog-submit").html('<i class="fa fa-refresh fa-spin"></i>')
         						  .attr("disabled", "disabled");
 	    	BlogManager.modifyBlog(bid, title, content, date, tid, function() {
+	    		$(window).unbind("beforeunload");
 	    		$.messager.popup("Mofify this blog successfully!");
 	    		setTimeout(function() {
 					location.href="list.html";
@@ -221,6 +182,84 @@ function uploadIllustration(bid, file, element) {
         success: function(data) {
         	$(element).summernote("insertImage", "../upload/"+bid+"/"+data.filename);
         	$.messager.popup("Illustration uploaded");
+        	//上传图片完成后更新插图管理列表
+        	loadIllustrators();
         }
     });
+}
+
+/**
+ * 加载插图
+ */
+function loadIllustrators() {
+	$("#illustration-list").mengularClear();
+    IllustrationManager.getIllustrationsByBid(bid, function(illustrations) {
+    	for(var i in illustrations) {
+    		var path = location.href.split("admin")[0] + "upload/"+illustrations[i].bid+"/"+illustrations[i].filename;
+    		
+    		$("#illustration-list").mengular(".illustration-list-template", {
+    			iid: illustrations[i].iid,
+    			src: path
+    		});
+
+    		//点击复制插图链接
+    		$("#" + illustrations[i].iid + " .illustration-list-copy").click(function() {
+    			var link = $("#" + $(this).mengularId() + " .illustration-list-link");
+    			if(link.is(":visible")) {
+    				link.fadeOut(function() {
+    					$(".illustration-list-link").hide();
+    				});
+    			} else {
+    				$(".illustration-list-link").hide();
+    				link.fadeIn();
+    			}
+    		});
+    		
+    		//关闭复制插图链接
+    		$("#" + illustrations[i].iid + " .illustration-list-link p i").click(function() {
+    			$("#" + $(this).mengularId() + " .illustration-list-link").fadeOut();
+    		});
+    		
+			new Clipboard("#copy-" + illustrations[i].iid, {
+			    text: function(trigger) {
+			        return $("#"+$(trigger).mengularId()+" .thumbnail img").attr("src");
+			    }
+			}).on("success", function(e) {
+				
+			});
+    		
+    		//点击删除插图
+    		$("#"+illustrations[i].iid+" .illustration-list-remove").click(function() {
+    			var confirm = $("#" + $(this).mengularId() + " .illustration-list-confirm");
+    			if(confirm.is(":visible")) {
+    				confirm.fadeOut(function() {
+    					$(".illustration-list-confirm").hide();
+    				});
+    			} else {
+    				$(".illustration-list-confirm").hide();
+    				confirm.fadeIn();
+    			}
+    		});
+
+    		//确认删除
+    		$("#" + illustrations[i].iid + " .illustration-list-confirm-yes").click(function() {
+    			var iid=$(this).mengularId();
+    			IllustrationManager.removeIllustration(iid, function(success) {
+    				if(success) {
+    					$("#"+iid).fadeOut(function() {
+    						$(this).remove();
+    					});
+    				} else {
+    					$.messager.popup("Delete failed!");
+    				}
+    			});
+    		});
+
+    		//取消删除
+    		$("#" + illustrations[i].iid + " .illustration-list-confirm p i, " + 
+    		  "#" + illustrations[i].iid + " .illustration-list-confirm-no").click(function() {
+    		  	$("#" + $(this).mengularId() + " .illustration-list-confirm").fadeOut();
+    		});
+    	}
+	});
 }
