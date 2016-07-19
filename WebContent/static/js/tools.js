@@ -305,7 +305,10 @@ function setLanguage(language) {
  * @returns
  */
 function getLanguage() {
-	var language=navigator.language || navigator.userLanguage;
+	var language = navigator.language || navigator.userLanguage;
+	//Safari等webkit内核国家标识码小写转大写
+	var langArray = language.split("-");
+	language = langArray[0] + "-" + langArray[1].toUpperCase();
 	var arrStr = document.cookie.split("; ");
 	for (var i = 0; i < arrStr.length; i++) {
 	    var temp = arrStr[i].split("=");
