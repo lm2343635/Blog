@@ -96,6 +96,12 @@
                         <div class="progress-bar progress-bar-striped active"></div>
                     </div>
                 </div>
+                <div class="col-xs-6 col-md-2">
+                    <button id="blog-illustration" class="btn btn-warning btn-block btn-lg" data-toggle="modal" data-target="#illustration-modal">Illustrations</button>
+                </div>
+                <div class="col-xs-6 col-md-2">
+                    <button id="blog-attachment" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#attachment-modal">Attachments</button>
+                </div>
                 <div class="col-xs-12 col-md-4">
                     <span id="blog-upload-cover-button" class="btn btn-success btn-lg btn-block fileinput-button">
                         <p>Upload Blog Cover Photo</p>
@@ -107,15 +113,10 @@
                     <button id="blog-cover-delete" class="btn btn-danger btn-block btn-lg">Delete Cover</button>
                 </div>
                 <div class="col-xs-6 col-md-2">
-                	<small class="text-muted">Set as blog backgroud</small><br>
+                	<p id="set-as-background" class="text-muted">Set as blog backgroud</p>
                 	<input id="blog-cover-bgenable" type="checkbox" data-size="mini" data-on-text="Enable" data-off-text="Disable">
                 </div>
-                <div class="col-xs-6 col-md-2">
-                    <button id="blog-illustration" class="btn btn-warning btn-block btn-lg" data-toggle="modal" data-target="#illustration-modal">Illustrations</button>
-                </div>
-                <div class="col-xs-6 col-md-2">
-                    <button id="blog-attachment" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#attachment-modal">Attachments</button>
-                </div>
+                
             </div> 
         </div>
         <div id="illustration-modal" class="modal fade">
@@ -163,7 +164,56 @@
                         <h4 class="modal-title">Manage Attachments</h4>
                     </div>
                     <div class="modal-body">
-                        
+                        <div id="attachment-list">
+                            <div class="row attachment-list-template">
+                                <div class="col-xs-12 col-sm-10">
+                                    <h4>Attachment Sample.java</h4>
+                                    <small>Uploaded at 2016-09-02 13:22:34</small>
+                                </div>
+                                <div class="col-xs-2 col-sm-1">
+                                    <i class="fa fa-lg fa-trash text-danger"></i>
+                                </div>
+                                <div class="col-xs-2 col-sm-1">
+                                    <i class="fa fa-lg fa-download text-primary"></i>
+                                </div>
+                            </div>
+                            <div class="row attachment-list-template">
+                                <div class="col-xs-12 col-sm-10">
+                                    <h4>Attachment Sample.java</h4>
+                                    <small>Uploaded at 2016-09-02 13:22:34</small>
+                                </div>
+                                <div class="col-xs-2 col-sm-1">
+                                    <i class="fa fa-lg fa-trash text-danger"></i>
+                                </div>
+                                <div class="col-xs-2 col-sm-1">
+                                    <i class="fa fa-lg fa-download text-primary"></i>
+                                </div>
+                            </div>
+                            <div class="row attachment-list-template">
+                                <div class="col-xs-12 col-sm-10">
+                                    <h4>Attachment Sample.java</h4>
+                                    <small>Uploaded at 2016-09-02 13:22:34</small>
+                                </div>
+                                <div class="col-xs-2 col-sm-1">
+                                    <i class="fa fa-lg fa-trash text-danger"></i>
+                                </div>
+                                <div class="col-xs-2 col-sm-1">
+                                    <i class="fa fa-lg fa-download text-primary"></i>
+                                </div>
+                            </div>
+                            <div class="row attachment-list-template">
+                                <div class="col-xs-12 col-sm-10">
+                                    <h4>Attachment Sample.java</h4>
+                                    <small>Uploaded at 2016-09-02 13:22:34</small>
+                                </div>
+                                <div class="col-xs-2 col-sm-1">
+                                    <i class="fa fa-lg fa-trash text-danger"></i>
+                                </div>
+                                <div class="col-xs-2 col-sm-1">
+                                    <i class="fa fa-lg fa-download text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>

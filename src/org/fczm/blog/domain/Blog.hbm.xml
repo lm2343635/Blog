@@ -24,5 +24,10 @@
 			<index column="upload" type="java.util.Date"/>
 			<one-to-many class="Illustration"></one-to-many>
 		</list> 
+		<list name="attachments" cascade="delete" inverse="true">
+			<key column="bid" not-null="true"/>
+			<index column="upload" type="java.util.Date"/>
+			<one-to-many class="Attachment"></one-to-many>
+		</list> 
 	</class>
 </hibernate-mapping>
