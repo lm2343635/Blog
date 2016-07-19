@@ -21,7 +21,6 @@
 }
 
 #blog-upload-cover-button {
-	margin-bottom: 20px;
 	overflow: auto;
     padding: 5px;
 }
@@ -42,6 +41,10 @@
 
 #title-div hr {
 	margin: 10px 0;
+}
+
+#set-as-background {
+    margin-bottom: 4px;
 }
 
 #illustration-list .illustration-list-remove {
@@ -135,4 +138,21 @@
     width: 48%;
     float: left;
     margin: 1%;
+}
+
+#attachment-list .attachment-list-template {
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+#attachment-list .attachment-list-template h4 {
+    font-size: 16px;
+}
+
+#attachment-list .attachment-list-template i {
+    font-size: 25px;
+    line-height: 57px;
+    cursor: pointer;
 }

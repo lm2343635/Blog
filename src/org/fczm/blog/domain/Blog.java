@@ -18,6 +18,7 @@ public class Blog implements Serializable {
 	private Type type;
 	private List<Comment> comments;
 	private List<Illustration> illustrations;
+	private List<Attachment> attachments;
 	
 	public String getBid() {
 		return bid;
@@ -78,6 +79,12 @@ public class Blog implements Serializable {
 	}
 	public void setIllustrations(List<Illustration> illustrations) {
 		this.illustrations = illustrations;
+	}
+	public List<Attachment> getAttachments() {
+		return attachments;
+	}
+	public void setAttachments(List<Attachment> attachments) {
+		this.attachments = attachments;
 	}
 	
 }
