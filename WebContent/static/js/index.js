@@ -1,7 +1,5 @@
 $(document).ready(function($) {
 
-	$("#works").load("work.html");
-	
 	i18n("index", "static/i18n/", [
 		 "index_blogs",
 		 "index_introduce",
