@@ -1,0 +1,46 @@
+package org.fczm.blog.domain;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class Attachment implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	private String aid;
+	private String store;
+	private String filename;
+	private Date upload;
+	private Blog blog;
+	
+	public String getAid() {
+		return aid;
+	}
+	public void setAid(String aid) {
+		this.aid = aid;
+	}
+	public String getStore() {
+		return store;
+	}
+	public void setStore(String store) {
+		this.store = store;
+	}
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+	public Date getUpload() {
+		return upload;
+	}
+	public void setUpload(Date upload) {
+		this.upload = upload;
+	}
+	public Blog getBlog() {
+		return blog;
+	}
+	public void setBlog(Blog blog) {
+		this.blog = blog;
+	}
+
+}

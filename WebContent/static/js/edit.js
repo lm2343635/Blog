@@ -127,7 +127,7 @@ $(document).ready(function() {
 	//绑定上传图片控件
 	$("#blog-upload-cover").fileupload({
     	autoUpload:true,
-    	url:"../PhotoServlet?task=uploadBlogCover&bid="+bid,
+    	url:"../UploadServlet?task=uploadBlogCover&bid="+bid,
     	dataType:"json",
     	acceptFileTypes: /^image\/(gif|jpeg|png)$/,
     	done:function(e,data){
@@ -160,6 +160,18 @@ $(document).ready(function() {
     	});
     });
     
+    //绑定上传附件控件
+    $("#upload-attachment").fileupload({
+        autoUpload:true,
+        url:"../UploadServlet?task=uploadAttachment&bid="+bid,
+        dataType:"json",
+        done:function(e,data){
+
+        },
+        progressall:function(e,data){
+            
+        }
+    });
 });
 
 /**
@@ -175,7 +187,7 @@ function uploadIllustration(bid, file, element) {
 	$.ajax({
         data: formData,
         type: "POST",
-        url: "../PhotoServlet?task=uploadIllustration&bid="+bid,
+        url: "../UploadServlet?task=uploadIllustration&bid="+bid,
         cache: false,
         contentType: false,
         processData: false,

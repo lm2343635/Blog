@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.fczm.blog.domain">
+	<class name="Attachment" table="attachment">
+		<id name="aid" type="string">
+			<generator class="uuid"/>
+		</id>
+		<property name="store" type="string" not-null="true"/>
+		<property name="filename" type="string" not-null="true"/>
+		<property name="upload" type="java.util.Date" not-null="true"/>
+		<many-to-one name="blog" class="Blog" column="bid" cascade="save-update" lazy="false" not-null="true"/>
+	</class>
+</hibernate-mapping>

@@ -16,4 +16,7 @@
 	<bean id="illustrationDao" class="org.fczm.blog.dao.impl.IllustrationDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="attachmentDao" class="org.fczm.blog.dao.impl.AttachmentDaoHibernate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 </beans>

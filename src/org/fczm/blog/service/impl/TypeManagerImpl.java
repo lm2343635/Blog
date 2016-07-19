@@ -11,7 +11,7 @@ import org.fczm.blog.domain.Blog;
 import org.fczm.blog.domain.Type;
 import org.fczm.blog.service.TypeManager;
 import org.fczm.blog.service.util.ManagerTemplate;
-import org.fczm.blog.servlet.PhotoServlet;
+import org.fczm.blog.servlet.UploadServlet;
 import org.fczm.common.util.FileTool;
 
 public class TypeManagerImpl extends ManagerTemplate implements TypeManager {
@@ -49,7 +49,7 @@ public class TypeManagerImpl extends ManagerTemplate implements TypeManager {
 			return;
 		}
 		for(Blog blog: blogDao.findByType(type)) {
-			FileTool.delFolder(rootPath+PhotoServlet.UPLOAD_FOLDER+File.separator+blog.getBid());
+			FileTool.delFolder(rootPath+UploadServlet.UPLOAD_FOLDER+File.separator+blog.getBid());
 			blogDao.delete(blog);
 		}
 		typeDao.delete(type);

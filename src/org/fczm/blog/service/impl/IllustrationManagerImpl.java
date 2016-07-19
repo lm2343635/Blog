@@ -10,7 +10,7 @@ import org.fczm.blog.domain.Blog;
 import org.fczm.blog.domain.Illustration;
 import org.fczm.blog.service.IllustrationManager;
 import org.fczm.blog.service.util.ManagerTemplate;
-import org.fczm.blog.servlet.PhotoServlet;
+import org.fczm.blog.servlet.UploadServlet;
 
 public class IllustrationManagerImpl extends ManagerTemplate implements IllustrationManager {
 
@@ -34,7 +34,7 @@ public class IllustrationManagerImpl extends ManagerTemplate implements Illustra
 			return false;
 		}
 		String rootPath=WebContextFactory.get().getServletContext().getRealPath("/");
-		String filePath=rootPath+File.separator+PhotoServlet.UPLOAD_FOLDER+File.separator
+		String filePath=rootPath+File.separator+UploadServlet.UPLOAD_FOLDER+File.separator
 				+illustration.getBlog().getBid()+File.separator+illustration.getFilename();
 		File file = new File(filePath);
 		if(file.delete()||!file.exists()) {
