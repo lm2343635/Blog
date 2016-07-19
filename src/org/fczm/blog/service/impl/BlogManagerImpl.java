@@ -10,7 +10,7 @@ import org.fczm.blog.domain.Blog;
 import org.fczm.blog.domain.Type;
 import org.fczm.blog.service.BlogManager;
 import org.fczm.blog.service.util.ManagerTemplate;
-import org.fczm.blog.servlet.PhotoServlet;
+import org.fczm.blog.servlet.UploadServlet;
 import org.fczm.common.util.DateTool;
 import org.fczm.common.util.FileTool;
 import org.fczm.common.util.MengularDocument;
@@ -114,7 +114,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 		type.setCount(type.getCount()-1);
 		typeDao.update(type);
 		String rootPath=WebContextFactory.get().getServletContext().getRealPath("/")+File.separator;
-		FileTool.delFolder(rootPath+PhotoServlet.UPLOAD_FOLDER+File.separator+blog.getBid());
+		FileTool.delFolder(rootPath+UploadServlet.UPLOAD_FOLDER+File.separator+blog.getBid());
 		blogDao.delete(blog);
 	}
 
@@ -168,7 +168,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 	public boolean deleteCover(String bid) {
 		Blog blog=blogDao.get(bid);
 		String rootPath=WebContextFactory.get().getServletContext().getRealPath("/")+File.separator;
-		if(new File(rootPath+File.separator+PhotoServlet.UPLOAD_FOLDER+File.separator+blog.getBid()+File.separator+blog.getCover()).delete()) {
+		if(new File(rootPath+File.separator+UploadServlet.UPLOAD_FOLDER+File.separator+blog.getBid()+File.separator+blog.getCover()).delete()) {
 			blog.setCover(null);
 			blogDao.update(blog);
 			return true;

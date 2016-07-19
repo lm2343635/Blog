@@ -96,9 +96,10 @@
                         <div class="progress-bar progress-bar-striped active"></div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-md-6">
+                <div class="col-xs-12 col-md-4">
                     <span id="blog-upload-cover-button" class="btn btn-success btn-lg btn-block fileinput-button">
-                        <span>Upload Blog Cover Photo<small>（Reupload will replace old cover）</small></span>
+                        <p>Upload Blog Cover Photo</p>
+                        <p>(Reupload will replace old cover)</p>
                         <input id="blog-upload-cover" type="file" name="files[]">
                     </span>
                 </div>
@@ -109,8 +110,11 @@
                 	<small class="text-muted">Set as blog backgroud</small><br>
                 	<input id="blog-cover-bgenable" type="checkbox" data-size="mini" data-on-text="Enable" data-off-text="Disable">
                 </div>
-                <div class="col-xs-12 col-md-2">
+                <div class="col-xs-6 col-md-2">
                     <button id="blog-illustration" class="btn btn-warning btn-block btn-lg" data-toggle="modal" data-target="#illustration-modal">Illustrations</button>
+                </div>
+                <div class="col-xs-6 col-md-2">
+                    <button id="blog-attachment" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#attachment-modal">Attachments</button>
                 </div>
             </div> 
         </div>
@@ -147,6 +151,26 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="attachment-modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Manage Attachments</h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary fileinput-button">
+                            <span>Upload Attachment</span>
+                            <input id="upload-attachment" type="file" name="files[]">
+                        </button>
                     </div>
                 </div>
             </div>

@@ -36,6 +36,7 @@
 				<value>org/fczm/blog/domain/Comment.hbm.xml</value>
 				<value>org/fczm/blog/domain/Type.hbm.xml</value>
 				<value>org/fczm/blog/domain/Illustration.hbm.xml</value>
+				<value>org/fczm/blog/domain/Attachment.hbm.xml</value>
 			</list>
 		</property>
 		<!-- 定义Hibernate的SessionFactory的属性 -->
@@ -80,6 +81,7 @@
 		<property name="commentDao" ref="commentDao"/>
 		<property name="typeDao" ref="typeDao"/>
 		<property name="illustrationDao" ref="illustrationDao"/>
+		<property name="attachmentDao" ref="attachmentDao"/>
 	</bean>	
 	
  	<!-- 定义业务逻辑组件 -->
@@ -90,6 +92,7 @@
 	<bean id="commentManager" class="org.fczm.blog.service.impl.CommentManagerImpl" parent="managerTemplate"/>
 	<bean id="typeManager" class="org.fczm.blog.service.impl.TypeManagerImpl" parent="managerTemplate"/>
 	<bean id="illustrationManager" class="org.fczm.blog.service.impl.IllustrationManagerImpl" parent="managerTemplate"/>
+	<bean id="attachmentManager" class="org.fczm.blog.service.impl.AttachmentManagerImpl" parent="managerTemplate"/>
 	<!-- 配置管理员用户名密码 -->
 	<bean id="adminManager" class="org.fczm.blog.service.impl.AdminManagerImpl">
 		<property name="username" value="admin"></property>
