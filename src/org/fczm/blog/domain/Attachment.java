@@ -9,6 +9,7 @@ public class Attachment implements Serializable {
 	private String aid;
 	private String store;
 	private String filename;
+	private Long size;
 	private Date upload;
 	private Blog blog;
 	
@@ -29,6 +30,12 @@ public class Attachment implements Serializable {
 	}
 	public void setFilename(String filename) {
 		this.filename = filename;
+	}
+	public Long getSize() {
+		return size;
+	}
+	public void setSize(Long size) {
+		this.size = size;
 	}
 	public Date getUpload() {
 		return upload;

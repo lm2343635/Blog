@@ -174,6 +174,7 @@ public class UploadServlet extends HttpServlet {
 		Attachment attachment = new Attachment();
 		attachment.setFilename(fileName);
 		attachment.setStore(UUID.randomUUID().toString());
+		attachment.setSize(new File(filepath + File.separator + attachment.getFilename()).length());
 		attachment.setUpload(new Date());
 		attachment.setBlog(blog);
 		String aid = attachmentDao.save(attachment);
@@ -185,7 +186,7 @@ public class UploadServlet extends HttpServlet {
 		FileTool.modifyFileName(filepath, fileName, attachment.getStore());
 		data.put("aid", aid);
 		data.put("filename", attachment.getFilename());
-		data.put("upload", attachment.getUpload());
+		data.put("size", attachment.getSize());
 		data.put("success", true);
 		response.getWriter().print(data.toString());
 	}
@@ -227,7 +228,7 @@ public class UploadServlet extends HttpServlet {
 				    fileName = fileName.substring(fileName.lastIndexOf(File.separator)+1, fileName.length());               
 				    if(!fileName.equals("")&&!(fileName == null)) {
 				    	//如果fileName为null，即没有上传文件  
-				    	File uploadedFile = new File(filepath,fileName);  
+				    	File uploadedFile = new File(filepath, fileName);  
 				        try {
 				        	item.write(uploadedFile);
 				        } catch (Exception e) {

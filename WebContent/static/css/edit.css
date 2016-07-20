@@ -12,7 +12,9 @@
     font-size: 4em;
 }
 
-#blog-cover-img, #blog-cover-progress {
+#blog-cover-img, 
+#blog-cover-progress,
+#attachment-upload-progress {
 	display: none;
 }
 

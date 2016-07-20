@@ -9,6 +9,7 @@
 		</id>
 		<property name="store" type="string" not-null="true"/>
 		<property name="filename" type="string" not-null="true"/>
+		<property name="size" type="long" not-null="true"/>
 		<property name="upload" type="java.util.Date" not-null="true"/>
 		<many-to-one name="blog" class="Blog" column="bid" cascade="save-update" lazy="false" not-null="true"/>
 	</class>
