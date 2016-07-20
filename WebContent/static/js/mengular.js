@@ -21,6 +21,10 @@ var LEFT_SPLIT_STR = "${",
 	$.fn["mengular"] = function(template, data) {
 		//get outer html content of element
 		template = $(template).prop("outerHTML");
+		if(template == null) {
+			console.log("Cannot find element by this template selector.");
+			return;
+		}
 		//get placeholders by spliting html document
 		var htmlArray = template.split(LEFT_SPLIT_STR);
 		var placeholders = new Array();

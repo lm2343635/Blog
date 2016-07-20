@@ -1,5 +1,6 @@
 var bid=request("bid");
 var MIN_EDIT_HEIGHT=380;
+var units = ["B", "KB", "MB", "GB", "TB"];
 
 $(document).ready(function() {
 	checkAdminSession(function() {
@@ -49,6 +50,12 @@ $(document).ready(function() {
 
 	        //加载插图
 	        loadIllustrators();
+
+            AttachmentManager.getAttachmentsByBid(bid, function(attachments) {
+                for(var i in attachments) {
+                    putAttachment(attachments[i]);
+                }
+            });
 		});		
 	});
 	
@@ -166,10 +173,17 @@ $(document).ready(function() {
         url:"../UploadServlet?task=uploadAttachment&bid="+bid,
         dataType:"json",
         done:function(e,data){
-
+            console.log(data.result);
+            putAttachment(data.result);
+            setTimeout(function(){
+                $("#attachment-upload-progress").hide(1500);
+            },2000);    
         },
         progressall:function(e,data){
-            
+            $("#attachment-upload-progress").show();
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $("#attachment-upload-progress .progress-bar").css("width",progress + "%");
+            $("#attachment-upload-progress .progress-bar").text(progress + "%");
         }
     });
 });
@@ -274,4 +288,31 @@ function loadIllustrators() {
     		});
     	}
 	});
+}
+
+function putAttachment(attachment) {
+    var size = attachment.size;
+    var unit = 0;
+    while(size >= 1024) {
+        size /= 1024;
+        unit ++;
+    }
+
+    $("#attachment-list").mengular(".attachment-list-template", {
+        aid: attachment.aid,
+        filename: attachment.filename,
+        upload: attachment.upload == null ? new Date(): attachment.upload,
+        size: size.toFixed(2) + " " + units[unit]
+    });
+
+    $("#" + attachment.aid + " .attachment-list-remove").click(function() {
+        var aid = $(this).mengularId();
+        AttachmentManager.removeAttachment(aid, function(success) {
+            if(success) {
+                $("#" + aid).remove();
+            } else {
+                $.messager.popup("Delete attachement failed.")
+            }
+        });
+    });
 }

@@ -8,6 +8,7 @@ public class AttachmentBean {
 	
 	private String aid;
 	private String filename;
+	private long size;
 	private Date upload;
 	private String bid;
 	
@@ -22,6 +23,12 @@ public class AttachmentBean {
 	}
 	public void setFilename(String filename) {
 		this.filename = filename;
+	}
+	public long getSize() {
+		return size;
+	}
+	public void setSize(long size) {
+		this.size = size;
 	}
 	public Date getUpload() {
 		return upload;
@@ -40,6 +47,7 @@ public class AttachmentBean {
 		super();
 		this.aid = attachment.getAid();
 		this.filename = attachment.getFilename();
+		this.size = attachment.getSize();
 		this.upload = attachment.getUpload();
 		this.bid = attachment.getBlog().getBid();
 	}

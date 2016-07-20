@@ -32,6 +32,7 @@
         <script src="../dwr/interface/AdminManager.js"></script>
         <script src="../dwr/interface/TypeManager.js"></script>
         <script src="../dwr/interface/IllustrationManager.js"></script>
+        <script src="../dwr/interface/AttachmentManager.js"></script>
         <script src="../static/js/edit.js"></script>
     </head>
     <body>
@@ -165,54 +166,21 @@
                     </div>
                     <div class="modal-body">
                         <div id="attachment-list">
-                            <div class="row attachment-list-template">
+                            <div id="${aid}$" class="row mengular-template attachment-list-template">
                                 <div class="col-xs-12 col-sm-10">
-                                    <h4>Attachment Sample.java</h4>
-                                    <small>Uploaded at 2016-09-02 13:22:34</small>
+                                    <h4>${filename}$</h4>
+                                    <small class="text-muted">Uploaded at ${upload}$, ${size}$</small>
                                 </div>
                                 <div class="col-xs-2 col-sm-1">
-                                    <i class="fa fa-lg fa-trash text-danger"></i>
+                                    <i class="fa fa-trash text-danger attachment-list-remove"></i>
                                 </div>
                                 <div class="col-xs-2 col-sm-1">
-                                    <i class="fa fa-lg fa-download text-primary"></i>
+                                    <i class="fa fa-download text-primary attachment-list-download"></i>
                                 </div>
                             </div>
-                            <div class="row attachment-list-template">
-                                <div class="col-xs-12 col-sm-10">
-                                    <h4>Attachment Sample.java</h4>
-                                    <small>Uploaded at 2016-09-02 13:22:34</small>
-                                </div>
-                                <div class="col-xs-2 col-sm-1">
-                                    <i class="fa fa-lg fa-trash text-danger"></i>
-                                </div>
-                                <div class="col-xs-2 col-sm-1">
-                                    <i class="fa fa-lg fa-download text-primary"></i>
-                                </div>
-                            </div>
-                            <div class="row attachment-list-template">
-                                <div class="col-xs-12 col-sm-10">
-                                    <h4>Attachment Sample.java</h4>
-                                    <small>Uploaded at 2016-09-02 13:22:34</small>
-                                </div>
-                                <div class="col-xs-2 col-sm-1">
-                                    <i class="fa fa-lg fa-trash text-danger"></i>
-                                </div>
-                                <div class="col-xs-2 col-sm-1">
-                                    <i class="fa fa-lg fa-download text-primary"></i>
-                                </div>
-                            </div>
-                            <div class="row attachment-list-template">
-                                <div class="col-xs-12 col-sm-10">
-                                    <h4>Attachment Sample.java</h4>
-                                    <small>Uploaded at 2016-09-02 13:22:34</small>
-                                </div>
-                                <div class="col-xs-2 col-sm-1">
-                                    <i class="fa fa-lg fa-trash text-danger"></i>
-                                </div>
-                                <div class="col-xs-2 col-sm-1">
-                                    <i class="fa fa-lg fa-download text-primary"></i>
-                                </div>
-                            </div>
+                        </div>
+                        <div id="attachment-upload-progress" class="progress">
+                            <div class="progress-bar progress-bar-striped active"></div>
                         </div>
                     </div>
                     <div class="modal-footer">
