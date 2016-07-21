@@ -1,6 +1,7 @@
 package org.fczm.blog.servlet;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Iterator;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -56,10 +58,14 @@ public class UploadServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		task = request.getParameter("task");
-		
+		rootPath = getServletConfig().getServletContext().getRealPath("/")+File.separator;
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		template = (ManagerTemplate)context.getBean("managerTemplate");
 		switch (task) {
-		case "clearUnusefulPhotos":
-			clearUnusefulPhotos(request,response);
+		case "download":
+			download(request,response);
 			break;
 		default:
 			break;
@@ -72,7 +78,7 @@ public class UploadServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/json");
-		WebApplicationContext context =  WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		template = (ManagerTemplate)context.getBean("managerTemplate");
 		switch (task) {
 		case "uploadBlogCover":
@@ -242,9 +248,32 @@ public class UploadServlet extends HttpServlet {
 		}
 		return fileName;
 	}
-
-	private void clearUnusefulPhotos(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
-	}
 	
+	private void download(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String aid = request.getParameter("aid");
+		AttachmentDao attachmentDao = template.getAttachmentDao();
+		Attachment attachment = attachmentDao.get(aid);
+		if(attachment == null) {
+			response.getWriter().println("No attachement file for this id.");
+			return;
+		}
+		FileInputStream in = null;
+		ServletOutputStream out = null;
+		response.setContentType("application/x-msdownload; charset=UTF-8");
+		response.setHeader("Content-disposition","attachment; filename=" + new String(attachment.getFilename().getBytes("UTF-8"),"iso8859-1"));
+		try {
+			in = new FileInputStream(createUploadPhotoDirectory(attachment.getBlog().getBid()) + File.separator + attachment.getStore());
+			out = response.getOutputStream();
+			out.flush();
+			int aRead = 0;
+			while((aRead = in.read()) != -1 & in != null) {
+				out.write(aRead);
+			}
+			out.flush();
+			in.close();
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -87,6 +87,25 @@
 	color: #444;
 }
 
+#attachment-list .row {
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+#attachment-list h4 {
+    font-size: 18px;
+}
+
+#attachment-list i {
+    font-size: 30px;
+    line-height: 61px;
+    cursor: pointer;
+}
+
+#attachment-list hr {
+	margin-bottom: 0px;
+}
+
 #language-selector {
 	margin: 30px 0;
 }

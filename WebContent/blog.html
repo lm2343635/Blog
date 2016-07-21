@@ -53,6 +53,25 @@
 		<div class="container">
 			<div id="blog-content">#{blog-content}</div>
 			<div class="page-header">
+				<h3 class="text-info">@{blog_attachments}</h3>
+			</div>
+			<div id="attachment-list">
+				<!--mengular-start="attachment-list"-->
+				<div id="#{aid}#" class="row">
+                    <div class="col-xs-10 col-sm-11">
+                        <h4>#{filename}#</h4>
+                        <small class="text-muted">@{blog_attachment_upload_at} #{upload}#, #{size}#</small>
+                    </div>
+                    <div class="col-xs-2 col-sm-1">
+						<i class="fa fa-download text-primary attachment-list-download" data-id="#{aid}#"></i>
+                    </div>
+                    <div class="col-xs-12">
+                    	<hr>
+                    </div>
+                </div>
+                <!--mengular-end-->
+			</div>
+			<div class="page-header">
                 <h3 class="text-info">@{blog_visitor_comments}</h3>
             </div>
             <h4 id="no-comment" class="text-muted">@{blog_no_comments}</h4>
