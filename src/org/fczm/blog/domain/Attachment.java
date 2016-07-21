@@ -6,6 +6,8 @@ import java.util.Date;
 public class Attachment implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	public static final String [] units = {"B", "KB", "MB", "GB", "TB"};
+	
 	private String aid;
 	private String store;
 	private String filename;
@@ -48,6 +50,16 @@ public class Attachment implements Serializable {
 	}
 	public void setBlog(Blog blog) {
 		this.blog = blog;
+	}
+	
+	public String getSizeString() {
+	    long size = this.size;
+	    int unit = 0;
+	    while(size >= 1024) {
+	        size /= 1024;
+	        unit ++;
+	    }
+	    return size + " " + units[unit];
 	}
 
 }

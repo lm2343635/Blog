@@ -1,18 +1,24 @@
-var bid=getPageName();
+var bid = getPageName();
+var downloadingAid;
 
 $(document).ready(function() {
 	i18n("blog", "../static/i18n/", [
-		  "blog_blogs",
-		  "blog_created_in",
-		  "blog_readers",
-		  "blog_attachments",
-		  "blog_attachment_upload_at",
-		  "blog_visitor_comments",
-		  "blog_no_comments",
-		  "blog_write_comment",
-		  "blog_your_name",
-		  "blog_comment_submit",
-		  "blog_back"
+		"blog_blogs",
+		"blog_created_in",
+		"blog_readers",
+		"blog_attachments",
+		"blog_attachment_upload_at",
+		"blog_attachment_size",
+		"blog_visitor_comments",
+		"blog_no_comments",
+		"blog_write_comment",
+		"blog_your_name",
+		"blog_comment_submit",
+		"blog_back",
+		"blog_download_attachment_title",
+		"blog_download_attachment_validate",
+		"blog_download_attachment_close",
+		"blog_download_attachment_submit"
 	]);
 
 	$("#add-comment-content").summernote({
@@ -20,6 +26,10 @@ $(document).ready(function() {
 		height: 300,
 		toolbar: SUMMERNOTE_TOOLBAR_TEXT_ONLY
 	});
+
+	if(!$("#attachment-list div").html()) {
+		$("#blog-attachment-title").remove();
+	}
 
 	//加载博文信息
 	BlogManager.getBlogInfo(bid, true, function(blog) {
@@ -52,7 +62,6 @@ $(document).ready(function() {
 	$("#add-comment-submit").click(function() {
 		var name = $("#add-comment-name").val();
 		var content = $("#add-comment-content").summernote("code");
-		console.log(content);
 		if(content == null || content == "") {
 			$.messager.popup("Wirte some comment, please!");
 			return;
@@ -65,9 +74,35 @@ $(document).ready(function() {
 		});
 	});
 	
+	//为下载按钮绑定事件
 	$("#attachment-list .attachment-list-download").each(function() {
 		$(this).click(function() {
-			location.href = "../UploadServlet?task=download&aid="+$(this).attr("data-id");
+			downloadingAid = $(this).attr("data-id");
+			AttachmentManager.getAttachment(downloadingAid, function(attachment) {
+				fillText({
+					"attachment-download-filename": attachment.filename,
+					"attachment-download-upload": attachment.upload,
+					"attachment-download-size": attachment.size
+				});
+			});
+			$("#attachment-download-validate").attr("src", "../ValidateCodeServlet");
+			$("#attachment-download-modal").modal("show");
+		});
+	});
+	
+	//提交验证码，开始下载
+	$("#attachment-download-submit").click(function() {
+		var code = $("#attachment-download-code").val();
+		if(code == "" || code == null) {
+			return;
+		}
+		AttachmentManager.validateDownload(downloadingAid, code, function(token) {
+			if(token == null) {
+				$("#attachment-download-code").addClass("error");
+				return;
+			}
+			$("#attachment-download-code").removeClass("error");
+			location.href = "../UploadServlet?task=downloadByToken&token=" + token;
 		});
 	});
 });

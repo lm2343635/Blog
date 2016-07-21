@@ -1,6 +1,5 @@
 var bid=request("bid");
 var MIN_EDIT_HEIGHT=380;
-var units = ["B", "KB", "MB", "GB", "TB"];
 
 $(document).ready(function() {
 	checkAdminSession(function() {
@@ -290,18 +289,11 @@ function loadIllustrators() {
 }
 
 function putAttachment(attachment) {
-    var size = attachment.size;
-    var unit = 0;
-    while(size >= 1024) {
-        size /= 1024;
-        unit ++;
-    }
-
     $("#attachment-list").mengular(".attachment-list-template", {
         aid: attachment.aid,
         filename: attachment.filename,
         upload: attachment.upload == null ? new Date(): attachment.upload,
-        size: size.toFixed(2) + " " + units[unit]
+        size: attachment.size
     });
 
     $("#" + attachment.aid + " .attachment-list-remove").click(function() {

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -25,6 +27,8 @@ import org.fczm.blog.dao.IllustrationDao;
 import org.fczm.blog.domain.Attachment;
 import org.fczm.blog.domain.Blog;
 import org.fczm.blog.domain.Illustration;
+import org.fczm.blog.service.AdminManager;
+import org.fczm.blog.service.AttachmentManager;
 import org.fczm.blog.service.util.ManagerTemplate;
 import org.fczm.common.util.FileTool;
 import org.fczm.common.util.ImageTool;
@@ -64,8 +68,11 @@ public class UploadServlet extends HttpServlet {
 		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		template = (ManagerTemplate)context.getBean("managerTemplate");
 		switch (task) {
-		case "download":
-			download(request,response);
+		case "downloadByAid":
+			downloadByAid(request,response);
+			break;
+		case "downloadByToken":
+			downloadByToken(request, response);
 			break;
 		default:
 			break;
@@ -249,8 +256,29 @@ public class UploadServlet extends HttpServlet {
 		return fileName;
 	}
 	
-	private void download(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	private void downloadByAid(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		if(request.getSession().getAttribute(AdminManager.ADMIN_FLAG) == null) {
+			response.sendRedirect("downloadError.html");
+			return;
+		}
 		String aid = request.getParameter("aid");
+		download(aid, response);
+	}
+
+	@SuppressWarnings("unchecked")
+	private void downloadByToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
+		Map<String, String> token =  (Map<String, String>) session.getAttribute(AttachmentManager.DOWNLOAD_TOKEN);
+		if(token == null || !request.getParameter("token").equals(token.get("token"))) {
+			response.sendRedirect("admin/sessionError.html");
+			return;
+		}
+		session.removeAttribute(AttachmentManager.DOWNLOAD_TOKEN);
+		String aid = token.get("aid");
+		download(aid, response);
+	}
+	
+	private void download(String aid, HttpServletResponse response) throws IOException {
 		AttachmentDao attachmentDao = template.getAttachmentDao();
 		Attachment attachment = attachmentDao.get(aid);
 		if(attachment == null) {
@@ -276,4 +304,5 @@ public class UploadServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+
 }

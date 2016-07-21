@@ -24,6 +24,7 @@
 		<script src="dwr/engine.js"></script>
         <script src="dwr/interface/BlogManager.js"></script>
         <script src="dwr/interface/CommentManager.js"></script>
+        <script src="dwr/interface/AttachmentManager.js"></script>
 		<script src="static/js/blog.js"></script>
 	</head>
 	<body>
@@ -52,7 +53,7 @@
 		</div>
 		<div class="container">
 			<div id="blog-content">#{blog-content}</div>
-			<div class="page-header">
+			<div id="blog-attachment-title" class="page-header">
 				<h3 class="text-info">@{blog_attachments}</h3>
 			</div>
 			<div id="attachment-list">
@@ -60,7 +61,7 @@
 				<div id="#{aid}#" class="row">
                     <div class="col-xs-10 col-sm-11">
                         <h4>#{filename}#</h4>
-                        <small class="text-muted">@{blog_attachment_upload_at} #{upload}#, #{size}#</small>
+                        <small class="text-muted">@{blog_attachment_upload_at} #{upload}#, @{blog_attachment_size} #{size}#</small>
                     </div>
                     <div class="col-xs-2 col-sm-1">
 						<i class="fa fa-download text-primary attachment-list-download" data-id="#{aid}#"></i>
@@ -110,5 +111,31 @@
 				<label>Copyright of Meng Li © 2014-2016. All rights reserved. 鄂ICP备15010075号-1</label>
 			</div>
 		</div>
+		<div id="attachment-download-modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">@{blog_download_attachment_title}</h4>
+                    </div>
+                    <div class="modal-body">
+                    	<h4 id="attachment-download-filename"></h4>
+                    	<small>@{blog_attachment_upload_at} <span id="attachment-download-upload"></span>, @{blog_attachment_size} <span id="attachment-download-size"></span></small>
+                    	<div class="row">
+                    		<div class="col-xs-7 col-sm-9">
+                    			<input id="attachment-download-code" type="text" placeholder="@{blog_download_attachment_validate}">
+                    		</div>
+                    		<div class="col-xs-5 col-sm-3">
+                    			<img id="attachment-download-validate">
+                    		</div>
+                    	</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default pull-left" data-dismiss="modal">@{blog_download_attachment_close}</button>
+                        <button id="attachment-download-submit" class="btn btn-primary">@{blog_download_attachment_submit}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</body>
 </html>
