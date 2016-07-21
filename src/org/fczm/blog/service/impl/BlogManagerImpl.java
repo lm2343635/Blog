@@ -2,10 +2,13 @@ package org.fczm.blog.service.impl;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.directwebremoting.WebContextFactory;
 import org.fczm.blog.bean.BlogBean;
+import org.fczm.blog.domain.Attachment;
 import org.fczm.blog.domain.Blog;
 import org.fczm.blog.domain.Type;
 import org.fczm.blog.service.BlogManager;
@@ -155,13 +158,23 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 			return;
 		}
 		String rootPath=WebContextFactory.get().getServletContext().getRealPath("/")+File.separator;
-		MengularDocument document=new MengularDocument(rootPath, blogOutputFolderDepth,"blog.html");
+		MengularDocument document=new MengularDocument(rootPath, blogOutputFolderDepth,"blog.html", "blogs/"+blog.getBid());
+		List<Map<String, String>> items = new ArrayList<>();
+		for(Attachment attachment: attachmentDao.findByBlog(blog)) {
+			Map<String, String> item = new HashMap<>();
+			item.put("aid", attachment.getAid());
+			item.put("filename", attachment.getFilename());
+			item.put("upload", DateTool.formatDate(attachment.getUpload(), DateTool.DATE_HOUR_MINUTE_SECOND_FORMAT));
+			item.put("size", String.valueOf(attachment.getSize()));
+			items.add(item);
+		}
+		document.setLoop("attachment-list", items);
 		document.setValue("blog-date", DateTool.formatDate(blog.getDate(), DateTool.DATE_HOUR_MINUTE_FORMAT));
 		document.setValue("blog-title", blog.getTitle());
 		document.setValue("blog-tid", blog.getType().getTid());
 		document.setValue("blog-tname", blog.getType().getTname());
 		document.setValue("blog-content", blog.getContent());
-		document.output(blogOutputFolder+blog.getBid());
+		document.output();
 	}
 
 	@Override

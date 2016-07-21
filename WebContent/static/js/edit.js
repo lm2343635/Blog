@@ -173,7 +173,6 @@ $(document).ready(function() {
         url:"../UploadServlet?task=uploadAttachment&bid="+bid,
         dataType:"json",
         done:function(e,data){
-            console.log(data.result);
             putAttachment(data.result);
             setTimeout(function(){
                 $("#attachment-upload-progress").hide(1500);
