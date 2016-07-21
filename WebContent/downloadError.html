@@ -19,13 +19,26 @@
             	width: 100%;
             }
         </style>
+        <script src="static/js/jquery.min.js"></script>
+        <script src="static/js/jquery.i18n.properties.min.js"></script>
+        <script src="static/js/mengular.js"></script>
+        <script src="static/js/tools.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                i18n("downloadError", "static/i18n/", [
+                    "download_error_title",
+                    "download_error_content",
+                    "download_error_back"
+                ], "download_error_title");
+            });
+        </script>
     </head>
     <body>
     	<div class="container">
     	    <div class="jumbotron">
-	            <h1>Download Error</h1>
-	            <p class="text-warning">Your download URL is timeout or has been used. In order to download attachment file, download from blog page, because download URL is created by server dynamically.</p>
-	            <p><a class="btn btn-warning btn-lg" href="blogs.html">Back to Blogs</a></p>
+	            <h1>@{download_error_title}</h1>
+	            <p class="text-warning">@{download_error_content}</p>
+	            <p><a class="btn btn-warning btn-lg" href="blogs.html">@{download_error_back}</a></p>
 	        </div>
     	</div>
     </body>

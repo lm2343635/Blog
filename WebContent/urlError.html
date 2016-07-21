@@ -3,7 +3,6 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <title>URL Error</title>
         <link href="static/images/favicon.ico" type="image/x-icon" rel="icon"> 
         <link href="static/css/bootstrap.min.css" rel="stylesheet">
         <style type="text/css">
@@ -19,13 +18,26 @@
             	width: 100%;
             }
         </style>
+        <script src="static/js/jquery.min.js"></script>
+        <script src="static/js/jquery.i18n.properties.min.js"></script>
+        <script src="static/js/mengular.js"></script>
+        <script src="static/js/tools.js"></script>
+        <script type="text/javascript">
+        	$(document).ready(function() {
+                i18n("urlError", "static/i18n/", [
+                    "url_error_title",
+                    "url_error_content",
+                    "url_error_back"
+                ], "url_error_title");
+        	});
+        </script>
     </head>
     <body>
     	<div class="container">
     	    <div class="jumbotron">
-	            <h1>URL Error</h1>
-	            <p class="text-warning">Yout URL is wrong, this may caused by parameters, check your URL and try again!</p>
-	            <p><a class="btn btn-warning btn-lg" href="index.html">Back to Index</a></p>
+	            <h1>@{url_error_title}</h1>
+	            <p class="text-warning">@{url_error_content}</p>
+	            <p><a class="btn btn-warning btn-lg" href="index.html">@{url_error_back}</a></p>
 	        </div>
     	</div>
     </body>

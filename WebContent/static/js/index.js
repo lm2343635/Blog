@@ -15,5 +15,5 @@ $(document).ready(function($) {
 		 "index_motto",
 		 "index_contact",
 		 "index_address"
-   	]);
+   	], "index_title");
 });
