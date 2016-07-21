@@ -5,8 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.fczm.blog.service.AdminManager;
 import org.fczm.blog.service.util.ManagerTemplate;
 
-public class AdminManagerImpl extends ManagerTemplate implements AdminManager 
-{
+public class AdminManagerImpl extends ManagerTemplate implements AdminManager {
 	private String username;
 	private String password;
 
@@ -20,7 +19,7 @@ public class AdminManagerImpl extends ManagerTemplate implements AdminManager
 
 	@Override
 	public boolean login(String username, String password, HttpSession session) {
-		if(username.equals(this.username)&&password.equals(this.password)) {
+		if(username.equals(this.username) && password.equals(this.password)) {
 			session.setAttribute(ADMIN_FLAG, username);
 			return true;
 		}	
@@ -29,8 +28,9 @@ public class AdminManagerImpl extends ManagerTemplate implements AdminManager
 
 	@Override
 	public String checkSession(HttpSession session) {
-		if(session.getAttribute(ADMIN_FLAG)==null)
+		if(session.getAttribute(ADMIN_FLAG) == null) {
 			return null;
+		}
 		return (String)session.getAttribute(ADMIN_FLAG);
 	}
 

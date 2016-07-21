@@ -106,6 +106,29 @@
 	margin-bottom: 0px;
 }
 
+#attachment-download-modal .modal-body .row {
+	margin-top: 20px;
+	border-top: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+#attachment-download-modal .error {
+	color: #ff0000;	
+}
+
+#attachment-download-validate {
+	max-width: 100%;
+}
+
+#attachment-download-code {
+	border: 0;
+    font-size: 20px;
+    color: #777;
+    outline: none;
+    width: 100%;
+    line-height: 48px;
+}
+
 #language-selector {
 	margin: 30px 0;
 }

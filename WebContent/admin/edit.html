@@ -152,7 +152,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -175,7 +175,7 @@
                                     <i class="fa fa-trash text-danger attachment-list-remove"></i>
                                 </div>
                                 <div class="col-xs-2 col-sm-1">
-                                    <a href="../UploadServlet?task=download&aid=${aid}$" target="_blank">
+                                    <a href="../UploadServlet?task=downloadByAid&aid=${aid}$" target="_blank">
                                         <i class="fa fa-download text-primary attachment-list-download"></i>
                                     </a>
                                 </div>
@@ -186,8 +186,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary fileinput-button">
+                        <button class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary fileinput-button">
                             <span>Upload Attachment</span>
                             <input id="upload-attachment" type="file" name="files[]">
                         </button>

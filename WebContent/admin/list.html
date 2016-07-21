@@ -46,7 +46,7 @@
             </nav>
             <div class="page-header">
             	<div class="row">
-            		<div class="col-md-3">
+            		<div class="col-sm-3">
             			<div id="type-list" class="btn-group">
 							<button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<span class="text-muted">All Types</span>
@@ -58,7 +58,7 @@
 							</ul>
 						</div>
             		</div>
-            		<div class="col-md-9">
+            		<div class="col-sm-9">
 						<input id="search-blog" type="text" placeholder="Search Title" class="text-info text-center">
 		                <i id="search-cancel" class="fa fa-times-circle-o fa-lg pull-right text-muted"></i>
 		                <a id="add-blog" href="add.html"><i class="fa fa-plus fa-lg pull-right add-icon"></i></a>
@@ -68,12 +68,12 @@
             <div id="blog-list" class="list-group">
                 <div id="${bid}$" class="list-group-item mengular-template blog-list-template">
                     <div class="row">
-                        <div class="col-xs-12 col-sm-2"><h5>${date}$</h5></div>
-                        <div class="col-xs-12 col-sm-7">
+                        <div class="col-xs-12 col-sm-3 col-md-2"><h5>${date}$</h5></div>
+                        <div class="col-xs-12 col-sm-5 col-md-7">
                             <p class="blog-type-tname"><small class="text-muted">${tname}$</small></p>
                             <a href="../blogs/${bid}$" target="_blank"><span class="blog-list-title">${title}$</span></a>
                         </div>
-                        <div class="col-xs-12 col-sm-3">
+                        <div class="col-xs-12 col-sm-4 col-md-3">
                         	<div class="hidden-xs"></div>
                             <a href="edit.html?bid=${bid}$" class="blog-accessory" title="Edit this blog"><i class="fa fa-gear fa-lg text-success"></i></a>
                             <span class="blog-list-regenerate" title="Regenerate this blog."><i class="fa fa-refresh fa-lg text-primary blog-accessory"></i></span>

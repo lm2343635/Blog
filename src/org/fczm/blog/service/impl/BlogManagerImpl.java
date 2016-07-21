@@ -165,7 +165,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 			item.put("aid", attachment.getAid());
 			item.put("filename", attachment.getFilename());
 			item.put("upload", DateTool.formatDate(attachment.getUpload(), DateTool.DATE_HOUR_MINUTE_SECOND_FORMAT));
-			item.put("size", String.valueOf(attachment.getSize()));
+			item.put("size", String.valueOf(attachment.getSizeString()));
 			items.add(item);
 		}
 		document.setLoop("attachment-list", items);
