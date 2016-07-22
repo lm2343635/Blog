@@ -81,7 +81,7 @@ $(document).ready(function() {
 			AttachmentManager.getAttachment(downloadingAid, function(attachment) {
 				fillText({
 					"attachment-download-filename": attachment.filename,
-					"attachment-download-upload": attachment.upload,
+					"attachment-download-upload": attachment.upload.format(DATE_HOUR_MINUTE_SECOND_FORMAT),
 					"attachment-download-size": attachment.size
 				});
 			});
