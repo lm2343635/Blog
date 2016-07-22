@@ -199,7 +199,7 @@ public class UploadServlet extends HttpServlet {
 		FileTool.modifyFileName(filepath, fileName, attachment.getStore());
 		data.put("aid", aid);
 		data.put("filename", attachment.getFilename());
-		data.put("size", attachment.getSize());
+		data.put("size", attachment.getSizeString());
 		data.put("success", true);
 		response.getWriter().print(data.toString());
 	}
@@ -287,7 +287,7 @@ public class UploadServlet extends HttpServlet {
 		}
 		FileInputStream in = null;
 		ServletOutputStream out = null;
-		response.setContentType("application/x-msdownload; charset=UTF-8");
+		response.setContentType("application/octet-stream; charset=UTF-8");
 		response.setHeader("Content-disposition","attachment; filename=" + new String(attachment.getFilename().getBytes("UTF-8"),"iso8859-1"));
 		try {
 			in = new FileInputStream(createUploadPhotoDirectory(attachment.getBlog().getBid()) + File.separator + attachment.getStore());
