@@ -258,7 +258,7 @@ public class UploadServlet extends HttpServlet {
 	
 	private void downloadByAid(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		if(request.getSession().getAttribute(AdminManager.ADMIN_FLAG) == null) {
-			response.sendRedirect("downloadError.html");
+			response.sendRedirect("sessionError.html");
 			return;
 		}
 		String aid = request.getParameter("aid");
@@ -270,7 +270,7 @@ public class UploadServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Map<String, String> token =  (Map<String, String>) session.getAttribute(AttachmentManager.DOWNLOAD_TOKEN);
 		if(token == null || !request.getParameter("token").equals(token.get("token"))) {
-			response.sendRedirect("admin/sessionError.html");
+			response.sendRedirect("downloadError.html");
 			return;
 		}
 		session.removeAttribute(AttachmentManager.DOWNLOAD_TOKEN);
