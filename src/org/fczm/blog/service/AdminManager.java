@@ -12,7 +12,7 @@ public interface AdminManager
 	 * @param password
 	 * @return
 	 */
-	boolean login(String username,String password, HttpSession session);
+	boolean login(String admin,String password, HttpSession session);
 	
 	/**
 	 * 

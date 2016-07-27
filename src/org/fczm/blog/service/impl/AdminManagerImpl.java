@@ -1,26 +1,28 @@
 package org.fczm.blog.service.impl;
 
+import java.io.File;
+
 import javax.servlet.http.HttpSession;
 
+import org.directwebremoting.WebContextFactory;
 import org.fczm.blog.service.AdminManager;
 import org.fczm.blog.service.util.ManagerTemplate;
+import org.fczm.common.util.JsonTool;
 
 public class AdminManagerImpl extends ManagerTemplate implements AdminManager {
-	private String username;
-	private String password;
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	private String admin = null;
+	private String password = null;
 
 	@Override
-	public boolean login(String username, String password, HttpSession session) {
-		if(username.equals(this.username) && password.equals(this.password)) {
-			session.setAttribute(ADMIN_FLAG, username);
+	public boolean login(String admin, String password, HttpSession session) {
+		if(this.admin == null || this.password == null) {
+			String pathname = WebContextFactory.get().getServletContext().getRealPath("/") + File.separator + "WEB-INF/config.json";
+			JsonTool config = new JsonTool(pathname);
+			this.admin = config.getString("admin");
+			this.password = config.getString("password");
+		}
+		if(admin.equals(this.admin) && password.equals(this.password)) {
+			session.setAttribute(ADMIN_FLAG, admin);
 			return true;
 		}	
 		return false;
