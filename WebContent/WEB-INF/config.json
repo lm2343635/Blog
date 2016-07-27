@@ -1,4 +1,6 @@
 {
-	"admin": "lm2343635",
-	"password": "522697460"
+    "admin":"admin",
+    "password":"123",
+    "adminPageSize": 15,
+    "userPageSize": 15
 }

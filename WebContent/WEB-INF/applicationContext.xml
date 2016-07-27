@@ -93,9 +93,5 @@
 	<bean id="typeManager" class="org.fczm.blog.service.impl.TypeManagerImpl" parent="managerTemplate"/>
 	<bean id="illustrationManager" class="org.fczm.blog.service.impl.IllustrationManagerImpl" parent="managerTemplate"/>
 	<bean id="attachmentManager" class="org.fczm.blog.service.impl.AttachmentManagerImpl" parent="managerTemplate"/>
-	<!-- 配置管理员用户名密码 -->
-	<bean id="adminManager" class="org.fczm.blog.service.impl.AdminManagerImpl">
-		<property name="username" value="admin"></property>
-		<property name="password" value="123"></property>
-	</bean> 
+	<bean id="adminManager" class="org.fczm.blog.service.impl.AdminManagerImpl"></bean> 
 </beans>
