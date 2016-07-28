@@ -20,4 +20,33 @@ public interface AdminManager
 	 * @return
 	 */
 	String checkSession(HttpSession session);
+	
+	/**
+	 * @param username
+	 * @param password
+	 */
+	boolean addAdmin(String username, String password);
+	
+	/**
+	 * @param username
+	 * @param oldPassword
+	 * @param newPassword
+	 */
+	boolean modifyPassword(String username, String oldPassword, String newPassword);
+	
+	/**
+	 * @param username
+	 * @param password
+	 */
+	boolean removeAdmin(String username, String password);
+	
+	/**
+	 * @return
+	 */
+	int getAdminPageSize();
+	
+	/**
+	 * @return
+	 */
+	int getUserPageSize(); 
 }
