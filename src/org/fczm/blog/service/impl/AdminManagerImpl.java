@@ -9,22 +9,26 @@ import org.fczm.blog.service.AdminManager;
 import org.fczm.blog.service.util.ManagerTemplate;
 import org.fczm.common.util.JsonTool;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 public class AdminManagerImpl extends ManagerTemplate implements AdminManager {
-	private String admin = null;
-	private String password = null;
+	private	JSONArray admins = null;
 
 	@Override
-	public boolean login(String admin, String password, HttpSession session) {
-		if(this.admin == null || this.password == null) {
+	public boolean login(String username, String password, HttpSession session) {
+		if(admins == null) {
 			String pathname = WebContextFactory.get().getServletContext().getRealPath("/") + File.separator + "WEB-INF/config.json";
 			JsonTool config = new JsonTool(pathname);
-			this.admin = config.getString("admin");
-			this.password = config.getString("password");
+			admins = config.getJSONArray("admins");
 		}
-		if(admin.equals(this.admin) && password.equals(this.password)) {
-			session.setAttribute(ADMIN_FLAG, admin);
-			return true;
-		}	
+		for(int i=0; i<admins.size(); i++) {
+			JSONObject admin = (JSONObject) admins.get(i);
+			if(username.equals(admin.getString("username"))&&password.equals(admin.getString("password"))) {
+				session.setAttribute(ADMIN_FLAG, username);
+				return true;
+			}	
+		}
 		return false;
 	}
 
