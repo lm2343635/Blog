@@ -116,7 +116,7 @@ public class UploadServlet extends HttpServlet {
 		String fileName = upload(request, filepath);
 		//删除旧封面
 		if(blog.getCover() != null) {
-			new File(filepath+File.separator+blog.getCover()).delete();
+			new File(filepath + File.separator + blog.getCover()).delete();
 		}
 		blog.setCover(UUID.randomUUID().toString()+PHOTO_FORMAT);
 		blogDao.update(blog);
@@ -148,7 +148,7 @@ public class UploadServlet extends HttpServlet {
 		String filepath = createUploadPhotoDirectory(bid);
 		String fileName = upload(request, filepath);
 		Illustration illustration = new Illustration();
-		illustration.setFilename(UUID.randomUUID().toString()+PHOTO_FORMAT);
+		illustration.setFilename(UUID.randomUUID().toString() + PHOTO_FORMAT);
 		illustration.setUpload(new Date());
 		illustration.setBlog(blog);
 		String iid = illustrationDao.save(illustration);
@@ -160,11 +160,11 @@ public class UploadServlet extends HttpServlet {
 		//文件改名
 		FileTool.modifyFileName(filepath, fileName, illustration.getFilename());
 		//当上传图片宽度大于规定的最大宽度，就等比例压缩图片
-		String pathname = filepath+File.separator+illustration.getFilename();
+		String pathname = filepath + File.separator + illustration.getFilename();
 		int width = ImageTool.getImageWidth(pathname);
 		int height = ImageTool.getImageHeight(pathname);
-		if(width>MAX_IMAGE_WIDTH) {
-			ImageTool.createThumbnail(pathname, MAX_IMAGE_WIDTH, MAX_IMAGE_WIDTH*height/width, 0);
+		if(width > MAX_IMAGE_WIDTH) {
+			ImageTool.createThumbnail(pathname, MAX_IMAGE_WIDTH, MAX_IMAGE_WIDTH * height / width, 0);
 		}
 		data.put("filename", illustration.getFilename());
 		data.put("success", true);
@@ -210,7 +210,7 @@ public class UploadServlet extends HttpServlet {
 	 * @return 上传文件路径
 	 */
 	private String createUploadPhotoDirectory(String id) {
-		String filepath = rootPath+UPLOAD_FOLDER+File.separator+id;
+		String filepath = rootPath+UPLOAD_FOLDER + File.separator + id;
 		//如果不存文件夹，新建文件夹
 		FileTool.createDirectoryIfNotExsit(filepath);
 		return filepath;
@@ -226,7 +226,7 @@ public class UploadServlet extends HttpServlet {
 	private String upload(HttpServletRequest request,String filepath) {
 		String fileName = null;
 		DiskFileItemFactory factory  =  new DiskFileItemFactory();//为文件对象产生工厂对象。
-		factory.setSizeThreshold(1024*4); //设置缓冲区的大小，此处为4kb
+		factory.setSizeThreshold(1024 * 4); //设置缓冲区的大小，此处为4kb
 		factory.setRepository(new File(filepath)); //设置上传文件的目的地
 		ServletFileUpload upload  =  new ServletFileUpload(factory);//产生servlet上传对象
 		upload.setSizeMax(FILE_MAX_SIZE);  //设置上传文件的大小
