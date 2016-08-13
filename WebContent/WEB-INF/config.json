@@ -1,7 +1,7 @@
 {
 	"admins": [{
 		"username":"admin",
-    	"password":"123",
+    	"password":"123"
 	}],  
     "adminPageSize": 15,
     "userPageSize": 15

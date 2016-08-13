@@ -1,3 +1,7 @@
+var languages = {
+	"en-US": "English",
+	"zh-CN": "简体中文"
+}
 
 //“年-月-日”格式
 var YEAR_MONTH_DATE_FORMAT="yyyy-MM-dd";
@@ -342,15 +346,13 @@ function i18n(name, path, keys, title) {
         language: getLanguage(),
         callback : function() {
         	if(title!=null) {
-        		document.title=$.i18n.prop(title);
+        		document.title = $.i18n.prop(title);
         	}
         	var data={
-    			language_broswer: $.i18n.prop("language_"+getLanguageUnderline()),
-    			language_en_US: $.i18n.prop("language_en_US"),
-    			language_zh_CN: $.i18n.prop("language_zh_CN")
+    			language_broswer: languages[getLanguage()]
     		}
         	for(var i in keys) {
-        		data[keys[i]]=$.i18n.prop(keys[i]);
+        		data[keys[i]] = $.i18n.prop(keys[i]);
         	}
 			$("body").fillText(data);
         }
