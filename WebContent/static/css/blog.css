@@ -151,3 +151,9 @@
 #language-selector .dropdown-menu a:hover {
 	background: rgba(200, 200, 200, 0.5);
 }
+
+@media screen and (max-width: 768px) {
+	img {
+		width: 100% !important;
+	}
+}
