@@ -27,17 +27,18 @@ $(document).ready(function() {
 		toolbar: SUMMERNOTE_TOOLBAR_TEXT_ONLY
 	});
 
-	if(!$("#attachment-list div").html()) {
+	if (!$("#attachment-list div").html()) {
 		$("#blog-attachment-title").remove();
 	}
 
 	//加载博文信息
 	BlogManager.getBlogInfo(bid, true, function(blog) {
-		if(blog == null) {
+		if (blog == null) {
 			location.href = "../urlError.html";
 			return;
 		}
-		$("#home .top-header").css("background", blog.cover!=null&&blog.bgenable ?  "../cover/"+blog.cover: "../static/images/header-bg.jpg");
+		var cover = (blog.cover != null && blog.bgenable)?  "../upload/" + blog.bid + "/" + blog.cover: "../static/images/header-bg.jpg";
+		$("#home .top-header").css("background", "url(" + cover + ") no-repeat");
 		$("#blog-info").fillText({
 			blog_readers_count: blog.readers
 		});
