@@ -62,7 +62,7 @@ public class UploadServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		task = request.getParameter("task");
-		rootPath = getServletConfig().getServletContext().getRealPath("/")+File.separator;
+		rootPath = getServletConfig().getServletContext().getRealPath("/") + File.separator;
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
@@ -107,7 +107,7 @@ public class UploadServlet extends HttpServlet {
 		String bid = request.getParameter("bid");
 		BlogDao blogDao = template.getBlogDao();
 		Blog blog = blogDao.get(bid);
-		if(blog == null) {
+		if (blog == null) {
 			data.put("success", false);
 			response.getWriter().print(data.toString());
 			return;
@@ -115,10 +115,10 @@ public class UploadServlet extends HttpServlet {
 		String filepath = createUploadPhotoDirectory(bid);
 		String fileName = upload(request, filepath);
 		//删除旧封面
-		if(blog.getCover() != null) {
+		if (blog.getCover() != null) {
 			new File(filepath + File.separator + blog.getCover()).delete();
 		}
-		blog.setCover(UUID.randomUUID().toString()+PHOTO_FORMAT);
+		blog.setCover(UUID.randomUUID().toString() + PHOTO_FORMAT);
 		blogDao.update(blog);
 		//文件改名
 		FileTool.modifyFileName(filepath, fileName, blog.getCover());
@@ -126,7 +126,7 @@ public class UploadServlet extends HttpServlet {
 		String pathname = filepath+File.separator+blog.getCover();
 		int width = ImageTool.getImageWidth(pathname);
 		int height = ImageTool.getImageHeight(pathname);
-		if(width>MAX_IMAGE_WIDTH) {
+		if (width > MAX_IMAGE_WIDTH) {
 			ImageTool.createThumbnail(pathname, MAX_IMAGE_WIDTH, MAX_IMAGE_WIDTH*height/width, 0);
 		}
 		data.put("cover", blog.getCover());
@@ -210,7 +210,7 @@ public class UploadServlet extends HttpServlet {
 	 * @return 上传文件路径
 	 */
 	private String createUploadPhotoDirectory(String id) {
-		String filepath = rootPath+UPLOAD_FOLDER + File.separator + id;
+		String filepath = rootPath + UPLOAD_FOLDER + File.separator + id;
 		//如果不存文件夹，新建文件夹
 		FileTool.createDirectoryIfNotExsit(filepath);
 		return filepath;
