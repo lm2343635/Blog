@@ -38,7 +38,7 @@ $(document).ready(function() {
 			return;
 		}
 		var cover = (blog.cover != null && blog.bgenable)?  "../upload/" + blog.bid + "/" + blog.cover: "../static/images/header-bg.jpg";
-		$("#home .top-header").css("background", "url(" + cover + ") no-repeat");
+		$("#home .top-header").css("background-image", "url(" + cover + ")");
 		$("#blog-info").fillText({
 			blog_readers_count: blog.readers
 		});
