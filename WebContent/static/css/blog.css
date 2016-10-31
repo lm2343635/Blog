@@ -1,6 +1,9 @@
 #home .top-header {
 	min-height: 250px;
 	padding-top: 8px;
+	background-repeat:no-repeat;
+	background-position:center;
+	background-size:cover;
 }
 
 #home h1 {
