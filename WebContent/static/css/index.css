@@ -1,3 +1,10 @@
+#home .top-header {
+	background:url(../images/header-bg.jpg);
+	background-repeat:no-repeat;
+	background-position:center;
+	background-size:cover;
+}
+
 #home .home {
 	line-height: 45px; 
 	font-size: 25px;
