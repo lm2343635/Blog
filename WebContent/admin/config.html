@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title>Config Manager</title>
+        <link href="../static/images/favicon.ico" type="image/x-icon" rel="icon"> 
+        <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+        <link href="../static/css/mengular.css" rel="stylesheet">
+        <link href="../static/css/config.css" rel="stylesheet">
+        <script src="../static/js/jquery.min.js"></script>
+        <script src="../static/js/bootstrap.min.js"></script>
+        <script src="../static/js/jquery.bootstrap.min.js"></script>
+        <script src="../static/js/mengular.js"></script>
+        <script src="../dwr/engine.js"></script>
+        <script src="../dwr/interface/AdminManager.js"></script>
+        <script src="../dwr/interface/ConfigManager.js"></script>
+        <script src="../static/js/tools.js"></script>
+        <script src="../static/js/config.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div id="head">
+                <script>$("#head").load("head.html");</script>
+            </div>
+            <div id="config-list">
+                <div id="${itemName}$" class="panel panel-default mengular-template config-list-template">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">${itemName}$</h3>
+                    </div>
+                    <div class="list-group">
+                        <div id=${attributeName}$ class="list-group-item mengular-template attribute-list-template">
+                            <div class="form-group">
+                                <label class="col-xs-12 col-sm-3 control-label">${attributeName}$</label>
+                                <div class="col-xs-12 col-sm-9">
+                                    <input type="text" class="form-control" value="${attributeValue}$">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <button id="refresh-config" class="btn btn-block btn-lg btn-default">Refresh Config File</button>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-block btn-lg btn-default" data-toggle="modal" data-target="#admins-modal">Admin</button>
+                </div>
+                <div class="col-md-4">
+                    <button id="save-config" class="btn btn-block btn-lg btn-success">Save</button>
+                </div>
+            </div>
+        </div>
+        <div id="admins-modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="glyphicon glyphicon-remove pull-right" data-dismiss="modal"></span>
+                        <h4 class="modal-title">Admin List</h4>
+                    </div>
+                    <table id="admin-list" class="table">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Password</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="${username}$" class="mengular-template admin-list-template">
+                                <td>${username}$</td>
+                                <td>${password}$</td>
+                                <td class="admin-list-remove"><i class="fa fa-lg fa-trash text-danger"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-lg fa-user"></i></span>
+                                    <input id="admin-username" type="text" class="form-control" placeholder="Username">
+                                    <span class="input-group-addon"><i class="fa fa-lg fa-lock"></i></span>
+                                    <input id="admin-password" type="text" class="form-control" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <button id="add-admin-submit" type="button" class="btn btn-success">Add Admin</button>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

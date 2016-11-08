@@ -13,13 +13,13 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 public class AdminManagerImpl extends ManagerTemplate implements AdminManager {
-	private static final String CONFIG_PATH = "WEB-INF/config.json";
+
 	private JsonTool config = null;
 	private	JSONArray admins = null;
 	
 	public JsonTool getConfig() {
 		if(config == null) {
-			String pathname = WebContextFactory.get().getServletContext().getRealPath("/") + File.separator + CONFIG_PATH;
+			String pathname = WebContextFactory.get().getServletContext().getRealPath("/") + File.separator + ADMIN_CONFIG_PATH;
 			config = new JsonTool(pathname);
 		}
 		return config;
@@ -30,6 +30,14 @@ public class AdminManagerImpl extends ManagerTemplate implements AdminManager {
 			admins = getConfig().getJSONArray("admins");
 		}
 		return admins;
+	}
+	
+	@Override
+	public JSONArray getAdmins(HttpSession session) {
+		if (checkSession(session) == null) {
+			return null;
+		}
+		return getAdmins();
 	}
 	
 	@Override
@@ -54,7 +62,10 @@ public class AdminManagerImpl extends ManagerTemplate implements AdminManager {
 	}
 
 	@Override
-	public boolean addAdmin(String username, String password) {
+	public boolean addAdmin(String username, String password, HttpSession session) {
+		if (checkSession(session) == null) {
+			return false;
+		}
 		if(username.equals("") || password.equals("")) {
 			return false;
 		}
@@ -74,7 +85,10 @@ public class AdminManagerImpl extends ManagerTemplate implements AdminManager {
 	}
 
 	@Override
-	public boolean modifyPassword(String username, String oldPassword, String newPassword) {
+	public boolean modifyPassword(String username, String oldPassword, String newPassword, HttpSession session) {
+		if (checkSession(session) == null) {
+			return false;
+		}
 		getAdmins();
 		for(int i = 0; i < admins.size(); i++) {
 			JSONObject admin = admins.getJSONObject(i);
@@ -90,11 +104,14 @@ public class AdminManagerImpl extends ManagerTemplate implements AdminManager {
 	}
 
 	@Override
-	public boolean removeAdmin(String username, String password) {
+	public boolean removeAdmin(String username, HttpSession session) {
+		if (checkSession(session) == null) {
+			return false;
+		}
 		getAdmins();
 		for(int i = 0; i < admins.size(); i++) {
 			JSONObject admin = admins.getJSONObject(i);
-			if(username.equals(admin.getString("username")) && password.equals(admin.getString("password"))) {
+			if(username.equals(admin.getString("username"))) {
 				admins.remove(i);
 				config.put("admins", admins);
 				config.writeObject();
@@ -102,14 +119,6 @@ public class AdminManagerImpl extends ManagerTemplate implements AdminManager {
 			}
 		}
 		return false;
-	}
-
-	public int getAdminPageSize() {
-		return config.getInt("adminPageSize");
-	}
-
-	public int getUserPageSize() {
-		return config.getInt("userPageSize");
 	}
 
 }

@@ -4,6 +4,48 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+	<!-- 定义数据源Bean，使用C3P0数据源实现 -->
+	<!-- 设置连接数据库的驱动、URL、用户名、密码 连接池最大连接数、最小连接数、初始连接数等参数 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close" 
+		p:driverClass="com.mysql.jdbc.Driver"
+		p:jdbcUrl="jdbc:mysql://127.0.0.1:3306/blog?characterEncoding=utf-8"
+		p:user="root" 
+		p:password=""
+		p:maxPoolSize="100"
+		p:minPoolSize="1" 
+		p:initialPoolSize="1" 
+		p:maxIdleTime="20" />
+
+	<!-- 定义Hibernate的SessionFactory -->
+	<!-- 依赖注入数据源，注入正是上面定义的dataSource -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"
+		p:dataSource-ref="dataSource">
+		<!-- mappingResouces属性用来列出全部映射文件 -->
+		<property name="mappingResources">
+			<list>
+				<!-- 以下用来列出Hibernate映射文件 -->
+				<value>org/fczm/blog/domain/Blog.hbm.xml</value>
+				<value>org/fczm/blog/domain/Comment.hbm.xml</value>
+				<value>org/fczm/blog/domain/Type.hbm.xml</value>
+				<value>org/fczm/blog/domain/Illustration.hbm.xml</value>
+				<value>org/fczm/blog/domain/Attachment.hbm.xml</value>
+			</list>
+		</property>
+		<!-- 定义Hibernate的SessionFactory的属性 -->
+		<property name="hibernateProperties">
+			<!-- 指定数据库方言、是否自动建表 是否生成SQL语句等 -->
+			<value>
+				hibernate.dialect=org.hibernate.dialect.MySQLDialect
+				hibernate.hbm2ddl.auto=update
+				#hibernate.show_sql=true
+				#hibernate.format_sql=true
+			</value>
+		</property>
+	</bean>
+	
 	<bean id="blogDao" class="org.fczm.blog.dao.impl.BlogDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>

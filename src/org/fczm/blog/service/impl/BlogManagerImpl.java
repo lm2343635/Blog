@@ -32,7 +32,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 
 	@Override
 	public String addBlog(String title, String date, String tid) {
-		Blog blog=new Blog();
+		Blog blog = new Blog();
 		blog.setTitle(title);
 		blog.setContent("");
 		blog.setDate(DateTool.transferDate(date, DateTool.DATE_HOUR_MINUTE_FORMAT));
@@ -104,34 +104,39 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 
 	@Override
 	public void backgroudSaving(String bid, String content) {
-		Blog blog=blogDao.get(bid);
+		Blog blog = blogDao.get(bid);
 		blog.setContent(content);
 		blogDao.update(blog);
 	}
 
 	@Override
 	public void removeBlog(String bid) {
-		Blog blog=blogDao.get(bid);
+		Blog blog = blogDao.get(bid);
 		//博文分类数量减1
-		Type type=blog.getType();
-		type.setCount(type.getCount()-1);
+		Type type = blog.getType();
+		type.setCount(type.getCount() - 1);
 		typeDao.update(type);
-		String rootPath=WebContextFactory.get().getServletContext().getRealPath("/")+File.separator;
-		FileTool.delFolder(rootPath+UploadServlet.UPLOAD_FOLDER+File.separator+blog.getBid());
+		String rootPath = WebContextFactory.get().getServletContext().getRealPath("/") + File.separator;
+		FileTool.delFolder(rootPath + UploadServlet.UPLOAD_FOLDER + File.separator + blog.getBid());
 		blogDao.delete(blog);
 	}
 
 	@Override
 	public int getBlogsCount(String title, String tid) {
-		Type type= (tid==null)? null: typeDao.get(tid);
+		Type type = (tid==null)? null: typeDao.get(tid);
 		return blogDao.getBlogsCount(title, type);
+	}
+	
+	@Override
+	public int getBlogsPageSize() {
+		return getPageSizeConfig().getInt("blogPageSize");
 	}
 
 	@Override
 	public List<BlogBean> searchBlogs(String title, String tid, int page, int pageSize) {
-		int offset=(page-1)*pageSize;
-		List<BlogBean> blogs=new ArrayList<>();
-		Type type= (tid==null)? null: typeDao.get(tid);
+		int offset = (page - 1) * pageSize;
+		List<BlogBean> blogs = new ArrayList<>();
+		Type type = (tid==null)? null: typeDao.get(tid);
 		for(Blog blog: blogDao.findByTitle(title, type, offset, pageSize)) {
 			blogs.add(new BlogBean(blog));
 		}
@@ -140,8 +145,8 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 
 	@Override
 	public void regenerate() {
-		String rootPath=WebContextFactory.get().getServletContext().getRealPath("/")+File.separator;
-		FileTool.delAllFile(rootPath+blogOutputFolder);
+		String rootPath = WebContextFactory.get().getServletContext().getRealPath("/") + File.separator;
+		FileTool.delAllFile(rootPath + blogOutputFolder);
 		for(Blog blog: blogDao.findAll()) {
 			generateBlog(blog);
 		}
@@ -149,16 +154,16 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 	
 	@Override
 	public void regenerateBlog(String bid) {
-		Blog blog=blogDao.get(bid);
+		Blog blog = blogDao.get(bid);
 		generateBlog(blog);
 	}
 	
 	private void generateBlog(Blog blog) {
-		if(blog==null) {
+		if (blog == null) {
 			return;
 		}
-		String rootPath=WebContextFactory.get().getServletContext().getRealPath("/")+File.separator;
-		MengularDocument document=new MengularDocument(rootPath, blogOutputFolderDepth,"blog.html", "blogs/"+blog.getBid());
+		String rootPath = WebContextFactory.get().getServletContext().getRealPath("/") + File.separator;
+		MengularDocument document = new MengularDocument(rootPath, blogOutputFolderDepth,"blog.html", "blogs/" + blog.getBid());
 		List<Map<String, String>> items = new ArrayList<>();
 		for(Attachment attachment: attachmentDao.findByBlog(blog)) {
 			Map<String, String> item = new HashMap<>();
@@ -179,9 +184,11 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 
 	@Override
 	public boolean deleteCover(String bid) {
-		Blog blog=blogDao.get(bid);
-		String rootPath=WebContextFactory.get().getServletContext().getRealPath("/")+File.separator;
-		if(new File(rootPath+File.separator+UploadServlet.UPLOAD_FOLDER+File.separator+blog.getBid()+File.separator+blog.getCover()).delete()) {
+		Blog blog = blogDao.get(bid);
+		String rootPath = WebContextFactory.get().getServletContext().getRealPath("/") + File.separator;
+		String coverPath = rootPath + File.separator + UploadServlet.UPLOAD_FOLDER
+				+ File.separator+blog.getBid() + File.separator+blog.getCover();
+		if (new File(coverPath).delete()) {
 			blog.setCover(null);
 			blogDao.update(blog);
 			return true;
@@ -191,8 +198,8 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
 
 	@Override
 	public void setBgenable(String bid, boolean bgenable) {
-		Blog blog=blogDao.get(bid);
-		if(blog==null) {
+		Blog blog = blogDao.get(bid);
+		if (blog == null) {
 			return;
 		}
 		blog.setBgenable(bgenable);
