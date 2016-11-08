@@ -23,25 +23,9 @@
     </head>
     <body>
         <div class="container">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed glyphicon glyphicon-th-list" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"></button>
-                        <a class="navbar-brand" href="javascript:history.go(0)">Blog System</a>
-                    </div>
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul id="list-nav" class="nav navbar-nav logined-btn">
-                            <li><a href="list.html">List</a></li>
-                            <li class="active"><a href="type.html">Type</a></li>
-                            <li><a href="add.html">Add</a></li>
-                        </ul>
-                        <ul id="list-nav" class="nav navbar-nav navbar-right">
-                            <li><a href="../blogs.html" target="_blank">Blogs</a></li>
-                            <li><a href="../LogoutServlet?task=adminLogout">Exit</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <div id="head">
+                <script>$("#head").load("head.html");</script>
+            </div>
             <div class="page-header">
             	<h3 class="text-center text-muted">Types of Blogs</h3>
                 <i id="add-type" class="fa fa-plus fa-lg pull-right text-primary add-icon" data-toggle="modal" data-target="#add-type-modal"></i>

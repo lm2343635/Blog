@@ -1,0 +1,19 @@
+#config-list .list-group-item {
+    overflow: hidden;
+}
+
+#config-list .list-group-item label {
+	line-height: 29px;
+}
+
+#config-list .list-group-item input {
+	border: none;
+}
+
+#save-config {
+	margin-bottom: 20px;
+}
+
+#admin-list i {
+	cursor: pointer;
+}

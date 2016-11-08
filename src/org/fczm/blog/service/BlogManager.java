@@ -68,6 +68,12 @@ public interface BlogManager {
 	int getBlogsCount(String title, String type);
 	
 	/**
+	 * 获取博客列表页单页长度
+	 * @return
+	 */
+	int getBlogsPageSize();
+	
+	/**
 	 * 查询博客
 	 * @param title 标题
 	 * @param tid 博文分类id

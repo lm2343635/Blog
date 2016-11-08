@@ -1,0 +1,30 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed glyphicon glyphicon-th-list" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"></button>
+            <a class="navbar-brand" href="javascript:history.go(0)">Blog System</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul id="menu-bar" class="nav navbar-nav logined-btn">
+                <li><a href="list.html">List</a></li>
+                <li><a href="types.html">Type</a></li>
+                <li><a href="add.html">Add</a></li>
+                <li><a href="config.html">Config</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="../blogs.html" target="_blank">Blogs</a></li>
+                <li><a href="../LogoutServlet?task=adminLogout">Exit</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<script type="text/javascript">
+    var map = {
+        list: 0,
+        edit: 0,
+        types: 1,
+        add: 2,
+        config: 3
+    }
+    $("#menu-bar>li").eq(map[getPageFullName().split(".")[0]]).addClass("active");
+</script>

@@ -22,6 +22,9 @@
 		<create creator="spring" javascript="AdminManager"> 
 			<param name="beanName" value="adminManager"/>
 		</create>
+		<create creator="spring" javascript="ConfigManager"> 
+			<param name="beanName" value="configManager"/>
+		</create>
 		
 		<convert converter="bean" match="org.fczm.blog.bean.BlogBean"/>
 		<convert converter="bean" match="org.fczm.blog.bean.CommentBean"/>

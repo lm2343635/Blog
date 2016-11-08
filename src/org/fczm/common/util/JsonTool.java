@@ -12,11 +12,7 @@ import net.sf.json.JSONObject;
 
 /**
  * @author 浮尘追梦
- * @version 1.0
- */
-/**
- * @author limeng
- *
+ * @version 1.1
  */
 public class JsonTool {
 	String pathname = null;
@@ -67,11 +63,19 @@ public class JsonTool {
 	}
 	 
 	/**
-	 * 获取json对象
+	 * 获取json设置对象
 	 * @return
 	 */
-	public JSONObject getJSON() {
-		return object;
+	public JSONObject getJSONConfig() {
+		return this.object;
+	}
+	
+	/**
+	 * 设置json设置对象
+	 * @param object
+	 */
+	public void setJSONConfig(JSONObject object) {
+		this.object = object;
 	}
 
     /**

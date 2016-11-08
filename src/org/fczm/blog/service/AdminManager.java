@@ -2,9 +2,18 @@ package org.fczm.blog.service;
 
 import javax.servlet.http.HttpSession;
 
-public interface AdminManager 
-{
-	public static final String ADMIN_FLAG="702764128274710150414868df000d";
+import net.sf.json.JSONArray;
+
+public interface AdminManager {
+	
+	public static final String ADMIN_CONFIG_PATH = "WEB-INF/admin.json";
+	public static final String ADMIN_FLAG = "702764128274710150414868df000d";
+	
+	/**
+	 * @param session
+	 * @return
+	 */
+	JSONArray getAdmins(HttpSession session);
 	
 	/**
 	 * 管理员登陆
@@ -20,33 +29,24 @@ public interface AdminManager
 	 * @return
 	 */
 	String checkSession(HttpSession session);
-	
+
 	/**
 	 * @param username
 	 * @param password
 	 */
-	boolean addAdmin(String username, String password);
+	boolean addAdmin(String username, String password, HttpSession session);
 	
 	/**
 	 * @param username
 	 * @param oldPassword
 	 * @param newPassword
 	 */
-	boolean modifyPassword(String username, String oldPassword, String newPassword);
+	boolean modifyPassword(String username, String oldPassword, String newPassword, HttpSession session);
 	
 	/**
 	 * @param username
 	 * @param password
 	 */
-	boolean removeAdmin(String username, String password);
+	boolean removeAdmin(String username, HttpSession session);
 	
-	/**
-	 * @return
-	 */
-	int getAdminPageSize();
-	
-	/**
-	 * @return
-	 */
-	int getUserPageSize(); 
 }
