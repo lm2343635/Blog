@@ -68,6 +68,10 @@
 	margin-top: 30px;
 }
 
+#blog-content img {
+    box-shadow: 5px 5px 5px #aaa;
+}
+
 #add-comment-name {
 	border: 1px solid #999;
     border-radius: 5px;
@@ -156,7 +160,8 @@
 }
 
 @media screen and (max-width: 768px) {
-	img {
+	#blog-content img {
 		width: 100% !important;
+	    box-shadow: 3px 3px 3px #aaa;
 	}
 }
