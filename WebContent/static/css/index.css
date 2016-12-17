@@ -38,3 +38,81 @@
 #language-selector .dropdown-menu a:hover {
 	background: rgba(200, 200, 200, 0.5);
 }
+
+.deep {
+	background-color: #f2f5f6;	
+}
+
+.block {
+	padding: 3em 0;
+}
+
+#motto {
+    background: url(../images/motto-bg.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 13em 0;
+    min-height: 510px;
+}
+
+#motto p {
+    color: #FFF;
+    font-size: 2em;
+    font-family: 'nexa_boldregular';
+    width: 90%;
+    margin: 0 auto;
+    text-shadow:0 0 0.5em #555, -0 -0 0.5em #555;
+}
+
+#technology {
+	font-family: 'Avenir Next';
+}
+
+#technology h2 {
+	font-size: 6em;
+	font-size: 70px;
+}
+
+#technology img {
+	width: 100%;
+}
+
+#education img {
+	width: 70%;
+    margin: 0 15%;
+}
+
+#skill h1 {
+	margin-bottom: 1em;
+}
+
+#skill h2, #skill h3, #skill p {
+	color: #fff;
+}
+
+#le4 {
+	background-color: #26ae59;
+}
+
+#le3 {
+	background-color: #21bb55;
+}
+
+#le2 {
+	background-color: #31e173;
+}
+
+#le1 {
+	background-color: #5cea94;
+}
+
+#web img {
+	margin: 0 30%;
+    width: 40%;
+}
+
+#web p {
+	color: #31cd69;
+	font-size: 30px;
+}
