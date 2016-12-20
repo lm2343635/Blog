@@ -47,6 +47,10 @@
 	padding: 3em 0;
 }
 
+.block h1 {
+	margin-bottom: 1em;
+}
+
 #motto {
     background: url(../images/motto-bg.jpg);
     background-repeat: no-repeat;
@@ -83,10 +87,6 @@
     margin: 0 15%;
 }
 
-#skill h1 {
-	margin-bottom: 1em;
-}
-
 #skill h2, #skill h3, #skill p {
 	color: #fff;
 }
@@ -115,4 +115,10 @@
 #web p {
 	color: #31cd69;
 	font-size: 30px;
+}
+
+.production img, .production h3, .production ul {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
 }
