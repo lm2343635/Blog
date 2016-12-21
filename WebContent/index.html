@@ -31,6 +31,7 @@
 						<ul class="dropdown-menu" aria-labelledby="language-selector-button">
 							<li data-lang="en-US"><a>English</a></li>
 							<li data-lang="zh-CN"><a>简体中文</a></li>
+							<li data-lang="ja"><a>日本語</a></li>
 						</ul>
 					</div>
 					<div class="top-header-info">
@@ -65,8 +66,8 @@
 			<div class="container">
 				<div class="col-sm-9 col-md-10">
 					<h1>TECHNOLOGY</h1>
-					<p>筑波大学筑波大学・システム情報工学研究科・コンピュータサイエンス専攻</p>
-					<p>分散システムと信頼しないサーバでアプリの構築に注目</p>
+					<p>@{organization}</p>
+					<p>@{research}</p>
 					<a href="https://github.com/lm2343635" target="_block">https://github.com/lm2343635</a>
 				</div>
 				<div class="col-sm-3 col-md-2">
@@ -79,7 +80,7 @@
 		<div id="education" class="block deep">
 			<div class="container">
 				<div class="col-xs-12">
-					<h1 class="text-center">教育経歴</h1>
+					<h1 class="text-center">@{education}</h1>
 				</div>
 				<div class="col-xs-12 col-sm-4">
 					<img src="static/images/nefu.png">
@@ -95,34 +96,34 @@
 		<div id="skill" class="block">
 			<div class="container">
 				<div class="col-xs-12">
-					<h1 class="text-center">プログラミングスキル</h1>
+					<h1 class="text-center">@{programming_skill}</h1>
 				</div>
 				<div id="le4" class="col-xs-6 col-md-3 level">
 					<h2>Le.4</h2>
 					<h4>Java, Objective-C</h4>
-					<p>利用するだけでなくライブラリ構築等ができる</p>
+					<p>@{le4}</p>
 				</div>
 				<div id="le3" class="col-xs-6 col-md-3 level">
 					<h2>Le.3</h2>
 					<h4>JavaScript, HTML, CSS</h4>
-					<p>リファレンスがなくても利用できる</p>
+					<p>@{le3}</p>
 				</div>
 				<div id="le2" class="col-xs-6 col-md-3 level">
 					<h2>Le.2</h2>
 					<h4>C, Swift</h4>
-					<p>リファレンスがあれば利用可能</p>
+					<p>@{le2}</p>
 				</div>
 				<div id="le1" class="col-xs-6 col-md-3 level">
 					<h2>Le.1</h2>
 					<h4>C++, C#</h4>
-					<p>授業等で利用したことがある</p>
+					<p>@{le1}</p>
 				</div>
 			</div>
 		</div>
 		<div class="block deep programming">
 			<div class="container">
 				<div class="col-xs-12">
-					<h1 class="text-center">Webアプリケーション</h1>
+					<h1 class="text-center">@{web_application}</h1>
 				</div>
 				<div class="col-xs-6 col-sm-3">
 					<img src="static/images/java.png">
@@ -145,7 +146,7 @@
 		<div class="block production">
 			<div class="container">
 				<div class="col-xs-12">
-					<h1 class="text-center">ブログ記事<img src="static/images/java.png" class="devlang"></h1>
+					<h1 class="text-center">@{blog}<img src="static/images/java.png" class="devlang"></h1>
 				</div>
 				<div class="col-sm-6 col-md-4">
 					<img src="static/images/blog1.png" class="screenshoot">
@@ -154,14 +155,13 @@
 					<img src="static/images/blog1.png" class="screenshoot">
 				</div>
 				<div class="col-sm-8 col-md-4">
-					<h3>個人ホームページ</h3>
-					<h3>ブログ記事システム</h3>
+					<h3>@{blog_title}</h3>
 					<ul>
-						<li>記事の分類の追加と変更、削除</li> 
-						<li>記事の追加と変更、削除</li>
-						<li>記事に画像と添付ファイルを追加</li>
-						<li>キーワードで記事を検索</li>
-						<li>レビューとコメント</li>
+						<li>@{blog_introdution_1}</li> 
+						<li>@{blog_introdution_2}</li> 
+						<li>@{blog_introdution_3}</li> 
+						<li>@{blog_introdution_4}</li> 
+						<li>@{blog_introdution_5}</li> 
 					</ul>
 				</div>
 				<div class="col-sm-4 col-md-4">
@@ -172,14 +172,14 @@
 		</div>
 		<div class="block production deep">
 			<div class="container">
-				<h1 class="text-center">Easy Finance<img src="static/images/java.png" class="devlang"></h1>
+				<h1 class="text-center">@{easy_finance}<img src="static/images/java.png" class="devlang"></h1>
 				<div class="col-sm-4">
-					<h3>個人向け財務管理アプリ</h3>
+					<h3>@{easy_finance_title}</h3>
 					<ul>
-						<li>帳簿を簡単に管理</li> 
-						<li>図で報告の作成</li>
-						<li>何でも記録</li>
-						<li>賢くお金を使える</li>
+						<li>@{easy_finance_introduction_1}</li>
+						<li>@{easy_finance_introduction_2}</li>
+						<li>@{easy_finance_introduction_3}</li>
+						<li>@{easy_finance_introduction_4}</li>
 					</ul>
 					<img src="static/images/easy-qrcode.png" class="qrcode">
 					<a href="http://easy.fczm.pw"><p class="text-center">http://easy.fczm.pw</p></a>
@@ -192,7 +192,7 @@
 		<div class="block programming">
 			<div class="container">
 				<div class="col-xs-12">
-					<h1 class="text-center">iOSアプリケーション</h1>
+					<h1 class="text-center">@{ios_application}</h1>
 				</div>
 				<div class="col-xs-6">
 					<img src="static/images/objc.png">
@@ -207,7 +207,7 @@
 		<div class="block production deep">
 			<div class="container">
 				<div class="col-xs-12">
-					<h1 class="text-center">Rate Assistant<img src="static/images/objc.png" class="devlang"></h1>
+					<h1 class="text-center">@{rate}<img src="static/images/objc.png" class="devlang"></h1>
 				</div>
 				<div class="col-sm-6 col-md-4">
 					<img src="static/images/rate1.png" class="screenshoot">
@@ -216,11 +216,11 @@
 					<img src="static/images/rate2.png" class="screenshoot">
 				</div>
 				<div class="col-sm-8 col-md-4">
-					<h3>為替レート検索と購読アプリ</h3>
+					<h3>@{rate_title}</h3>
 					<ul>
-						<li>自分の国の通貨と関心する通貨の間の為替レートをモニター</li> 
-						<li>設定した閾値に満たすと、ユーザに為替レートの現在値を通知</li>
-						<li>為替レートに関するニュース</li>
+						<li>@{rate_introduction_1}</li>
+						<li>@{rate_introduction_2}</li>
+						<li>@{rate_introduction_3}</li>
 					</ul>
 				</div>
 				<div class="col-sm-4 col-md-4">
@@ -232,7 +232,7 @@
 		<div class="block production">
 			<div class="container">
 				<div class="col-xs-12">
-					<h1 class="text-center">Httper<img src="static/images/swift.png" class="devlang"></h1>
+					<h1 class="text-center">@{httper}<img src="static/images/swift.png" class="devlang"></h1>
 				</div>
 				<div class="col-sm-6 col-md-4">
 					<img src="static/images/httper1.png" class="screenshoot">
@@ -241,11 +241,11 @@
 					<img src="static/images/httper2.png" class="screenshoot">
 				</div>
 				<div class="col-sm-8 col-md-4">
-					<h3>REST APIのテストアプリ</h3>
+					<h3>@{httper_title}</h3>
 					<ul>
-						<li>パソコンがなくてもREST APIをテスト可能</li> 
-						<li>キーボードの拡張</li>
-						<li>サーバで同期の機能を開発中</li>
+						<li>@{httper_introduction_1}</li> 
+						<li>@{httper_introduction_2}</li> 
+						<li>@{httper_introduction_3}</li> 
 					</ul>
 				</div>
 				<div class="col-sm-4 col-md-4">

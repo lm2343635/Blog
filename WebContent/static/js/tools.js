@@ -1,6 +1,7 @@
 var languages = {
 	"en-US": "English",
-	"zh-CN": "简体中文"
+	"zh-CN": "简体中文",
+	"ja": "日本語"
 }
 
 //“年-月-日”格式
