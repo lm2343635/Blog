@@ -4,5 +4,7 @@ encoding//WebContent/static/i18n/blog_zh_CN.properties=UTF-8
 encoding//WebContent/static/i18n/blogs_zh_CN.properties=UTF-8
 encoding//WebContent/static/i18n/downloadError.properties=UTF-8
 encoding//WebContent/static/i18n/downloadError_zh_CN.properties=UTF-8
+encoding//WebContent/static/i18n/index.properties=UTF-8
+encoding//WebContent/static/i18n/index_ja.properties=UTF-8
 encoding//WebContent/static/i18n/index_zh_CN.properties=UTF-8
 encoding//WebContent/static/i18n/urlError_zh_CN.properties=UTF-8
