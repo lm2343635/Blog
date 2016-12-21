@@ -62,15 +62,18 @@
 				<p>@{index_motto}</p>
 			</div>
 		</div>
-		<div id="technology">
+		<div id="technology" class="block">
 			<div class="container">
-				<div class="col-md-10">
-					<h2>TECHNOLOGY</h2>
+				<div class="col-sm-9 col-md-10">
+					<h1>TECHNOLOGY</h1>
 					<p>筑波大学筑波大学・システム情報工学研究科・コンピュータサイエンス専攻</p>
 					<p>分散システムと信頼しないサーバでアプリの構築に注目</p>
+					<a href="https://github.com/lm2343635" target="_block">https://github.com/lm2343635</a>
 				</div>
-				<div class="col-md-2">
-					<img src="static/images/qrcode-github.png"/>
+				<div class="col-sm-3 col-md-2">
+					<a href="https://github.com/lm2343635" target="_block">
+						<img src="static/images/github-qrcode.png" class="qrcode"/>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -79,13 +82,13 @@
 				<div class="col-xs-12">
 					<h1 class="text-center">教育経歴</h1>
 				</div>
-				<div class="col-xs-4">
+				<div class="col-xs-12 col-sm-4">
 					<img src="static/images/nefu.png">
 				</div>
-				<div class="col-xs-4">
+				<div class="col-xs-12 col-sm-4">
 					<img src="static/images/kit.png">
 				</div>
-				<div class="col-xs-4">
+				<div class="col-xs-12 col-sm-4">
 					<img src="static/images/ut.png">
 				</div>
 			</div>
@@ -95,57 +98,61 @@
 				<div class="col-xs-12">
 					<h1 class="text-center">プログラミングスキル</h1>
 				</div>
-				<div id="le4" class="col-xs-6 col-md-3">
+				<div id="le4" class="col-xs-6 col-md-3 level">
 					<h2>Le.4</h2>
-					<h3>Java, Objective-C</h3>
+					<h4>Java, Objective-C</h4>
 					<p>利用するだけでなくライブラリ構築等ができる</p>
 				</div>
-				<div id="le3" class="col-xs-6 col-md-3">
-					<h2>Le.4</h2>
-					<h3>Java, Objective-C</h3>
-					<p>利用するだけでなくライブラリ構築等ができる</p>
+				<div id="le3" class="col-xs-6 col-md-3 level">
+					<h2>Le.3</h2>
+					<h4>JavaScript, HTML, CSS</h4>
+					<p>リファレンスがなくても利用できる</p>
 				</div>
-				<div id="le2" class="col-xs-6 col-md-3">
-					<h2>Le.4</h2>
-					<h3>Java, Objective-C</h3>
-					<p>利用するだけでなくライブラリ構築等ができる</p>
+				<div id="le2" class="col-xs-6 col-md-3 level">
+					<h2>Le.2</h2>
+					<h4>C, Swift</h4>
+					<p>リファレンスがあれば利用可能</p>
 				</div>
-				<div id="le1" class="col-xs-6 col-md-3">
-					<h2>Le.4</h2>
-					<h3>Java, Objective-C</h3>
-					<p>利用するだけでなくライブラリ構築等ができる</p>
+				<div id="le1" class="col-xs-6 col-md-3 level">
+					<h2>Le.1</h2>
+					<h4>C++, C#</h4>
+					<p>授業等で利用したことがある</p>
 				</div>
 			</div>
 		</div>
-		<div id="web" class="block deep">
+		<div class="block deep programming">
 			<div class="container">
 				<div class="col-xs-12">
 					<h1 class="text-center">Webアプリケーション</h1>
 				</div>
-				<div class="col-xs-4">
+				<div class="col-xs-6 col-sm-3">
 					<img src="static/images/java.png">
 					<p class="text-center">Java</p>
 				</div>
-				<div class="col-xs-4">
+				<div class="col-xs-6 col-sm-3">
+					<img src="static/images/html.png">
+					<p class="text-center">HTML</p>
+				</div>
+				<div class="col-xs-6 col-sm-3">
+					<img src="static/images/css.png">
+					<p class="text-center">CSS</p>
+				</div>
+				<div class="col-xs-6 col-sm-3">
 					<img src="static/images/javascript.png">
 					<p class="text-center">JavaScript</p>
-				</div>
-				<div class="col-xs-4">
-					<img src="static/images/html-css.png">
-					<p class="text-center">HTML/CSS</p>
 				</div>
 			</div>
 		</div>
 		<div class="block production">
 			<div class="container">
 				<div class="col-xs-12">
-					<h1 class="text-center">ブログ記事</h1>
+					<h1 class="text-center">ブログ記事<img src="static/images/java.png" class="devlang"></h1>
 				</div>
 				<div class="col-sm-6 col-md-4">
-					<img src="static/images/blog1.png">
+					<img src="static/images/blog1.png" class="screenshoot">
 				</div>
 				<div class="col-sm-6 col-md-4">
-					<img src="static/images/blog1.png">
+					<img src="static/images/blog1.png" class="screenshoot">
 				</div>
 				<div class="col-sm-8 col-md-4">
 					<h3>個人ホームページ</h3>
@@ -159,14 +166,14 @@
 					</ul>
 				</div>
 				<div class="col-sm-4 col-md-4">
-					<img src="static/images/blog-qrcode.png">
+					<img src="static/images/blog-qrcode.png" class="qrcode">
 					<a href="http://fczm.pw"><p class="text-center">http://fczm.pw</p></a>
 				</div>
 			</div>
 		</div>
 		<div class="block production deep">
 			<div class="container">
-				<h1 class="text-center">Easy Finance</h1>
+				<h1 class="text-center">Easy Finance<img src="static/images/java.png" class="devlang"></h1>
 				<div class="col-sm-4">
 					<h3>個人向け財務管理アプリ</h3>
 					<ul>
@@ -175,11 +182,76 @@
 						<li>何でも記録</li>
 						<li>賢くお金を使える</li>
 					</ul>
-					<img src="static/images/easy-qrcode.png">
+					<img src="static/images/easy-qrcode.png" class="qrcode">
 					<a href="http://easy.fczm.pw"><p class="text-center">http://easy.fczm.pw</p></a>
 				</div>
 				<div class="col-sm-8">
-					<img src="static/images/easy.png">
+					<img src="static/images/easy.png" class="screenshoot">
+				</div>
+			</div>
+		</div>
+		<div class="block programming">
+			<div class="container">
+				<div class="col-xs-12">
+					<h1 class="text-center">iOSアプリケーション</h1>
+				</div>
+				<div class="col-xs-6">
+					<img src="static/images/objc.png">
+					<p class="text-center">Objective-C</p>
+				</div>
+				<div class="col-xs-6">
+					<img src="static/images/swift.png">
+					<p class="text-center">Swift</p>
+				</div>
+			</div>
+		</div>
+		<div class="block production deep">
+			<div class="container">
+				<div class="col-xs-12">
+					<h1 class="text-center">Rate Assistant<img src="static/images/objc.png" class="devlang"></h1>
+				</div>
+				<div class="col-sm-6 col-md-4">
+					<img src="static/images/rate1.png" class="screenshoot">
+				</div>
+				<div class="col-sm-6 col-md-4">
+					<img src="static/images/rate2.png" class="screenshoot">
+				</div>
+				<div class="col-sm-8 col-md-4">
+					<h3>為替レート検索と購読アプリ</h3>
+					<ul>
+						<li>自分の国の通貨と関心する通貨の間の為替レートをモニター</li> 
+						<li>設定した閾値に満たすと、ユーザに為替レートの現在値を通知</li>
+						<li>為替レートに関するニュース</li>
+					</ul>
+				</div>
+				<div class="col-sm-4 col-md-4">
+					<img src="static/images/rate-qrcode.png" class="qrcode">
+					<img src="static/images/appstore.png" class="appstore">
+				</div>
+			</div>
+		</div>
+		<div class="block production">
+			<div class="container">
+				<div class="col-xs-12">
+					<h1 class="text-center">Httper<img src="static/images/swift.png" class="devlang"></h1>
+				</div>
+				<div class="col-sm-6 col-md-4">
+					<img src="static/images/httper1.png" class="screenshoot">
+				</div>
+				<div class="col-sm-6 col-md-4">
+					<img src="static/images/httper2.png" class="screenshoot">
+				</div>
+				<div class="col-sm-8 col-md-4">
+					<h3>REST APIのテストアプリ</h3>
+					<ul>
+						<li>パソコンがなくてもREST APIをテスト可能</li> 
+						<li>キーボードの拡張</li>
+						<li>サーバで同期の機能を開発中</li>
+					</ul>
+				</div>
+				<div class="col-sm-4 col-md-4">
+					<img src="static/images/httper-qrcode.png" class="qrcode">
+					<img src="static/images/appstore.png" class="appstore">
 				</div>
 			</div>
 		</div>

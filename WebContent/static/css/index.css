@@ -45,6 +45,7 @@
 
 .block {
 	padding: 3em 0;
+	font-family: 'Avenir Next';
 }
 
 .block h1 {
@@ -69,26 +70,28 @@
     text-shadow:0 0 0.5em #555, -0 -0 0.5em #555;
 }
 
-#technology {
-	font-family: 'Avenir Next';
-}
-
-#technology h2 {
-	font-size: 6em;
-	font-size: 70px;
-}
-
 #technology img {
 	width: 100%;
+	max-width: 150px;
+	margin: 20px auto;
+    display: block;
 }
 
 #education img {
-	width: 70%;
-    margin: 0 15%;
+	width: 80%;
+    max-width: 160px;
+    margin: 10px auto;
+    display: block;
 }
 
-#skill h2, #skill h3, #skill p {
+#skill .level {
 	color: #fff;
+	height: 150px;
+	text-shadow: 0 0 0.5em #fff, 0 0 0.5em #555;
+}
+
+#skill .level p {
+	font-size: 12px;
 }
 
 #le4 {
@@ -107,18 +110,69 @@
 	background-color: #5cea94;
 }
 
-#web img {
-	margin: 0 30%;
-    width: 40%;
-}
-
-#web p {
-	color: #31cd69;
-	font-size: 30px;
-}
-
-.production img, .production h3, .production ul {
-    width: 80%;
+.programming img {
+    width: 60%;
+    max-width: 100px;
     margin: 0 auto;
     display: block;
+}
+
+.programming p {
+	color: #31cd69;
+	font-size: 20px;
+	margin-top: 20px;
+}
+
+.production .devlang {
+	width: 40px;
+	margin: 0 0 50px 15px;
+}
+
+.production .screenshoot,
+.production h3,
+.production ul,
+.production .qrcode,
+.production .appstore {
+	width: 80%;
+	margin: 0 auto;
+	display: block;
+}
+
+.production .screenshoot {
+	margin-bottom: 30px;
+}
+
+.production h3 {
+	padding-left: 10px;
+}
+
+.production ul {
+	padding: 0;
+	list-style: none;
+	padding-left: 10px;
+}
+
+.production ul li {
+	margin: 5px 0;	
+}
+
+.production .qrcode {
+	margin-top: 10px;
+	margin-bottom: 20px;
+    max-width: 200px;
+}
+
+.production .appstore {
+    max-width: 200px;
+    
+}
+
+.production ul li:before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #555;
+    border-radius: 50%;
+    margin-right: 10px;
 }
