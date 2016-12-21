@@ -140,6 +140,8 @@
 
 .production .screenshoot {
 	margin-bottom: 30px;
+	-webkit-filter: drop-shadow(5px 5px 5px #222);
+	filter: drop-shadow(5px 5px 5px #222);
 }
 
 .production h3 {
@@ -175,4 +177,51 @@
     background-color: #555;
     border-radius: 50%;
     margin-right: 10px;
+}
+
+.contact-map {
+    position: relative;
+}
+
+.contact-map iframe {
+    width: 100%;
+    min-height: 350px;
+    border: 0;
+    outline: 0;
+    position: relative;
+}
+
+.address {
+    margin: 1em 0;
+}
+
+.address label {
+    color: #333;
+    font-size: 1em;
+    font-family: 'nexa_boldregular';
+    display: block;
+}
+
+.copyright {
+	padding: 5em 0;
+	background: #222;
+	position: relative;
+	font-weight: 300;
+}
+
+.copyright p {
+    color: #FFF;
+    font-size: .875em;
+    margin: .2em 0;
+}
+
+.copyright p a {
+    color: #FFF;
+}
+
+.copyright label {
+    color: #999;
+    font-size: .875em;
+    padding: 0;
+    margin: 0;
 }
