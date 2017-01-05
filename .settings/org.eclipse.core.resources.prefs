@@ -1,6 +1,8 @@
 eclipse.preferences.version=1
 encoding//WebContent/static/i18n/blog.properties=UTF-8
+encoding//WebContent/static/i18n/blog_ja.properties=UTF-8
 encoding//WebContent/static/i18n/blog_zh_CN.properties=UTF-8
+encoding//WebContent/static/i18n/blogs_ja.properties=UTF-8
 encoding//WebContent/static/i18n/blogs_zh_CN.properties=UTF-8
 encoding//WebContent/static/i18n/downloadError.properties=UTF-8
 encoding//WebContent/static/i18n/downloadError_zh_CN.properties=UTF-8
