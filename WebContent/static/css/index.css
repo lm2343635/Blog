@@ -8,35 +8,11 @@
 #home .home {
 	line-height: 45px; 
 	font-size: 25px;
-	font-family: 'nexa_boldregular';
 }
 
 #home .home a {
 	color: #fff; 
 	text-decoration: none;
-}
-
-#language-selector {
-	margin: 30px 0;
-}
-
-#language-selector button {
-	background: rgba(200, 200, 200, 0.2);
-    border: none;
-    color: #fff;
-}
-
-#language-selector .dropdown-menu {
-	background: rgba(200, 200, 200, 0.2);
-}
-
-#language-selector .dropdown-menu a {
-	color: #fff;
-	text-align: center;
-}
-
-#language-selector .dropdown-menu a:hover {
-	background: rgba(200, 200, 200, 0.5);
 }
 
 .deep {
@@ -45,7 +21,6 @@
 
 .block {
 	padding: 3em 0;
-	font-family: 'Avenir Next';
 }
 
 .block h1 {
@@ -63,8 +38,7 @@
 
 #motto p {
     color: #FFF;
-    font-size: 2em;
-    font-family: 'nexa_boldregular';
+    font-size: 3em;
     width: 90%;
     margin: 0 auto;
     text-shadow:0 0 0.5em #555, -0 -0 0.5em #555;
@@ -156,6 +130,7 @@
 
 .production ul li {
 	margin: 5px 0;	
+	font-size: 17px;
 }
 
 .production .qrcode {
@@ -197,31 +172,6 @@
 
 .address label {
     color: #333;
-    font-size: 1em;
-    font-family: 'nexa_boldregular';
+    font-size: 20px;
     display: block;
-}
-
-.copyright {
-	padding: 5em 0;
-	background: #222;
-	position: relative;
-	font-weight: 300;
-}
-
-.copyright p {
-    color: #FFF;
-    font-size: .875em;
-    margin: .2em 0;
-}
-
-.copyright p a {
-    color: #FFF;
-}
-
-.copyright label {
-    color: #999;
-    font-size: .875em;
-    padding: 0;
-    margin: 0;
 }
