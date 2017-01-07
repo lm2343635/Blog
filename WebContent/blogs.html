@@ -100,11 +100,12 @@
                 <ul class="pagination"></ul>
             </nav>
 		</div>
-		<div class="copyright text-center">
-			<div class="container">
-				<p>Made by Meng Li. <a href="admin" target="_blank">Manage My Blog</a></p>
-				<label>Copyright of Meng Li © 2014-2016. All rights reserved. 鄂ICP备15010075号-1</label>
-			</div>
+		<div id="foot">
+			<script>
+				$(document).ready(function() {
+					$("#foot").load("foot.html");
+				});
+			</script>
 		</div>
 	</body>
 </html>

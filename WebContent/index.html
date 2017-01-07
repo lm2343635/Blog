@@ -267,11 +267,12 @@
 		<div class="contact-map">
 			<iframe src="http://www.google.cn/maps/embed?pb=!1m18!1m12!1m3!1d3223.3108189184054!2d140.0993196!3d36.11028470000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60220bff098eef6f%3A0x38f8406069ed2e60!2z562R5rOi5aSn5a2m!5e0!3m2!1szh-CN!2scn!4v1444282277303"  height="350" ></iframe>
 		</div>
-		<div class="copyright text-center">
-			<div class="container">
-				<p>Made by Meng Li. <a href="admin" target="_blank">Manage My Blog</a></p>
-				<label>Copyright of Meng Li © 2014-2016. All rights reserved. 鄂ICP备15010075号-1</label>
-			</div>
+		<div id="foot">
+			<script>
+				$(document).ready(function() {
+					$("#foot").load("foot.html");
+				});
+			</script>
 		</div>
 	</body>
 </html>
