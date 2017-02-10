@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.directwebremoting.annotations.RemoteProxy;
 import org.fczm.blog.bean.CommentBean;
 import org.fczm.blog.domain.Blog;
 import org.fczm.blog.domain.Comment;
 import org.fczm.blog.service.CommentManager;
 import org.fczm.blog.service.util.ManagerTemplate;
+import org.springframework.stereotype.Service;
 
+@Service
+@RemoteProxy(name = "CommentManager")
 public class CommentManagerImpl extends ManagerTemplate implements CommentManager {
 
 	@Override

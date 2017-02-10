@@ -5,13 +5,17 @@ import java.io.File;
 import javax.servlet.http.HttpSession;
 
 import org.directwebremoting.WebContextFactory;
+import org.directwebremoting.annotations.RemoteProxy;
 import org.fczm.blog.service.AdminManager;
 import org.fczm.blog.service.util.ManagerTemplate;
 import org.fczm.common.util.JsonTool;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.springframework.stereotype.Service;
 
+@Service
+@RemoteProxy(name = "AdminManager")
 public class AdminManagerImpl extends ManagerTemplate implements AdminManager {
 
 	private JsonTool config = null;

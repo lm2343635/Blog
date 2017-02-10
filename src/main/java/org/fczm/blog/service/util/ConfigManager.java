@@ -8,7 +8,9 @@ import org.fczm.blog.service.AdminManager;
 import org.fczm.common.util.JsonTool;
 
 import net.sf.json.JSONObject;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ConfigManager {
 	
 	public static final String CONFIG_PATH = "WEB-INF/config.json";

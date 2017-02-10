@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.fczm.blog.domain.Blog;
 import org.fczm.blog.domain.Type;
-import org.fczm.common.hibernate3.support.CrudDao;
+import org.fczm.common.hibernate4.support.CrudDao;
 
 public interface BlogDao extends CrudDao<Blog> {
 	

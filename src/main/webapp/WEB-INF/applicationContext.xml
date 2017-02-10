@@ -1,51 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 指定Spring配置文件的Schema信息 -->
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
-	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-	http://www.springframework.org/schema/tx 
-	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
-	http://www.springframework.org/schema/aop 
-	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
- 
-	<!-- 配置Hibernate的局部事务管理器，使用HibernateTransactionManager类 -->
-	<!-- 该类实现PlatformTransactionManager接口，是针对Hibernate的特定实现 -->
-	<!-- 并注入SessionFactory的引用 -->
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
-		p:sessionFactory-ref="sessionFactory" />
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<!-- 配置事务增强处理Bean,指定事务管理器 -->
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<!-- 用于配置详细的事务语义 -->
-		<tx:attributes>
-			<!-- 所有以'get'开头的方法是read-only的 -->
-			<tx:method name="get*" read-only="true" />
-			<!-- 其他方法使用默认的事务设置 -->
-			<tx:method name="*" />
-		</tx:attributes>
-	</tx:advice>
+	<context:property-placeholder location="WEB-INF/config.properties"/>
+	<context:component-scan base-package="org.fczm.blog"/>
+	<import resource="dwr.xml"/>
 
-	<!-- 定义业服务层模板 -->
- 	<bean id="managerTemplate" class="org.fczm.blog.service.util.ManagerTemplate">
-		<property name="blogDao" ref="blogDao"/>
-		<property name="commentDao" ref="commentDao"/>
-		<property name="typeDao" ref="typeDao"/>
-		<property name="illustrationDao" ref="illustrationDao"/>
-		<property name="attachmentDao" ref="attachmentDao"/>
-	</bean>	
-	
- 	<!-- 定义业务逻辑组件 -->
-	<bean id="blogManager" class="org.fczm.blog.service.impl.BlogManagerImpl" parent="managerTemplate">
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="com.mysql.cj.jdbc.Driver"></property>
+		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/blog?characterEncoding=UTF-8"></property>
+		<property name="user" value="root"/>
+		<property name="password" value=""></property>
+		<property name="maxPoolSize" value="40"></property>
+		<property name="minPoolSize" value="1"></property>
+		<property name="initialPoolSize" value="1"></property>
+		<property name="maxIdleTime" value="20"></property>
+	</bean>
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="org.fczm.blog.domain"/>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+	<bean id="blogManager" class="org.fczm.blog.service.impl.BlogManagerImpl">
 		<property name="blogOutputFolder" value="blogs/"/>
 		<property name="blogOutputFolderDepth" value="1"/>
 	</bean>
-	<bean id="commentManager" class="org.fczm.blog.service.impl.CommentManagerImpl" parent="managerTemplate"/>
-	<bean id="typeManager" class="org.fczm.blog.service.impl.TypeManagerImpl" parent="managerTemplate"/>
-	<bean id="illustrationManager" class="org.fczm.blog.service.impl.IllustrationManagerImpl" parent="managerTemplate"/>
-	<bean id="attachmentManager" class="org.fczm.blog.service.impl.AttachmentManagerImpl" parent="managerTemplate"/>
-	<bean id="adminManager" class="org.fczm.blog.service.impl.AdminManagerImpl"></bean> 
+
 	<bean id="configManager" class="org.fczm.blog.service.util.ConfigManager"/>
+
 </beans>

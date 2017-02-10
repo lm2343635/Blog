@@ -1,38 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE dwr PUBLIC 
-	"-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN"
-	"http://getahead.org/dwr/dwr30.dtd">
-<dwr>
-	<allow>
-		<create creator="spring" javascript="BlogManager"> 
-			<param name="beanName" value="blogManager"/>
-		</create>
-		<create creator="spring" javascript="CommentManager"> 
-			<param name="beanName" value="commentManager"/>
-		</create>
-		<create creator="spring" javascript="TypeManager"> 
-			<param name="beanName" value="typeManager"/>
-		</create>
-		<create creator="spring" javascript="IllustrationManager"> 
-			<param name="beanName" value="illustrationManager"/>
-		</create>
-		<create creator="spring" javascript="AttachmentManager"> 
-			<param name="beanName" value="attachmentManager"/>
-		</create>
-		<create creator="spring" javascript="AdminManager"> 
-			<param name="beanName" value="adminManager"/>
-		</create>
-		<create creator="spring" javascript="ConfigManager"> 
-			<param name="beanName" value="configManager"/>
-		</create>
-		
-		<convert converter="bean" match="org.fczm.blog.bean.BlogBean"/>
-		<convert converter="bean" match="org.fczm.blog.bean.CommentBean"/>
-		<convert converter="bean" match="org.fczm.blog.bean.TypeBean"/>
-		<convert converter="bean" match="org.fczm.blog.bean.IllustrationBean"/>
-		<convert converter="bean" match="org.fczm.blog.bean.AttachmentBean"/>
-		
-		<convert converter="exception" match="java.lang.Exception"/>
-		<convert converter="exception" match="java.lang.StackTraceElement"/>
-	</allow>
-</dwr>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.directwebremoting.org/schema/spring-dwr
+	http://www.directwebremoting.org/schema/spring-dwr-3.0.xsd">
+
+    <dwr:annotation-config/>
+    <dwr:controller id="dwrController" debug="true"/>
+    <dwr:url-mapping/>
+    <dwr:annotation-scan base-package="org.fczm.blog" scanDataTransferObject="true" scanRemoteProxy="true"/>
+    <dwr:configuration/>
+
+</beans>

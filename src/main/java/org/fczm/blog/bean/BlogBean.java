@@ -2,90 +2,94 @@ package org.fczm.blog.bean;
 
 import java.util.Date;
 
+import org.directwebremoting.annotations.DataTransferObject;
 import org.fczm.blog.domain.Blog;
 
+@DataTransferObject
 public class BlogBean {
-	private String bid; 
-	private String title;
-	private String content; 
-	private Date date;
-	private int readers;
-	private String cover;
-	private boolean bgenable;
-	private TypeBean type;
-	
-	public String getBid() {
-		return bid;
-	}
 
-	public void setBid(String bid) {
-		this.bid = bid;
-	}
+    private String bid;
+    private String title;
+    private String content;
+    private Date date;
+    private int readers;
+    private String cover;
+    private boolean bgenable;
+    private TypeBean type;
 
-	public String getTitle() {
-		return title;
-	}
+    public String getBid() {
+        return bid;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setBid(String bid) {
+        this.bid = bid;
+    }
 
-	public String getContent() {
-		return content;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public Date getDate() {
-		return date;
-	}
+    public String getContent() {
+        return content;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    public void setContent(String content) {
+        this.content = content;
+    }
 
-	public int getReaders() {
-		return readers;
-	}
+    public Date getDate() {
+        return date;
+    }
 
-	public void setReaders(int readers) {
-		this.readers = readers;
-	}
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-	public boolean isBgenable() {
-		return bgenable;
-	}
+    public int getReaders() {
+        return readers;
+    }
 
-	public void setBgenable(boolean bgenable) {
-		this.bgenable = bgenable;
-	}
+    public void setReaders(int readers) {
+        this.readers = readers;
+    }
 
-	public String getCover() {
-		return cover;
-	}
+    public boolean isBgenable() {
+        return bgenable;
+    }
 
-	public void setCover(String cover) {
-		this.cover = cover;
-	}
+    public void setBgenable(boolean bgenable) {
+        this.bgenable = bgenable;
+    }
 
-	public TypeBean getType() {
-		return type;
-	}
+    public String getCover() {
+        return cover;
+    }
 
-	public void setType(TypeBean type) {
-		this.type = type;
-	}
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
 
-	public BlogBean(Blog blog) {
-		super();
-		this.bid = blog.getBid();
-		this.title = blog.getTitle();
-		this.date = blog.getDate();
-		this.readers = blog.getReaders();
-		this.cover = blog.getCover();
-		this.bgenable = blog.getBgenable();
-		this.type = new TypeBean(blog.getType());
-	}
+    public TypeBean getType() {
+        return type;
+    }
+
+    public void setType(TypeBean type) {
+        this.type = type;
+    }
+
+    public BlogBean(Blog blog) {
+        super();
+        this.bid = blog.getBid();
+        this.title = blog.getTitle();
+        this.date = blog.getDate();
+        this.readers = blog.getReaders();
+        this.cover = blog.getCover();
+        this.bgenable = blog.getBgenable();
+        this.type = new TypeBean(blog.getType());
+    }
+
 }
