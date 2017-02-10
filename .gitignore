@@ -1,2 +1,12 @@
-/build/
+# Intellij
+.idea/
+lib/
+*.iml
+*.iws
+
+# Mac
 .DS_Store
+
+# Maven
+log/
+target/
