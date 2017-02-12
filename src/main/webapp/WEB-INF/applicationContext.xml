@@ -38,16 +38,11 @@
 		</property>
 	</bean>
 
+	<tx:annotation-driven/>
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory"></property>
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager"/>
-
-
-	<bean id="blogManager" class="org.fczm.blog.service.impl.BlogManagerImpl">
-		<property name="blogOutputFolder" value="blogs/"/>
-		<property name="blogOutputFolderDepth" value="1"/>
-	</bean>
 
 	<bean id="configManager" class="org.fczm.blog.service.util.ConfigManager"/>
 

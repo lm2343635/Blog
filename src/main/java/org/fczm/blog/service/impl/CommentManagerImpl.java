@@ -11,12 +11,13 @@ import org.fczm.blog.domain.Comment;
 import org.fczm.blog.service.CommentManager;
 import org.fczm.blog.service.util.ManagerTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RemoteProxy(name = "CommentManager")
 public class CommentManagerImpl extends ManagerTemplate implements CommentManager {
 
-	@Override
+	@Transactional
 	public String addComment(String bid, String name, String content) {
 		Comment comment=new Comment();
 		comment.setBlog(blogDao.get(bid));
@@ -26,7 +27,6 @@ public class CommentManagerImpl extends ManagerTemplate implements CommentManage
 		return commentDao.save(comment);
 	}
 
-	@Override
 	public List<CommentBean> getCommentsByBid(String bid) {
 		List<CommentBean> comments=new ArrayList<CommentBean>();
 		Blog blog=blogDao.get(bid);
@@ -36,7 +36,7 @@ public class CommentManagerImpl extends ManagerTemplate implements CommentManage
 		return comments;
 	}
 
-	@Override
+	@Transactional
 	public void removeComment(String cid) {
 		Comment comment=commentDao.get(cid);
 		commentDao.delete(comment);

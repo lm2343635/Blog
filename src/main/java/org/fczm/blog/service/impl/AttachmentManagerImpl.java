@@ -19,6 +19,7 @@ import org.fczm.blog.service.util.ManagerTemplate;
 import org.fczm.blog.servlet.UploadServlet;
 import org.fczm.common.util.RandomValidateCode;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RemoteProxy(name = "AttachmentManager")
@@ -44,6 +45,7 @@ public class AttachmentManagerImpl extends ManagerTemplate implements Attachment
         return attachments;
     }
 
+    @Transactional
     public boolean removeAttachment(String aid) {
         Attachment attachment = attachmentDao.get(aid);
         if (attachment == null) {

@@ -13,6 +13,7 @@ import org.fczm.blog.service.IllustrationManager;
 import org.fczm.blog.service.util.ManagerTemplate;
 import org.fczm.blog.servlet.UploadServlet;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RemoteProxy(name = "IllustrationManager")
@@ -30,6 +31,7 @@ public class IllustrationManagerImpl extends ManagerTemplate implements Illustra
         return illustrations;
     }
 
+    @Transactional
     public boolean removeIllustration(String iid) {
         Illustration illustration = illustrationDao.get(iid);
         if (illustration == null) {

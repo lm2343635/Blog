@@ -19,21 +19,16 @@ import org.fczm.common.util.DateTool;
 import org.fczm.common.util.FileTool;
 import org.fczm.common.util.MengularDocument;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RemoteProxy(name = "BlogManager")
 public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
-    private String blogOutputFolder;
-    private int blogOutputFolderDepth;
 
-    public void setBlogOutputFolder(String blogOutputFolder) {
-        this.blogOutputFolder = blogOutputFolder;
-    }
+    private static final String blogOutputFolder = "blogs/";
+    private static final int blogOutputFolderDepth = 1;
 
-    public void setBlogOutputFolderDepth(int blogOutputFolderDepth) {
-        this.blogOutputFolderDepth = blogOutputFolderDepth;
-    }
-
+    @Transactional
     public String addBlog(String title, String date, String tid) {
         Blog blog = new Blog();
         blog.setTitle(title);
@@ -45,9 +40,9 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
         blog.setType(type);
         String bid = blogDao.save(blog);
         if (bid != null) {
-            //根据模板生成文件
+            // Generate static blog html file by template.
             generateBlog(blog);
-            //type文章数量加1
+            // Number of blog in this type plus 1
             type.setCount(type.getCount() + 1);
             typeDao.update(type);
         }
@@ -62,6 +57,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
         return blogs;
     }
 
+    @Transactional
     public BlogBean getBlogInfo(String bid, boolean reader) {
         Blog blog = blogDao.get(bid);
         if (blog == null) {
@@ -82,7 +78,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
         return blog.getContent();
     }
 
-
+    @Transactional
     public void modifyBlog(String bid, String title, String content, String date, String tid) {
         Blog blog = blogDao.get(bid);
         blog.setTitle(title);
@@ -92,21 +88,23 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
         Type newType = typeDao.get(tid);
         blog.setType(newType);
         blogDao.update(blog);
-        //更新新旧分类的博文数量
+        // Update number of blogs in old type and new type.
         oldType.setCount(oldType.getCount() - 1);
         typeDao.update(oldType);
         newType.setCount(newType.getCount() + 1);
         typeDao.update(newType);
-        //根据模板生成文件
+        // Generate static blog html file by template.
         generateBlog(blog);
     }
 
+    @Transactional
     public void backgroudSaving(String bid, String content) {
         Blog blog = blogDao.get(bid);
         blog.setContent(content);
         blogDao.update(blog);
     }
 
+    @Transactional
     public void removeBlog(String bid) {
         Blog blog = blogDao.get(bid);
         //博文分类数量减1
@@ -174,6 +172,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
         document.output();
     }
 
+    @Transactional
     public boolean deleteCover(String bid) {
         Blog blog = blogDao.get(bid);
         String rootPath = WebContextFactory.get().getServletContext().getRealPath("/") + File.separator;
@@ -187,6 +186,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
         return false;
     }
 
+    @Transactional
     public void setBgenable(String bid, boolean bgenable) {
         Blog blog = blogDao.get(bid);
         if (blog == null) {

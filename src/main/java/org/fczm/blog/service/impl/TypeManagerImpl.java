@@ -15,11 +15,13 @@ import org.fczm.blog.service.util.ManagerTemplate;
 import org.fczm.blog.servlet.UploadServlet;
 import org.fczm.common.util.FileTool;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RemoteProxy(name = "TypeManager")
 public class TypeManagerImpl extends ManagerTemplate implements TypeManager {
 
+    @Transactional
     public String addType(String tname) {
         Type type = new Type();
         type.setTname(tname);
@@ -36,12 +38,14 @@ public class TypeManagerImpl extends ManagerTemplate implements TypeManager {
         return types;
     }
 
+    @Transactional
     public void modifyType(String tid, String tname) {
         Type type = typeDao.get(tid);
         type.setTname(tname);
         typeDao.update(type);
     }
 
+    @Transactional
     public void removeType(String tid) {
         String rootPath = WebContextFactory.get().getServletContext().getRealPath("/") + File.separator;
         Type type = typeDao.get(tid);
