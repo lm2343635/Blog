@@ -12,14 +12,14 @@ import org.fczm.common.util.RandomValidateCode;
 
 @WebServlet("/ValidateCodeServlet")
 public class ValidateCodeServlet extends HttpServlet {
-	private static final long serialVersionUID = 7438129918745356545L;
+    private static final long serialVersionUID = 7438129918745356545L;
 
-	public ValidateCodeServlet() {
+    public ValidateCodeServlet() {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("image/jpeg");//设置相应类型,告诉浏览器输出的内容为图片
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("image/jpeg");//设置相应类型,告诉浏览器输出的内容为图片
         response.setHeader("Pragma", "No-cache");//设置响应头信息，告诉浏览器不要缓存此内容
         response.setHeader("Cache-Control", "no-cache");
         response.setDateHeader("Expire", 0);
@@ -29,10 +29,10 @@ public class ValidateCodeServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-	}
+    }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
 
 }

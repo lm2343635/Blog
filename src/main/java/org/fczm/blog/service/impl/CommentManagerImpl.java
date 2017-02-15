@@ -17,29 +17,29 @@ import org.springframework.transaction.annotation.Transactional;
 @RemoteProxy(name = "CommentManager")
 public class CommentManagerImpl extends ManagerTemplate implements CommentManager {
 
-	@Transactional
-	public String addComment(String bid, String name, String content) {
-		Comment comment=new Comment();
-		comment.setBlog(blogDao.get(bid));
-		comment.setName(name);
-		comment.setContent(content);
-		comment.setDate(new Date());
-		return commentDao.save(comment);
-	}
+    @Transactional
+    public String addComment(String bid, String name, String content) {
+        Comment comment = new Comment();
+        comment.setBlog(blogDao.get(bid));
+        comment.setName(name);
+        comment.setContent(content);
+        comment.setDate(new Date());
+        return commentDao.save(comment);
+    }
 
-	public List<CommentBean> getCommentsByBid(String bid) {
-		List<CommentBean> comments=new ArrayList<CommentBean>();
-		Blog blog=blogDao.get(bid);
-		for(Comment comment: commentDao.findByBlog(blog)) {
-			comments.add(new CommentBean(comment));
-		}
-		return comments;
-	}
+    public List<CommentBean> getCommentsByBid(String bid) {
+        List<CommentBean> comments = new ArrayList<CommentBean>();
+        Blog blog = blogDao.get(bid);
+        for (Comment comment : commentDao.findByBlog(blog)) {
+            comments.add(new CommentBean(comment));
+        }
+        return comments;
+    }
 
-	@Transactional
-	public void removeComment(String cid) {
-		Comment comment=commentDao.get(cid);
-		commentDao.delete(comment);
-	}
+    @Transactional
+    public void removeComment(String cid) {
+        Comment comment = commentDao.get(cid);
+        commentDao.delete(comment);
+    }
 
 }

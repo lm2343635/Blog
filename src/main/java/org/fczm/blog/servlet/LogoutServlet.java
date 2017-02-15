@@ -15,27 +15,27 @@ import org.fczm.blog.service.AdminManager;
  */
 @WebServlet("/LogoutServlet")
 public class LogoutServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private String task;
-       
+    private static final long serialVersionUID = 1L;
+    private String task;
+
     public LogoutServlet() {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		task=request.getParameter("task");
-		switch (task) {
-		case "adminLogout":
-			request.getSession().removeAttribute(AdminManager.ADMIN_FLAG);
-			response.sendRedirect("admin");
-			break;
-		default:
-			break;
-		}
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        task = request.getParameter("task");
+        switch (task) {
+            case "adminLogout":
+                request.getSession().removeAttribute(AdminManager.ADMIN_FLAG);
+                response.sendRedirect("admin");
+                break;
+            default:
+                break;
+        }
+    }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
 
 }

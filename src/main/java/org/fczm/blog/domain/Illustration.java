@@ -10,50 +10,51 @@ import java.util.Date;
 @Table(name = "illustration")
 public class Illustration implements Serializable {
 
-	@Id
-	@GeneratedValue(generator = "uuid")
-	@GenericGenerator(name = "uuid", strategy = "uuid")
-	private String iid;
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
+    private String iid;
 
-	@Column(nullable = false)
-	private String filename;
+    @Column(nullable = false)
+    private String filename;
 
-	@Column(nullable = false)
-	private Date upload;
+    @Column(nullable = false)
+    private Date upload;
 
-	@ManyToOne
-	@JoinColumn(name = "bid", nullable = false)
-	private Blog blog;
+    @ManyToOne
+    @JoinColumn(name = "bid", nullable = false)
+    private Blog blog;
 
-	public String getIid() {
-		return iid;
-	}
+    public String getIid() {
+        return iid;
+    }
 
-	public void setIid(String iid) {
-		this.iid = iid;
-	}
+    public void setIid(String iid) {
+        this.iid = iid;
+    }
 
-	public String getFilename() {
-		return filename;
-	}
+    public String getFilename() {
+        return filename;
+    }
 
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
 
-	public Date getUpload() {
-		return upload;
-	}
+    public Date getUpload() {
+        return upload;
+    }
 
-	public void setUpload(Date upload) {
-		this.upload = upload;
-	}
+    public void setUpload(Date upload) {
+        this.upload = upload;
+    }
 
-	public Blog getBlog() {
-		return blog;
-	}
+    public Blog getBlog() {
+        return blog;
+    }
 
-	public void setBlog(Blog blog) {
-		this.blog = blog;
-	}
+    public void setBlog(Blog blog) {
+        this.blog = blog;
+    }
+
 }
