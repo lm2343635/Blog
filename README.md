@@ -1,6 +1,19 @@
 # My Home Page, a Blog System
+
 This website is my homepage with a blog system. Blog articles can be added and modified by admin, while readers can read and rely.
-Visit http://www.fczm.pw to view this blog system.
+
+- Platform: Web
+- Programming Languages: Java, JavaScript
+- Supported Languagues: English, Simplified Chinese and Japanese.
+- Features
+	- Add, modify and delete the category and blog.
+	- Add pictures or attachment file in a blog.
+	- Search a blog by keyword of title.
+	- Review and comment.
+
+Visit http://fczm.pw to view this blog system.
+
+![Blog](https://raw.githubusercontent.com/lm2343635/Blog/master/screenshoot/blog.png)
 
 You can fork it, and modify these HTML document to create your own blog system:
 
