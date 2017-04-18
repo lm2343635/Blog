@@ -13,7 +13,7 @@ This website is my homepage with a blog system. Blog articles can be added and m
 
 Visit http://fczm.pw to view this blog system.
 
-![Blog](https://raw.githubusercontent.com/lm2343635/Blog/master/screenshoot/blog.png)
+![Blog](https://raw.githubusercontent.com/lm2343635/Blog/master/screenshot/blog.png)
 
 You can fork it, and modify these HTML document to create your own blog system:
 
