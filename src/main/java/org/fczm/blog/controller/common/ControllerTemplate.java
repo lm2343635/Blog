@@ -6,6 +6,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.fczm.blog.component.ConfigComponent;
 import org.fczm.blog.service.AdminManager;
+import org.fczm.blog.service.AttachmentManager;
 import org.fczm.blog.service.BlogManager;
 import org.fczm.blog.service.IllustrationManager;
 import org.fczm.common.util.FileTool;
@@ -31,6 +32,9 @@ public class ControllerTemplate {
 
     @Autowired
     protected ConfigComponent configComponent;
+
+    @Autowired
+    protected AttachmentManager attachmentManager;
 
     protected ResponseEntity generateOK(Map<String, Object> result) {
         return generateResponseEntity(result, HttpStatus.OK, null, null);

@@ -44,4 +44,13 @@ public interface AttachmentManager {
      */
     String validateDownload(String aid, String code, HttpSession session);
 
+    /**
+     * Handle uploaded attachement.
+     *
+     * @param bid
+     * @param fileName
+     * @return
+     */
+    AttachmentBean handleUploadedAttachement(String bid, String fileName);
+
 }

@@ -27,10 +27,10 @@ Visit `http://your_doamin/admin` to edit your blog, the admin's name and passwor
 
 ```json
 {
-	"admins": [{
-		"username":"admin",
-		"password":"123"
-	}]
+  "admins": [{
+    "username":"admin",
+    "password":"123"
+  }]
 }
 ```
 	

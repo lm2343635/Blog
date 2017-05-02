@@ -169,10 +169,10 @@ $(document).ready(function () {
     //绑定上传附件控件
     $("#upload-attachment").fileupload({
         autoUpload: true,
-        url: "../UploadServlet?task=uploadAttachment&bid=" + bid,
+        url: "/upload/attachment?bid=" + bid,
         dataType: "json",
         done: function (e, data) {
-            putAttachment(data.result);
+            putAttachment(data.result.result);
             setTimeout(function () {
                 $("#attachment-upload-progress").hide(1500);
             }, 2000);

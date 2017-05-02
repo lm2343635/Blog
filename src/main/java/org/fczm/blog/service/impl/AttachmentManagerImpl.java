@@ -1,11 +1,7 @@
 package org.fczm.blog.service.impl;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +12,7 @@ import org.fczm.blog.domain.Attachment;
 import org.fczm.blog.domain.Blog;
 import org.fczm.blog.service.AttachmentManager;
 import org.fczm.blog.service.util.ManagerTemplate;
+import org.fczm.common.util.FileTool;
 import org.fczm.common.util.RandomValidateCode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -73,6 +70,33 @@ public class AttachmentManagerImpl extends ManagerTemplate implements Attachment
         token.put("token", UUID.randomUUID().toString());
         session.setAttribute(DOWNLOAD_TOKEN, token);
         return token.get("token");
+    }
+
+    @Transactional
+    public AttachmentBean handleUploadedAttachement(String bid, String fileName) {
+        Blog blog = blogDao.get(bid);
+        String path = configComponent.rootPath + File.separator + configComponent.UploadFolder + File.separator + bid;
+        File file = new File(path + File.separator + fileName);
+        // If cannot find a blog by this bid, delete the uploaded cover.
+        if (blog == null) {
+            if (file.exists()) {
+                file.delete();
+            }
+            return null;
+        }
+        Attachment attachment = new Attachment();
+        attachment.setFilename(fileName);
+        attachment.setStore(UUID.randomUUID().toString());
+        attachment.setSize(file.length());
+        attachment.setUpload(new Date());
+        attachment.setBlog(blog);
+        // Modify file name.
+        FileTool.modifyFileName(path, fileName, attachment.getStore());
+        // Save to persistent store.
+        if (attachmentDao.save(attachment) == null) {
+            return null;
+        }
+        return new AttachmentBean(attachment);
     }
 
 }
