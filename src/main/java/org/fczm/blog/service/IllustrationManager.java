@@ -1,8 +1,8 @@
 package org.fczm.blog.service;
 
-import java.util.List;
-
 import org.fczm.blog.bean.IllustrationBean;
+
+import java.util.List;
 
 public interface IllustrationManager {
 

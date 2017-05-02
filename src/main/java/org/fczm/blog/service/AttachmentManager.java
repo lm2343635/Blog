@@ -43,4 +43,5 @@ public interface AttachmentManager {
      * @return token
      */
     String validateDownload(String aid, String code, HttpSession session);
+
 }
