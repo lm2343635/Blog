@@ -72,7 +72,7 @@ public class IllustrationManagerImpl extends ManagerTemplate implements Illustra
         String pathname = path + File.separator + blog.getCover();
         int width = ImageTool.getImageWidth(pathname);
         int height = ImageTool.getImageHeight(pathname);
-        if (width > configComponent.MaxImageWidth); {
+        if (width > configComponent.MaxImageWidth) {
             ImageTool.createThumbnail(pathname, configComponent.MaxImageWidth, configComponent.MaxImageWidth * height / width, 0);
         }
         // Save to persistent store if all success.

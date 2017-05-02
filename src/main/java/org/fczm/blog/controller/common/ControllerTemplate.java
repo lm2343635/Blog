@@ -14,9 +14,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -67,6 +71,12 @@ public class ControllerTemplate {
         return session.getAttribute(AdminManager.ADMIN_FLAG) != null;
     }
 
+    /**
+     * Create upload directory if it is not existed.
+     *
+     * @param directory
+     * @return
+     */
     public String createUploadDirectory(String directory) {
         String filepath = configComponent.rootPath + configComponent.UploadFolder + File.separator + directory;
         // If directory is not existed, create the directory at first.
@@ -74,6 +84,13 @@ public class ControllerTemplate {
         return filepath;
     }
 
+    /**
+     * Upload file to a file path.
+     *
+     * @param request
+     * @param filepath
+     * @return
+     */
     public String upload(HttpServletRequest request, String filepath) {
         String fileName = null;
         // Create factory object.
@@ -111,4 +128,33 @@ public class ControllerTemplate {
         }
         return fileName;
     }
+
+    /**
+     *
+     * @param path
+     * @param fileName
+     * @param response
+     * @throws IOException
+     */
+    private void download(String path, String fileName, HttpServletResponse response) throws IOException {
+        FileInputStream in = null;
+        ServletOutputStream out = null;
+        response.setContentType("application/octet-stream; charset=UTF-8");
+        response.setHeader("Content-disposition", "attachment; filename=" + new String(fileName.getBytes("UTF-8"), "iso8859-1"));
+        try {
+            in = new FileInputStream(path + File.separator + fileName);
+            out = response.getOutputStream();
+            out.flush();
+            int aRead = 0;
+            while ((aRead = in.read()) != -1 & in != null) {
+                out.write(aRead);
+            }
+            out.flush();
+            in.close();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

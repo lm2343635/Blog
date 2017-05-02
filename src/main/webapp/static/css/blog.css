@@ -133,6 +133,5 @@
 @media screen and (max-width: 768px) {
 	#blog-content img {
 		width: 100% !important;
-	    box-shadow: 3px 3px 3px #aaa;
 	}
 }
