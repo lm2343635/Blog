@@ -1,11 +1,5 @@
 package org.fczm.blog.service.impl;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.directwebremoting.WebContextFactory;
 import org.directwebremoting.annotations.RemoteProxy;
 import org.fczm.blog.bean.BlogBean;
@@ -14,12 +8,15 @@ import org.fczm.blog.domain.Blog;
 import org.fczm.blog.domain.Type;
 import org.fczm.blog.service.BlogManager;
 import org.fczm.blog.service.util.ManagerTemplate;
-import org.fczm.blog.servlet.UploadServlet;
 import org.fczm.common.util.DateTool;
 import org.fczm.common.util.FileTool;
+import org.fczm.common.util.ImageTool;
 import org.fczm.common.util.MengularDocument;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.io.File;
+import java.util.*;
 
 @Service
 @RemoteProxy(name = "BlogManager")
@@ -112,7 +109,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
         type.setCount(type.getCount() - 1);
         typeDao.update(type);
         String rootPath = WebContextFactory.get().getServletContext().getRealPath("/") + File.separator;
-        FileTool.delFolder(rootPath + UploadServlet.UPLOAD_FOLDER + File.separator + blog.getBid());
+        FileTool.delFolder(rootPath + configComponent.UploadFolder + File.separator + blog.getBid());
         blogDao.delete(blog);
     }
 
@@ -176,7 +173,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
     public boolean deleteCover(String bid) {
         Blog blog = blogDao.get(bid);
         String rootPath = WebContextFactory.get().getServletContext().getRealPath("/") + File.separator;
-        String coverPath = rootPath + File.separator + UploadServlet.UPLOAD_FOLDER
+        String coverPath = rootPath + File.separator + configComponent.UploadFolder
                 + File.separator + blog.getBid() + File.separator + blog.getCover();
         if (new File(coverPath).delete()) {
             blog.setCover(null);
@@ -196,4 +193,40 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
         blogDao.update(blog);
     }
 
+    @Transactional
+    public String handleUploadedCover(String bid, String fileName) {
+        Blog blog = blogDao.get(bid);
+        String path = configComponent.rootPath + File.separator + configComponent.UploadFolder + File.separator + bid;
+        File file = null;
+        // If cannot find a blog by this bid, delete the uploaded cover.
+        if (blog == null) {
+            file = new File(path + File.separator + fileName);
+            if (file.exists()) {
+                file.delete();
+            }
+            return null;
+        }
+        // If old cover is existed, delete the old cover at first.
+        if (blog.getCover() != null) {
+            file = new File(path + File.separator + blog.getCover());
+            if (file.exists()) {
+                file.delete();
+            }
+        }
+        // Generate new cover name by UUID.
+        blog.setCover(UUID.randomUUID().toString() + configComponent.ImageFormat);
+        blogDao.update(blog);
+        // Modify file name.
+        FileTool.modifyFileName(path, fileName, blog.getCover());
+        // Compress cover.
+        String pathname = path + File.separator + blog.getCover();
+        int width = ImageTool.getImageWidth(pathname);
+        int height = ImageTool.getImageHeight(pathname);
+        if (width > configComponent.MaxImageWidth); {
+            ImageTool.createThumbnail(pathname, configComponent.MaxImageWidth, configComponent.MaxImageWidth * height / width, 0);
+        }
+        // Save to persistent store if all success.
+
+        return blog.getCover();
+    }
 }

@@ -11,7 +11,9 @@
        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<context:property-placeholder location="WEB-INF/config.properties"/>
-	<context:component-scan base-package="org.fczm.blog"/>
+	<context:component-scan base-package="org.fczm.blog.component"/>
+	<context:component-scan base-package="org.fczm.blog.dao"/>
+	<context:component-scan base-package="org.fczm.blog.service"/>
 	<import resource="dwr.xml"/>
 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">

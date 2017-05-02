@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "attachment")
+@Table(name = "blog_attachment")
 public class Attachment implements Serializable {
 
     public static final String[] units = {"B", "KB", "MB", "GB", "TB"};

@@ -120,4 +120,14 @@ public interface BlogManager {
      * @param bgenable
      */
     void setBgenable(String bid, boolean bgenable);
+
+    /**
+     * Handle uploaded cover.
+     *
+     * @param bid
+     * @param fileName
+     * @return
+     */
+    String handleUploadedCover(String bid, String fileName);
+
 }

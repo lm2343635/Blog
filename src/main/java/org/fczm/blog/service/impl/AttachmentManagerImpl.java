@@ -16,7 +16,6 @@ import org.fczm.blog.domain.Attachment;
 import org.fczm.blog.domain.Blog;
 import org.fczm.blog.service.AttachmentManager;
 import org.fczm.blog.service.util.ManagerTemplate;
-import org.fczm.blog.servlet.UploadServlet;
 import org.fczm.common.util.RandomValidateCode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,8 +50,7 @@ public class AttachmentManagerImpl extends ManagerTemplate implements Attachment
         if (attachment == null) {
             return false;
         }
-        String rootPath = WebContextFactory.get().getServletContext().getRealPath("/");
-        String filePath = rootPath + File.separator + UploadServlet.UPLOAD_FOLDER + File.separator
+        String filePath = configComponent.rootPath + File.separator + configComponent.UploadFolder + File.separator
                 + attachment.getBlog().getBid() + File.separator + attachment.getFilename();
         File file = new File(filePath);
         if (file.delete() || !file.exists()) {

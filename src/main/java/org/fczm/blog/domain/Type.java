@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "type")
+@Table(name = "blog_type")
 public class Type implements Serializable {
 
     @Id
