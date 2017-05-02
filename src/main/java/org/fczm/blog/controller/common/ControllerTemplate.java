@@ -7,6 +7,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.fczm.blog.component.ConfigComponent;
 import org.fczm.blog.service.AdminManager;
 import org.fczm.blog.service.BlogManager;
+import org.fczm.blog.service.IllustrationManager;
 import org.fczm.common.util.FileTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,9 @@ public class ControllerTemplate {
 
     @Autowired
     protected BlogManager blogManager;
+
+    @Autowired
+    protected IllustrationManager illustrationManager;
 
     @Autowired
     protected ConfigComponent configComponent;

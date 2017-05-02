@@ -20,4 +20,14 @@ public interface IllustrationManager {
      * @param iid
      */
     boolean removeIllustration(String iid);
+
+    /**
+     * Handle uploaded illustration.
+     *
+     * @param bid
+     * @param fileName
+     * @return
+     */
+    String handleUploadIllustration(String bid, String fileName);
+
 }

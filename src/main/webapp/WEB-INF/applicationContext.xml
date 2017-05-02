@@ -10,21 +10,21 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<context:property-placeholder location="WEB-INF/config.properties"/>
 	<context:component-scan base-package="org.fczm.blog.component"/>
 	<context:component-scan base-package="org.fczm.blog.dao"/>
 	<context:component-scan base-package="org.fczm.blog.service"/>
+	<context:property-placeholder location="WEB-INF/config.properties"/>
 	<import resource="dwr.xml"/>
 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-		<property name="driverClass" value="com.mysql.cj.jdbc.Driver"></property>
-		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/blog?characterEncoding=UTF-8"></property>
-		<property name="user" value="root"/>
-		<property name="password" value=""></property>
-		<property name="maxPoolSize" value="40"></property>
-		<property name="minPoolSize" value="1"></property>
-		<property name="initialPoolSize" value="1"></property>
-		<property name="maxIdleTime" value="20"></property>
+		<property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
+		<property name="jdbcUrl" value="${db.url}"/>
+		<property name="user" value="${db.username}"/>
+		<property name="password" value="${db.password}"/>
+		<property name="maxPoolSize" value="40"/>
+		<property name="minPoolSize" value="1"/>
+		<property name="initialPoolSize" value="1"/>
+		<property name="maxIdleTime" value="20"/>
 	</bean>
 
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -32,10 +32,10 @@
 		<property name="packagesToScan" value="org.fczm.blog.domain"/>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<prop key="hibernate.show_sql">false</prop>
-				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
 			</props>
 		</property>
 	</bean>

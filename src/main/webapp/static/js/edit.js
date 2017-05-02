@@ -199,12 +199,12 @@ function uploadIllustration(bid, file, element) {
     $.ajax({
         data: formData,
         type: "POST",
-        url: "../UploadServlet?task=uploadIllustration&bid=" + bid,
+        url: "/upload/illustration?bid=" + bid,
         cache: false,
         contentType: false,
         processData: false,
         success: function (data) {
-            $(element).summernote("insertImage", "../upload/" + bid + "/" + data.filename);
+            $(element).summernote("insertImage", "/files/" + bid + "/" + data.result.filename);
             $.messager.popup("Illustration uploaded");
             //上传图片完成后更新插图管理列表
             loadIllustrators();
@@ -219,7 +219,7 @@ function loadIllustrators() {
     $("#illustration-list").mengularClear();
     IllustrationManager.getIllustrationsByBid(bid, function (illustrations) {
         for (var i in illustrations) {
-            var path = location.href.split("admin")[0] + "upload/" + illustrations[i].bid + "/" + illustrations[i].filename;
+            var path = location.href.split("admin")[0] + "files/" + illustrations[i].bid + "/" + illustrations[i].filename;
 
             $("#illustration-list").mengular(".illustration-list-template", {
                 iid: illustrations[i].iid,

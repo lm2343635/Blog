@@ -33,10 +33,15 @@ public class UploadController extends ControllerTemplate {
 
     @RequestMapping(value = "/illustration", method = RequestMethod.POST)
     public ResponseEntity uploadIllustration(@RequestParam String bid, HttpServletRequest request) {
-
-        return generateOK(new HashMap<String, Object>() {
-
-        });
+        if (!checkAdminSession(request.getSession())) {
+            return generateBadRequest(ErrorCode.ErrorAdminSession);
+        }
+        String filepath = createUploadDirectory(bid);
+        String fileName = upload(request, filepath);
+        final String newName = illustrationManager.handleUploadIllustration(bid, fileName);
+        return generateOK(new HashMap<String, Object>() {{
+            put("filename", newName);
+        }});
     }
 
     @RequestMapping(value = "/attachement", method = RequestMethod.POST)
