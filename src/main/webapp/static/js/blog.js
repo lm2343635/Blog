@@ -2,7 +2,7 @@ var bid = getPageName();
 var downloadingAid;
 
 $(document).ready(function () {
-    i18n("blog", "../static/i18n/", [
+    i18n("blog", "/static/i18n/", [
         "blog_blogs",
         "blog_created_in",
         "blog_readers",
@@ -103,7 +103,7 @@ $(document).ready(function () {
                 return;
             }
             $("#attachment-download-code").removeClass("error");
-            location.href = "../UploadServlet?task=downloadByToken&token=" + token;
+            location.href = "/download/token?token=" + token;
         });
     });
 });

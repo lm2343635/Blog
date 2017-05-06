@@ -8,7 +8,7 @@ import org.fczm.blog.bean.AttachmentBean;
 
 public interface AttachmentManager {
 
-    public static final String DOWNLOAD_TOKEN = "8a2e746754e7a8e20154ff98d8b30004";
+    public static final String DownloadToken = "8a2e746754e7a8e20154ff98d8b30004";
 
     /**
      * 获取附件信息
@@ -52,5 +52,24 @@ public interface AttachmentManager {
      * @return
      */
     AttachmentBean handleUploadedAttachement(String bid, String fileName);
+
+    /**
+     * Pre-operation for user attachment download.
+     *
+     * @param token
+     * @param session
+     * @return
+     */
+    AttachmentBean userDownloadAttachment(String token, HttpSession session);
+
+    /**
+     * Pre-operation for admin attachment download.
+     *
+     * @param aid
+     * @param session
+     * @return
+     */
+    AttachmentBean adminDownloadAttachment(String aid, HttpSession session);
+
 
 }

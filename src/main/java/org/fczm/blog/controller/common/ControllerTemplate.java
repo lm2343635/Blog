@@ -130,19 +130,20 @@ public class ControllerTemplate {
     }
 
     /**
+     * Download file with data stream.
      *
-     * @param path
+     * @param store File store path
      * @param fileName
      * @param response
      * @throws IOException
      */
-    private void download(String path, String fileName, HttpServletResponse response) throws IOException {
+    public void download(String store, String fileName, HttpServletResponse response) throws IOException {
         FileInputStream in = null;
         ServletOutputStream out = null;
         response.setContentType("application/octet-stream; charset=UTF-8");
         response.setHeader("Content-disposition", "attachment; filename=" + new String(fileName.getBytes("UTF-8"), "iso8859-1"));
         try {
-            in = new FileInputStream(path + File.separator + fileName);
+            in = new FileInputStream(store);
             out = response.getOutputStream();
             out.flush();
             int aRead = 0;

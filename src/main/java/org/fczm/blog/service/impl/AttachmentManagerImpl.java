@@ -12,6 +12,7 @@ import org.fczm.blog.domain.Attachment;
 import org.fczm.blog.domain.Blog;
 import org.fczm.blog.service.AttachmentManager;
 import org.fczm.blog.service.common.ManagerTemplate;
+import org.fczm.common.util.Debug;
 import org.fczm.common.util.FileTool;
 import org.fczm.common.util.RandomValidateCode;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class AttachmentManagerImpl extends ManagerTemplate implements Attachment
         if (attachment == null) {
             return null;
         }
-        return new AttachmentBean(attachment);
+        return new AttachmentBean(attachment, false);
     }
 
     @RemoteMethod
@@ -38,7 +39,7 @@ public class AttachmentManagerImpl extends ManagerTemplate implements Attachment
             return null;
         }
         for (Attachment attachment : attachmentDao.findByBlog(blog)) {
-            attachments.add(new AttachmentBean(attachment));
+            attachments.add(new AttachmentBean(attachment, false));
         }
         return attachments;
     }
@@ -72,7 +73,7 @@ public class AttachmentManagerImpl extends ManagerTemplate implements Attachment
         Map<String, String> token = new HashMap<String, String>();
         token.put("aid", aid);
         token.put("token", UUID.randomUUID().toString());
-        session.setAttribute(DOWNLOAD_TOKEN, token);
+        session.setAttribute(DownloadToken, token);
         return token.get("token");
     }
 
@@ -101,7 +102,33 @@ public class AttachmentManagerImpl extends ManagerTemplate implements Attachment
         if (attachmentDao.save(attachment) == null) {
             return null;
         }
-        return new AttachmentBean(attachment);
+        return new AttachmentBean(attachment, false);
+    }
+
+    public AttachmentBean userDownloadAttachment(String token, HttpSession session) {
+        Map<String, String> tokenMap = (Map<String, String>) session.getAttribute(AttachmentManager.DownloadToken);
+        if (token == null || !token.equals(tokenMap.get("token"))) {
+            return null;
+        }
+        session.removeAttribute(AttachmentManager.DownloadToken);
+        Attachment attachment = attachmentDao.get(tokenMap.get("aid"));
+        if (attachment == null) {
+            Debug.error("Cannot find the attachement by this aid.");
+            return null;
+        }
+        return new AttachmentBean(attachment, true);
+    }
+
+    public AttachmentBean adminDownloadAttachment(String aid, HttpSession session) {
+        if (!checkAdminSession(session)) {
+            return null;
+        }
+        Attachment attachment = attachmentDao.get(aid);
+        if (attachment == null) {
+            Debug.error("Cannot find the attachement by this aid.");
+            return null;
+        }
+        return new AttachmentBean(attachment, true);
     }
 
 }
