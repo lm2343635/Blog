@@ -1,26 +1,26 @@
-var MIN_EDIT_HEIGHT=380;
+var MIN_EDIT_HEIGHT = 380;
 
-$(document).ready(function() {
-	checkAdminSession(function() {
-		//加载博文类型
-        TypeManager.getAll(function(types) {
-            for(var i in types) {
+$(document).ready(function () {
+    checkAdminSession(function () {
+        //加载博文类型
+        TypeManager.getAll(function (types) {
+            for (var i in types) {
                 $("<option>").text(types[i].tname).val(types[i].tid).appendTo("#add-blog-type");
             }
         });
-	});
-	
+    });
+
     //清除博文内容
-	$("#add-blog-clear").click(function() {
-        $.messager.confirm("Tip", "Confirm to clear title of this blog article?", function() {
+    $("#add-blog-clear").click(function () {
+        $.messager.confirm("Tip", "Confirm to clear title of this blog article?", function () {
             $("#add-blog-title").val("");
             $("#add-blog-content").summernote("code", "");
         });
-	});
+    });
 
     $("#add-blog-date").datetimepicker({
         weekStart: 1,
-        todayBtn:  1,
+        todayBtn: 1,
         autoclose: 1,
         todayHighlight: 1,
         startView: 2,
@@ -29,37 +29,37 @@ $(document).ready(function() {
     }).val((new Date()).format(DATE_HOUR_MINUTE_FORMAT));
 
     //新增博文
-    $("#add-blog-submit").click(function() {
-    	var title=$("#add-blog-title").val();
-    	var date=$("#add-blog-date").val();
-        var tid=$("#add-blog-type").val();
-        var validate=true;
-        if(title==null||title=="") {
+    $("#add-blog-submit").click(function () {
+        var title = $("#add-blog-title").val();
+        var date = $("#add-blog-date").val();
+        var tid = $("#add-blog-type").val();
+        var validate = true;
+        if (title == null || title == "") {
             $("#add-blog-title").parent().addClass("has-error");
-            validate=false;
+            validate = false;
         } else {
             $("#add-blog-title").parent().removeClass("has-error");
         }
-        if(tid==null||tid=="") {
+        if (tid == null || tid == "") {
             $("#add-blog-type").parent().addClass("has-error");
-            validate=false;
+            validate = false;
         } else {
             $("#add-blog-type").parent().removeClass("has-error");
         }
-        if(validate) {
+        if (validate) {
             $("#add-blog-submit").html('<i class="fa fa-refresh fa-spin"></i>')
-                                 .attr("disabled", "disabled");
-            BlogManager.addBlog(title, date, tid, function(bid) {
-                if(bid) {
+                .attr("disabled", "disabled");
+            BlogManager.addBlog(title, date, tid, function (bid) {
+                if (bid) {
                     $.messager.popup("Create this blog successfully!");
-                    setTimeout(function() {
-                        location.href="edit.html?bid="+bid;
+                    setTimeout(function () {
+                        location.href = "edit.html?bid=" + bid;
                     }, 1000);
                 }
             });
         } else {
             $.messager.popup("No title, content or type!");
         }
-    	
+
     });
 });
