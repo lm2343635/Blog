@@ -1,5 +1,7 @@
 package org.fczm.blog.component;
 
+import org.fczm.blog.component.config.Page;
+import org.fczm.common.util.JsonTool;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,10 +19,10 @@ public class ConfigComponent {
     // Max image width.
     public int MaxImageWidth = 1440;
 
-    // Dynamic config path.
     public String ConfigPath = "/WEB-INF/config.json";
-
     public String rootPath;
+    public JsonTool configTool = null;
+    public Page page;
 
     public ConfigComponent() {
         rootPath = this.getClass().getClassLoader().getResource("/").getPath().split("WEB-INF")[0];
@@ -28,7 +30,9 @@ public class ConfigComponent {
     }
 
     public void load() {
-
+        String pathname = rootPath + ConfigPath;
+        configTool = new JsonTool(pathname);
+        page = new Page(configTool.getJSONObject("page"));
     }
 
 }

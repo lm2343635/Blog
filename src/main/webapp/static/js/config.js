@@ -27,7 +27,7 @@ $(document).ready(function() {
 
 	//刷新配置文件
 	$("#refresh-config").click(function() {
-		ConfigManager.loadConfig(function() {
+		ConfigManager.refreshConfig(function() {
 			location.reload();
 		});
 	});

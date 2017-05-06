@@ -5,13 +5,13 @@ import java.util.*;
 
 import javax.servlet.http.HttpSession;
 
-import org.directwebremoting.WebContextFactory;
+import org.directwebremoting.annotations.RemoteMethod;
 import org.directwebremoting.annotations.RemoteProxy;
 import org.fczm.blog.bean.AttachmentBean;
 import org.fczm.blog.domain.Attachment;
 import org.fczm.blog.domain.Blog;
 import org.fczm.blog.service.AttachmentManager;
-import org.fczm.blog.service.util.ManagerTemplate;
+import org.fczm.blog.service.common.ManagerTemplate;
 import org.fczm.common.util.FileTool;
 import org.fczm.common.util.RandomValidateCode;
 import org.springframework.stereotype.Service;
@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RemoteProxy(name = "AttachmentManager")
 public class AttachmentManagerImpl extends ManagerTemplate implements AttachmentManager {
 
+    @RemoteMethod
     public AttachmentBean getAttachment(String aid) {
         Attachment attachment = attachmentDao.get(aid);
         if (attachment == null) {
@@ -29,6 +30,7 @@ public class AttachmentManagerImpl extends ManagerTemplate implements Attachment
         return new AttachmentBean(attachment);
     }
 
+    @RemoteMethod
     public List<AttachmentBean> getAttachmentsByBid(String bid) {
         List<AttachmentBean> attachments = new ArrayList<AttachmentBean>();
         Blog blog = blogDao.get(bid);
@@ -41,6 +43,7 @@ public class AttachmentManagerImpl extends ManagerTemplate implements Attachment
         return attachments;
     }
 
+    @RemoteMethod
     @Transactional
     public boolean removeAttachment(String aid) {
         Attachment attachment = attachmentDao.get(aid);
@@ -57,6 +60,7 @@ public class AttachmentManagerImpl extends ManagerTemplate implements Attachment
         return true;
     }
 
+    @RemoteMethod
     public String validateDownload(String aid, String code, HttpSession session) {
         Attachment attachment = attachmentDao.get(aid);
         if (attachment == null) {
@@ -72,6 +76,7 @@ public class AttachmentManagerImpl extends ManagerTemplate implements Attachment
         return token.get("token");
     }
 
+    @RemoteMethod
     @Transactional
     public AttachmentBean handleUploadedAttachement(String bid, String fileName) {
         Blog blog = blogDao.get(bid);

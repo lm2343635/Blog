@@ -1,11 +1,12 @@
 package org.fczm.blog.service.impl;
 
+import org.directwebremoting.annotations.RemoteMethod;
 import org.directwebremoting.annotations.RemoteProxy;
 import org.fczm.blog.bean.IllustrationBean;
 import org.fczm.blog.domain.Blog;
 import org.fczm.blog.domain.Illustration;
 import org.fczm.blog.service.IllustrationManager;
-import org.fczm.blog.service.util.ManagerTemplate;
+import org.fczm.blog.service.common.ManagerTemplate;
 import org.fczm.common.util.FileTool;
 import org.fczm.common.util.ImageTool;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ import java.util.UUID;
 @RemoteProxy(name = "IllustrationManager")
 public class IllustrationManagerImpl extends ManagerTemplate implements IllustrationManager {
 
+    @RemoteMethod
     public List<IllustrationBean> getIllustrationsByBid(String bid) {
         Blog blog = blogDao.get(bid);
         if (blog == null) {
@@ -33,6 +35,7 @@ public class IllustrationManagerImpl extends ManagerTemplate implements Illustra
         return illustrations;
     }
 
+    @RemoteMethod
     @Transactional
     public boolean removeIllustration(String iid) {
         Illustration illustration = illustrationDao.get(iid);

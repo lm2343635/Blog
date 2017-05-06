@@ -1,5 +1,5 @@
 {
-	"pageSize": {
+	"page": {
 		"adminPageSize": 15,
     	"blogPageSize": 15
 	} 

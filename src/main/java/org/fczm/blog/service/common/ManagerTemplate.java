@@ -1,4 +1,4 @@
-package org.fczm.blog.service.util;
+package org.fczm.blog.service.common;
 
 import org.directwebremoting.WebContextFactory;
 import org.fczm.blog.component.ConfigComponent;
@@ -7,11 +7,15 @@ import org.fczm.blog.dao.BlogDao;
 import org.fczm.blog.dao.CommentDao;
 import org.fczm.blog.dao.IllustrationDao;
 import org.fczm.blog.dao.TypeDao;
+import org.fczm.blog.service.AdminManager;
+import org.fczm.blog.service.impl.ConfigManagerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import net.sf.json.JSONObject;
+
+import javax.servlet.http.HttpSession;
 
 public class ManagerTemplate {
 
@@ -45,10 +49,9 @@ public class ManagerTemplate {
 		}
 		return context;
 	}
-	
-	public JSONObject getPageSizeConfig() {
-		ConfigManager manager = (ConfigManager)getContext().getBean("configManager");
-		return manager.getConfig().getJSONObject("pageSize");
+
+	public boolean checkAdminSession(HttpSession session) {
+		return session.getAttribute(AdminManager.AdminFlag) != null;
 	}
 
 }

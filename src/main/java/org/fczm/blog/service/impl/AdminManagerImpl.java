@@ -5,9 +5,10 @@ import java.io.File;
 import javax.servlet.http.HttpSession;
 
 import org.directwebremoting.WebContextFactory;
+import org.directwebremoting.annotations.RemoteMethod;
 import org.directwebremoting.annotations.RemoteProxy;
 import org.fczm.blog.service.AdminManager;
-import org.fczm.blog.service.util.ManagerTemplate;
+import org.fczm.blog.service.common.ManagerTemplate;
 import org.fczm.common.util.JsonTool;
 
 import net.sf.json.JSONArray;
@@ -23,12 +24,13 @@ public class AdminManagerImpl extends ManagerTemplate implements AdminManager {
 
     public JsonTool getConfig() {
         if (config == null) {
-            String pathname = WebContextFactory.get().getServletContext().getRealPath("/") + File.separator + ADMIN_CONFIG_PATH;
+            String pathname = WebContextFactory.get().getServletContext().getRealPath("/") + File.separator + AdminConfigPath;
             config = new JsonTool(pathname);
         }
         return config;
     }
 
+    @RemoteMethod
     public JSONArray getAdmins() {
         if (admins == null) {
             admins = getConfig().getJSONArray("admins");
@@ -36,7 +38,7 @@ public class AdminManagerImpl extends ManagerTemplate implements AdminManager {
         return admins;
     }
 
-    @Override
+    @RemoteMethod
     public JSONArray getAdmins(HttpSession session) {
         if (checkSession(session) == null) {
             return null;
@@ -44,28 +46,28 @@ public class AdminManagerImpl extends ManagerTemplate implements AdminManager {
         return getAdmins();
     }
 
-    @Override
+    @RemoteMethod
     public boolean login(String username, String password, HttpSession session) {
         getAdmins();
         for (int i = 0; i < admins.size(); i++) {
             JSONObject admin = admins.getJSONObject(i);
             if (username.equals(admin.getString("username")) && password.equals(admin.getString("password"))) {
-                session.setAttribute(ADMIN_FLAG, username);
+                session.setAttribute(AdminFlag, username);
                 return true;
             }
         }
         return false;
     }
 
-    @Override
+    @RemoteMethod
     public String checkSession(HttpSession session) {
-        if (session.getAttribute(ADMIN_FLAG) == null) {
+        if (session.getAttribute(AdminFlag) == null) {
             return null;
         }
-        return (String) session.getAttribute(ADMIN_FLAG);
+        return (String) session.getAttribute(AdminFlag);
     }
 
-    @Override
+    @RemoteMethod
     public boolean addAdmin(String username, String password, HttpSession session) {
         if (checkSession(session) == null) {
             return false;
@@ -88,7 +90,7 @@ public class AdminManagerImpl extends ManagerTemplate implements AdminManager {
         return true;
     }
 
-    @Override
+    @RemoteMethod
     public boolean modifyPassword(String username, String oldPassword, String newPassword, HttpSession session) {
         if (checkSession(session) == null) {
             return false;
@@ -107,7 +109,7 @@ public class AdminManagerImpl extends ManagerTemplate implements AdminManager {
         return false;
     }
 
-    @Override
+    @RemoteMethod
     public boolean removeAdmin(String username, HttpSession session) {
         if (checkSession(session) == null) {
             return false;

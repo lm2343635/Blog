@@ -46,6 +46,4 @@
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 
-	<bean id="configManager" class="org.fczm.blog.service.util.ConfigManager"/>
-
 </beans>

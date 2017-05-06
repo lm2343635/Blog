@@ -6,8 +6,8 @@ import net.sf.json.JSONArray;
 
 public interface AdminManager {
 
-    public static final String ADMIN_CONFIG_PATH = "WEB-INF/admin.json";
-    public static final String ADMIN_FLAG = "702764128274710150414868df000d";
+    public static final String AdminConfigPath = "WEB-INF/admin.json";
+    public static final String AdminFlag = "702764128274710150414868df000d";
 
     /**
      * @param session

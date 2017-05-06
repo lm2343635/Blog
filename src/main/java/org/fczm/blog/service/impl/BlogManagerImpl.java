@@ -1,13 +1,14 @@
 package org.fczm.blog.service.impl;
 
 import org.directwebremoting.WebContextFactory;
+import org.directwebremoting.annotations.RemoteMethod;
 import org.directwebremoting.annotations.RemoteProxy;
 import org.fczm.blog.bean.BlogBean;
 import org.fczm.blog.domain.Attachment;
 import org.fczm.blog.domain.Blog;
 import org.fczm.blog.domain.Type;
 import org.fczm.blog.service.BlogManager;
-import org.fczm.blog.service.util.ManagerTemplate;
+import org.fczm.blog.service.common.ManagerTemplate;
 import org.fczm.common.util.DateTool;
 import org.fczm.common.util.FileTool;
 import org.fczm.common.util.ImageTool;
@@ -25,6 +26,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
     private static final String blogOutputFolder = "blogs/";
     private static final int blogOutputFolderDepth = 1;
 
+    @RemoteMethod
     @Transactional
     public String addBlog(String title, String date, String tid) {
         Blog blog = new Blog();
@@ -46,6 +48,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
         return bid;
     }
 
+    @RemoteMethod
     public List<BlogBean> getAll() {
         List<BlogBean> blogs = new ArrayList<BlogBean>();
         for (Blog blog : blogDao.findAll()) {
@@ -54,6 +57,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
         return blogs;
     }
 
+    @RemoteMethod
     @Transactional
     public BlogBean getBlogInfo(String bid, boolean reader) {
         Blog blog = blogDao.get(bid);
@@ -67,7 +71,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
         return new BlogBean(blog);
     }
 
-
+    @RemoteMethod
     public String getBlogContent(String bid) {
         Blog blog = blogDao.get(bid);
         if (blog == null)
@@ -75,6 +79,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
         return blog.getContent();
     }
 
+    @RemoteMethod
     @Transactional
     public void modifyBlog(String bid, String title, String content, String date, String tid) {
         Blog blog = blogDao.get(bid);
@@ -94,6 +99,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
         generateBlog(blog);
     }
 
+    @RemoteMethod
     @Transactional
     public void backgroudSaving(String bid, String content) {
         Blog blog = blogDao.get(bid);
@@ -101,6 +107,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
         blogDao.update(blog);
     }
 
+    @RemoteMethod
     @Transactional
     public void removeBlog(String bid) {
         Blog blog = blogDao.get(bid);
@@ -113,15 +120,18 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
         blogDao.delete(blog);
     }
 
+    @RemoteMethod
     public int getBlogsCount(String title, String tid) {
         Type type = (tid == null) ? null : typeDao.get(tid);
         return blogDao.getBlogsCount(title, type);
     }
 
+    @RemoteMethod
     public int getBlogsPageSize() {
-        return getPageSizeConfig().getInt("blogPageSize");
+        return configComponent.page.blogPageSize;
     }
 
+    @RemoteMethod
     public List<BlogBean> searchBlogs(String title, String tid, int page, int pageSize) {
         int offset = (page - 1) * pageSize;
         List<BlogBean> blogs = new ArrayList<BlogBean>();
@@ -132,6 +142,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
         return blogs;
     }
 
+    @RemoteMethod
     public void regenerate() {
         String rootPath = WebContextFactory.get().getServletContext().getRealPath("/") + File.separator;
         FileTool.delAllFile(rootPath + blogOutputFolder);
@@ -140,11 +151,13 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
         }
     }
 
+    @RemoteMethod
     public void regenerateBlog(String bid) {
         Blog blog = blogDao.get(bid);
         generateBlog(blog);
     }
 
+    @RemoteMethod
     private void generateBlog(Blog blog) {
         if (blog == null) {
             return;
@@ -169,6 +182,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
         document.output();
     }
 
+    @RemoteMethod
     @Transactional
     public boolean deleteCover(String bid) {
         Blog blog = blogDao.get(bid);
@@ -183,6 +197,7 @@ public class BlogManagerImpl extends ManagerTemplate implements BlogManager {
         return false;
     }
 
+    @RemoteMethod
     @Transactional
     public void setBgenable(String bid, boolean bgenable) {
         Blog blog = blogDao.get(bid);
