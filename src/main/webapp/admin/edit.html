@@ -1,183 +1,195 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Edit Blog</title>
-        <link rel="Shortcut Icon" href="../static/images/favicon.ico">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-        <link href="../static/css/bootstrap-switch.min.css" rel="stylesheet">
-        <link href="../static/css/font-awesome.min.css" rel="stylesheet">
-        <link href="../static/css/summernote.min.css" rel="stylesheet">
-        <link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-        <link href="../static/css/jquery.fileupload-ui.css" rel="stylesheet">
-        <link href="../static/css/jquery.fileupload.css" rel="stylesheet">
-        <link href="../static/css/mengular.css" rel="stylesheet">
-        <link href="../static/css/edit.css" rel="stylesheet">
-        <script src="../static/js/jquery.min.js"></script> 
-        <script src="../static/js/jquery.ui.widget.js"></script>
-        <script src="../static/js/jquery.iframe-transport.js"></script>
-        <script src="../static/js/jquery.fileupload.js"></script>
-        <script src="../static/js/jquery.bootstrap.min.js"></script>
-        <script src="../static/js/clipboard.min.js"></script>
-        <script src="../static/js/bootstrap.min.js"></script> 
-        <script src="../static/js/bootstrap-switch.min.js"></script> 
-        <script src="../static/js/bootstrap-datetimepicker.min.js"></script>
-        <script src="../static/js/bootstrap-datetimepicker.zh-CN.js"></script>
-        <script src="../static/js/summernote.min.js"></script>
-        <script src="../static/js/mengular.js"></script>
-        <script src="../static/js/tools.js"></script>
-        <script src="../dwr/engine.js"></script>
-        <script src="../dwr/interface/BlogManager.js"></script>
-        <script src="../dwr/interface/AdminManager.js"></script>
-        <script src="../dwr/interface/TypeManager.js"></script>
-        <script src="../dwr/interface/IllustrationManager.js"></script>
-        <script src="../dwr/interface/AttachmentManager.js"></script>
-        <script src="../static/js/edit.js"></script>
-    </head>
-    <body>
-        <div class="container">
-            <div id="head">
-                <script>$("#head").load("head.html");</script>
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Blog</title>
+    <link rel="Shortcut Icon" href="../static/images/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/bootstrap-switch.min.css" rel="stylesheet">
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/css/summernote.min.css" rel="stylesheet">
+    <link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="../static/css/jquery.fileupload-ui.css" rel="stylesheet">
+    <link href="../static/css/jquery.fileupload.css" rel="stylesheet">
+    <link href="../static/css/mengular.css" rel="stylesheet">
+    <link href="../static/css/edit.css" rel="stylesheet">
+    <script src="../static/js/admin/jquery.min.js"></script>
+    <script src="../static/js/jquery.ui.widget.js"></script>
+    <script src="../static/js/jquery.iframe-transport.js"></script>
+    <script src="../static/js/jquery.fileupload.js"></script>
+    <script src="../static/js/jquery.bootstrap.min.js"></script>
+    <script src="../static/js/clipboard.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/bootstrap-switch.min.js"></script>
+    <script src="../static/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../static/js/summernote.min.js"></script>
+    <script src="../static/js/mengular.js"></script>
+    <script src="../static/js/tools.js"></script>
+    <script src="../dwr/engine.js"></script>
+    <script src="../dwr/interface/BlogManager.js"></script>
+    <script src="../dwr/interface/AdminManager.js"></script>
+    <script src="../dwr/interface/TypeManager.js"></script>
+    <script src="../dwr/interface/IllustrationManager.js"></script>
+    <script src="../dwr/interface/AttachmentManager.js"></script>
+    <script src="../static/js/admin/edit.js"></script>
+</head>
+<body>
+<div class="container">
+    <div id="head">
+        <script>$("#head").load("head.html");</script>
+    </div>
+    <div id="title-div">
+        <input id="edit-blog-title" type="text" placeholder="Blog Title">
+        <hr>
+    </div>
+    <div id="edit-blog-div" class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <div class="input-group">
+                <span class="input-group-addon form-icon"><i class="fa fa-clipboard fa-lg"></i></span>
+                <select id="edit-blog-type" class="form-control"></select>
             </div>
-            <div id="title-div">
-                <input id="edit-blog-title" type="text" placeholder="Blog Title">
-                <hr>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            <div class="input-group">
+                <span class="input-group-addon form-icon"><i class="fa fa-calendar fa-lg"></i></span>
+                <input id="edit-blog-date" type="text" class="form-control" placeholder="Create Date" readonly>
             </div>
-            <div id="edit-blog-div" class="row">
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="input-group">
-                        <span class="input-group-addon form-icon"><i class="fa fa-clipboard fa-lg"></i></span>
-                        <select id="edit-blog-type" class="form-control"></select>
-                    </div>
+        </div>
+        <div class="col-xs-4 col-md-2">
+            <button id="edit-blog-clear" class="btn btn-block btn-default"
+                    title="Clear title and content of this blog.">Clear
+            </button>
+        </div>
+        <div class="col-xs-4 col-md-2">
+            <button id="edit-blog-save" class="btn btn-block btn-success" title="Save content.">Save</button>
+        </div>
+        <div class="col-xs-4 col-md-2">
+            <button id="edit-blog-submit" class="btn btn-block btn-info" title="Finish edit and regenerate this blog.">
+                Finish
+            </button>
+        </div>
+        <div class="col-xs-12">
+            <div id="loading-blog" class="panel panel-default">
+                <div class="panel-body">
+                    <h1 class="text-info text-center"><i class="fa fa-spinner fa-spin"></i></h1>
+                    <h4 class="text-info text-center">Loading this blog article...</h4>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="input-group">
-                        <span class="input-group-addon form-icon"><i class="fa fa-calendar fa-lg"></i></span>
-                        <input id="edit-blog-date" type="text" class="form-control" placeholder="Create Date" readonly>
-                    </div>
-                </div>
-                <div class="col-xs-4 col-md-2">
-                    <button id="edit-blog-clear" class="btn btn-block btn-default" title="Clear title and content of this blog.">Clear</button>
-                </div>
-                <div class="col-xs-4 col-md-2">
-                    <button id="edit-blog-save" class="btn btn-block btn-success" title="Save content.">Save</button>
-                </div>
-                <div class="col-xs-4 col-md-2">
-                    <button id="edit-blog-submit" class="btn btn-block btn-info" title="Finish edit and regenerate this blog.">Finish</button>
-                </div>
-                <div class="col-xs-12">
-                    <div id="loading-blog" class="panel panel-default">
-                    	<div class="panel-body">
-                    	    <h1 class="text-info text-center"><i class="fa fa-spinner fa-spin"></i></h1>
-                       		<h4 class="text-info text-center">Loading this blog article...</h4>
-                    	</div>
-                    </div>
-                    <div id="edit-blog-content"></div>
-                </div>
-                <div class="col-xs-12">
-                    <img id="blog-cover-img" class="thumbnail">
-                    <div id="blog-cover-progress" class="progress">
-                        <div class="progress-bar progress-bar-striped active"></div>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-md-2">
-                    <button id="blog-illustration" class="btn btn-warning btn-block btn-lg" data-toggle="modal" data-target="#illustration-modal">Illustrations</button>
-                </div>
-                <div class="col-xs-6 col-md-2">
-                    <button id="blog-attachment" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#attachment-modal">Attachments</button>
-                </div>
-                <div class="col-xs-12 col-md-4">
+            </div>
+            <div id="edit-blog-content"></div>
+        </div>
+        <div class="col-xs-12">
+            <img id="blog-cover-img" class="thumbnail">
+            <div id="blog-cover-progress" class="progress">
+                <div class="progress-bar progress-bar-striped active"></div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-2">
+            <button id="blog-illustration" class="btn btn-warning btn-block btn-lg" data-toggle="modal"
+                    data-target="#illustration-modal">Illustrations
+            </button>
+        </div>
+        <div class="col-xs-6 col-md-2">
+            <button id="blog-attachment" class="btn btn-primary btn-block btn-lg" data-toggle="modal"
+                    data-target="#attachment-modal">Attachments
+            </button>
+        </div>
+        <div class="col-xs-12 col-md-4">
                     <span id="blog-upload-cover-button" class="btn btn-success btn-lg btn-block fileinput-button">
                         <p>Upload Blog Cover Photo</p>
                         <p>(Reupload will replace old cover)</p>
                         <input id="blog-upload-cover" type="file" name="files[]">
                     </span>
-                </div>
-                <div class="col-xs-6 col-md-2">
-                    <button id="blog-cover-delete" class="btn btn-danger btn-block btn-lg">Delete Cover</button>
-                </div>
-                <div class="col-xs-6 col-md-2">
-                	<p id="set-as-background" class="text-muted">Set as blog backgroud</p>
-                	<input id="blog-cover-bgenable" type="checkbox" data-size="mini" data-on-text="Enable" data-off-text="Disable">
-                </div>
-                
-            </div> 
         </div>
-        <div id="illustration-modal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Manage Illustrations</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div id="illustration-list" class="row">
-                            <div id=${iid}$ class="col-xs-12 mengular-template illustration-list-template">
-                                <div class="thumbnail">
-                                    <img src="${src}$">
-                                    <span class="illustration-list-remove">
+        <div class="col-xs-6 col-md-2">
+            <button id="blog-cover-delete" class="btn btn-danger btn-block btn-lg">Delete Cover</button>
+        </div>
+        <div class="col-xs-6 col-md-2">
+            <p id="set-as-background" class="text-muted">Set as blog backgroud</p>
+            <input id="blog-cover-bgenable" type="checkbox" data-size="mini" data-on-text="Enable"
+                   data-off-text="Disable">
+        </div>
+
+    </div>
+</div>
+<div id="illustration-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Manage Illustrations</h4>
+            </div>
+            <div class="modal-body">
+                <div id="illustration-list" class="row">
+                    <div id=${iid}$ class="col-xs-12 mengular-template illustration-list-template">
+                        <div class="thumbnail">
+                            <img src="${src}$">
+                            <span class="illustration-list-remove">
                                         <i class="fa fa-lg fa-trash-o"></i>
                                     </span>
-                                    <span id="copy-${iid}$" class="illustration-list-copy">
+                            <span id="copy-${iid}$" class="illustration-list-copy">
                                         <i class="fa fa-lg fa-link"></i>
                                     </span>
-                                    <div class="illustration-list-link">
-                                        <p class="text-muted">Link is copied to clipboard. If not, copy it manually. <i class="fa fa-lg fa-times"></i></p>
-                                    	<input class="text-muted" value="${src}$" readonly></input>
-                                    </div>
-                                    <div class="illustration-list-confirm">
-                                        <p class="text-muted">Are you sure to remove? <i class="fa fa-lg fa-times"></i></p>
-                                        <button class="btn btn-danger illustration-list-confirm-yes">Yes</button>
-                                        <button class="btn btn-default illustration-list-confirm-no">No</button>
-                                    </div>
-                                </div>
+                            <div class="illustration-list-link">
+                                <p class="text-muted">Link is copied to clipboard. If not, copy it manually. <i
+                                        class="fa fa-lg fa-times"></i></p>
+                                <input class="text-muted" value="${src}$" readonly></input>
+                            </div>
+                            <div class="illustration-list-confirm">
+                                <p class="text-muted">Are you sure to remove? <i class="fa fa-lg fa-times"></i></p>
+                                <button class="btn btn-danger illustration-list-confirm-yes">Yes</button>
+                                <button class="btn btn-default illustration-list-confirm-no">No</button>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
                 </div>
             </div>
-        </div>
-        <div id="attachment-modal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Manage Attachments</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div id="attachment-list">
-                            <div id="${aid}$" class="row mengular-template attachment-list-template">
-                                <div class="col-xs-12 col-sm-10">
-                                    <h4>${filename}$</h4>
-                                    <small class="text-muted">Uploaded at ${upload}$, ${size}$</small>
-                                </div>
-                                <div class="col-xs-2 col-sm-1">
-                                    <i class="fa fa-trash text-danger attachment-list-remove"></i>
-                                </div>
-                                <div class="col-xs-2 col-sm-1">
-                                    <a href="/download/admin?aid=${aid}$" target="_blank">
-                                        <i class="fa fa-download text-primary attachment-list-download"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="attachment-upload-progress" class="progress">
-                            <div class="progress-bar progress-bar-striped active"></div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                        <button class="btn btn-primary fileinput-button">
-                            <span>Upload Attachment</span>
-                            <input id="upload-attachment" type="file" name="files[]">
-                        </button>
-                    </div>
-                </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
-    </body>
+    </div>
+</div>
+<div id="attachment-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Manage Attachments</h4>
+            </div>
+            <div class="modal-body">
+                <div id="attachment-list">
+                    <div id="${aid}$" class="row mengular-template attachment-list-template">
+                        <div class="col-xs-12 col-sm-10">
+                            <h4>${filename}$</h4>
+                            <small class="text-muted">Uploaded at ${upload}$, ${size}$</small>
+                        </div>
+                        <div class="col-xs-2 col-sm-1">
+                            <i class="fa fa-trash text-danger attachment-list-remove"></i>
+                        </div>
+                        <div class="col-xs-2 col-sm-1">
+                            <a href="/download/admin?aid=${aid}$" target="_blank">
+                                <i class="fa fa-download text-primary attachment-list-download"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div id="attachment-upload-progress" class="progress">
+                    <div class="progress-bar progress-bar-striped active"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary fileinput-button">
+                    <span>Upload Attachment</span>
+                    <input id="upload-attachment" type="file" name="files[]">
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
 </html>

@@ -1,111 +1,116 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="keywords" content="浮尘追梦, fczm, Meng Li, 博客, Blog, Java Web, iOS">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<link rel="Shortcut Icon" href="static/images/favicon.ico">
-		<link href="static/css/bootstrap.min.css" rel="stylesheet"/>
-		<link href="static/css/bootstrap.photo.css" rel="stylesheet"/>
-		<link href="static/css/font-awesome.min.css" rel="stylesheet">
-		<link href="static/css/docs.min.css" rel="stylesheet"/>
-		<link href="static/css/style.css" rel="stylesheet"/>
-		<link href="static/css/mengular.css" rel="stylesheet"/>
-		<link href="static/css/blogs.css" rel="stylesheet"/>
-		<script src="static/js/jquery.min.js"></script>
-		<script src="static/js/jquery.i18n.properties.min.js"></script>
-		<script src="static/js/bootstrap.min.js"></script>
-		<script src="static/js/mengular.js"></script>
-		<script src="static/js/tools.js"></script>
-		<script src="dwr/engine.js"></script>
-        <script src="dwr/interface/BlogManager.js"></script>
-        <script src="dwr/interface/TypeManager.js"></script>
-		<script src="static/js/blogs.js"></script>
-	</head>
-	<body>
-		<div id="home" class="header">
-			<div class="top-header">
-				<div class="container">
-					<h1 class="pull-left home"><a href="index.html">@{blogs_home}</a></h1>
-					<div id="language-selector" class="dropdown pull-right language">
-						<button id="language-selector-button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-							<span >@{language_broswer}</span>
-							<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" aria-labelledby="language-selector-button">
-							<li data-lang="en-US"><a>English</a></li>
-							<li data-lang="zh-CN"><a>简体中文</a></li>
-							<li data-lang="ja"><a>日本語</a></li>
-						</ul>
-					</div>
-					<div class="clearfix"> </div>
-					<h1 id="str-my-blogs" class="text-center">@{blogs_my_blogs}</h1>
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div id="search-header">
-				<div class="row">
-					<div class="col-xs-12 col-sm-5 col-md-3">
-						<div id="type-list" class="btn-group">
-							<button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<span class="text-muted"></span>
-								<i class="fa fa-lg fa-caret-down text-muted pull-right"></i>
-							</button>
-							<ul class="dropdown-menu">
-								<li id="show-all-type"><a id="str-all-types">@{blogs_all_types}</a></li>
-								<li role="separator" class="divider"></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-7 col-md-9">
-						<input id="search-blog" type="text" placeholder="@{blogs_search_placehoder}" class="text-info text-center">
-						<i id="search-cancel" class="fa fa-times-circle-o fa-lg pull-right text-muted"></i>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12 col-sm-8 col-md-8">
-					<div id="blog-list">
-						<div id="${bid}$" class="bs-callout mengular-template blog-list-template">
-							<a href="blogs/${bid}$">
-								<div class="row">
-									<div class="col-xs-12">
-										<small class="text-muted">${tname}$</small>
-										<h4 class="text-primary">${title}$</h4>
-									</div>
-									<div class="col-xs-12 blog-list-date">
-										<p class="text-muted">@{blogs_created_in} ${date}$, <strong class="">${readers}$</strong> @{blogs_readers}</p>
-									</div>
-									<div class="col-xs-12">
-										<img src="${src}$" class="blog-cover img-rounded">
-									</div>
-								</div>
-							</a>
-						</div>
-					</div>	
-				</div>
-				<div class="hidden-xs col-sm-4 col-md-4">
-					<div id="type-right-list" class="btn-group-vertical">
-						<button id="${tid}$" class="btn btn-default btn-lg mengular-template type-right-list-template ${tid}$" data-id="${tid}$">
-							<span class="text-muted">${tname}$</span>
-						</button>
-						<button id="show-right-all-type" class="btn btn-default btn-lg btn-block">
-							<span class="text-muted">@{blogs_all_types}</span>
-						</button>
-					</div>
-				</div>
-			</div>
-			<nav id="page-nav" class="text-center">
-                <ul class="pagination"></ul>
-            </nav>
-		</div>
-		<div id="foot">
-			<script>
-				$(document).ready(function() {
-					$("#foot").load("foot.html");
-				});
-			</script>
-		</div>
-	</body>
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="浮尘追梦, fczm, Meng Li, 博客, Blog, Java Web, iOS">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="Shortcut Icon" href="static/images/favicon.ico">
+    <link href="static/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="static/css/bootstrap.photo.css" rel="stylesheet"/>
+    <link href="static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="static/css/docs.min.css" rel="stylesheet"/>
+    <link href="static/css/style.css" rel="stylesheet"/>
+    <link href="static/css/mengular.css" rel="stylesheet"/>
+    <link href="static/css/blogs.css" rel="stylesheet"/>
+    <script src="static/js/admin/jquery.min.js"></script>
+    <script src="static/js/jquery.i18n.properties.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/mengular.js"></script>
+    <script src="static/js/tools.js"></script>
+    <script src="dwr/engine.js"></script>
+    <script src="dwr/interface/BlogManager.js"></script>
+    <script src="dwr/interface/TypeManager.js"></script>
+    <script src="static/js/blog/blogs.js"></script>
+</head>
+<body>
+<div id="home" class="header">
+    <div class="top-header">
+        <div class="container">
+            <h1 class="pull-left home"><a href="index.html">@{blogs_home}</a></h1>
+            <div id="language-selector" class="dropdown pull-right language">
+                <button id="language-selector-button" class="btn dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                    <span>@{language_broswer}</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="language-selector-button">
+                    <li data-lang="en-US"><a>English</a></li>
+                    <li data-lang="zh-CN"><a>简体中文</a></li>
+                    <li data-lang="ja"><a>日本語</a></li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+            <h1 id="str-my-blogs" class="text-center">@{blogs_my_blogs}</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div id="search-header">
+        <div class="row">
+            <div class="col-xs-12 col-sm-5 col-md-3">
+                <div id="type-list" class="btn-group">
+                    <button type="button" class="btn btn-default btn-block dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        <span class="text-muted"></span>
+                        <i class="fa fa-lg fa-caret-down text-muted pull-right"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li id="show-all-type"><a id="str-all-types">@{blogs_all_types}</a></li>
+                        <li role="separator" class="divider"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-7 col-md-9">
+                <input id="search-blog" type="text" placeholder="@{blogs_search_placehoder}"
+                       class="text-info text-center">
+                <i id="search-cancel" class="fa fa-times-circle-o fa-lg pull-right text-muted"></i>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-8">
+            <div id="blog-list">
+                <div id="${bid}$" class="bs-callout mengular-template blog-list-template">
+                    <a href="blogs/${bid}$">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <small class="text-muted">${tname}$</small>
+                                <h4 class="text-primary">${title}$</h4>
+                            </div>
+                            <div class="col-xs-12 blog-list-date">
+                                <p class="text-muted">@{blogs_created_in} ${date}$, <strong
+                                        class="">${readers}$</strong> @{blogs_readers}</p>
+                            </div>
+                            <div class="col-xs-12">
+                                <img src="${src}$" class="blog-cover img-rounded">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="hidden-xs col-sm-4 col-md-4">
+            <div id="type-right-list" class="btn-group-vertical">
+                <button id="${tid}$" class="btn btn-default btn-lg mengular-template type-right-list-template ${tid}$"
+                        data-id="${tid}$">
+                    <span class="text-muted">${tname}$</span>
+                </button>
+                <button id="show-right-all-type" class="btn btn-default btn-lg btn-block">
+                    <span class="text-muted">@{blogs_all_types}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <nav id="page-nav" class="text-center">
+        <ul class="pagination"></ul>
+    </nav>
+</div>
+<div id="foot">
+    <script>
+        $(document).ready(function () {
+            $("#foot").load("foot.html");
+        });
+    </script>
+</div>
+</body>
 </html>

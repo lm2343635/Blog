@@ -1,38 +1,37 @@
-
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<link href="../static/images/favicon.ico" type="image/x-icon" rel="icon"> 
-		<title>Login Timeout</title>
-		<link rel="stylesheet" href="../static/css/bootstrap.min.css">
-		<link href="../static/css/font-awesome.min.css" rel="stylesheet">
-		<style type="text/css">
-			body{
-				background: #f9f9f9;
-				text-align: center;
-			}
-		</style>
-		<script src="../static/js/jquery.min.js"></script>
-		<script type="text/javascript">
-			var count=5;
-			$(document).ready(function(){
-				setInterval(function(){
-					count--;
-					$("#count").html(count);
-				}, 1000);
-				setTimeout(function(){
-					location.href="index.html";
-				}, count*1000);
-			});
-		</script>
-	</head>
-	<body>
-		<br><br>
-		<h1 class="text-center text-success" style="font-size: 10em;"><i class="fa fa-bold"></i></h1>
-		<h1>Admin Login Timeout</h1>
-		<h3>After <span id="count">5</span>s，back to admin login page automatically</h3>
-		<a id="toIndex" class="btn btn-danger btn-lg" href="index.html">Back to Admin Login Page</a>
-	</body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="../static/images/favicon.ico" type="image/x-icon" rel="icon">
+    <title>Login Timeout</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            background: #f9f9f9;
+            text-align: center;
+        }
+    </style>
+    <script src="../static/js/admin/jquery.min.js"></script>
+    <script type="text/javascript">
+        var count = 5;
+        $(document).ready(function () {
+            setInterval(function () {
+                count--;
+                $("#count").html(count);
+            }, 1000);
+            setTimeout(function () {
+                location.href = "index.html";
+            }, count * 1000);
+        });
+    </script>
+</head>
+<body>
+<br><br>
+<h1 class="text-center text-success" style="font-size: 10em;"><i class="fa fa-bold"></i></h1>
+<h1>Admin Login Timeout</h1>
+<h3>After <span id="count">5</span>s，back to admin login page automatically</h3>
+<a id="toIndex" class="btn btn-danger btn-lg" href="index.html">Back to Admin Login Page</a>
+</body>
 </html>

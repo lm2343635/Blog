@@ -1,68 +1,70 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Add a Blog</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <link rel="Shortcut Icon" href="../static/images/favicon.ico">
-        <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-        <link href="../static/css/summernote.min.css" rel="stylesheet">
-        <link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-        <link href="../static/css/font-awesome.min.css" rel="stylesheet">
-        <link href="../static/css/summernote.min.css" rel="stylesheet">
-        <link href="../static/css/mengular.css" rel="stylesheet">
-        <link href="../static/css/add.css" rel="stylesheet">
-        <script src="../static/js/jquery.min.js"></script> 
-        <script src="../static/js/jquery.bootstrap.min.js"></script>
-        <script src="../static/js/bootstrap-datetimepicker.min.js"></script>
-        <script src="../static/js/bootstrap-datetimepicker.zh-CN.js"></script>
-        <script src="../static/js/bootstrap.min.js"></script> 
-        <script src="../static/js/summernote.min.js"></script>
-        <script src="../static/js/mengular.js"></script>
-        <script src="../static/js/tools.js"></script>
-        <script src="../dwr/engine.js"></script>
-        <script src="../dwr/interface/AdminManager.js"></script>
-        <script src="../dwr/interface/BlogManager.js"></script>
-        <script src="../dwr/interface/TypeManager.js"></script>
-        <script src="../static/js/add.js"></script>
-    </head>
-    <body>
-        <div class="container">
-            <div id="head">
-                <script>$("#head").load("head.html");</script>
-            </div>
-            <div class="page-header">
-                <h3 class="text-center text-muted">Add a Blog</h3>
-            </div>
-            <div id="add-blog-div" class="row">
-                <div class="col-xs-12">
-                    <div class="input-group">
-                        <span class="input-group-addon form-icon"><i class="fa fa-font fa-lg"></i></span>
-                        <input id="add-blog-title" type="text" class="form-control" placeholder="Blog Title">
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6">
-                    <div class="input-group">
-                        <span class="input-group-addon form-icon"><i class="fa fa-clipboard fa-lg"></i></span>
-                        <select id="add-blog-type" class="form-control">
-                            <option value="">Select a type for this blog</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6">
-                    <div class="input-group">
-                        <span class="input-group-addon form-icon"><i class="fa fa-calendar fa-lg"></i></span>
-                        <input id="add-blog-date" type="text" class="form-control" placeholder="Create Date" readonly>
-                    </div>
-                </div>      
-                <div class="col-xs-12"><hr></div>
-                <div class="col-xs-6">
-                    <button id="add-blog-clear" class="btn btn-block btn-default">Clear</button>
-                </div>
-                <div class="col-xs-6">
-                    <button id="add-blog-submit" class="btn btn-block btn-success">Create Blog</button>
-                </div>
+<head>
+    <meta charset="UTF-8">
+    <title>Add a Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="Shortcut Icon" href="../static/images/favicon.ico">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/summernote.min.css" rel="stylesheet">
+    <link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/css/summernote.min.css" rel="stylesheet">
+    <link href="../static/css/mengular.css" rel="stylesheet">
+    <link href="../static/css/add.css" rel="stylesheet">
+    <script src="../static/js/admin/jquery.min.js"></script>
+    <script src="../static/js/jquery.bootstrap.min.js"></script>
+    <script src="../static/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/summernote.min.js"></script>
+    <script src="../static/js/mengular.js"></script>
+    <script src="../static/js/tools.js"></script>
+    <script src="../dwr/engine.js"></script>
+    <script src="../dwr/interface/AdminManager.js"></script>
+    <script src="../dwr/interface/BlogManager.js"></script>
+    <script src="../dwr/interface/TypeManager.js"></script>
+    <script src="../static/js/admin/add.js"></script>
+</head>
+<body>
+<div class="container">
+    <div id="head">
+        <script>$("#head").load("head.html");</script>
+    </div>
+    <div class="page-header">
+        <h3 class="text-center text-muted">Add a Blog</h3>
+    </div>
+    <div id="add-blog-div" class="row">
+        <div class="col-xs-12">
+            <div class="input-group">
+                <span class="input-group-addon form-icon"><i class="fa fa-font fa-lg"></i></span>
+                <input id="add-blog-title" type="text" class="form-control" placeholder="Blog Title">
             </div>
         </div>
-    </body>
+        <div class="col-xs-12 col-sm-6">
+            <div class="input-group">
+                <span class="input-group-addon form-icon"><i class="fa fa-clipboard fa-lg"></i></span>
+                <select id="add-blog-type" class="form-control">
+                    <option value="">Select a type for this blog</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="input-group">
+                <span class="input-group-addon form-icon"><i class="fa fa-calendar fa-lg"></i></span>
+                <input id="add-blog-date" type="text" class="form-control" placeholder="Create Date" readonly>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <hr>
+        </div>
+        <div class="col-xs-6">
+            <button id="add-blog-clear" class="btn btn-block btn-default">Clear</button>
+        </div>
+        <div class="col-xs-6">
+            <button id="add-blog-submit" class="btn btn-block btn-success">Create Blog</button>
+        </div>
+    </div>
+</div>
+</body>
 </html>

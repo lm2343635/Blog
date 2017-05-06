@@ -1,6 +1,6 @@
 {
-	"page": {
-		"adminPageSize": 15,
-    	"blogPageSize": 15
-	} 
+  "page": {
+    "adminPageSize": 15,
+    "blogPageSize": 15
+  }
 }

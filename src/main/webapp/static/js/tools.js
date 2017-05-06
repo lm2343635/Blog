@@ -1,51 +1,51 @@
 var languages = {
-	"en-US": "English",
-	"zh-CN": "简体中文",
-	"ja": "日本語"
+    "en-US": "English",
+    "zh-CN": "简体中文",
+    "ja": "日本語"
 }
 
 //“年-月-日”格式
-var YEAR_MONTH_DATE_FORMAT="yyyy-MM-dd";
+var YEAR_MONTH_DATE_FORMAT = "yyyy-MM-dd";
 //“年-月”格式
-var YEAR_MONTH_FORMAT="yyyy-MM";
+var YEAR_MONTH_FORMAT = "yyyy-MM";
 //“年”格式
-var YEAR_FORMAT="yyyy";
+var YEAR_FORMAT = "yyyy";
 //“年-月-日 时:分”格式
-var DATE_HOUR_MINUTE_FORMAT="yyyy-MM-dd hh:mm";
+var DATE_HOUR_MINUTE_FORMAT = "yyyy-MM-dd hh:mm";
 //“年-月-日 时:分:秒”格式
-var DATE_HOUR_MINUTE_SECOND_FORMAT="yyyy-MM-dd hh:mm:ss";
+var DATE_HOUR_MINUTE_SECOND_FORMAT = "yyyy-MM-dd hh:mm:ss";
 
 //“年-月-日”格式 中文
-var YEAR_MONTH_DATE_FORMAT_CN="yyyy年MM月dd日";
+var YEAR_MONTH_DATE_FORMAT_CN = "yyyy年MM月dd日";
 //“年-月-日 时:分:秒”格式 中文
-var DATE_HOUR_MINUTE_FORMAT_CN="yyyy年MM月dd日 hh点mm分";
+var DATE_HOUR_MINUTE_FORMAT_CN = "yyyy年MM月dd日 hh点mm分";
 
 //summernote完整toolbar
-var SUMMERNOTE_TOOLBAR_TEXT_ONLY=[
-	['style', ['style']],
-	['font', ['bold', 'italic', 'underline', 'clear', 'strikethrough', 'superscript', 'subscript']],
-	['fontname', ['fontname']],
-	['fontsize', ['fontsize']],
-	['color', ['color']],
-	['para', ['ul', 'ol', 'paragraph']],
-	['height', ['height']],
-	['table', ['table']],
-	['insert', ['link']],
-	['view', ['fullscreen', 'codeview', 'help']]
+var SUMMERNOTE_TOOLBAR_TEXT_ONLY = [
+    ['style', ['style']],
+    ['font', ['bold', 'italic', 'underline', 'clear', 'strikethrough', 'superscript', 'subscript']],
+    ['fontname', ['fontname']],
+    ['fontsize', ['fontsize']],
+    ['color', ['color']],
+    ['para', ['ul', 'ol', 'paragraph']],
+    ['height', ['height']],
+    ['table', ['table']],
+    ['insert', ['link']],
+    ['view', ['fullscreen', 'codeview', 'help']]
 ];
 
 //summernote禁用图片视频toolbar
-var SUMMERNOTE_TOOLBAR_FULL=[
-	['style', ['style']],
-	['font', ['bold', 'italic', 'underline', 'clear', 'strikethrough', 'superscript', 'subscript']],
-	['fontname', ['fontname']],
-	['fontsize', ['fontsize']],
-	['color', ['color']],
-	['para', ['ul', 'ol', 'paragraph']],
-	['height', ['height']],
-	['table', ['table']],
-	['insert', ['link', 'picture', 'video']],
-	['view', ['fullscreen', 'codeview', 'help']]
+var SUMMERNOTE_TOOLBAR_FULL = [
+    ['style', ['style']],
+    ['font', ['bold', 'italic', 'underline', 'clear', 'strikethrough', 'superscript', 'subscript']],
+    ['fontname', ['fontname']],
+    ['fontsize', ['fontsize']],
+    ['color', ['color']],
+    ['para', ['ul', 'ol', 'paragraph']],
+    ['height', ['height']],
+    ['table', ['table']],
+    ['insert', ['link', 'picture', 'video']],
+    ['view', ['fullscreen', 'codeview', 'help']]
 ];
 
 /**
@@ -53,7 +53,7 @@ var SUMMERNOTE_TOOLBAR_FULL=[
  *  @param doAfterCheck 验证成功回调函数
  */
 function checkSession(doAfterCheck) {
-	
+
 }
 
 /**
@@ -61,14 +61,14 @@ function checkSession(doAfterCheck) {
  * @param doAfterCheck 验证成功回调函数
  */
 function checkAdminSession(doAfterCheck) {
-	AdminManager.checkSession(function(username) {
-		if(username==null) {
-			location.href="sessionError.html";
-			return null;
-		} else {
-			doAfterCheck(username);
-		}
-	});
+    AdminManager.checkSession(function (username) {
+        if (username == null) {
+            location.href = "sessionError.html";
+            return null;
+        } else {
+            doAfterCheck(username);
+        }
+    });
 }
 
 /**
@@ -76,7 +76,7 @@ function checkAdminSession(doAfterCheck) {
  * @returns
  */
 function getScreenHeight() {
-	return document.documentElement.clientHeight;
+    return document.documentElement.clientHeight;
 }
 
 /**
@@ -84,7 +84,7 @@ function getScreenHeight() {
  * @returns
  */
 function getScreenWidth() {
-	return document.documentElement.clientWidth;
+    return document.documentElement.clientWidth;
 }
 
 /**
@@ -93,8 +93,8 @@ function getScreenWidth() {
  * @returns
  */
 function isNum(num) {
-     var reNum =/^-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/;
-     return (reNum.test(num));
+    var reNum = /^-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/;
+    return (reNum.test(num));
 }
 
 /**
@@ -103,7 +103,7 @@ function isNum(num) {
  * @returns
  */
 function isInteger(num) {
-    var reNum =/^-?[1-9]\d*$/;
+    var reNum = /^-?[1-9]\d*$/;
     return (reNum.test(num));
 }
 
@@ -113,8 +113,8 @@ function isInteger(num) {
  * @returns
  */
 function isEmailAddress(email) {
-	var patten = new RegExp(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/);
-	return patten.test(email);
+    var patten = new RegExp(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/);
+    return patten.test(email);
 }
 
 /**
@@ -122,21 +122,21 @@ function isEmailAddress(email) {
  * @param format 时间格式
  * @returns
  */
-Date.prototype.format =function(format) {
-    var o={
-	    "M+" : this.getMonth()+1, //month
-		"d+" : this.getDate(),    //day
-		"h+" : this.getHours(),   //hour
-		"m+" : this.getMinutes(), //minute
-		"s+" : this.getSeconds(), //second
-		"q+" : Math.floor((this.getMonth()+3)/3),  //quarter
-		"S" : this.getMilliseconds() //millisecond
+Date.prototype.format = function (format) {
+    var o = {
+        "M+": this.getMonth() + 1, //month
+        "d+": this.getDate(),    //day
+        "h+": this.getHours(),   //hour
+        "m+": this.getMinutes(), //minute
+        "s+": this.getSeconds(), //second
+        "q+": Math.floor((this.getMonth() + 3) / 3),  //quarter
+        "S": this.getMilliseconds() //millisecond
     };
-    if(/(y+)/.test(format)) 
-    	format=format.replace(RegExp.$1,(this.getFullYear()+"").substr(4- RegExp.$1.length));
-    for(var k in o)
-    	if(new RegExp("("+ k +")").test(format))
-    		format = format.replace(RegExp.$1,RegExp.$1.length==1? o[k] :("00"+ o[k]).substr((""+ o[k]).length));
+    if (/(y+)/.test(format))
+        format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+        if (new RegExp("(" + k + ")").test(format))
+            format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
     return format;
 };
 
@@ -147,10 +147,10 @@ Date.prototype.format =function(format) {
  * @return
  */
 function getMonthDay(year) {
-	var monthDay=[31,28,31,30,31,30,31,31,30,31,30,31];
-	if(isLeapYear(year))
-		monthDay[1]++;
-	return monthDay;
+    var monthDay = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    if (isLeapYear(year))
+        monthDay[1]++;
+    return monthDay;
 }
 
 /**
@@ -159,9 +159,9 @@ function getMonthDay(year) {
  * @returns {Boolean}
  */
 function isLeapYear(year) {
-	if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0)
-		return true;
-	return false;
+    if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)
+        return true;
+    return false;
 }
 
 /**
@@ -170,7 +170,7 @@ function isLeapYear(year) {
  * @param end
  */
 function getDaysBetweenDates(start, end) {
-	return Math.floor((end.getTime()-start.getTime())/(24*3600*1000));
+    return Math.floor((end.getTime() - start.getTime()) / (24 * 3600 * 1000));
 }
 
 /**
@@ -179,17 +179,17 @@ function getDaysBetweenDates(start, end) {
  * @param time 闪烁时间，单位毫秒
  * @param frequency 闪烁频率，单位毫秒
  */
-function flickerTip(selector,time,frequency) {
-	var flicker=setInterval(function(){
-		if($(selector).css("visibility")=="hidden")		
-			$(selector).css("visibility","inherit");
-		else
-			$(selector).css("visibility","hidden");
-	}, frequency);
-	setTimeout(function(){
-		clearInterval(flicker);
-		$(selector).css("visibility","inherit");
-	}, time);
+function flickerTip(selector, time, frequency) {
+    var flicker = setInterval(function () {
+        if ($(selector).css("visibility") == "hidden")
+            $(selector).css("visibility", "inherit");
+        else
+            $(selector).css("visibility", "hidden");
+    }, frequency);
+    setTimeout(function () {
+        clearInterval(flicker);
+        $(selector).css("visibility", "inherit");
+    }, time);
 }
 
 /**
@@ -197,38 +197,38 @@ function flickerTip(selector,time,frequency) {
  * @param paras
  * @returns
  */
-function request(paras) { 
-    var url = location.href; 
-    var paraString = url.substring(url.indexOf("?")+1,url.length).split("&"); 
-    var paraObj = {} 
-    for (i=0; j=paraString[i]; i++)
-    	paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length); 
-    var returnValue = paraObj[paras.toLowerCase()]; 
-    if(typeof(returnValue)=="undefined")
-    	return ""; 
+function request(paras) {
+    var url = location.href;
+    var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+    var paraObj = {}
+    for (i = 0; j = paraString[i]; i++)
+        paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=") + 1, j.length);
+    var returnValue = paraObj[paras.toLowerCase()];
+    if (typeof(returnValue) == "undefined")
+        return "";
     else
-    	return returnValue; 
-} 
-
-/**
-* 得到本月起始日期
-* @returns {String}
-*/
-function getThisMonthStart() {
-	var nowMonth=new Date().format("yyyy-MM");
-	return nowMonth+"-01";
+        return returnValue;
 }
 
 /**
-* 得到本月结束日期
-* @returns {String}
-*/
+ * 得到本月起始日期
+ * @returns {String}
+ */
+function getThisMonthStart() {
+    var nowMonth = new Date().format("yyyy-MM");
+    return nowMonth + "-01";
+}
+
+/**
+ * 得到本月结束日期
+ * @returns {String}
+ */
 function getThisMonthEnd() {
-	var nowMonth=new Date().format("yyyy-MM");
-	var year=parseInt(nowMonth.split("-")[0]);
-	var month=parseInt(nowMonth.split("-")[1]);
-	var monthDay=getMonthDay(year);
-	return nowMonth+"-"+monthDay[month-1];
+    var nowMonth = new Date().format("yyyy-MM");
+    var year = parseInt(nowMonth.split("-")[0]);
+    var month = parseInt(nowMonth.split("-")[1]);
+    var monthDay = getMonthDay(year);
+    return nowMonth + "-" + monthDay[month - 1];
 }
 
 /**
@@ -236,8 +236,8 @@ function getThisMonthEnd() {
  * @returns {String}
  */
 function getThisYearStart() {
-	var nowYear=new Date().format("yyyy");
-	return nowYear+"-01-01";
+    var nowYear = new Date().format("yyyy");
+    return nowYear + "-01-01";
 }
 
 
@@ -246,8 +246,8 @@ function getThisYearStart() {
  * @returns {String}
  */
 function getThisYearEnd() {
-	var nowYear=new Date().format("yyyy");
-	return nowYear+"-12-31";
+    var nowYear = new Date().format("yyyy");
+    return nowYear + "-12-31";
 }
 
 /**
@@ -257,10 +257,10 @@ function getThisYearEnd() {
  * @returns
  */
 function substr(str, n) {
-	if(str.length>n)
-		return str.substr(0, n)+"...";
-	else
-		return str;
+    if (str.length > n)
+        return str.substr(0, n) + "...";
+    else
+        return str;
 }
 
 /**
@@ -268,8 +268,8 @@ function substr(str, n) {
  * @returns
  */
 function getPageFullName() {
-	var array=window.location.pathname.split("/");
-	return array[array.length-1];
+    var array = window.location.pathname.split("/");
+    return array[array.length - 1];
 }
 
 /**
@@ -277,7 +277,7 @@ function getPageFullName() {
  * @returns
  */
 function getPageName() {
-	return getPageFullName().split(".")[0];
+    return getPageFullName().split(".")[0];
 }
 
 /**
@@ -286,11 +286,11 @@ function getPageName() {
  * @returns {Number}
  */
 function testRunTime(func) {
-	var start = new Date().getTime();
+    var start = new Date().getTime();
     func();
     var end = new Date().getTime();
     console.log("Run function time test in " + (end - start) + "ms.")
-	return end-start;
+    return end - start;
 }
 
 //i18n相关函数
@@ -310,18 +310,18 @@ function setLanguage(language) {
  * @returns
  */
 function getLanguage() {
-	var language = navigator.language || navigator.userLanguage;
-	//Safari等webkit内核国家标识码小写转大写
-	var langArray = language.split("-");
-	language = langArray[0] + "-" + langArray[1].toUpperCase();
-	var arrStr = document.cookie.split("; ");
-	for (var i = 0; i < arrStr.length; i++) {
-	    var temp = arrStr[i].split("=");
-	    if (temp[0] == 'language') {
-	    	language = unescape(temp[1]);
-	    }
-	}
-	return language;
+    var language = navigator.language || navigator.userLanguage;
+    //Safari等webkit内核国家标识码小写转大写
+    var langArray = language.split("-");
+    language = langArray[0] + "-" + langArray[1].toUpperCase();
+    var arrStr = document.cookie.split("; ");
+    for (var i = 0; i < arrStr.length; i++) {
+        var temp = arrStr[i].split("=");
+        if (temp[0] == 'language') {
+            language = unescape(temp[1]);
+        }
+    }
+    return language;
 }
 
 /**
@@ -329,7 +329,7 @@ function getLanguage() {
  * @returns
  */
 function getLanguageUnderline() {
-	return getLanguage().replace("-", "_");
+    return getLanguage().replace("-", "_");
 }
 
 /**
@@ -340,27 +340,27 @@ function getLanguageUnderline() {
  * @param title
  */
 function i18n(name, path, keys, title) {
-	$.i18n.properties({
-		name: name,
-        path : path, 
-        mode : "both", 
+    $.i18n.properties({
+        name: name,
+        path: path,
+        mode: "both",
         language: getLanguage(),
-        callback : function() {
-        	if(title!=null) {
-        		document.title = $.i18n.prop(title);
-        	}
-        	var data={
-    			language_broswer: languages[getLanguage()]
-    		}
-        	for(var i in keys) {
-        		data[keys[i]] = $.i18n.prop(keys[i]);
-        	}
-			$("body").fillText(data);
+        callback: function () {
+            if (title != null) {
+                document.title = $.i18n.prop(title);
+            }
+            var data = {
+                language_broswer: languages[getLanguage()]
+            }
+            for (var i in keys) {
+                data[keys[i]] = $.i18n.prop(keys[i]);
+            }
+            $("body").fillText(data);
         }
     });
 
-	$("#language-selector .dropdown-menu li").one("click", function() {
-		setLanguage($(this).attr("data-lang"));
-		location.reload();
-	});
+    $("#language-selector .dropdown-menu li").one("click", function () {
+        setLanguage($(this).attr("data-lang"));
+        location.reload();
+    });
 }

@@ -34,7 +34,7 @@ $(document).ready(function () {
     //加载博文信息
     BlogManager.getBlogInfo(bid, true, function (blog) {
         if (blog == null) {
-            location.href = "../urlError.html";
+            location.href = "../../../urlError.html";
             return;
         }
         var cover = (blog.cover != null && blog.bgenable) ? "/files/" + blog.bid + "/" + blog.cover : "/static/images/header-bg.jpg";

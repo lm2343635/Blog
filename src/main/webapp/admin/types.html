@@ -1,92 +1,96 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Manage My Blogs</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <link rel="Shortcut Icon" href="../static/images/favicon.ico">
-        <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-        <link href="../static/css/font-awesome.min.css" rel="stylesheet">
-        <link href="../static/css/summernote.min.css" rel="stylesheet">
-        <link href="../static/css/mengular.css" rel="stylesheet">
-        <link href="../static/css/types.css" rel="stylesheet">
-        <script src="../static/js/jquery.min.js"></script> 
-        <script src="../static/js/jquery.bootstrap.min.js"></script>
-        <script src="../static/js/bootstrap.min.js"></script> 
-        <script src="../static/js/summernote.min.js"></script>
-        <script src="../static/js/mengular.js"></script>
-        <script src="../static/js/tools.js"></script>
-        <script src="../dwr/engine.js"></script>
-        <script src="../dwr/interface/AdminManager.js"></script>
-        <script src="../dwr/interface/TypeManager.js"></script>
-        <script src="../static/js/types.js"></script>
-    </head>
-    <body>
-        <div class="container">
-            <div id="head">
-                <script>$("#head").load("head.html");</script>
-            </div>
-            <div class="page-header">
-            	<h3 class="text-center text-muted">Types of Blogs</h3>
-                <i id="add-type" class="fa fa-plus fa-lg pull-right text-primary add-icon" data-toggle="modal" data-target="#add-type-modal"></i>
-            </div>
-            <div id="type-list" class="list-group">
-                <div id="${tid}$" class="list-group-item mengular-template type-list-template">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-2">${date}$</div>
-                        <div class="col-xs-12 col-sm-8"><a href="list.html?tid=${tid}$" class="type-list-tname">${tname}$</a></div>
-                        <div class="col-xs-12 col-sm-2">
-                            <span class="type-list-modify"><i class="fa fa-gear fa-lg text-success type-accessory"></i></span>
-                            <span class="type-list-remove"><i class="fa fa-trash-o fa-lg text-danger type-accessory"></i></span>
-                            <span class="type-accessory"><strong class="text-warning">${count}$</strong> blogs</span>
-                        </div>
-                    </div>
+<head>
+    <meta charset="UTF-8">
+    <title>Manage My Blogs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="Shortcut Icon" href="../static/images/favicon.ico">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/css/summernote.min.css" rel="stylesheet">
+    <link href="../static/css/mengular.css" rel="stylesheet">
+    <link href="../static/css/types.css" rel="stylesheet">
+    <script src="../static/js/admin/jquery.min.js"></script>
+    <script src="../static/js/jquery.bootstrap.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/summernote.min.js"></script>
+    <script src="../static/js/mengular.js"></script>
+    <script src="../static/js/tools.js"></script>
+    <script src="../dwr/engine.js"></script>
+    <script src="../dwr/interface/AdminManager.js"></script>
+    <script src="../dwr/interface/TypeManager.js"></script>
+    <script src="../static/js/admin/types.js"></script>
+</head>
+<body>
+<div class="container">
+    <div id="head">
+        <script>$("#head").load("head.html");</script>
+    </div>
+    <div class="page-header">
+        <h3 class="text-center text-muted">Types of Blogs</h3>
+        <i id="add-type" class="fa fa-plus fa-lg pull-right text-primary add-icon" data-toggle="modal"
+           data-target="#add-type-modal"></i>
+    </div>
+    <div id="type-list" class="list-group">
+        <div id="${tid}$" class="list-group-item mengular-template type-list-template">
+            <div class="row">
+                <div class="col-xs-12 col-sm-2">${date}$</div>
+                <div class="col-xs-12 col-sm-8"><a href="list.html?tid=${tid}$" class="type-list-tname">${tname}$</a>
+                </div>
+                <div class="col-xs-12 col-sm-2">
+                    <span class="type-list-modify"><i class="fa fa-gear fa-lg text-success type-accessory"></i></span>
+                    <span class="type-list-remove"><i class="fa fa-trash-o fa-lg text-danger type-accessory"></i></span>
+                    <span class="type-accessory"><strong class="text-warning">${count}$</strong> blogs</span>
                 </div>
             </div>
         </div>
-        <div id="add-type-modal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Create a Type</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="input-group">
+    </div>
+</div>
+<div id="add-type-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Create a Type</h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
                             <span class="input-group-addon">
                                 <i class="fa fa-lg fa-font"></i>
                             </span>
-                            <input id="add-type-tname" type="text" class="form-control" placeholder="Name of Type">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button id="add-type-submit" type="button" class="btn btn-primary">Save</button>
-                    </div>
+                    <input id="add-type-tname" type="text" class="form-control" placeholder="Name of Type">
                 </div>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="add-type-submit" type="button" class="btn btn-primary">Save</button>
+            </div>
         </div>
-        <div id="modify-type-modal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Modify the Type</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="input-group">
+    </div>
+</div>
+<div id="modify-type-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Modify the Type</h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
                             <span class="input-group-addon">
                                 <i class="fa fa-lg fa-font"></i>
                             </span>
-                            <input id="modify-type-tname" type="text" class="form-control" placeholder="Name of Type">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button id="modify-type-submit" type="button" class="btn btn-primary">Save</button>
-                    </div>
+                    <input id="modify-type-tname" type="text" class="form-control" placeholder="Name of Type">
                 </div>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="modify-type-submit" type="button" class="btn btn-primary">Save</button>
+            </div>
         </div>
-    </body>
+    </div>
+</div>
+</body>
 </html>

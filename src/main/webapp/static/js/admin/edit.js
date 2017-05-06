@@ -10,7 +10,7 @@ $(document).ready(function () {
         //加载博客信息
         BlogManager.getBlogInfo(bid, false, function (blog) {
             if (blog == null) {
-                location.href = "urlError.html";
+                location.href = "../../../urlError.html";
                 return;
             }
             $("#edit-blog-title").val(blog.title);

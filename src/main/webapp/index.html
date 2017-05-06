@@ -1,277 +1,280 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="keywords" content="浮尘追梦, fczm, Meng Li, 博客, Blog, Java Web, iOS">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<meta name="description" content="This is Meng Li's home page, you can visit my github, works and read my blogs. Have a awesome day!">
-		<link rel="Shortcut Icon" href="static/images/favicon.ico">
-		<link href="static/css/bootstrap.min.css" rel="stylesheet"/>
-		<link href="static/css/bootstrap.photo.css" rel="stylesheet"/>
-		<link href="static/css/style.css" rel="stylesheet"/>
-		<link href="static/css/index.css" rel="stylesheet"/>
-		<script src="static/js/jquery.min.js"></script>
-		<script src="static/js/jquery.i18n.properties.min.js"></script>
-		<script src="static/js/bootstrap.min.js"></script>
-		<script src="static/js/bootstrap.photo.js"></script>
-		<script src="static/js/mengular.js"></script>
-		<script src="static/js/tools.js"></script>
-		<script src="static/js/index.js"></script>
-	</head>
-	<body>
-		<div id="home" class="header">
-			<div class="top-header">
-				<div class="container">
-					<h1 class="pull-left home"><a href="blogs.html">@{index_blogs}</a></h1>
-					<div id="language-selector" class="dropdown pull-right language">
-						<button id="language-selector-button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-							<span >@{language_broswer}</span>
-							<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" aria-labelledby="language-selector-button">
-							<li data-lang="en-US"><a>English</a></li>
-							<li data-lang="zh-CN"><a>简体中文</a></li>
-							<li data-lang="ja"><a>日本語</a></li>
-						</ul>
-					</div>
-					<div class="top-header-info">
-						<p>@{index_introduce}</p>
-						<a class="contactme" href="#contact">@{index_contact_me}</a>
-						<a class="contactme" href="blogs.html">@{index_my_blogs}</a>
-						<a class="contactme" href="https://github.com/lm2343635">@{index_my_github}</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="block">
-			<div class="container">
-				<h1 class="text-center">@{index_about}</h1>
-				<div class="col-md-6 aboutus-left">
-					<p>@{index_about_content_1}</p>
-					<p>@{index_about_content_2}</p>
-					<p>@{index_about_content_3}</p>
-				</div>
-				<div class="col-md-6 aboutus-right">
-					<p>@{index_about_content_4}</p>
-					<p>@{index_about_content_5}</p>
-				</div>
-			</div>
-		</div>
-		<div id="motto" class="text-center">
-			<div class="container">
-				<p>@{index_motto}</p>
-			</div>
-		</div>
-		<div id="technology" class="block">
-			<div class="container">
-				<div class="col-sm-9 col-md-10">
-					<h1>TECHNOLOGY</h1>
-					<p>@{organization}</p>
-					<p>@{research}</p>
-					<a href="https://github.com/lm2343635" target="_block">https://github.com/lm2343635</a>
-				</div>
-				<div class="col-sm-3 col-md-2">
-					<a href="https://github.com/lm2343635" target="_block">
-						<img src="static/images/github-qrcode.png" class="qrcode"/>
-					</a>
-				</div>
-			</div>
-		</div>
-		<div id="education" class="block deep">
-			<div class="container">
-				<div class="col-xs-12">
-					<h1 class="text-center">@{education}</h1>
-				</div>
-				<div class="col-xs-12 col-sm-4">
-					<img src="static/images/nefu.png">
-				</div>
-				<div class="col-xs-12 col-sm-4">
-					<img src="static/images/kit.png">
-				</div>
-				<div class="col-xs-12 col-sm-4">
-					<img src="static/images/ut.png">
-				</div>
-			</div>
-		</div>
-		<div id="skill" class="block">
-			<div class="container">
-				<div class="col-xs-12">
-					<h1 class="text-center">@{programming_skill}</h1>
-				</div>
-				<div id="le4" class="col-xs-6 col-md-3 level">
-					<h2>Le.4</h2>
-					<h4>Java, Objective-C</h4>
-					<p>@{le4}</p>
-				</div>
-				<div id="le3" class="col-xs-6 col-md-3 level">
-					<h2>Le.3</h2>
-					<h4>JavaScript, Swift</h4>
-					<p>@{le3}</p>
-				</div>
-				<div id="le2" class="col-xs-6 col-md-3 level">
-					<h2>Le.2</h2>
-					<h4>C, C++</h4>
-					<p>@{le2}</p>
-				</div>
-				<div id="le1" class="col-xs-6 col-md-3 level">
-					<h2>Le.1</h2>
-					<h4>C#, VHDL, Assembly</h4>
-					<p>@{le1}</p>
-				</div>
-			</div>
-		</div>
-		<div class="block deep programming">
-			<div class="container">
-				<div class="col-xs-12">
-					<h1 class="text-center">@{web_application}</h1>
-				</div>
-				<div class="col-xs-6 col-sm-3">
-					<img src="static/images/java.png">
-					<p class="text-center">Java</p>
-				</div>
-				<div class="col-xs-6 col-sm-3">
-					<img src="static/images/html.png">
-					<p class="text-center">HTML</p>
-				</div>
-				<div class="col-xs-6 col-sm-3">
-					<img src="static/images/css.png">
-					<p class="text-center">CSS</p>
-				</div>
-				<div class="col-xs-6 col-sm-3">
-					<img src="static/images/javascript.png">
-					<p class="text-center">JavaScript</p>
-				</div>
-			</div>
-		</div>
-		<div class="block production">
-			<div class="container">
-				<div class="col-xs-12">
-					<h1 class="text-center">@{blog}<img src="static/images/java.png" class="devlang"></h1>
-				</div>
-				<div class="col-sm-6 col-md-4">
-					<img src="static/images/blog2.png" class="screenshoot">
-				</div>
-				<div class="col-sm-6 col-md-4">
-					<img src="static/images/blog1.png" class="screenshoot">
-				</div>
-				<div class="col-sm-8 col-md-4">
-					<h3>@{blog_title}</h3>
-					<ul>
-						<li>@{blog_introdution_1}</li> 
-						<li>@{blog_introdution_2}</li> 
-						<li>@{blog_introdution_3}</li> 
-						<li>@{blog_introdution_4}</li> 
-					</ul>
-				</div>
-				<div class="col-sm-4 col-md-4">
-					<img src="static/images/blog-qrcode.png" class="qrcode">
-					<a href="http://fczm.pw"><p class="text-center">http://fczm.pw</p></a>
-				</div>
-			</div>
-		</div>
-		<div class="block production deep">
-			<div class="container">
-				<h1 class="text-center">@{easy_finance}<img src="static/images/java.png" class="devlang"></h1>
-				<div class="col-sm-4">
-					<h3>@{easy_finance_title}</h3>
-					<ul>
-						<li>@{easy_finance_introduction_1}</li>
-						<li>@{easy_finance_introduction_2}</li>
-						<li>@{easy_finance_introduction_3}</li>
-						<li>@{easy_finance_introduction_4}</li>
-					</ul>
-					<img src="static/images/easy-qrcode.png" class="qrcode">
-					<a href="http://easy.fczm.pw"><p class="text-center">http://easy.fczm.pw</p></a>
-				</div>
-				<div class="col-sm-8">
-					<img src="static/images/easy.png" class="screenshoot">
-				</div>
-			</div>
-		</div>
-		<div class="block programming">
-			<div class="container">
-				<div class="col-xs-12">
-					<h1 class="text-center">@{ios_application}</h1>
-				</div>
-				<div class="col-xs-6">
-					<img src="static/images/objc.png">
-					<p class="text-center">Objective-C</p>
-				</div>
-				<div class="col-xs-6">
-					<img src="static/images/swift.png">
-					<p class="text-center">Swift</p>
-				</div>
-			</div>
-		</div>
-		<div class="block production deep">
-			<div class="container">
-				<div class="col-xs-12">
-					<h1 class="text-center">@{rate}<img src="static/images/objc.png" class="devlang"></h1>
-				</div>
-				<div class="col-sm-6 col-md-4">
-					<img src="static/images/rate1.png" class="screenshoot">
-				</div>
-				<div class="col-sm-6 col-md-4">
-					<img src="static/images/rate2.png" class="screenshoot">
-				</div>
-				<div class="col-sm-8 col-md-4">
-					<h3>@{rate_title}</h3>
-					<ul>
-						<li>@{rate_introduction_1}</li>
-						<li>@{rate_introduction_2}</li>
-						<li>@{rate_introduction_3}</li>
-					</ul>
-				</div>
-				<div class="col-sm-4 col-md-4">
-					<img src="static/images/rate-qrcode.png" class="qrcode">
-					<a href="https://itunes.apple.com/app/rate-assistant-monitor-rate/id1139573801" target="_blank">
-						<img src="static/images/appstore.png" class="appstore">
-					</a>
-				</div>
-			</div>
-		</div>
-		<div class="block production">
-			<div class="container">
-				<div class="col-xs-12">
-					<h1 class="text-center">@{httper}<img src="static/images/swift.png" class="devlang"></h1>
-				</div>
-				<div class="col-sm-6 col-md-4">
-					<img src="static/images/httper1.png" class="screenshoot">
-				</div>
-				<div class="col-sm-6 col-md-4">
-					<img src="static/images/httper2.png" class="screenshoot">
-				</div>
-				<div class="col-sm-8 col-md-4">
-					<h3>@{httper_title}</h3>
-					<ul>
-						<li>@{httper_introduction_1}</li> 
-						<li>@{httper_introduction_2}</li> 
-						<li>@{httper_introduction_3}</li> 
-					</ul>
-				</div>
-				<div class="col-sm-4 col-md-4">
-					<img src="static/images/httper-qrcode.png" class="qrcode">
-					<a href="https://itunes.apple.com/app/httper/id1166884043" target="_blank">
-						<img src="static/images/appstore.png" class="appstore">
-					</a>
-				</div>
-			</div>
-		</div>
-		<div class="block deep">
-			<div class="container">
-				<h1 class="text-center">@{index_contact}</h1>
-				<div class="address text-center">@{index_address}</div>
-			</div>
-		</div>
-		<div class="contact-map">
-			<iframe src="http://www.google.cn/maps/embed?pb=!1m18!1m12!1m3!1d3223.3108189184054!2d140.0993196!3d36.11028470000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60220bff098eef6f%3A0x38f8406069ed2e60!2z562R5rOi5aSn5a2m!5e0!3m2!1szh-CN!2scn!4v1444282277303"  height="350" ></iframe>
-		</div>
-		<div id="foot">
-			<script>
-				$(document).ready(function() {
-					$("#foot").load("foot.html");
-				});
-			</script>
-		</div>
-	</body>
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="浮尘追梦, fczm, Meng Li, 博客, Blog, Java Web, iOS">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description"
+          content="This is Meng Li's home page, you can visit my github, works and read my blogs. Have a awesome day!">
+    <link rel="Shortcut Icon" href="static/images/favicon.ico">
+    <link href="static/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="static/css/bootstrap.photo.css" rel="stylesheet"/>
+    <link href="static/css/style.css" rel="stylesheet"/>
+    <link href="static/css/index.css" rel="stylesheet"/>
+    <script src="static/js/admin/jquery.min.js"></script>
+    <script src="static/js/jquery.i18n.properties.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/bootstrap.photo.js"></script>
+    <script src="static/js/mengular.js"></script>
+    <script src="static/js/tools.js"></script>
+    <script src="static/js/blog/index.js"></script>
+</head>
+<body>
+<div id="home" class="header">
+    <div class="top-header">
+        <div class="container">
+            <h1 class="pull-left home"><a href="blogs.html">@{index_blogs}</a></h1>
+            <div id="language-selector" class="dropdown pull-right language">
+                <button id="language-selector-button" class="btn dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="true">
+                    <span>@{language_broswer}</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="language-selector-button">
+                    <li data-lang="en-US"><a>English</a></li>
+                    <li data-lang="zh-CN"><a>简体中文</a></li>
+                    <li data-lang="ja"><a>日本語</a></li>
+                </ul>
+            </div>
+            <div class="top-header-info">
+                <p>@{index_introduce}</p>
+                <a class="contactme" href="#contact">@{index_contact_me}</a>
+                <a class="contactme" href="blogs.html">@{index_my_blogs}</a>
+                <a class="contactme" href="https://github.com/lm2343635">@{index_my_github}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="block">
+    <div class="container">
+        <h1 class="text-center">@{index_about}</h1>
+        <div class="col-md-6 aboutus-left">
+            <p>@{index_about_content_1}</p>
+            <p>@{index_about_content_2}</p>
+            <p>@{index_about_content_3}</p>
+        </div>
+        <div class="col-md-6 aboutus-right">
+            <p>@{index_about_content_4}</p>
+            <p>@{index_about_content_5}</p>
+        </div>
+    </div>
+</div>
+<div id="motto" class="text-center">
+    <div class="container">
+        <p>@{index_motto}</p>
+    </div>
+</div>
+<div id="technology" class="block">
+    <div class="container">
+        <div class="col-sm-9 col-md-10">
+            <h1>TECHNOLOGY</h1>
+            <p>@{organization}</p>
+            <p>@{research}</p>
+            <a href="https://github.com/lm2343635" target="_block">https://github.com/lm2343635</a>
+        </div>
+        <div class="col-sm-3 col-md-2">
+            <a href="https://github.com/lm2343635" target="_block">
+                <img src="static/images/github-qrcode.png" class="qrcode"/>
+            </a>
+        </div>
+    </div>
+</div>
+<div id="education" class="block deep">
+    <div class="container">
+        <div class="col-xs-12">
+            <h1 class="text-center">@{education}</h1>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            <img src="static/images/nefu.png">
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            <img src="static/images/kit.png">
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            <img src="static/images/ut.png">
+        </div>
+    </div>
+</div>
+<div id="skill" class="block">
+    <div class="container">
+        <div class="col-xs-12">
+            <h1 class="text-center">@{programming_skill}</h1>
+        </div>
+        <div id="le4" class="col-xs-6 col-md-3 level">
+            <h2>Le.4</h2>
+            <h4>Java, Objective-C</h4>
+            <p>@{le4}</p>
+        </div>
+        <div id="le3" class="col-xs-6 col-md-3 level">
+            <h2>Le.3</h2>
+            <h4>JavaScript, Swift</h4>
+            <p>@{le3}</p>
+        </div>
+        <div id="le2" class="col-xs-6 col-md-3 level">
+            <h2>Le.2</h2>
+            <h4>C, C++</h4>
+            <p>@{le2}</p>
+        </div>
+        <div id="le1" class="col-xs-6 col-md-3 level">
+            <h2>Le.1</h2>
+            <h4>C#, VHDL, Assembly</h4>
+            <p>@{le1}</p>
+        </div>
+    </div>
+</div>
+<div class="block deep programming">
+    <div class="container">
+        <div class="col-xs-12">
+            <h1 class="text-center">@{web_application}</h1>
+        </div>
+        <div class="col-xs-6 col-sm-3">
+            <img src="static/images/java.png">
+            <p class="text-center">Java</p>
+        </div>
+        <div class="col-xs-6 col-sm-3">
+            <img src="static/images/html.png">
+            <p class="text-center">HTML</p>
+        </div>
+        <div class="col-xs-6 col-sm-3">
+            <img src="static/images/css.png">
+            <p class="text-center">CSS</p>
+        </div>
+        <div class="col-xs-6 col-sm-3">
+            <img src="static/images/javascript.png">
+            <p class="text-center">JavaScript</p>
+        </div>
+    </div>
+</div>
+<div class="block production">
+    <div class="container">
+        <div class="col-xs-12">
+            <h1 class="text-center">@{blog}<img src="static/images/java.png" class="devlang"></h1>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <img src="static/images/blog2.png" class="screenshoot">
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <img src="static/images/blog1.png" class="screenshoot">
+        </div>
+        <div class="col-sm-8 col-md-4">
+            <h3>@{blog_title}</h3>
+            <ul>
+                <li>@{blog_introdution_1}</li>
+                <li>@{blog_introdution_2}</li>
+                <li>@{blog_introdution_3}</li>
+                <li>@{blog_introdution_4}</li>
+            </ul>
+        </div>
+        <div class="col-sm-4 col-md-4">
+            <img src="static/images/blog-qrcode.png" class="qrcode">
+            <a href="http://fczm.pw"><p class="text-center">http://fczm.pw</p></a>
+        </div>
+    </div>
+</div>
+<div class="block production deep">
+    <div class="container">
+        <h1 class="text-center">@{easy_finance}<img src="static/images/java.png" class="devlang"></h1>
+        <div class="col-sm-4">
+            <h3>@{easy_finance_title}</h3>
+            <ul>
+                <li>@{easy_finance_introduction_1}</li>
+                <li>@{easy_finance_introduction_2}</li>
+                <li>@{easy_finance_introduction_3}</li>
+                <li>@{easy_finance_introduction_4}</li>
+            </ul>
+            <img src="static/images/easy-qrcode.png" class="qrcode">
+            <a href="http://easy.fczm.pw"><p class="text-center">http://easy.fczm.pw</p></a>
+        </div>
+        <div class="col-sm-8">
+            <img src="static/images/easy.png" class="screenshoot">
+        </div>
+    </div>
+</div>
+<div class="block programming">
+    <div class="container">
+        <div class="col-xs-12">
+            <h1 class="text-center">@{ios_application}</h1>
+        </div>
+        <div class="col-xs-6">
+            <img src="static/images/objc.png">
+            <p class="text-center">Objective-C</p>
+        </div>
+        <div class="col-xs-6">
+            <img src="static/images/swift.png">
+            <p class="text-center">Swift</p>
+        </div>
+    </div>
+</div>
+<div class="block production deep">
+    <div class="container">
+        <div class="col-xs-12">
+            <h1 class="text-center">@{rate}<img src="static/images/objc.png" class="devlang"></h1>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <img src="static/images/rate1.png" class="screenshoot">
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <img src="static/images/rate2.png" class="screenshoot">
+        </div>
+        <div class="col-sm-8 col-md-4">
+            <h3>@{rate_title}</h3>
+            <ul>
+                <li>@{rate_introduction_1}</li>
+                <li>@{rate_introduction_2}</li>
+                <li>@{rate_introduction_3}</li>
+            </ul>
+        </div>
+        <div class="col-sm-4 col-md-4">
+            <img src="static/images/rate-qrcode.png" class="qrcode">
+            <a href="https://itunes.apple.com/app/rate-assistant-monitor-rate/id1139573801" target="_blank">
+                <img src="static/images/appstore.png" class="appstore">
+            </a>
+        </div>
+    </div>
+</div>
+<div class="block production">
+    <div class="container">
+        <div class="col-xs-12">
+            <h1 class="text-center">@{httper}<img src="static/images/swift.png" class="devlang"></h1>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <img src="static/images/httper1.png" class="screenshoot">
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <img src="static/images/httper2.png" class="screenshoot">
+        </div>
+        <div class="col-sm-8 col-md-4">
+            <h3>@{httper_title}</h3>
+            <ul>
+                <li>@{httper_introduction_1}</li>
+                <li>@{httper_introduction_2}</li>
+                <li>@{httper_introduction_3}</li>
+            </ul>
+        </div>
+        <div class="col-sm-4 col-md-4">
+            <img src="static/images/httper-qrcode.png" class="qrcode">
+            <a href="https://itunes.apple.com/app/httper/id1166884043" target="_blank">
+                <img src="static/images/appstore.png" class="appstore">
+            </a>
+        </div>
+    </div>
+</div>
+<div class="block deep">
+    <div class="container">
+        <h1 class="text-center">@{index_contact}</h1>
+        <div class="address text-center">@{index_address}</div>
+    </div>
+</div>
+<div class="contact-map">
+    <iframe src="http://www.google.cn/maps/embed?pb=!1m18!1m12!1m3!1d3223.3108189184054!2d140.0993196!3d36.11028470000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60220bff098eef6f%3A0x38f8406069ed2e60!2z562R5rOi5aSn5a2m!5e0!3m2!1szh-CN!2scn!4v1444282277303"
+            height="350"></iframe>
+</div>
+<div id="foot">
+    <script>
+        $(document).ready(function () {
+            $("#foot").load("foot.html");
+        });
+    </script>
+</div>
+</body>
 </html>
