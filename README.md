@@ -1,4 +1,4 @@
-# My Home Page, a Blog System
+# My Home Page, a Blog System [![Build Status](https://travis-ci.org/lm2343635/Blog.svg?branch=master)](https://travis-ci.org/lm2343635/Blog)
 
 This website is my homepage with a blog system. Blog articles can be added and modified by admin, while readers can read and rely.
 
