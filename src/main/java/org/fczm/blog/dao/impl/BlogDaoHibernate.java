@@ -52,7 +52,7 @@ public class BlogDaoHibernate extends PageHibernateDaoSupport<Blog> implements B
             values.add("%" + title + "%");
         }
         if (type != null) {
-            hql += " and type=?";
+            hql += " and type = ?";
             values.add(type);
         }
         hql += " order by date desc";
@@ -60,7 +60,7 @@ public class BlogDaoHibernate extends PageHibernateDaoSupport<Blog> implements B
     }
 
     public List<Blog> findByType(Type type) {
-        String hql = "from Blog where type=?";
+        String hql = "from Blog where type = ?";
         return (List<Blog>) getHibernateTemplate().find(hql, type);
     }
 
