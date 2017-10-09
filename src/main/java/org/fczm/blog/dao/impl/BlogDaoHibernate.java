@@ -25,7 +25,7 @@ public class BlogDaoHibernate extends PageHibernateDaoSupport<Blog> implements B
     public int getBlogsCount(final String title, final Type type) {
         return getHibernateTemplate().execute(new HibernateCallback<Long>() {
             public Long doInHibernate(Session session) throws HibernateException {
-                String hql = "select count(*) from Blog where true=true";
+                String hql = "select count(*) from Blog where true = true";
                 List<Object> values = new ArrayList<Object>();
                 if (!title.equals("") && title != null) {
                     hql += " and title like ?";
@@ -45,7 +45,7 @@ public class BlogDaoHibernate extends PageHibernateDaoSupport<Blog> implements B
     }
 
     public List<Blog> findByTitle(String title, Type type, int offset, int pageSize) {
-        String hql = "from Blog where true=true";
+        String hql = "from Blog where true = true";
         List<Object> values = new ArrayList<Object>();
         if (!title.equals("") && title != null) {
             hql += " and title like ?";
