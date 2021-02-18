@@ -10,7 +10,7 @@
     <properties>
         <spring.version>4.3.6.RELEASE</spring.version>
         <hibernate.version>4.3.5.Final</hibernate.version>
-        <fasterxml.jackson.version>2.10.1</fasterxml.jackson.version>
+        <fasterxml.jackson.version>2.12.1</fasterxml.jackson.version>
     </properties>
     <dependencies>
         <dependency>
