@@ -8,7 +8,7 @@
     <name>Blog Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <properties>
-        <spring.version>4.3.6.RELEASE</spring.version>
+        <spring.version>5.3.18</spring.version>
         <hibernate.version>4.3.5.Final</hibernate.version>
         <fasterxml.jackson.version>2.10.1</fasterxml.jackson.version>
     </properties>
